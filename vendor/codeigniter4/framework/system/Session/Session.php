@@ -411,9 +411,8 @@ class Session implements SessionInterface
      */
     public function regenerate(bool $destroy = false)
     {
-        $_SESSION['__ci_last_regenerate'] = Time::now()->getTimestamp();
-        session_regenerate_id($destroy);
-
+        $_SESSION['__ci_last_regenerate'] = Time::now()->getTimestamp(); 
+        session_regenerate_id($destroy);  
         $this->removeOldSessionCookie();
     }
 

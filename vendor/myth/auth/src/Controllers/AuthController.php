@@ -125,15 +125,15 @@ class AuthController extends Controller
 
 
     public function googleauth(){  
-
-        $this->auth->login("fauzan", $remember); 
         if (isset($_GET['code'])) {
             $token = $this->clientgoogle->fetchAccessTokenWithAuthCode($_GET['code']);
             if(isset($token['access_token'])){
                 $this->clientgoogle->setAccessToken($token['access_token']);							
                 $Oauth = new Google_Service_Oauth2($this->clientgoogle);
-                $userInfo = $Oauth->userinfo->get();
-                echo json_encode($userInfo);
+                $userInfo = $Oauth->userinfo->get();  
+                if (!$this->auth->attemptgoogle(["email"=>$userInfo->email], true)){
+                    return redirect()->to(route_to('login'))->with('error', $this->auth->error() ?? lang('Auth.badAttempt'));
+                } 
                 // $users = new Users();
                 // $data = $users->where('google_id',$userInfo->id)->find();
                 // if(! $data){
@@ -157,13 +157,13 @@ class AuthController extends Controller
                 // Session()->auth = $userInfo;
                 // return redirect()->to('/');
             }
-        } 
-        $auth = Session()->auth;
-        if($auth){
-            return redirect()->to('/');
-        }
-        echo "<a href='".base_url()."logout'>Logout</a>";
+        }  
+        $redirectURL = session('redirect_url') ?? site_url('/');
+        unset($_SESSION['redirect_url']);
+
+        return redirect()->to($redirectURL)->withCookies()->with('message', lang('Auth.loginSuccess'));
     }
+    
     /**
      * Log the user out.
      */

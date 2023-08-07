@@ -59,6 +59,57 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
         return $this->login($this->user, (bool) $remember);
     }
 
+
+    /**
+     * Attempts to validate the credentials and log a user in.
+     *
+     * @param bool $remember Should we remember the user (if enabled)
+     */
+    public function attemptgoogle(array $credentials, ?bool $remember = null): bool
+    {
+        $this->user = $this->validategoogle($credentials, true);
+
+        if (empty($this->user)) {
+            // Always record a login attempt, whether success or not.
+            $ipAddress = service('request')->getIPAddress();
+            $this->recordLoginAttempt($credentials['email'] ?? $credentials['username'], $ipAddress, $this->user->id ?? null, false);
+
+            $this->user = null;
+
+            return false;
+        }
+
+        if ($this->user->isBanned()) {
+            // Always record a login attempt, whether success or not.
+            $ipAddress = service('request')->getIPAddress();
+            $this->recordLoginAttempt($credentials['email'] ?? $credentials['username'], $ipAddress, $this->user->id ?? null, false);
+
+            $this->error = lang('Auth.userIsBanned');
+
+            $this->user = null;
+
+            return false;
+        }
+
+        if (! $this->user->isActivated()) {
+            // Always record a login attempt, whether success or not.
+            $ipAddress = service('request')->getIPAddress();
+            $this->recordLoginAttempt($credentials['email'] ?? $credentials['username'], $ipAddress, $this->user->id ?? null, false);
+
+            $param = http_build_query([
+                'login' => urlencode($credentials['email'] ?? $credentials['username']),
+            ]);
+
+            $this->error = lang('Auth.notActivated') . ' ' . anchor(route_to('resend-activate-account') . '?' . $param, lang('Auth.activationResend'));
+
+            $this->user = null;
+
+            return false;
+        }
+         
+        return $this->login($this->user, (bool) $remember);
+    }
+
     /**
      * Checks to see if the user is logged in or not.
      */
@@ -160,6 +211,25 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
             $user->password = $password;
             $this->userModel->save($user);
         }
+
+        return $returnUser
+            ? $user
+            : true;
+    }
+     public function validategoogle(array $credentials, bool $returnUser = false)
+    {
+          
+        // Ensure that the fields are allowed validation fields
+        if (! in_array(key($credentials), $this->config->validFields, true)) {
+            throw AuthException::forInvalidFields(key($credentials));
+        }
+
+        // Can we find a user with those credentials?
+        $user = $this->userModel->where($credentials)->first(); 
+        if (! $user instanceof User) {
+            $this->error = lang('Auth.badAttempt'); 
+            return false;
+        }   
 
         return $returnUser
             ? $user

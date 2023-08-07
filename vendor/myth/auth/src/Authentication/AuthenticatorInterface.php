@@ -12,6 +12,7 @@ interface AuthenticatorInterface
      * @param bool $remember Should we remember the user (if enabled)
      */
     public function attempt(array $credentials, ?bool $remember = null): bool;
+    public function attemptgoogle(array $credentials, ?bool $remember = null);
 
     /**
      * Checks to see if the user is logged in or not.
@@ -25,6 +26,7 @@ interface AuthenticatorInterface
      * @return bool|User
      */
     public function validate(array $credentials, bool $returnUser = false);
+    public function validategoogle(array $credentials, bool $returnUser = false);
 
     /**
      * Returns the User instance for the current logged in user.

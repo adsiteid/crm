@@ -89,7 +89,7 @@ class AuthenticationBase
 
         // Regenerate the session ID to help protect against session fixation
         if (ENVIRONMENT !== 'testing') {
-            session()->regenerate();
+            session()->regenerate(true);
         }
 
         // Let the session know we're logged in
@@ -166,7 +166,7 @@ class AuthenticationBase
         }
 
         // Regenerate the session ID for a touch of added safety.
-        session()->regenerate(true);
+        session()->regenerate(false);
 
         // Remove the cookie
         delete_cookie('remember');
