@@ -88,6 +88,8 @@
                 </div>
 
 
+
+
                 <div class="form-group col-lg-3 col-12">
                     <label for="project">Project</label>
                     <select class="form-control form-select <?php if (session('error.project')) : ?>is-invalid<?php endif ?> " id="project" name="project">
@@ -103,8 +105,8 @@
                             <?php foreach ($projects->getResultArray() as $pj2) : ?>
                                 <option value="<?= $pj2['project']; ?>"><?= $pj2['project']; ?></option>
                             <?php endforeach; ?>
+                            
                         <?php endif; ?>
-
                     </select>
                     <div class="invalid-feedback">
                         <?= (session('error.project')); ?>

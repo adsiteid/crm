@@ -6,8 +6,8 @@ use CodeIgniter\Config\BaseConfig;
 
 class Email extends BaseConfig
 {
-    public string $fromEmail  = 'agitagustian@gmail.com';
-    public string $fromName   = 'Agit Agustian';
+    public string $fromEmail  = 'itcenteromahbata@gmail.com';
+    public string $fromName   = 'ADSITE ADMIN';
     public string $recipients = '';
 
     /**
@@ -33,12 +33,12 @@ class Email extends BaseConfig
     /**
      * SMTP Username
      */
-    public string $SMTPUser = 'agitagustian@gmail.com';
+    public string $SMTPUser = 'itcenteromahbata@gmail.com';
 
     /**
      * SMTP Password
      */
-    public string $SMTPPass = 'gr33nday194875';
+    public string $SMTPPass = 'aytpolrlymaarizf';
 
     /**
      * SMTP Port

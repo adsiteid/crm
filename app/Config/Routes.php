@@ -39,6 +39,8 @@ $routes->set404Override(
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->get('/googleauth', 'Googleauth::index');
+$routes->get('/test', 'Test::index');
 $routes->get('/list_project', 'Home::project');
 
 $routes->get('/leads/(:num)', 'Leads::detail/$1');
@@ -91,7 +93,7 @@ $routes->get('/report/leads_report', 'Report::leads');
 $routes->get('/report/leads_subholding','Report::subholding', ['filter' => 'role:admin,admin_group,admin_project']);
 $routes->get('/report/leads_project', 'Report::project');
 $routes->get('/report/leads_source', 'Report::source');
-$routes->get('/report/report_sales', 'Report::sales');
+$routes->get('/report/report_sales', 'Report::sales', ['filter' => 'role:admin,admin_group,admin_project,manager,general_manager']);
 
 $routes->post('/search_report', 'Report::search_report');
 
@@ -103,9 +105,9 @@ $routes->get('/report_project/(:num)', 'Report::projectFilter/$1');
 $routes->post('/range_project_report', 'Report::projectRange');
 
 // USER
-$routes->get('/user/agent', 'User::users');
+$routes->get('/user/agent', 'User::sales');
 $routes->get('/user/admin','User::admin', ['filter' => 'role:admin,admin_group,admin_project']);
-$routes->get('/user/(:num)', 'User::detail/$1');
+$routes->get('/user/(:num)', 'User::detail/$1', ['filter' => 'role:admin,admin_group,admin_project,manager,general_manager']);
 $routes->get('/user_detail', 'User::user_loggedin');
 $routes->post('/search_leads_user/(:num)', 'User::search_leads/$1');
 $routes->post('/search_leads_user_loggedin/(:num)', 'User::search_leads_loggedin/$1');
@@ -137,7 +139,7 @@ $routes->delete('/delete_event/(:num)', 'CMS::delete_event/$1');
 
 // ADD EDIT DATA
 $routes->get('/add_leads', 'CMS::add_leads');
-$routes->get('edit_leads/(:num)','CMS::edit_leads/$1');
+$routes->get('edit_leads/(:num)','CMS::edit_leads/$1', ['filter' => 'role:admin,admin_group,admin_project']);
 $routes->post('update_leads/(:num)', 'CMS::update_leads/$1');
 $routes->delete('/delete_leads/(:num)', 'CMS::delete_leads/$1');
 $routes->post('/add_leads/save', 'CMS::save_leads');

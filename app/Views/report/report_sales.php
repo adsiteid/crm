@@ -152,20 +152,14 @@
                                 <!-- list-item -->
                                 <tr class="" onclick="location.href='<?= base_url(); ?>user/<?= $row['id']; ?>'">
                                     <td><?= $no++; ?></td>
-                                    <td>
-                                        <?php foreach ($user->detail($row['id'])->getResultArray() as $us) : ?>
-                                            <?= $us['fullname']; ?>
-                                        <?php endforeach; ?>
-                                    </td>
-                                    <td>
-                                     test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
+                                    <td><?php echo $row['username']; ?></td>
+                                    <td> <?php foreach ($user->detail($row['manager'])->getResultArray() as $mg) : ?>
+                                            <?= $mg['fullname']; ?>
+                                        <?php endforeach; ?></td>
+                                    <td><?php foreach ($user->detail($row['general_manager'])->getResultArray() as $gm) : ?>
+                                            <?= $gm['fullname']; ?>
+                                        <?php endforeach; ?></td>
+                                    <td><?php echo $row['project']; ?></td>
 
                                     <td>
                                         <?= $new; ?>

@@ -104,7 +104,7 @@ class CMS extends BaseController
 		$data = [
 			'new' => $this->showleads->new(),
 			'projects' => $this->showprojects->findAll(),
-			'group'=> $this->showgroups->add_group(),
+			'group'=> $this->showgroups->list(),
 			'sales' => $this->showusers->sales(),
 			'title' => 'Group'
 		];
@@ -120,21 +120,40 @@ class CMS extends BaseController
 
 		if (!$this->validate([
 
-			'groups' => [
+			'group_name' => [
 				'rules' => 'required',
 				'errors' => [
 					'required' => 'Group Name Harus diisi'
 				]
 			],
 
-			'user' => [
+			'admin_group' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Admin Harus diisi'
+				]
+				],
+
+			'sales' => [
 				'rules' => 'required',
 				'errors' => [
 					'required' => 'Sales Harus diisi'
 				]
-			]
+			],
 
-			
+			// 'manager' => [
+			// 	'rules' => 'required',
+			// 	'errors' => [
+			// 		'required' => 'Manager Harus diisi'
+			// 	]
+			// 	],
+
+			// 'general_manager' => [
+			// 	'rules' => 'required',
+			// 	'errors' => [
+			// 		'required' => 'General Manager Harus diisi'
+			// 	]
+			// ]
 
 		])) {
 			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());

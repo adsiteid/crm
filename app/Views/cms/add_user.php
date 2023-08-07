@@ -141,41 +141,54 @@
                 </div>
 
 
-
-                <div class="form-group col-lg-3 col-12">
-                    <label for="sumber_leads">Level</label>
-                    <select class="form-control form-select <?php if (session('errors.level')) : ?>is-invalid<?php endif ?>" id="sumber_leads" name="level">
-                        <option value="">Select Level</option>
-                        <option value="admin">Admin</option>
-                        <option value="users">User</option>
-                        <option value="admin_group">Admin Project</option>
-                        <option value="admin_project">Admin Assistant</option>
-                        <option value="sales">Sales</option>
-                        <option value="manager">Manager</option>
-                        <option value="general_manager">General Manager</option>
-                    </select>
-                    <div class="invalid-feedback">
-                        <?= (session('errors.level')); ?>
+                <?php if (in_groups('admin')) : ?>
+                    <div class="form-group col-lg-3 col-12">
+                        <label for="sumber_leads">Level</label>
+                        <select class="form-control form-select <?php if (session('errors.level')) : ?>is-invalid<?php endif ?>" id="sumber_leads" name="level">
+                            <option value="">Select Level</option>
+                            <option value="admin">Admin</option>
+                            <option value="admin_group">Admin Project</option>
+                            <option value="admin_project">Admin Assistant</option>
+                            <option value="sales">Sales</option>
+                            <option value="manager">Manager</option>
+                            <option value="general_manager">General Manager</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            <?= (session('errors.level')); ?>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group col-lg-3 col-12">
-                    <label for="sumber_leads">Admin Project</label>
-                    <select class="form-control form-select <?php if (session('errors.admin_group')) : ?>is-invalid<?php endif ?>" id="sumber_leads" name="admin_group">
-                        <option value="">Select Admin Project</option>
-                        <?php foreach ($adminProject->getResultArray() as $adp) : ?>
-                            <option value="<?= $adp['id']; ?>"><?= $adp['fullname']; ?></option>
-                        <?php endforeach; ?>
+                    <div class="form-group col-lg-3 col-12">
+                        <label for="sumber_leads">Admin Project</label>
+                        <select class="form-control form-select <?php if (session('errors.admin_group')) : ?>is-invalid<?php endif ?>" id="sumber_leads" name="admin_group">
+                            <option value="">Select Admin Project</option>
+                            <?php foreach ($adminProject->getResultArray() as $adp) : ?>
+                                <option value="<?= $adp['id']; ?>"><?= $adp['fullname']; ?></option>
+                            <?php endforeach; ?>
 
-                    </select>
-                    <div class="invalid-feedback">
-                        <?= (session('errors.admin_group')); ?>
+                        </select>
+                        <div class="invalid-feedback">
+                            <?= (session('errors.admin_group')); ?>
+                        </div>
                     </div>
-                </div>
+                <?php endif; ?>
 
 
-
-
+                <?php if (in_groups('admin_group') || in_groups('admin_project')) : ?>
+                    <div class="form-group col-lg-6 col-12">
+                        <label for="sumber_leads">Level</label>
+                        <select class="form-control form-select <?php if (session('errors.level')) : ?>is-invalid<?php endif ?>" id="sumber_leads" name="level">
+                            <option value="">Select Level</option>
+                            <option value="admin_project">Admin Assistant</option>
+                            <option value="sales">Sales</option>
+                            <option value="manager">Manager</option>
+                            <option value="general_manager">General Manager</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            <?= (session('errors.level')); ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
 
                 <div class="form-group col-lg-3 col-12">
                     <label for="password">Password</label>

@@ -86,7 +86,24 @@ class UsersModel extends Model
    
     public function sales()
     {
+
         $builder = $this->db->table($this->table);
+        // $builder->whereIn('level', ['sales','manager','general_manager']);
+        $groups = user()->groups;
+        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')|| in_groups('admin_project')) :
+            $builder->whereIn('level', ['sales', 'manager', 'general_manager','admin_project']);
+            $builder->where('groups', $groups);
+        endif;
+
+
+        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
+            $builder->where('project', user()->project);
+        endif;
+
+        if (in_groups('admin_group')) :
+            $builder->where('admin_group', user()->id);
+        endif;
+
         $result = $builder->get();
         return $result;
     }
@@ -114,6 +131,26 @@ class UsersModel extends Model
     public function salesUser()
     {
         $builder = $this->db->table($this->table);
+        
+        $groups = user()->groups;
+
+        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
+            $builder->where('groups', $groups);
+        endif;
+
+        if (in_groups('manager')) :
+            $builder->where('manager', user()->id);
+        endif;
+
+        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
+            $builder->where('project', user()->project);
+        endif;
+
+        if (in_groups('admin_group')) :
+            $builder->where('admin_group', user()->id);
+        endif;
+
+        $builder->whereIn('level', ['sales','admin_project']);
         $result = $builder->get();
         return $result;
     }

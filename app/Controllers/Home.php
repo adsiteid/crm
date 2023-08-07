@@ -30,19 +30,26 @@ class Home extends BaseController
 
 	public function index()
 	{
-
-		$data = [
-			'new' => $this->showleads->new(),
-			'contacted' => $this->showleads->contacted(),
-			'close' => $this->showleads->close(),
-			'pending' => $this->showleads->pending(),
-			'visit' => $this->showleads->visit(),
-			'deal' => $this->showleads->deal(),
-			'event' => $this->showevent->acara(),
-			'days'=> 'Last 30 Days',
-			'title' => 'Dashboard'
-		];
-		return view('index', $data);
+		$auth = Session()->auth;
+		if($auth){
+			echo strlen($auth->id);
+			echo sprintf("Data akun anda<br>ID: %s<br>Nama: %s<br>Email: %s<br><img src=\"%s\">", $auth->id, $auth->name, $auth->email, $auth->picture);
+			echo "<br><a href=\"".base_url()."logout\">Logout</a>";
+			return;
+		}
+		echo "<a href=\"".base_url()."googleauth\">login</a>";
+		// $data = [
+		// 	'new' => $this->showleads->new(),
+		// 	'contacted' => $this->showleads->contacted(),
+		// 	'close' => $this->showleads->close(),
+		// 	'pending' => $this->showleads->pending(),
+		// 	'visit' => $this->showleads->visit(),
+		// 	'deal' => $this->showleads->deal(),
+		// 	'event' => $this->showevent->acara(),
+		// 	'days'=> 'Last 30 Days',
+		// 	'title' => 'Dashboard'
+		// ];
+		// return view('index', $data);googleauth
 	}
 
 
@@ -133,12 +140,27 @@ class Home extends BaseController
 
 	public function project()
 	{
-		
+		if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project') || in_groups('admin_group')) :
+
 			$data = [
 				'new' => $this->showleads->new(),
 				'project' => $this->showproject->project()->getResultArray(),
 				'title' => 'Project'
 			];
+
+		endif;
+
+
+		if (in_groups('admin')) :
+
+			$data = [
+				'new' => $this->showleads->new(),
+				'project' => $this->showproject->projectAll(),
+				'title' => 'Project'
+			];
+
+		endif;
+
 
 		return view('/project/project', $data);
 	}

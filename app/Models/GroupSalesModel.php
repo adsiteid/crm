@@ -11,19 +11,20 @@ class GroupSalesModel extends Model
     protected $table = 'groups_sales';
     protected $allowedFields = ['group_name', 'admin_group', 'sales', 'manager', 'general_manager','created_at'];
 
-    public function list($id_groups)
+    public function list()
     {
         $builder = $this->db->table($this->table);
-        $builder->where('groups', $id_groups);
-        $builder->orderBy('id DESC');
-        $result = $builder->get();
-        return $result;
-    }
+        $groups = user()->groups;
 
-    public function user($id)
-    {
-        $builder = $this->db->table($this->table);
-        $builder->where('id_user', $id);
+        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
+            $builder->where('groups', $groups);
+        endif;
+
+        if (in_groups('admin_group')) :
+            $builder->where('admin_group', user()->id);
+        endif;
+
+        $builder->orderBy('id DESC');
         $result = $builder->get();
         return $result;
     }

@@ -520,7 +520,7 @@ class CLI
     /**
      * if operating system === windows
      *
-     * @deprecated v4.3 Use `is_windows()` instead
+     * @deprecated 4.3.0 Use `is_windows()` instead
      */
     public static function isWindows(): bool
     {
@@ -915,7 +915,7 @@ class CLI
      *
      * **IMPORTANT:** The index here is one-based instead of zero-based.
      *
-     * @return mixed
+     * @return string|null
      */
     public static function getSegment(int $index)
     {

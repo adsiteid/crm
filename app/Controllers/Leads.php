@@ -27,7 +27,6 @@ class Leads extends BaseController
         $new = $this->showleads->new();
         $user = $this->showusers;
         $data = [
-            'id' => $id,
             'leads' => $leads,
             'users' => $user,
             'new' => $new,

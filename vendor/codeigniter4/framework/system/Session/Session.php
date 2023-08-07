@@ -166,7 +166,7 @@ class Session implements SessionInterface
         $this->driver = $driver;
 
         /** @var SessionConfig|null $session */
-        $session = config('Session');
+        $session = config(SessionConfig::class);
 
         // Store Session configurations
         if ($session instanceof SessionConfig) {
@@ -195,7 +195,7 @@ class Session implements SessionInterface
         $this->cookieSameSite = $config->cookieSameSite ?? $this->cookieSameSite;
 
         /** @var CookieConfig $cookie */
-        $cookie = config('Cookie');
+        $cookie = config(CookieConfig::class);
 
         $this->cookie = (new Cookie($this->sessionCookieName, '', [
             'expires'  => $this->sessionExpiration === 0 ? 0 : Time::now()->getTimestamp() + $this->sessionExpiration,
@@ -232,7 +232,7 @@ class Session implements SessionInterface
         }
 
         if (session_status() === PHP_SESSION_ACTIVE) {
-            $this->logger->warning('Session: Sessions is enabled, and one exists.Please don\'t $session->start();');
+            $this->logger->warning('Session: Sessions is enabled, and one exists. Please don\'t $session->start();');
 
             return;
         }
@@ -272,21 +272,13 @@ class Session implements SessionInterface
     }
 
     /**
-     * Does a full stop of the session:
+     * Destroys the current session.
      *
-     * - destroys the session
-     * - unsets the session id
-     * - destroys the session cookie
+     * @deprecated Use destroy() instead.
      */
     public function stop()
     {
-        setcookie(
-            $this->sessionCookieName,
-            session_id(),
-            ['expires' => 1, 'path' => $this->cookie->getPath(), 'domain' => $this->cookie->getDomain(), 'secure' => $this->cookie->isSecure(), 'httponly' => true]
-        );
-
-        session_regenerate_id(true);
+        $this->destroy();
     }
 
     /**

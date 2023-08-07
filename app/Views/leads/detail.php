@@ -17,9 +17,9 @@
 
 
 
+    <?php foreach ($leads->getResultArray() as $row); ?>
 
-
-    <form action="<?= base_url('/update_leads/' . $id) ?>" method="post">
+    <form action="<?= base_url('/update_leads/' . $row['id']) ?>" method="post">
         <?= csrf_field(); ?>
 
 
@@ -32,7 +32,7 @@
 
         ?>
 
-        <input type="hidden" name="id" value="<?= $id; ?>">
+        <input type="hidden" name="id" value="<?= $row['id']; ?>">
 
         <input type="hidden" name="time_stamp_invalid" value="<?= $date; ?>">
 
@@ -79,20 +79,16 @@
             }
             return $nomorhp;
         }
-        foreach ($leads->getResultArray() as $row1) :
-            $hp = $row1['nomor_kontak'];
-            $nomor = gantiformat($hp);
-        endforeach;
+
+        $hp = $row['nomor_kontak'];
+        $nomor = gantiformat($hp);
 
         ?>
 
-        <?php foreach ($leads->getResultArray() as $row); ?>
 
         <div class="row">
-
             <div class="col-lg-4 col-12 mb-3 align-items-stretch">
                 <div class="card p-3 w-100">
-
 
                     <div class="col-12 ">
                         <div class="row d-flex justify-content-between">
@@ -130,8 +126,8 @@
                             <h6 style="font-size:12px;" class="mb-3"><?= $dt_cnv_tmstp; ?></h6>
                             <p style="font-size:12px;" class="mb-1">Group</p>
                             <h6 style="font-size:12px;" class="mb-3"> <?php foreach ($group->detail($row['groups'])->getResultArray() as $grp) : ?>
-                                    <?= $grp['group_name']; ?>
-                                <?php endforeach; ?></h6> <input type="hidden" name="project" value="<?= $row['project']; ?>">
+                                        <?= $grp['group_name']; ?>
+                                    <?php endforeach; ?></h6> <input type="hidden" name="project" value="<?= $row['project']; ?>">
                             <p style="font-size:12px;" class="mb-1">Project</p>
                             <h6 style="font-size:12px;" class="mb-3"><?php echo $row['project']; ?></h6> <input type="hidden" name="project" value="<?= $row['project']; ?>">
                             <p style="font-size:12px;" class="mb-1">Address</p>
@@ -160,6 +156,7 @@
                         </div>
 
                     </div>
+
                 </div>
             </div>
 
@@ -176,38 +173,47 @@
                                                                 $booking_date = $row['time_stamp_booking'];
                                                                 $booking_date_convert = date('d M Y - H:i:s', strtotime($booking_date));
                                                                 echo $booking_date_convert;
+                                                
                                                             } elseif ($row['time_stamp_reserve'] !== NULL) {
                                                                 $reserve_date = $row['time_stamp_reserve'];
                                                                 $reserve_date_convert = date('d M Y - H:i:s', strtotime($reserve_date));
                                                                 echo $reserve_date_convert;
+                                                            
                                                             } elseif ($row['time_stamp_deal'] !== NULL) {
                                                                 $deal_date = $row['time_stamp_deal'];
                                                                 $deal_date_convert = date('d M Y - H:i:s', strtotime($deal_date));
                                                                 echo $deal_date_convert;
+                                                                
                                                             } elseif ($row['time_stamp_visit'] !== NULL) {
                                                                 $visit_date = $row['time_stamp_visit'];
                                                                 $visit_date_convert = date('d M Y - H:i:s', strtotime($visit_date));
                                                                 echo $visit_date_convert;
+                                                                
                                                             } elseif ($row['time_stamp_pending'] !== NULL) {
                                                                 $pending_date = $row['time_stamp_pending'];
                                                                 $pending_date_convert = date('d M Y - H:i:s', strtotime($pending_date));
                                                                 echo $pending_date_convert;
+                                                               
                                                             } elseif ($row['time_stamp_contacted'] !== NULL) {
                                                                 $contacted_date = $row['time_stamp_contacted'];
                                                                 $contacted_date_convert = date('d M Y - H:i:s', strtotime($contacted_date));
                                                                 echo $contacted_date_convert;
+                                                                
                                                             } elseif ($row['time_stamp_close'] !== NULL) {
                                                                 $close_date = $row['time_stamp_close'];
                                                                 $close_date_convert = date('d M Y - H:i:s', strtotime($close_date));
                                                                 echo $close_date_convert;
+                                                                
                                                             } elseif ($row['time_stamp_invalid'] !== NULL) {
                                                                 $invalid_date = $row['time_stamp_invalid'];
                                                                 $invalid_date_convert = date('d M Y - H:i:s', strtotime($invalid_date));
                                                                 echo $invalid_date_convert;
+                                                                
                                                             } else {
                                                                 $new_date = $row['time_stamp_new'];
                                                                 $new_date_convert = date('d M Y - H:i:s', strtotime($new_date));
                                                                 echo $new_date_convert;
+                                                                
                                                             }
                                                             ?>
                                 </h6>
@@ -423,13 +429,13 @@
         <input type="hidden" name="groups" value="<?= $row['groups']; ?>">
 
         <div class="row d-flex justify-content-end mt-3 mb-5 px-3">
-           
+            <?php if (in_groups('admin') || in_groups('admin_group') || in_groups('admin_project')) : ?>
                 <a href="<?= base_url(); ?>edit_leads/<?= $row['id']; ?>" class="btn btn-outline-primary col-lg-2 col-6 mt-lg-1 mt-3 px-0">Edit data</a>
                 <a class="btn btn-outline-primary col-lg-2 col-6  mt-lg-1 mt-3" data-toggle="modal" data-target="#delete-leads">Delete</a>
-            
-
-            <a class=" btn btn-primary col-lg-2 col-12 mt-lg-1 mt-3" data-toggle="modal" data-target="#save-leads">Save</a>
-
+            <?php endif; ?>
+            <!-- <?php if (!in_groups('manager') && !in_groups('general_manager')) : ?> -->
+                <a class=" btn btn-primary col-lg-2 col-12 mt-lg-1 mt-3" data-toggle="modal" data-target="#save-leads">Save</a>
+            <!-- <?php endif; ?> -->
         </div>
 
         <!-- save Modal-->

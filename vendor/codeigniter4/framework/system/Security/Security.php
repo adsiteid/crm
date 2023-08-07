@@ -172,7 +172,7 @@ class Security implements SecurityInterface
     public function __construct(App $config)
     {
         /** @var SecurityConfig|null $security */
-        $security = config('Security');
+        $security = config(SecurityConfig::class);
 
         // Store CSRF-related configurations
         if ($security instanceof SecurityConfig) {
@@ -223,7 +223,7 @@ class Security implements SecurityInterface
     private function configureCookie(App $config): void
     {
         /** @var CookieConfig|null $cookie */
-        $cookie = config('Cookie');
+        $cookie = config(CookieConfig::class);
 
         if ($cookie instanceof CookieConfig) {
             $cookiePrefix     = $cookie->prefix;
@@ -342,20 +342,23 @@ class Security implements SecurityInterface
         assert($request instanceof IncomingRequest);
 
         // Does the token exist in POST, HEADER or optionally php:://input - json data.
-        if ($request->hasHeader($this->headerName) && ! empty($request->header($this->headerName)->getValue())) {
-            $tokenName = $request->header($this->headerName)->getValue();
-        } else {
-            $body = (string) $request->getBody();
-            $json = json_decode($body);
 
-            if ($body !== '' && ! empty($json) && json_last_error() === JSON_ERROR_NONE) {
-                $tokenName = $json->{$this->tokenName} ?? null;
-            } else {
-                $tokenName = null;
-            }
+        if ($tokenValue = $request->getPost($this->tokenName)) {
+            return $tokenValue;
         }
 
-        return $request->getPost($this->tokenName) ?? $tokenName;
+        if ($request->hasHeader($this->headerName) && ! empty($request->header($this->headerName)->getValue())) {
+            return $request->header($this->headerName)->getValue();
+        }
+
+        $body = (string) $request->getBody();
+        $json = json_decode($body);
+
+        if ($body !== '' && ! empty($json) && json_last_error() === JSON_ERROR_NONE) {
+            return $json->{$this->tokenName} ?? null;
+        }
+
+        return null;
     }
 
     /**

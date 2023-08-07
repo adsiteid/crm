@@ -30,24 +30,16 @@ class GroupsModel extends Model
         return $result;
     }
 
-
-    public function add_group()
-    {
-        $builder = $this->db->table($this->table);
-
-        $groups = user()->groups;
-
-        $builder->where('admin_group', user()->id);
-
-        $builder->orderBy('id DESC');
-        $result = $builder->get();
-        return $result;
-    }
-
     public function detail($id)
     {
         
         $builder = $this->db->table($this->table);
+
+        // if (!in_groups('admin')) :
+        //     $user = user()->id;
+        //     $builder->where('userid', $user);
+        // endif;
+
         $builder->where('id', $id);
         $result = $builder->get();
         return $result;

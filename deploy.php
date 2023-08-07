@@ -8,8 +8,7 @@
 
     // array of commands
     $commands = array(
-        'echo $PWD',
-        'whoami',
+        'echo $PWD', 
         'git pull',
         'git status',
         'git submodule sync',

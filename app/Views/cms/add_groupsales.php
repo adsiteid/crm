@@ -18,7 +18,7 @@
 <div class="col-12 grid-margin stretch-card p-0">
     <div class="card">
         <div class="card-header bg-white rounded-top">
-            <h4 class=" card-title pt-3">Invite User to Group</h4>
+            <h4 class=" card-title pt-3">Add User to Group</h4>
             <!-- <p class="card-description">
                 MSDP
             </p> -->
@@ -29,7 +29,7 @@
 
                 <div class="form-group col-lg-6 col-12">
                     <label>Group Name</label>
-                    <select class="form-control form-select <?php if (session('errors.group_name')) : ?>is-invalid<?php endif ?>" name="groups">
+                    <select class="form-control form-select <?php if (session('errors.group_name')) : ?>is-invalid<?php endif ?>" name="group_name">
                         <option value="" selected>Select Group</option>
                         <?php foreach ($group->getResultArray() as $g) : ?>
                             <option value="<?= $g['id']; ?>"><?= $g['group_name']; ?></option>
@@ -42,11 +42,9 @@
 
 
                 <div class="form-group col-lg-6 col-12">
-                    <label>Project</label>
+                    <label>Admin</label>
                     <select class="form-control form-select <?php if (session('errors.admin_group')) : ?>is-invalid<?php endif ?>" name="admin_group">
-                        <?php foreach ($sales->getResultArray() as $u) : ?>
-                            <option value="<?= $u['id']; ?>"><?= $u['fullname']; ?></option>
-                        <?php endforeach; ?>
+                        <option value="<?= user()->id; ?>" selected><?= user()->fullname; ?></option>
                     </select>
                     <div class="invalid-feedback">
                         <?= (session('errors.admin_group')); ?>
@@ -55,26 +53,43 @@
 
 
                 <div class="form-group col-lg-6 col-12">
-                    <label>Email User</label>
-
-                    <input type="email" class="form-control" name="email" placeholder="user@email.com">
-            
-                </div>
-
-                <div class="form-group col-lg-6 col-12">
-                    <label>Level</label>
+                    <label>Sales</label>
                     <select class="form-control form-select <?php if (session('errors.sales')) : ?>is-invalid<?php endif ?>" name="sales">
-                        <option value="">Select Level</option>
-                        <option value="sales">Sales</option>
-                        <option value="manager">Manager</option>
-                        <option value="general_manager">General Manager</option>
+                        <option value="">Select Sales</option>
+                        <?php foreach ($sales->getResultArray() as $u) : ?>
+                            <option value="<?= $u['id']; ?>"><?= $u['fullname']; ?></option>
+                        <?php endforeach; ?>
                     </select>
                     <div class="invalid-feedback">
                         <?= (session('errors.sales')); ?>
                     </div>
                 </div>
 
+                <div class="form-group col-lg-3 col-12">
+                    <label>Manager</label>
+                    <select class="form-control form-select <?php if (session('errors.manager')) : ?>is-invalid<?php endif ?>" name="manager">
+                        <option value="">Select Manager</option>
+                        <?php foreach ($sales->getResultArray() as $u) : ?>
+                            <option value="<?= $u['id']; ?>"><?= $u['fullname']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <div class="invalid-feedback">
+                        <?= (session('errors.manager')); ?>
+                    </div>
+                </div>
 
+                <div class="form-group col-lg-3 col-12">
+                    <label>General Manager</label>
+                    <select class="form-control form-select <?php if (session('errors.general_manager')) : ?>is-invalid<?php endif ?>" name="general_manager">
+                        <option value="">Select General Manager</option>
+                        <?php foreach ($sales->getResultArray() as $u) : ?>
+                            <option value="<?= $u['id']; ?>"><?= $u['fullname']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <div class="invalid-feedback">
+                        <?= (session('errors.general_manager')); ?>
+                    </div>
+                </div>
 
                 <div class="d-flex justify-content-end my-3 p-0">
                     <div class="col-lg-3 col-12"><button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#save-data">Submit</button></div>

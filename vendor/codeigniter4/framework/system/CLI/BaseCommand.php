@@ -11,6 +11,7 @@
 
 namespace CodeIgniter\CLI;
 
+use Config\Exceptions;
 use Psr\Log\LoggerInterface;
 use ReflectionException;
 use Throwable;
@@ -105,7 +106,7 @@ abstract class BaseCommand
     /**
      * Can be used by a command to run other commands.
      *
-     * @return mixed
+     * @return int|void
      *
      * @throws ReflectionException
      */
@@ -121,7 +122,7 @@ abstract class BaseCommand
     {
         $exception = $e;
         $message   = $e->getMessage();
-        $config    = config('Exceptions');
+        $config    = config(Exceptions::class);
 
         require $config->errorViewPath . '/cli/error_exception.php';
     }
@@ -205,7 +206,7 @@ abstract class BaseCommand
     /**
      * Makes it simple to access our protected properties.
      *
-     * @return mixed
+     * @return array|Commands|LoggerInterface|string|null
      */
     public function __get(string $key)
     {

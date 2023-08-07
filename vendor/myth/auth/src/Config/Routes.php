@@ -16,7 +16,9 @@ $routes->group('', ['namespace' => 'Myth\Auth\Controllers'], static function ($r
     // Login/out
     $routes->get($reservedRoutes['login'], 'AuthController::login', ['as' => $reservedRoutes['login']]);
     $routes->post($reservedRoutes['login'], 'AuthController::attemptLogin');
-    $routes->get($reservedRoutes['logout'], 'AuthController::logout');
+    $routes->get($reservedRoutes['logout'], 'AuthController::logout'); 
+
+    $routes->get($reservedRoutes['google-auth'], 'AuthController::googleauth');
 
     // Registration
     $routes->get($reservedRoutes['register'], 'AuthController::register', ['as' => $reservedRoutes['register']]);

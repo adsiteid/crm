@@ -7,6 +7,11 @@ use CodeIgniter\Session\Session;
 use Myth\Auth\Config\Auth as AuthConfig;
 use Myth\Auth\Entities\User;
 use Myth\Auth\Models\UserModel;
+use Myth\Auth\Password;
+
+use Google_Client;
+use Google_Service_Oauth2; 
+
 
 class AuthController extends Controller
 {
@@ -22,6 +27,13 @@ class AuthController extends Controller
      */
     protected $session;
 
+
+    protected $clientID;
+	protected $clientSecret;
+	protected $chartleads;
+	protected $redirectUri;
+	protected $clientgoogle;
+
     public function __construct()
     {
         // Most services in this controller require
@@ -30,6 +42,18 @@ class AuthController extends Controller
 
         $this->config = config('Auth');
         $this->auth   = service('authentication');
+
+
+        $this->clientID = '808577488978-s0raqqteh5ot3nhca0drdcrh15lr15uu.apps.googleusercontent.com';
+        $this->clientSecret = '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';
+        $this->redirectUri = base_url().'google-auth'; //Harus sama dengan yang kita daftarkan
+
+        $this->clientgoogle = new Google_Client();
+        $this->clientgoogle->setClientId($this->clientID);
+        $this->clientgoogle->setClientSecret($this->clientSecret);
+        $this->clientgoogle->setRedirectUri($this->redirectUri);
+        $this->clientgoogle->addScope("email");
+        $this->clientgoogle->addScope("profile");
     }
 
     //--------------------------------------------------------------------
@@ -55,7 +79,7 @@ class AuthController extends Controller
         // Set a return URL if none is specified
         $_SESSION['redirect_url'] = session('redirect_url') ?? previous_url() ?? site_url('/');
 
-        return $this->_render($this->config->views['login'], ['config' => $this->config]);
+        return $this->_render($this->config->views['login'], ['config' => $this->config,'google' => $this->clientgoogle]);
     }
 
     /**
@@ -82,7 +106,6 @@ class AuthController extends Controller
 
         // Determine credential type
         $type = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-
         // Try to log them in...
         if (!$this->auth->attempt([$type => $login, 'password' => $password], $remember)) {
             return redirect()->back()->withInput()->with('error', $this->auth->error() ?? lang('Auth.badAttempt'));
@@ -99,11 +122,54 @@ class AuthController extends Controller
         return redirect()->to($redirectURL)->withCookies()->with('message', lang('Auth.loginSuccess'));
     }
 
+
+
+    public function googleauth(){  
+
+        $this->auth->login("fauzan", $remember); 
+        if (isset($_GET['code'])) {
+            $token = $this->clientgoogle->fetchAccessTokenWithAuthCode($_GET['code']);
+            if(isset($token['access_token'])){
+                $this->clientgoogle->setAccessToken($token['access_token']);							
+                $Oauth = new Google_Service_Oauth2($this->clientgoogle);
+                $userInfo = $Oauth->userinfo->get();
+                echo json_encode($userInfo);
+                // $users = new Users();
+                // $data = $users->where('google_id',$userInfo->id)->find();
+                // if(! $data){
+                //     if($users->insert([
+                //         'google_id' => $userInfo->id,
+                //         'email' => $userInfo->email,
+                //         'name' => $userInfo->name,
+                //         'picture' => $userInfo->picture
+                //     ])){
+                //         $userInfo->group = 1;
+                //         $userInfo->id = $data[0]['id'];
+                //         Session()->auth = $userInfo;
+                //         return redirect()->to('/');
+                //     }
+                //     return redirect()->back();
+                // }
+                // $groups = new UsersGroups();
+                // $group = $groups->where('user_id',$data[0]['id'])->find();
+                // $userInfo->group_id = $group[0]['group_id'];
+                // $userInfo->id = $data[0]['id']; 
+                // Session()->auth = $userInfo;
+                // return redirect()->to('/');
+            }
+        } 
+        $auth = Session()->auth;
+        if($auth){
+            return redirect()->to('/');
+        }
+        echo "<a href='".base_url()."logout'>Logout</a>";
+    }
     /**
      * Log the user out.
      */
     public function logout()
     {
+        Session()->destroy();
         if ($this->auth->check()) {
             $this->auth->logout();
         }
