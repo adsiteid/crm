@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>CRM Diamondland</title>
+    <title>CRM ADSITE.ID</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="<?= base_url(); ?>assetskydash/vendors/feather/feather.css">
     <link rel="stylesheet" href="<?= base_url(); ?>assetskydash/vendors/ti-icons/css/themify-icons.css">
@@ -16,7 +16,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="<?= base_url(); ?>assetskydash/css/vertical-layout-light/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="<?= base_url(); ?>document/app_image/logo/favicon.jpg" />
+    <link rel="shortcut icon" href="<?= base_url(); ?>document/app_image/logo/logo-adsite-2.png" />
 </head>
 
 <body>

@@ -1,61 +1,41 @@
 <?php
 
 namespace App\Controllers; 
-use App\Controllers\BaseController; 
-use App\Models\Users;
-use App\Models\UsersGroups;
-use Google_Client;
-use Google_Service_Oauth2; 
+use App\Controllers\BaseController;  
+use Myth\Auth\Config\Auth as AuthConfig; 
 
 class Googleauth extends BaseController
 {
-    public function index()
-    {
-        $clientID = '808577488978-s0raqqteh5ot3nhca0drdcrh15lr15uu.apps.googleusercontent.com';
-        $clientSecret = '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';
-        $redirectUri = base_url().'googleauth'; //Harus sama dengan yang kita daftarkan
-                
-        $client = new Google_Client();
-        $client->setClientId($clientID);
-        $client->setClientSecret($clientSecret);
-        $client->setRedirectUri($redirectUri);
-        $client->addScope("email");
-        $client->addScope("profile");
+    protected $auth;
 
+    /**
+     * @var AuthConfig
+     */
+    protected $config;
+
+    /**
+     * @var Session
+     */
+    protected $session;
+
+    public function __construct()
+    {
+        // Most services in this controller require
+        // the session to be started - so fire it up!
+        $this->session = service('session');
+
+        $this->config = config('Auth');
+        $this->auth   = service('authentication');
+    }
+    public function index()
+    { 
         if (isset($_GET['code'])) {
-            $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-            if(isset($token['access_token'])){
-                $client->setAccessToken($token['access_token']);							
-                $Oauth = new Google_Service_Oauth2($client);
-                $userInfo = $Oauth->userinfo->get();
-                $users = new Users();
-                $data = $users->where('google_id',$userInfo->id)->find();
-                if(! $data){
-                    if($users->insert([
-                        'google_id' => $userInfo->id,
-                        'email' => $userInfo->email,
-                        'name' => $userInfo->name,
-                        'picture' => $userInfo->picture
-                    ])){
-                        $userInfo->group = 1;
-                        $userInfo->id = $data[0]['id'];
-                        Session()->auth = $userInfo;
-                        return redirect()->to('/');
-                    }
-                    return redirect()->back();
-                }
-                $groups = new UsersGroups();
-                $group = $groups->where('user_id',$data[0]['id'])->find();
-                $userInfo->group_id = $group[0]['group_id'];
-                $userInfo->id = $data[0]['id']; 
-                Session()->auth = $userInfo;
-                return redirect()->to('/');
-            }
-        } 
-        $auth = Session()->auth;
-        if($auth){
-            return redirect()->to('/');
+            $data = $this->config->getGoogle($_GET['code']);
+            echo $data['email'];
+        }  
+        if (!$this->auth->attempt_google(['email' => $data['email']], false)) {
+             return redirect()->back()->withInput()->with('error', $this->auth->error() ?? lang('Auth.badAttempt'));
         }
-        echo "<a href='".$client->createAuthUrl()."'>Google Login</a>";
+      
     }
 }

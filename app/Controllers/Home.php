@@ -20,14 +20,7 @@ class Home extends BaseController
 		$this->showevent = new EventModel();
 		$this->showproject = new ProjectModel();
 	}
-
-
-	public function login()
-	{
-		return view('auth/login');
-	}
-
-
+ 
 	public function index()
 	{ 
 		$data = [

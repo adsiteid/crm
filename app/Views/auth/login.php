@@ -16,7 +16,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="<?= base_url(); ?>assetskydash/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="<?= base_url(); ?>document/app_image/logo/favicon.jpg" />
+  <link rel="shortcut icon" href="<?= base_url(); ?>document/app_image/logo/logo-adsite-2.png" />
 </head>
 
 <body>
@@ -83,17 +83,16 @@
 
 
               <?php if ($config->allowRegistration) : ?>
-                <!-- <a href="<?= url_to('register') ?>" class="auth-link text-black"><?= lang('Auth.needAnAccount') ?></a> -->
+                <a href="<?= url_to('register') ?>" class="auth-link text-black"><?= lang('Auth.needAnAccount') ?></a>
               <?php endif; ?>
               <?php if ($config->activeResetter) : ?>
                 <a href="<?= url_to('forgot') ?>" class="auth-link text-black"><?= lang('Auth.forgotYourPassword') ?></a>
               <?php endif; ?>
-
-              <!-- <a href="#" class="auth-link text-black">Forgot password?</a> -->
+ 
             </div>
             <hr> 
             <div class="mb-2">
-              <a type="button" class="btn btn-block btn-google auth-form-btn" href="<?= $google->createAuthUrl()?>">
+              <a type="button" class="btn btn-block btn-google auth-form-btn" href="<?= $config->getUrlgoogle();?>">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 262" preserveAspectRatio="xMidYMid">
                   <path d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027" fill="#FFFFFF"/>
                   <path d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1" fill="#FFFFFF"/>
@@ -102,19 +101,7 @@
                 </svg>
                 &nbsp;&nbsp;Login with google
               </a>
-            </div>
-            <div class="text-center mt-4 font-weight-light">
-              <?= lang('Auth.needAnAccount') ?> <a href="register" class="text-primary">Create</a>
-            </div> 
-
-					<?php if ($config->allowRegistration) : ?>
-						<p><a href="<?= url_to('register') ?>"><?= lang('Auth.needAnAccount') ?></a></p>
-					<?php endif; ?>
-					<?php if ($config->activeResetter) : ?>
-						<p><a href="<?= url_to('forgot') ?>"><?= lang('Auth.forgotYourPassword') ?></a></p>
-					<?php endif; ?>
-
-
+            </div>   
           </div>
         </div>
         <!-- <p class="text-muted text-center mt-2" style="font-size:9px;">@ Copyright <a href="https://www.instagram.com/agit_agustian_/">Agit Agustian</a> - Modified for Diamondland</p> -->
