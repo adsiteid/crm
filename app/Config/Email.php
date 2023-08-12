@@ -23,8 +23,8 @@ class Email extends BaseConfig
     /**
      * The server path to Sendmail.
      */
-    //public string $mailPath = '/usr/sbin/sendmail';
-    public string $mailPath  = "C:/xampp/sendmail/sendmail.exe -t -i";
+    public string $mailPath = '/usr/sbin/sendmail';
+    //public string $mailPath  = "C:/xampp/sendmail/sendmail.exe -t -i";
 
     /**
      * SMTP Server Address
