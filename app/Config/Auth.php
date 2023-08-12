@@ -25,9 +25,9 @@ class Auth extends AuthConfig
     public $views = [
         'login'           => 'App\Views\auth\login',
         'register'        => 'App\Views\auth\register', 
-        'forgot'          => 'Myth\Auth\Views\forgot',
-        'emailForgot'     => 'Myth\Auth\Views\emails\forgot',
-        'reset'           => 'Myth\Auth\Views\reset',
+        'forgot'          => 'App\Views\auth\forgot',
+        'emailForgot'     => 'App\Views\auth\email\forgot',
+        'reset'           => 'App\Views\auth\reset',
     ];
     private function clientgoogle(){
         $clientID = '808577488978-s0raqqteh5ot3nhca0drdcrh15lr15uu.apps.googleusercontent.com';

@@ -1,11 +1,11 @@
-<?php 
+<?php
 
 namespace App\Authentication;
 
-use CodeIgniter\Router\Exceptions\RedirectException; 
-use Myth\Auth\Entities\User; 
+use CodeIgniter\Router\Exceptions\RedirectException;
+use Myth\Auth\Entities\User;
 use Myth\Auth\Exceptions\AuthException;
-use Myth\Auth\Password; 
+use Myth\Auth\Password;
 
 class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInterface
 {
@@ -58,9 +58,16 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
 
         return $this->login($this->user, (bool) $remember);
     }
-    public function attempt_google(array $credentials, ?bool $remember = null): bool
+
+
+    /**
+     * Attempts to validate the credentials and log a user in.
+     *
+     * @param bool $remember Should we remember the user (if enabled)
+     */
+    public function attemptgoogle(array $credentials, ?bool $remember = null): bool
     {
-        $this->user = $this->validate_google($credentials, true);
+        $this->user = $this->validategoogle($credentials, true);
 
         if (empty($this->user)) {
             // Always record a login attempt, whether success or not.
@@ -99,7 +106,7 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
 
             return false;
         }
-
+         
         return $this->login($this->user, (bool) $remember);
     }
 
@@ -209,22 +216,20 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
             ? $user
             : true;
     }
-    public function validate_google(array $credentials, bool $returnUser = false)
+    public function validategoogle(array $credentials, bool $returnUser = false)
     {
-        
+          
         // Ensure that the fields are allowed validation fields
         if (! in_array(key($credentials), $this->config->validFields, true)) {
             throw AuthException::forInvalidFields(key($credentials));
         }
 
         // Can we find a user with those credentials?
-        $user = $this->userModel->where($credentials)->first();
-
+        $user = $this->userModel->where($credentials)->first(); 
         if (! $user instanceof User) {
-            $this->error = lang('Auth.badAttempt');
-
+            $this->error = "email ".$credentials["email"]." belum terdaftar, <a href='".base_url()."register?email=".$credentials["email"]."'>klik disini</a> untuk daftar akun." ; 
             return false;
-        } 
+        }   
 
         return $returnUser
             ? $user

@@ -6,7 +6,7 @@ use CodeIgniter\Config\BaseConfig;
 
 class Email extends BaseConfig
 {
-    public string $fromEmail  = 'itcenteromahbata@gmail.com';
+    public string $fromEmail  = 'admin@adsite.id';
     public string $fromName   = 'ADSITE ADMIN';
     public string $recipients = '';
 
@@ -23,22 +23,23 @@ class Email extends BaseConfig
     /**
      * The server path to Sendmail.
      */
-    public string $mailPath = '/usr/sbin/sendmail';
+    //public string $mailPath = '/usr/sbin/sendmail';
+    public string $mailPath  = "C:/xampp/sendmail/sendmail.exe -t -i";
 
     /**
      * SMTP Server Address
      */
-    public string $SMTPHost = 'smtp.gmail.com';
+    public string $SMTPHost = 'mail.adsite.id';
 
     /**
      * SMTP Username
      */
-    public string $SMTPUser = 'itcenteromahbata@gmail.com';
+    public string $SMTPUser = 'admin@adsite.id';
 
     /**
      * SMTP Password
      */
-    public string $SMTPPass = 'aytpolrlymaarizf';
+    public string $SMTPPass = 'agitagustian';
 
     /**
      * SMTP Port

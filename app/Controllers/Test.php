@@ -7,7 +7,7 @@ class Test extends BaseController
 {
     
 	public function index()
-	{
-        echo "test";
+	{ 
+        return view('auth/email/forgot');
     }
 }

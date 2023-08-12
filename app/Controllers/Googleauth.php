@@ -29,13 +29,19 @@ class Googleauth extends BaseController
     }
     public function index()
     { 
-        if (isset($_GET['code'])) {
-            $data = $this->config->getGoogle($_GET['code']);
-            echo $data['email'];
-        }  
-        if (!$this->auth->attempt_google(['email' => $data['email']], false)) {
-             return redirect()->back()->withInput()->with('error', $this->auth->error() ?? lang('Auth.badAttempt'));
-        }
-      
+        $redirectURL = session('redirect_url') ?? site_url('/');
+        if (!isset($_GET['code'])) return redirect()->to($redirectURL)->withCookies();
+        $data = $this->config->getGoogle($_GET['code']); 
+        if (!isset($data)) return redirect()->back()->withInput()->with('error', $this->auth->error() ?? lang('Auth.badAttempt'));
+        if (!$this->auth->attemptgoogle(['email' => $data['email']], false))
+            return redirect()->back()->withInput()->with('error', $this->auth->error() ?? lang('Auth.badAttempt'));
+        
+        $redirectURL = site_url('/');
+        unset($_SESSION['redirect_url']);
+
+        return redirect()->to($redirectURL)->withCookies()->with('message', lang('Auth.loginSuccess'));
     }
+       
+      
+    
 }

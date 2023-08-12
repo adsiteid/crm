@@ -29,44 +29,47 @@
                             <div class="brand-logo text-center">
                                 <img src="<?= base_url(); ?>/document/app_image/logo/logo-adsite.png" alt="" style="width : 200px;">
                             </div>
-                            <h4 class="text-center"><?= lang('Auth.register') ?></h4>
-                            <h6 class="font-weight-light lh-base text-center">It only takes a few steps to Sign up</h6>
-                            <form action="<?= url_to('register') ?>" method="post" class="pt-3"  enctype="multipart/form-data">
+                            <h4 class="text-center"><?= lang('Auth.resetYourPassword') ?></h4>
+                            <p class="font-weight-light lh-base text-center"><?= lang('Auth.enterCodeEmailPassword') ?></p>
+
+
+                            <?= view('Myth\Auth\Views\_message_block') ?>
+                            <form action="<?= url_to('reset-password') ?>" method="post">
                                 <?= csrf_field() ?>
-                                <div class="form-group">
-                                    <label for="email"><?= lang('Auth.email') ?></label>
-                                    <input type="email" class="form-control <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" aria-describedby="emailHelp" placeholder="<?= lang('Auth.email') ?>" value="<?= old('email') ?? filter_input(INPUT_GET, 'email', FILTER_SANITIZE_URL) ?>">
-                                    <small id="emailHelp" class="form-text text-muted"><?= lang('Auth.weNeverShare') ?></small>
-                                </div>
 
                                 <div class="form-group">
-                                    <label for="username"><?= lang('Auth.username') ?></label>
-                                    <input type="text" class="form-control <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" placeholder="<?= lang('Auth.username') ?>" value="<?= old('username') ?>">
+                                    <label for="token"><?= lang('Auth.token') ?></label>
+                                    <input type="text" class="form-control <?php if (session('errors.token')) : ?>is-invalid<?php endif ?>" name="token" placeholder="<?= lang('Auth.token') ?>" value="<?= old('token', $token ?? '') ?>">
                                     <div class="invalid-feedback">
-                                        <?= session('errors.username') ?>
+                                        <?= session('errors.token') ?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email"><?= lang('Auth.email') ?></label>
+                                    <input type="email" class="form-control <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" aria-describedby="emailHelp" placeholder="<?= lang('Auth.email') ?>" value="<?= old('email') ?>">
+                                    <div class="invalid-feedback">
+                                        <?= session('errors.email') ?>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="password"><?= lang('Auth.password') ?></label>
-                                    <input type="password" name="password" class="form-control <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
+                                    <label for="password"><?= lang('Auth.newPassword') ?></label>
+                                    <input type="password" class="form-control <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" name="password">
                                     <div class="invalid-feedback">
                                         <?= session('errors.password') ?>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="pass_confirm"><?= lang('Auth.repeatPassword') ?></label>
-                                    <input type="password" name="pass_confirm" class="form-control <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
+                                    <label for="pass_confirm"><?= lang('Auth.newPasswordRepeat') ?></label>
+                                    <input type="password" class="form-control <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" name="pass_confirm">
                                     <div class="invalid-feedback">
-                                        <?= session('errors.repeatPassword') ?>
+                                        <?= session('errors.pass_confirm') ?>
                                     </div>
-                                </div> 
-                                <div class="mt-3">
-                                    <button type="submit" class="btn btn-primary btn-block"><?= lang('Auth.register') ?></button>
                                 </div>
-                                <div class="text-center mt-4 font-weight-light">
-                                    <p><?= lang('Auth.alreadyRegistered') ?> <a href="<?= url_to('login') ?>"><?= lang('Auth.signIn') ?></a></p>
+
+                                <div class="mt-3">
+                                    <button type="submit" class="btn btn-primary btn-block"><?= lang('Auth.resetPassword') ?></button>
                                 </div>
                             </form>
                         </div>
