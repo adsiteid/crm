@@ -1,3 +1,7 @@
+<?php
+    $hash = $hash ?? "asdasdasdasd aasd";
+?>
+
 <table style="border-collapse:collapse;padding:0;max-width:480px;width:100%;border:0;background-color:#ffffff;margin:0 auto;word-break:break-word" cellpadding="0" cellspacing="0">
     <tbody style="border:none;padding:0;margin:0">
         <tr style="border:none;margin:0px;padding:0px">
