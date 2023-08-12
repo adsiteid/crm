@@ -9,7 +9,7 @@ class UsersModel extends Model
 {
 
     protected $table = 'users';
-    protected $allowedFields = ['groups', 'user_image','fullname','username','email','contact','city','address','project','general_manager','manager','level'];
+    protected $allowedFields = ['user_image','fullname','username','email','contact','city','address'];
 
     public function userAll()
     {
@@ -86,24 +86,7 @@ class UsersModel extends Model
    
     public function sales()
     {
-
         $builder = $this->db->table($this->table);
-        // $builder->whereIn('level', ['sales','manager','general_manager']);
-        $groups = user()->groups;
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')|| in_groups('admin_project')) :
-            $builder->whereIn('level', ['sales', 'manager', 'general_manager','admin_project']);
-            $builder->where('groups', $groups);
-        endif;
-
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
         $result = $builder->get();
         return $result;
     }
@@ -131,26 +114,6 @@ class UsersModel extends Model
     public function salesUser()
     {
         $builder = $this->db->table($this->table);
-        
-        $groups = user()->groups;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('groups', $groups);
-        endif;
-
-        if (in_groups('manager')) :
-            $builder->where('manager', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        $builder->whereIn('level', ['sales','admin_project']);
         $result = $builder->get();
         return $result;
     }
@@ -164,26 +127,10 @@ class UsersModel extends Model
             ->orLike('email', $search)
             ->orLike('username', $search)
             ->orLike('fullname', $search)
-            ->orLike('level', $search)
             ->orLike('city', $search)
             ->orLike('address', $search)
             ->orLike('contact', $search)
-            ->orLike('project', $search)
-            ->orLike('general_manager', $search)
-            ->orLike('manager', $search)
             ->groupEnd();
-
-        if (in_groups('sales') || in_groups('manager')|| in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-
-        if (in_groups('admin_project') || in_groups('general_manager')) :
-            $builder->where('groups', user()->groups);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
         
         $builder->orderBy('id DESC');
         $result = $builder->get();

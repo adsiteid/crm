@@ -119,10 +119,10 @@
 </div>
 
 <div class="d-flex justify-content-end my-4 row px-3">
-    <?php if (in_groups('admin') || in_groups('admin_group') || in_groups('admin_project') ) : ?>
+
         <a type="button" class="btn btn-outline-primary col-lg-2 col-6" data-toggle="modal" data-target="#delete-data">Delete</a>
         <a href="<?= base_url('/edit_event/' . $row['id']) ?>" class="btn btn-primary col-lg-2 col-6">Edit</a>
-    <?php endif; ?>
+    
 </div>
 
 

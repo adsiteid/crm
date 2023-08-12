@@ -3,12 +3,12 @@
 <?php $this->section('content'); ?>
 
 
-<?php if (in_groups('admin') || in_groups('admin_group') || in_groups('admin_project') ) : ?>
+
     <div class="row mb-4 p-0">
         <!-- <div class="col"><a href=""><a href="" type="button" class="btn btn-sm btn-outline-light bg-white">Back</a></a></div> -->
         <div class="col d-flex  "><a href="<?= base_url(); ?>add_images_interior/<?= $id ?>" type="button" class="btn btn-sm btn-primary">Add Images</a></div>
     </div>
-<?php endif; ?>
+
 
 
 <!-- flashdata -->

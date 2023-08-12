@@ -28,25 +28,14 @@
                         <div class="col">
 
                             <p class=" mb-1"><?php echo $row['fullname']; ?></p>
-                            <h6 class="text-muted mb-4" style="font-size : 13px;"><?php echo $row['level']; ?></h6>
+              
 
                             <hr style="border-style: solid; border-width : 0.1 px; color: #fdfdfd;">
                         </div>
 
                     </div>
 
-                    <div class="col mb-2">
-                        <p class="text-muted mb-1" style="color : #fff; font-size: 11px;">Group</p>
-                        <h6 class="mb-1" style="font-size : 14px;"><?php foreach ($group_name->detail($row['groups'])->getResultArray() as $g) : ?><?= $g['group_name']; ?><?php endforeach; ?></h6>
-                    </div>
-
-                    <div class="col mb-2">
-                        <p class="text-muted mb-1" style="color : #fff; font-size: 11px;">Project</p>
-                        <h6 class="mb-1" style="font-size : 14px;"><?php echo $row['project'];
-                                                                    if ($row['project'] == "") {
-                                                                        echo "-";
-                                                                    } ?></h6>
-                    </div>
+                    
                     <div class="col mb-2">
                         <p class="text-muted mb-1" style="color : #fff; font-size: 11px;">Alamat</p>
                         <h6 class="mb-1" style="font-size : 14px;"><?php echo $row['address'];
@@ -58,34 +47,7 @@
                         <p class="text-muted mb-1" style="color : #fff; font-size: 11px;">Nomor Kontak</p>
                         <h6 class="mb-1" style="font-size : 14px;"><?= $row['contact'] ?></h6>
                     </div>
-                    <div class="col mb-2">
-                        <p class="text-muted mb-1" style="color : #fff; font-size: 11px;">Sales Manager</p>
-                        <h6 class="mb-1" style="font-size : 14px;">
-                            <?php foreach ($user_group->detail($row['manager'])->getResultArray() as $m); ?>
-
-                            <?php
-                            if (!empty($row['manager'])) {
-                                echo $m['fullname'];
-                            } else {
-                                echo "-";
-                            }
-                            ?>
-
-                        </h6>
-                    </div>
-                    <div class="col mb-2">
-                        <p class="text-muted mb-1" style="color : #fff; font-size: 11px;">GM</p>
-                        <h6 class="mb-1" style="font-size : 14px;">
-                            <?php foreach ($user_group->detail($row['general_manager'])->getResultArray() as $gm); ?>
-                            <?php
-                            if (!empty($row['general_manager'])) {
-                                echo $gm['fullname'];
-                            } else {
-                                echo "-";
-                            }
-                            ?>
-                        </h6>
-                    </div>
+                    
 
                     <div class="col-12 p-3 d-flex justify-content-end mt-3 ">
                         <!-- <a class="btn btn-outline-primary mr-2 col-lg-6 col-sm-6 d-lg-block d-none" data-toggle="modal" data-target="#deletuserModal"> Delete</a>-->
@@ -274,16 +236,17 @@
     <div class="col-12 px-lg-2 px-3">
         <div class="card">
 
+          <?php foreach ($user->getResultArray() as $row) : ?>
 
             <div class="card-header d-flex align-items-center justify-content-between bg-white bg-transparent">
                 <div class="py-3">
 
-                    <?php if ($row['id'] !== user()->id) : ?>
-                        <form action="<?= base_url(); ?>search_leads_user/<?= $row['id']; ?>" method="post" class=" form-inline ">
+                        <?php if ($row['id'] !== user()->id) : ?>
+                            <form action="<?= base_url(); ?>search_leads_user/<?= $row['id']; ?>" method="post" class=" form-inline ">
                         <?php endif; ?>
                         <?php if ($row['id'] == user()->id) : ?>
                             <form action="<?= base_url(); ?>search_leads_user_loggedin/<?= $row['id']; ?>" method="post" class=" form-inline ">
-                            <?php endif; ?>
+                        <?php endif; ?>
                             <div class="input-group input-group-sm mt-2 mr-3 d-lg-flex d-none ">
                                 <input type="text" class="form-control rounded-left bg-light pl-3 " placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_leads">
                                 <div class="input-group-append">
@@ -495,6 +458,9 @@
 
 
             </div>
+
+            <?php endforeach; ?>
+
         </div>
     </div>
 </div>

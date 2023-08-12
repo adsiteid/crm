@@ -30,12 +30,22 @@
 
 <div class="col-12 grid-margin stretch-card p-0">
     <div class="card">
-        <div class="card-header bg-white rounded-top d-flex justify-content-between">
+        <div class="card-header bg-transparent d-flex justify-content-between">
             <h4 class=" card-title pt-3">Edit User</h4>
             <a href="#" class="small text-primary pt-3">
                 Change Password
             </a>
         </div>
+
+        <div class="col mt-3">
+            <!-- flashdata -->
+            <?php if (session()->getFlashdata('pesan')) : ?>
+                <div class="alert alert-success" role="alert">
+                    <?= session()->getFlashdata('pesan'); ?>
+                </div>
+            <?php endif; ?>
+        </div>
+
         <div class="card-body">
 
             <form action="<?= base_url(); ?>user_update" method="post" class="forms-sample row" enctype="multipart/form-data">
@@ -43,14 +53,14 @@
 
                 <input type="hidden" name="id" value="<?= $row['id'] ?>">
 
-                <div class="col-lg-2 col-12">
-                    <label class="mb-2"> User Image</label>
-                    <a type="button" class="file-upload">
+                <div class="col-lg-2 col-12 text-center ">
+                    <label class="mb-3 small"> User Image</label><br>
+                    <a type="button" class="file-upload rounded-circle mb-lg-0 mb-4" style="width:130px; height : 130px; ">
                         <?php if ($row['user_image'] !== 'default.jpg') : ?>
-                            <img class="image w-100 pr-lg-1 px-0 pb-lg-0 pb-5 cover " src="<?= base_url(); ?>document/image/profile/user/<?= $row['user_image']; ?>">
+                            <img class="image" src="<?= base_url(); ?>document/image/profile/user/<?= $row['user_image']; ?>" style="width : 100% ; height : 100% ;  overflow: hidden; object-fit:cover; ">
                         <?php endif; ?>
                         <?php if ($row['user_image'] == 'default.jpg') : ?>
-                            <img class="image w-100 pr-lg-1 px-0 pb-lg-0 pb-5 cover " src="<?= base_url(); ?>document/image/profile/default.jpg">
+                            <img class="image" src="<?= base_url(); ?>document/image/profile/default.jpg" style="width : 100% ; height : 100% ;  overflow: hidden; object-fit:cover; ">
                         <?php endif; ?>
                         <input type="file" class="file-input <?php if (session('errors.user_image')) : ?>is-invalid<?php endif ?>" name="user_image">
                         <div class="invalid-feedback">
@@ -111,116 +121,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-lg-6 col-12">
-                    <label for="project">Group</label>
-                    <select class="form-control form-select <?php if (session('errors.project')) : ?>is-invalid<?php endif ?>" id="project" name="groups" <?php if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) : ?> disabled <?php endif; ?>>
-                        <option value="<?= $row['groups']; ?>"><?php foreach ($group_name->detail($row['groups'])->getResultArray() as $g) : ?><?= $g['group_name']; ?><?php endforeach; ?></option>
-                        <?php foreach ($group->getResultArray() as $gp) : ?>
-                            <option value="<?= $gp['id']; ?>"><?= $gp['group_name']; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                    <div class="invalid-feedback">
-                        <?= (session('errors.project')); ?>
-                    </div>
-                </div>
 
-
-                <div class="form-group col-lg-6 col-12">
-                    <label for="project">Project</label>
-                    <select class="form-control form-select <?php if (session('errors.project')) : ?>is-invalid<?php endif ?>" id="project" name="project" <?php if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) : ?> disabled <?php endif; ?>>
-                        <option value="<?= $row['project']; ?>"><?= $row['project']; ?></option>
-                        <?php foreach ($projects as $pj) : ?>
-                            <option value="<?= $pj['project']; ?>"><?= $pj['project']; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                    <div class="invalid-feedback">
-                        <?= (session('errors.project')); ?>
-                    </div>
-                </div>
-
-
-
-                <div class="form-group col-lg-3 col-12 ">
-                    <label for="GM">General Manager</label>
-                    <select class="form-control form-select <?php if (session('errors.general_manager')) : ?>is-invalid<?php endif ?>" id="GM" name="general_manager" <?php if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) : ?> disabled <?php endif; ?>>
-                        <?php foreach ($user_group->detail($row['general_manager'])->getResultArray() as $gm); ?>
-
-
-                        <?php if (!empty($row['general_manager'])) : ?>
-                            <option value="<?= $row['general_manager']; ?>"><?= $gm['fullname']; ?></option>
-                        <?php endif; ?>
-                        <?php if (empty($row['general_manager'])) : ?>
-                            <option value="<?= $row['general_manager']; ?>"><?= $row['general_manager']; ?></option>
-                        <?php endif; ?>
-
-                        <?php foreach ($sales->getResultArray() as $su) : ?>
-                            <option value="<?= $su['id']; ?>"> <?= $su['fullname']; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                    <div class="invalid-feedback">
-                        <?= (session('errors.general_manager')); ?>
-                    </div>
-                </div>
-
-
-                <div class="form-group col-lg-3 col-12">
-                    <label for="Sales">Sales Manager</label>
-                    <select class="form-control form-select <?php if (session('errors.manager')) : ?>is-invalid<?php endif ?>" id="Sales Manager" name="manager" <?php if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) : ?> disabled <?php endif; ?>>
-                        <?php foreach ($user_group->detail($row['manager'])->getResultArray() as $m); ?>
-
-                        <?php if (!empty($row['manager'])) : ?>
-                            <option value="<?= $row['manager']; ?>"><?= $m['fullname']; ?></option>
-                        <?php endif; ?>
-                        <?php if (empty($row['manager'])) : ?>
-                            <option value="<?= $row['manager']; ?>"><?= $row['manager']; ?></option>
-                        <?php endif; ?>
-
-                        <?php foreach ($sales->getResultArray() as $su) : ?>
-                            <option value="<?= $su['id']; ?>"> <?= $su['fullname']; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                    <div class="invalid-feedback">
-                        <?= (session('errors.manager')); ?>
-                    </div>
-                </div>
-
-
-
-                <div class="form-group col-lg-6 col-12">
-                    <label for="sumber_leads">Level</label>
-                    <select class="form-control form-select <?php if (session('errors.level')) : ?>is-invalid<?php endif ?>" id="sumber_leads" name="level" <?php if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) : ?> disabled <?php endif; ?>>
-                        <option value="<?= $row['level']; ?>"><?= $row['level']; ?></option>
-                        <?php if (in_groups('admin')) : ?>
-                            <option value="admin">Admin</option>
-                            <option value="admin_group">Admin Project</option>
-                        <?php endif; ?>
-                        <option value="admin_project">Admin Assistant</option>
-                        <option value="sales">Sales</option>
-                        <option value="manager">Manager</option>
-                        <option value="general_manager">General Manager</option>
-                    </select>
-                    <div class="invalid-feedback">
-                        <?= (session('errors.level')); ?>
-                    </div>
-                </div>
-
-                <input type="hidden" name="admin_group" value="<?= $row['admin_group']; ?>">
-
-                <?php if (in_groups('admin_project')) : ?>
-                    <input type="hidden" name="level" value="<?= $row['level']; ?>">
-                <?php endif ?>
-
-                <?php if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) : ?>
-                    <input type="hidden" name="groups" value="<?= $row['groups']; ?>">
-                    <input type="hidden" name="project" value="<?= $row['project']; ?>">
-                    <input type="hidden" name="general_manager" value="<?= $row['general_manager']; ?>">
-                    <input type="hidden" name="manager" value="<?= $row['manager']; ?>">
-                    <input type="hidden" name="level" value="<?= $row['level']; ?>">
-                <?php endif ?>
-
-                <!-- <?php if (in_groups('admin_project')) : ?>
-                    <input type="hidden" name="level" value="<?= $row['level']; ?>">
-                <?php endif ?> -->
 
                 <div class="d-flex justify-content-end p-0 my-4">
                     <div class="col-lg-3 col-12"><a type="submit" class="btn btn-primary w-100 mr-2" data-toggle="modal" data-target="#save-data">Submit</a></div>
@@ -250,7 +151,7 @@
                         </div>
                     </div>
                 </div>
-
+                <input type="hidden" name="level" value="<?= $row['level']; ?>">
                 <input type="hidden" name="user_id" value="<?= $row['id']; ?>">
 
             </form>

@@ -9,28 +9,21 @@ class MsdpModel extends Model
 {
 
     protected $table = 'msdp';
-    protected $allowedFields = ['name', 'email', 'phone', 'manager', 'jabatan', 'project', 'divisi', 'diajukan', 'isi', 'status', 'deadline', 'catatan', 'userid', 'updated_at','groups','admin_group'];
+    protected $allowedFields = ['name', 'email', 'phone', 'manager', 'jabatan', 'project', 'divisi', 'diajukan', 'isi', 'status', 'deadline', 'catatan', 'userid', 'updated_at','groups','admin_group','admin_project'];
 
     public function list()
     {
         $builder = $this->db->table($this->table);
 
-        $groups = user()->groups;
-        $user = user()->id;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $builder->where('userid', $user);
-            $result = $builder->get();
-        endif;
-
-        if (in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-            $result = $builder->get();
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-            $result = $builder->get();
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('userid', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');

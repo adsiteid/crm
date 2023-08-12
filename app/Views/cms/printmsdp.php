@@ -5,30 +5,11 @@
 <?php foreach ($detail->getResultArray() as $row); ?>
 
 <div class="card " id="export_pdf">
-    <div class="card-header bg-white rounded-top d-flex align-items-center">
-        <div class="col-lg-10 col-sm-10 col-12">
-
-            <div class="d-lg-none d-md-none d-sm-none d-flex my-2">
-                <label class="badge badge-<?php
-                                            if ($row['status'] == 'New') {
-                                                echo 'success';
-                                            } elseif ($row['status'] == 'Diterima') {
-                                                echo 'warning';
-                                            } elseif ($row['status'] == 'Diproses') {
-                                                echo 'info';
-                                            } elseif ($row['status'] == 'Selesai') {
-                                                echo 'booking';
-                                            } elseif ($row['status'] == 'Ditolak') {
-                                                echo 'danger';
-                                            }
-                                            ?>" style="font-size: 11px;">
-                    <?= $row['status']; ?>
-                </label>
-            </div>
-
-            <h4 class=" text-primary card-title pt-3 lh-base">Management Selfservice Divisi Promosi (MSDP)</h4>
+    <div class="card-header bg-transparent d-flex align-items-center">
+        <div class="col-10 ">
+            <h4 class=" text-primary card-title pt-3 lh-base">Submission</h4>
         </div>
-        <div class="col-lg-2 col-sm-2 d-lg-flex d-md-flex d-sm-flex d-none align-items-center justify-content-end">
+        <div class="col-2 d-lg-flex d-flex align-items-center justify-content-end">
 
             <label class="badge badge-<?php
                                         if ($row['status'] == 'New') {
@@ -59,8 +40,8 @@
                     <div class="card-header bg-primary border rounded-top ">
                         <div class="row d-flex align-items-center">
                             <div class="col-10">
-                                <h3 class=" text-light card-title pt-3 lh-base mb-0 pb-0">Surat Perintah Kerja</h3>
-                                <p class="text-muted" style="font-size: small;">No : <?= $row['id']; ?>/SPK-PRM/<?= $row['id']; ?>/I/<?= date('Y'); ?></p>
+                                <h3 class=" text-light card-title pt-3 lh-base mb-0 pb-0">Surat Pengajuan</h3>
+                                <p class="text-white" style="font-size: small;">No : <?= $row['id']; ?>/SPK/<?= $row['id']; ?>/<?= date('Y'); ?></p>
                             </div>
                             <div class="col-2 d-lg-flex d-none justify-content-end">
                                 <button type="button" class="btn btn-sm btn-light rounded" onclick="printDiv('export_pdf')"><i class="ti-printer menu-icon"></i></button>
@@ -99,30 +80,6 @@
 
                         <textarea class="col-12 border-secondary py-3 rounded" name="" id="" rows="10"><?= $row['isi']; ?></textarea>
 
-                        <div class="my-5">
-
-
-                            <div class="row">
-                                <div class="col-lg-6 col-sm-6 text-center mb-lg-0 mb-5">
-                                    <div class="col-12 mb-5">Mengetahui</div>
-                                    <div class="row">
-                                        <div class="col-6">Yayank Suharyanti</div>
-                                        <div class="col-6">Stephanie N.R</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-sm-6 text-center">
-                                    <div class="col-12 mb-5">Menyetujui</div>
-                                    <div class="row">
-                                        <div class="col-6">Bayu Setiawan</div>
-                                        <div class="col-6">Adam Bilfaqih</div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -145,10 +102,10 @@
     <div class="card my-3">
         <div class="card-header bg-transparent pt-3">
             <div class="row d-flex justify-content-between align-items-center">
-                <div class="col-lg-9 col-6">
+                <div class="col-lg-9 col-6 my-2">
                     <h5>Detail Pemohon</h5>
                 </div>
-                <?php if (in_groups('admin') || in_groups('admin_group') || in_groups('admin_project') ) : ?>
+                <?php if ($row['manager'] == user()->id || $row['general_manager'] == user()->id || $row['admin_group'] == user()->id || $row['admin_project'] == user()->id || in_groups('admin')) : ?>
                     <div class="col-lg-3 col-6">
                         <select class="form-select" name="status" required>
                             <option value="<?= ($row['status'] == "New") ? '' : $row['status']; ?>"><?= ($row['status'] == "New") ? 'Select Option' : $row['status']; ?></option>

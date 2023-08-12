@@ -552,7 +552,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
         var html = table.outerHTML;
         var url = 'data:application/vnd.ms-excel,' + escape(html); // Set your html table into url 
         elem.setAttribute("href", url);
-        elem.setAttribute("download", "Report_sales.xls"); // Choose the file name
+        elem.setAttribute("download", "Report_leads.xls"); // Choose the file name
         return false;
     }
 </script>

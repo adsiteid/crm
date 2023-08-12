@@ -37,10 +37,13 @@
                 <div class="form-group col-lg-3 col-12">
                     <label for="subholding">Groups</label>
                     <select class="form-control form-select <?php if (session('error.groups')) : ?>is-invalid<?php endif ?>" id="subholding" name="groups">
-                        <option value="">Select Group</option>
-                        <?php foreach ($group->getResultArray() as $g) : ?>
-                            <option value="<?= $g['id']; ?>"><?= $g['group_name']; ?></option>
+
+                        <option value="" selected>Select Option</option>
+
+                        <?php foreach ($user_group->getResultArray() as $grp) : ?>
+                            <option value="<?= $grp['groups']; ?>"><?php foreach ($group_project->detail($grp['groups'])->getResultArray() as $user_grp) : ?><?= $user_grp['group_name']; ?><?php endforeach; ?></option>
                         <?php endforeach; ?>
+
                     </select>
                     <div class="invalid-feedback">
                         <?= (session('error.groups')); ?>
@@ -48,19 +51,23 @@
                 </div>
 
 
-            
                 <div class="form-group col-lg-6 col-12">
-                    <label>Project</label>
-                    <select class="form-control form-select <?php if (session('error.project')) : ?>is-invalid<?php endif ?>" name="project">
-                        <option value="<?= old('project'); ?>">Select Project</option>
-                        <?php foreach ($projects as $p) : ?>
-                            <option value="<?= $p['project']; ?>"><?= $p['project']; ?></option>
+                    <label for="project">Project</label>
+                    <select class="form-control form-select <?php if (session('error.project')) : ?>is-invalid<?php endif ?> " id="project" name="project">
+                        <option value="">Select Project</option>
+
+                        <?php foreach ($user_group->getResultArray() as $prj) : ?>
+                            <option value="<?= $prj['project']; ?>"><?= $prj['project']; ?></option>
                         <?php endforeach; ?>
+
                     </select>
                     <div class="invalid-feedback">
                         <?= (session('error.project')); ?>
                     </div>
                 </div>
+
+
+
                 <div class="form-group col-lg-2 col-12  ">
                     <label>City</label>
                     <input type="text" class="form-control <?php if (session('error.city')) : ?>is-invalid<?php endif ?>" placeholder="City" name="city" value="<?= old('city'); ?>">

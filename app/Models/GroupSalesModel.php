@@ -9,32 +9,68 @@ class GroupSalesModel extends Model
 {
 
     protected $table = 'groups_sales';
-    protected $allowedFields = ['group_name', 'admin_group', 'sales', 'manager', 'general_manager','created_at'];
+    protected $allowedFields = ['group_name', 'admin_group','admin_project', 'manager', 'general_manager','created_at'];
 
-    public function list()
+    public function groups($id_groups)
     {
         $builder = $this->db->table($this->table);
-        $groups = user()->groups;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('groups', $groups);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
+        $builder->where('groups', $id_groups);
         $builder->orderBy('id DESC');
         $result = $builder->get();
         return $result;
     }
 
-    public function detail($id)
+    public function user($id)
     {
-        
+        $builder = $this->db->table($this->table);
+        $builder->where('id_user', $id);
+        $result = $builder->get();
+        return $result;
+    }
+
+    public function admin_group($groups)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('level', 'admin_group' );
+        $builder->where('groups', $groups);
+        $result = $builder->get();
+        return $result;
+    }
+
+    public function admin_project($project)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('level', 'admin_project');
+        $builder->where('project', $project);
+        $result = $builder->get();
+        return $result;
+    }
+    
+
+    public function detail($id)
+    { 
         $builder = $this->db->table($this->table);
         $builder->where('id', $id);
         $result = $builder->get();
         return $result;
     }
+
+
+    public function projects($groups)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('level', 'admin_project');
+        $builder->where('groups', $groups);
+        $builder->groupBy('project');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+
+
 }
+
+
+
+

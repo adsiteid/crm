@@ -42,7 +42,6 @@ class ProjectModel extends Model
         'youtube',
         'website',
         'fasilitas',
-        'admin_group',
         'groups',
         'materport',
         'folder',
@@ -54,24 +53,7 @@ class ProjectModel extends Model
     {
  
         $builder = $this->db->table($this->table);
-        $groups = user()->groups;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('groups', $groups);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-
-        if (in_groups('admin')) :
-            $result = $builder->get();  
-        endif;
-        
+         
         $result = $builder->get();
         return $result;
     }

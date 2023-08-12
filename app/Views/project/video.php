@@ -2,12 +2,12 @@
 
 <?php $this->section('content'); ?>
 
-<?php if (in_groups('admin') || in_groups('admin_group') || in_groups('admin_project') ) : ?>
+
     <div class="row d-flex justify-content-end mb-3">
         <!-- <div class="col"><a href=""><a href="" type="button" class="btn btn-sm btn-outline-light bg-white">Back</a></a></div> -->
         <div class="col d-flex  "><a href="<?= base_url(); ?>add_video/<?= $id; ?>" type="button" class="btn btn-sm btn-primary">Add Video</a></div>
     </div>
-<?php endif; ?>
+
 
 
 <div class="col p-0">

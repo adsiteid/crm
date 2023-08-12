@@ -39,32 +39,35 @@
 </style>
 
 
+<?php foreach ($users->user(user()->id)->getresultArray() as $id_user) : ?>
 
 
-<div class="card">
-    <div class="card-body">
 
-        <div class="d-flex align-items-center justify-content-between  pb-3 row ">
-            <div class="col-lg-5 col-md-3 col-sm-3 col-12 d-lg-block d-md-block d-sm-block d-none">
-                <?php if (in_groups('admin') || in_groups('admin_group') || in_groups('admin_project')) : ?>
-                    <a href="<?= base_url(); ?>add_user" type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 " style="font-size:12px;">Add User </a>
-                <?php endif; ?>
-                <?php if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) : ?>
-                    <div type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 " style="font-size:12px;">User Group </div>
+    <div class="card mb-3">
+        <div class="card-body">
+
+            <div class="d-flex align-items-center justify-content-between  pb-3 row ">
+                <div class="col-lg-5 col-md-3 col-sm-3 col-12 d-lg-block d-md-block d-sm-block d-none">
+                    <?php foreach ($users->groups($id_user['groups'])->getresultArray() as $groupheader) ; ?>
+                    <?php if (in_groups('admin')) : ?>
+                        <a href="<?= base_url(); ?>add_user" type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 " style="font-size:12px;">Add User </a>
                     <?php endif; ?>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-5 col-12 ">
-                        <form action="<?= base_url()?>search_user" method="post" class=" col-lg col-sm col-12 form-inline mr-auto p-0  ">
-                            <div class="input-group input-group-sm d-flex justify-content-end ">
-                                <input type="text" class="form-control rounded-left bg-light pl-3 " placeholder="Search User ..." aria-label="Search" aria-describedby="basic-addon2" name="search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary rounded-right" type="submit">
-                                        <i class="icon-search"></i>
-                                    </button>
-                                </div>
+                    <?php if (in_groups('users')) : ?>
+                        <div type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 " style="font-size:12px;"> <?php foreach ($group->detail($groupheader['groups'])->getResultArray() as $gr) : ?> <?= $gr['group_name']; ?><?php endforeach; ?> </div>
+                    <?php endif; ?>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-5 col-12 ">
+                    <form action="<?= base_url() ?>search_user" method="post" class=" col-lg col-sm col-12 form-inline mr-auto p-0  ">
+                        <div class="input-group input-group-sm d-flex justify-content-end ">
+                            <input type="text" class="form-control rounded-left bg-light pl-3 " placeholder="Search User ..." aria-label="Search" aria-describedby="basic-addon2" name="search">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary rounded-right" type="submit">
+                                    <i class="icon-search"></i>
+                                </button>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
+                </div>
             </div>
 
 
@@ -84,131 +87,118 @@
                             <th class="d-sm-table-cell d-none">
                                 Address
                             </th>
-                            <th class="d-none">
+                            <th class="d-sm-table-cell d-none">
+                                Email
+                            </th>
+                            <th class="d-sm-table-cell d-none">
                                 Contact
-                            </th>
-                            <!-- <th class="d-sm-table-cell d-none">
-                            Subholding
-                        </th> -->
-                            <th class="d-sm-table-cell d-none">
-                                Manager
-                            </th>
-                            <th class="d-sm-table-cell d-none">
-                                General Manager
                             </th>
                         </tr>
                     </thead>
                     <tbody class="list-wrapper ">
                         <?php $no = 1; ?>
-                        <?php foreach ($sales->getresultArray() as $row) : ?>
-                                <?php if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_group') || in_groups('admin_project')) : ?>
-                                    <tr class="list-item " onclick="location.href='<?= base_url(); ?>user/<?php echo $row['id']; ?>'">
-                                <?php endif; ?>
+                        <?php foreach ($users->groups($id_user['groups'])->getresultArray() as $row) : ?>
+                            <tr class="list-item " onclick="location.href='<?= base_url(); ?>user/<?php echo $row['id_user']; ?>'">
+                                <?php foreach ($user->detail($row['id_user'])->getresultArray() as $userdetail) : ?>
+                                    <td class="d-sm-table-cell d-none">
+                                        <?= $no++; ?>
+                                    </td>
+                                    <td>
 
-                                <?php if (in_groups('sales')) : ?>
-                                <tr class="list-item ">
-                                <?php endif; ?>
+                                        <?php if ($userdetail['user_image'] !== 'default.jpg') : ?>
+                                            <img class="img-profile rounded-circle ml-0 mr-lg-3 mr-1 object-fit-cover " src="<?= base_url(); ?>document/image/profile/user/<?= $userdetail['user_image']; ?>" style="width : 30px; height : 30px;" />
+                                        <?php endif; ?>
+                                        <?php if ($userdetail['user_image'] == 'default.jpg') : ?>
+                                            <img class="img-profile rounded-circle ml-0 mr-lg-3 mr-1 object-fit-cover " src="<?= base_url(); ?>document/image/profile/default.jpg" style="width : 30px; height : 30px;" />
+                                        <?php endif; ?>
 
-                                <td class="d-sm-table-cell d-none">
-                                    <?= $no++; ?>
-                                </td>
-                                <td>
-                                    <?php if ($row['user_image'] !== 'default.jpg') : ?>
-                                        <img class="img-profile rounded-circle ml-0 mr-lg-3 mr-1 object-fit-cover " src="<?= base_url(); ?>document/image/profile/user/<?= $row['user_image']; ?>" style="width : 30px; height : 30px;" />
-                                    <?php endif; ?>
-                                    <?php if ($row['user_image'] == 'default.jpg') : ?>
-                                        <img class="img-profile rounded-circle ml-0 mr-lg-3 mr-1 object-fit-cover " src="<?= base_url(); ?>document/image/profile/default.jpg" style="width : 30px; height : 30px;" />
-                                    <?php endif; ?>
-                                    <?php
-                                    $str = $row['fullname'];
-                                    if (strlen($str) > 15) {
-                                        $str = substr($str, 0, 15) . ' ...';
-                                    }
-                                    echo $str;
-                                    ?>
-                                </td>
-                                <td class="text-lg-left text-right pl-0">
-                                    <label style="font-size: 9px;" class="badge badge-<?php if ($row['level'] == 'admin') {
-                                                                                            echo 'primary';
-                                                                                        } elseif ($row['level'] == 'sales') {
-                                                                                            echo 'info';
-                                                                                        } elseif ($row['level'] == 'manager') {
-                                                                                            echo 'reserve';
-                                                                                        } elseif ($row['level'] == 'general_manager') {
-                                                                                            echo 'booking';
-                                                                                        } elseif ($row['level'] == 'admin_group') {
-                                                                                            echo 'success';
-                                                                                        } elseif ($row['level'] == 'admin_project') {
-                                                                                            echo 'primary';
-                                                                                        } ?>"><?php if ($row['level'] == "admin_group" || $row['level'] == "admin_project") {
-                                                                                                echo 'admin';
-                                                                                            } elseif ($row['level'] == "general_manager") {
-                                                                                                echo 'GM';
-                                                                                            } else {
-                                                                                                echo $row['level'];
-                                                                                            } ?> </label>
-                                </td>
+                                        <?php
+                                        $str = $userdetail['fullname'];
+                                        if (strlen($str) > 15) {
+                                            $str = substr($str, 0, 15) . ' ...';
+                                        }
+                                        echo $str;
+                                        ?>
+                                    </td>
+                                    <td class="text-lg-left text-right pl-0">
+                                        <label style="font-size: 9px;" class="badge badge-<?php if ($row['level'] == 'admin') {
+                                                                                                echo 'primary';
+                                                                                            } elseif ($row['level'] == 'sales') {
+                                                                                                echo 'info';
+                                                                                            } elseif ($row['level'] == 'manager') {
+                                                                                                echo 'reserve';
+                                                                                            } elseif ($row['level'] == 'general_manager') {
+                                                                                                echo 'booking';
+                                                                                            } elseif ($row['level'] == 'admin_group') {
+                                                                                                echo 'success';
+                                                                                            } elseif ($row['level'] == 'admin_project') {
+                                                                                                echo 'primary';
+                                                                                            } ?>"><?php if ($row['level'] == "admin_group" || $row['level'] == "admin_project") {
+                                                                                                        echo 'admin';
+                                                                                                    } elseif ($row['level'] == "general_manager") {
+                                                                                                        echo 'GM';
+                                                                                                    } else {
+                                                                                                        echo $row['level'];
+                                                                                                    } ?> </label>
+                                    </td>
 
-                                <td class="d-sm-table-cell d-none">
-                                    <?= $row['address']; ?>
-                                </td>
-                                <td class="d-none">
-                                    <?= $row['contact']; ?>
-                                </td>
+                                    <td class="d-sm-table-cell d-none">
+                                        <?= $userdetail['address']; ?>
+                                    </td>
+                                    <td class="d-sm-table-cell d-none">
+                                        <?= $userdetail['email']; ?>
+                                    </td>
 
-                                <td class="d-sm-table-cell d-none">
-                                    <?php foreach ($user->detail($row['manager'])->getResultArray() as $mg) : ?>
-                                        <?= $mg['fullname']; ?>
-                                    <?php endforeach; ?>
-                                </td>
+                                    <td class="d-sm-table-cell d-none">
+                                        <?= $userdetail['contact']; ?>
+                                    </td>
 
-                                <td class="d-sm-table-cell d-none">
-                                    <?php foreach ($user->detail($row['general_manager'])->getResultArray() as $gm) : ?>
-                                        <?= $gm['fullname']; ?>
-                                    <?php endforeach; ?>
-                                </td>
-                                </tr>
-
-                            <?php endforeach; ?>
+                                <?php endforeach; ?>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
+
         </div>
     </div>
 
 
-    <div id="pagination-container" class="my-4"></div>
+<?php endforeach; ?>
 
 
-    <!-- Pagination -->
+<div id="pagination-container" class="my-4"></div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js"></script>
 
-    <script>
-        var items = $(".list-wrapper .list-item");
-        var numItems = items.length;
-        var perPage = 10;
+<!-- Pagination -->
 
-        items.slice(perPage).hide();
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js"></script>
 
-        $('#pagination-container').pagination({
-                items: numItems,
-                itemsOnPage: perPage,
-                prevText: "&laquo;",
-                nextText: "&raquo;",
-                onPageClick: function(pageNumber) {
-                    var showFrom = perPage * (pageNumber - 1);
-                    var showTo = showFrom + perPage;
-                    items.hide().slice(showFrom, showTo).show();
-                }
+<script>
+    var items = $(".list-wrapper .list-item");
+    var numItems = items.length;
+    var perPage = 10;
+
+    items.slice(perPage).hide();
+
+    $('#pagination-container').pagination({
+            items: numItems,
+            itemsOnPage: perPage,
+            prevText: "&laquo;",
+            nextText: "&raquo;",
+            onPageClick: function(pageNumber) {
+                var showFrom = perPage * (pageNumber - 1);
+                var showTo = showFrom + perPage;
+                items.hide().slice(showFrom, showTo).show();
             }
+        }
 
-        );
-    </script>
-
-
-
+    );
+</script>
 
 
-    <?php $this->endSection(); ?>
+
+
+
+<?php $this->endSection(); ?>

@@ -71,20 +71,23 @@
                     </div>
                     <div class="row">
                         <div class="col-lg col-12">
-                            <div class="form-group ">
+                            <div class="form-group">
                                 <label for="subholding">Groups</label>
                                 <select class="form-control form-select <?php if (session('error.groups')) : ?>is-invalid<?php endif ?>" id="subholding" name="groups">
-                                    <option value="">Select Group</option>
-                                    <?php foreach ($group->getResultArray() as $g) : ?>
-                                        <option value="<?= $g['id']; ?>"><?= $g['group_name']; ?></option>
+
+                                    <option value="" selected>Select Option</option>
+
+                                    <?php foreach ($user_group->getResultArray() as $grp) : ?>
+                                        <option value="<?= $grp['groups']; ?>"><?php foreach ($group_project->detail($grp['groups'])->getResultArray() as $user_grp) : ?><?= $user_grp['group_name']; ?><?php endforeach; ?></option>
                                     <?php endforeach; ?>
+
                                 </select>
                                 <div class="invalid-feedback">
                                     <?= (session('error.groups')); ?>
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
 
 

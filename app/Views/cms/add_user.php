@@ -41,14 +41,6 @@
             <form action="<?= url_to('register') ?>" method="post" class="forms-sample row" enctype="multipart/form-data">
                 <?= csrf_field() ?>
 
-                <!-- <div class="col-lg-2 col-12">
-                    <label class="mb-3"> User Image</label>
-                    <a type="button" class="file-upload">
-                        <img class="image w-100 pr-lg-1 px-0 pb-lg-0 pb-5 " src="<?= base_url(); ?>document/image/event/upload.jpg">
-                        <input type="file" class="file-input" name="user_image">
-                    </a>
-                </div> -->
-
                 <div class="col-lg-6 col-12">
                     <div class="form-group row">
                         <div class="col-12 mb-3">
@@ -101,94 +93,21 @@
                     </div>
                 </div>
 
-
                 <div class="form-group col-lg-6 col-12">
-                    <label for="project">Project</label>
-                    <select class="form-control form-select <?php if (session('errors.project')) : ?>is-invalid<?php endif ?>" id="project" name="project">
-                        <option value="">Select Option</option>
-                        <?php foreach ($projects as $row) : ?>
-                            <option value="<?= $row['project']; ?>"><?= $row['project']; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                    <div class="invalid-feedback">
-                        <?= (session('errors.project')); ?>
-                    </div>
-                </div>
-
-                <div class="form-group col-lg-3 col-12">
-                    <label for="GM">GM</label>
-                    <select class="form-control form-select <?php if (session('errors.general_manager')) : ?>is-invalid<?php endif ?>" id="GM" name="general_manager">
-                        <option value="">Select Option</option>
-                        <?php foreach ($sales->getResultArray() as $row) : ?>
-                            <option value="<?= $row['id']; ?>"> <?= $row['fullname']; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                    <div class="invalid-feedback">
-                        <?= (session('errors.general_manager')); ?>
-                    </div>
-                </div>
-                <div class="form-group col-lg-3 col-12">
-                    <label for="Sales">Sales Manager</label>
-                    <select class="form-control form-select <?php if (session('errors.manager')) : ?>is-invalid<?php endif ?>" id="Sales Manager" name="manager">
-                        <option value="">Select Option</option>
-                        <?php foreach ($sales->getResultArray() as $row) : ?>
-                            <option value="<?= $row['id']; ?>"> <?= $row['fullname']; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                    <div class="invalid-feedback">
-                        <?= (session('errors.manager')); ?>
-                    </div>
-                </div>
-
-
-                <?php if (in_groups('admin')) : ?>
-                    <div class="form-group col-lg-3 col-12">
-                        <label for="sumber_leads">Level</label>
-                        <select class="form-control form-select <?php if (session('errors.level')) : ?>is-invalid<?php endif ?>" id="sumber_leads" name="level">
+                    <label for="sumber_leads">Level</label>
+                    <select class="form-control form-select <?php if (session('errors.level')) : ?>is-invalid<?php endif ?>" id="sumber_leads" name="level">
+                        <?php if (in_groups('admin')) : ?>
                             <option value="">Select Level</option>
                             <option value="admin">Admin</option>
-                            <option value="admin_group">Admin Project</option>
-                            <option value="admin_project">Admin Assistant</option>
-                            <option value="sales">Sales</option>
-                            <option value="manager">Manager</option>
-                            <option value="general_manager">General Manager</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            <?= (session('errors.level')); ?>
-                        </div>
+                        <?php endif; ?>
+                        <option value="users">User</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        <?= (session('errors.level')); ?>
                     </div>
-
-                    <div class="form-group col-lg-3 col-12">
-                        <label for="sumber_leads">Admin Project</label>
-                        <select class="form-control form-select <?php if (session('errors.admin_group')) : ?>is-invalid<?php endif ?>" id="sumber_leads" name="admin_group">
-                            <option value="">Select Admin Project</option>
-                            <?php foreach ($adminProject->getResultArray() as $adp) : ?>
-                                <option value="<?= $adp['id']; ?>"><?= $adp['fullname']; ?></option>
-                            <?php endforeach; ?>
-
-                        </select>
-                        <div class="invalid-feedback">
-                            <?= (session('errors.admin_group')); ?>
-                        </div>
-                    </div>
-                <?php endif; ?>
+                </div>
 
 
-                <?php if (in_groups('admin_group') || in_groups('admin_project')) : ?>
-                    <div class="form-group col-lg-6 col-12">
-                        <label for="sumber_leads">Level</label>
-                        <select class="form-control form-select <?php if (session('errors.level')) : ?>is-invalid<?php endif ?>" id="sumber_leads" name="level">
-                            <option value="">Select Level</option>
-                            <option value="admin_project">Admin Assistant</option>
-                            <option value="sales">Sales</option>
-                            <option value="manager">Manager</option>
-                            <option value="general_manager">General Manager</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            <?= (session('errors.level')); ?>
-                        </div>
-                    </div>
-                <?php endif; ?>
 
                 <div class="form-group col-lg-3 col-12">
                     <label for="password">Password</label>
@@ -204,15 +123,6 @@
                         <?= (session('errors.pass_confirm')); ?>
                     </div>
                 </div>
-
-                <?php if (in_groups('admin_project')) : ?>
-                    <input type="hidden" name="groups" value="<?= user()->groups; ?>">
-                    <input type="hidden" name="admin_group" value="<?= user()->admin_group; ?>">
-                <?php endif; ?>
-
-                <?php if (in_groups('admin_group')) : ?>
-                    <input type="hidden" name="admin_group" value="<?= user()->id; ?>">
-                <?php endif; ?>
 
 
                 <div class="d-flex justify-content-end p-0 my-4">

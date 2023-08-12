@@ -60,13 +60,13 @@ foreach ($project->getResultArray() as $row);
                             <div class="carousel-item">
                                 <?php if ($files !== "") : ?>
                                     <a href="<?= base_url() . 'project/interior/' . $row['id']; ?>">
-                                        <img src="<?= base_url(); ?>document/image/project/interior/<?= $row['folder']; ?>/<?= $files; ?>" class="d-block w-100" alt="...">
+                                        <img src="<?= base_url(); ?>document/image/project/interior/<?= $row['folder']; ?>/<?= $files; ?>" alt="...">
                                     </a>
                                 <?php endif; ?>
 
                                 <?php if (empty($files)) : ?>
                                     <a href="<?= base_url() . 'project/interior/' . $row['id']; ?>">
-                                        <img src="<?= base_url(); ?>document/image/default.png" class="d-block w-100" alt="...">
+                                        <img src="<?= base_url(); ?>document/image/default.png"  alt="...">
                                     </a>
                                 <?php endif; ?>
                             </div>
@@ -419,9 +419,9 @@ foreach ($project->getResultArray() as $row);
 
     <div class="col-12 d-flex justify-content-between align-items-center my-3 px-4">
         <h6 class="mt-2"> Marketing Tools</h6>
-        <?php if (in_groups('admin') || in_groups('admin_group') || in_groups('admin_project') ) : ?>
+
             <a href="<?= base_url(); ?>add_file/<?= $row['id']; ?>" type="button" class="btn btn-sm btn-outline-light bg-white">Add Marketing Tools</a>
-        <?php endif; ?>
+       
     </div>
 
     <!-- FILES -->
@@ -458,10 +458,10 @@ foreach ($project->getResultArray() as $row);
 
 
     <div class="d-flex justify-content-end my-4">
-        <?php if (in_groups('admin') || in_groups('admin_group') || in_groups('admin_project') ) : ?>
+       
             <a type="button" class="btn btn-outline-primary col-lg-2 col-6" data-toggle="modal" data-target="#delete-data">Delete</a>
             <a href="<?= base_url('/edit_project/' . $row['id']) ?>" class="btn btn-primary col-lg-2 col-6">Edit</a>
-        <?php endif; ?>
+
     </div>
 
 

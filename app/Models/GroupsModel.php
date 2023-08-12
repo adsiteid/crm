@@ -15,15 +15,20 @@ class GroupsModel extends Model
     {
         $builder = $this->db->table($this->table);
 
+
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function add_group()
+    {
+        $builder = $this->db->table($this->table);
+
         $groups = user()->groups;
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('id' , $groups);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
+        $builder->where('admin_group', user()->id);
 
         $builder->orderBy('id DESC');
         $result = $builder->get();
@@ -34,12 +39,6 @@ class GroupsModel extends Model
     {
         
         $builder = $this->db->table($this->table);
-
-        // if (!in_groups('admin')) :
-        //     $user = user()->id;
-        //     $builder->where('userid', $user);
-        // endif;
-
         $builder->where('id', $id);
         $result = $builder->get();
         return $result;

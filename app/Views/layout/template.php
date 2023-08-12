@@ -8,17 +8,17 @@
     <title>CRM ADSITE.ID</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- plugins:css -->
-    <link rel="stylesheet" href="<?= base_url(); ?>/assetskydash/vendors/feather/feather.css">
-    <link rel="stylesheet" href="<?= base_url(); ?>/assetskydash/vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="<?= base_url(); ?>/assetskydash/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>/assets/vendors/feather/feather.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>/assets/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>/assets/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="<?= base_url(); ?>/assetskydash/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="<?= base_url(); ?>/assetskydash/vendors/iconly/bold.css">
-    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>/assetskydash/js/select.dataTables.min.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>/assets/vendors/iconly/bold.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>/assets/js/select.dataTables.min.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="<?= base_url(); ?>/assetskydash/css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>/assets/css/vertical-layout-light/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="<?= base_url(); ?>/document/app_image/logo/logo-adsite-2.png" />
 
@@ -329,32 +329,7 @@
                                             </div>
                                         </a>
                                     <?php endforeach; ?>
-                                    <!-- <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-warning">
-                                        <i class="ti-settings mx-0"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject font-weight-normal">Settings</h6>
-                                    <p class="font-weight-light small-text mb-0 text-muted">
-                                        Private message
-                                    </p>
-                                </div>
-                            </a> -->
-                                    <!-- <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-info">
-                                        <i class="ti-user mx-0"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject font-weight-normal">New user registration</h6>
-                                    <p class="font-weight-light small-text mb-0 text-muted">
-                                        2 days ago
-                                    </p>
-                                </div>
-                            </a> -->
+
                                 </div>
                             </li>
                             <li class="nav-item nav-profile dropdown">
@@ -368,19 +343,13 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
 
-                                    <?php if (!in_groups('admin')) : ?>
-                                        <a href="<?= base_url(); ?>user_detail" class="dropdown-item">
-                                            <i class="ti-settings text-primary"></i>
-                                            Profile
-                                        </a>
-                                    <?php endif; ?>
 
-                                    <?php if (in_groups('admin')) : ?>
-                                        <a href="<?= base_url(); ?>edit_user_id" class="dropdown-item">
-                                            <i class="ti-settings text-primary"></i>
-                                            Profile
-                                        </a>
-                                    <?php endif; ?>
+
+                                    <a href="<?= base_url(); ?>edit_user_id" class="dropdown-item">
+                                        <i class="ti-settings text-primary"></i>
+                                        Profile
+                                    </a>
+
 
 
                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -551,23 +520,18 @@
                                 </a>
                             </li>
 
+
+
+
                             <li class="nav-item <?php if ($title == 'user') {
                                                     echo "active";
                                                 } ?>">
-                                <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                                <a class="nav-link" href="<?= base_url(); ?>user/agent">
                                     <i class="icon-head menu-icon"></i>
                                     <span class="menu-title">User</span>
-                                    <i class="menu-arrow"></i>
                                 </a>
-                                <div class="collapse" id="auth">
-                                    <ul class="nav flex-column sub-menu rounded-bottom">
-                                        <?php if (in_groups('admin')) : ?>
-                                            <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>user/admin"> Admin </a></li>
-                                        <?php endif; ?>
-                                        <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>user/agent"> Group Sales </a></li>
-                                    </ul>
-                                </div>
                             </li>
+
 
                             <li class="nav-item <?php if ($title == 'List Event') {
                                                     echo "active";
@@ -578,49 +542,15 @@
                                 </a>
                             </li>
 
-                            <!-- <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-                            <i class="icon-grid-2 menu-icon"></i>
-                            <span class="menu-title">Tables</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="tables">
-                            <ul class="nav flex-column sub-menu rounded-bottom">
-                                <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
-                            <i class="icon-contract menu-icon"></i>
-                            <span class="menu-title">Icons</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="icons">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="pages/icons/mdi.html">Mdi icons</a></li>
-                            </ul>
-                        </div>
-                    </li> -->
 
-
-                            <!-- <li class="nav-item <?php if ($title == 'absen') {
-                                                            echo "active";
-                                                        } ?>">
-                        <a class="nav-link" href="/edit">
-                            <i class="ti-check-box menu-icon"></i>
-                            <span class="menu-title">Absen</span>
-                        </a>
-                    </li> -->
-
-                            <!-- <li class="nav-item <?php if ($title == 'MSDP') {
-                                                            echo "active";
-                                                        } ?>">
-                        <a class="nav-link" href="<?= base_url(); ?>msdp/list_msdp">
-                            <i class="icon-paper menu-icon"></i>
-                            <span class="menu-title">MSDP</span>
-                        </a>
-                    </li> -->
+                            <li class="nav-item <?php if ($title == 'Submission') {
+                                                    echo "active";
+                                                } ?>">
+                                <a class="nav-link" href="<?= base_url(); ?>submission">
+                                    <i class="icon-paper menu-icon"></i>
+                                    <span class="menu-title">Submission</span>
+                                </a>
+                            </li>
 
 
 
@@ -636,13 +566,13 @@
                                 <div class="collapse  " id="edit">
                                     <ul class="nav flex-column sub-menu rounded-bottom">
                                         <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>add_leads">Add Leads </a></li>
-                                        <?php if (in_groups('admin') || in_groups('admin_group') || in_groups('admin_project')) : ?>
-                                            <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>add_project">Add Project </a></li>
-                                            <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>add_user">Add User</a></li>
-                                            <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>add_event">Add Event </a></li>
-                                            <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>create/groups">Add Group </a></li>
-                                            <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>create/groupsales">Add Sales to Group </a></li>
-                                        <?php endif; ?>
+
+                                        <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>add_project">Add Project </a></li>
+                                        <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>add_user">Add User</a></li>
+                                        <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>add_event">Add Event </a></li>
+                                        <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>create/groups">Add Group </a></li>
+                                        <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>create/groupsales">Add Sales to Group </a></li>
+
                                         <!-- <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>msdp">Form MSDP </a></li> -->
 
                                     </ul>
@@ -677,19 +607,10 @@
 
 
                                 <li class="nav-item">
-                                    <?php if (!in_groups('admin')) : ?>
-                                        <a class="nav-link" href="<?= base_url(); ?>user_detail">
-                                            <i class="ti-settings menu-icon"></i>
-                                            <span class="menu-title">Profile</span>
-                                        </a>
-                                    <?php endif; ?>
-
-                                    <?php if (in_groups('admin')) : ?>
-                                        <a class="nav-link" href="<?= base_url(); ?>edit_user_id">
-                                            <i class="ti-settings menu-icon"></i>
-                                            <span class="menu-title">Profile</span>
-                                        </a>
-                                    <?php endif; ?>
+                                    <a class="nav-link" href="<?= base_url(); ?>edit_user_id">
+                                        <i class="ti-settings menu-icon"></i>
+                                        <span class="menu-title">Profile</span>
+                                    </a>
                                 </li>
 
 
@@ -744,19 +665,10 @@
                                 <li class="nav-item <?php if ($title == 'user') {
                                                         echo "active";
                                                     } ?>">
-                                    <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                                    <a class="nav-link" href="<?= base_url(); ?>user/agent">
                                         <i class="icon-head menu-icon"></i>
                                         <span class="menu-title">User</span>
-                                        <i class="menu-arrow"></i>
                                     </a>
-                                    <div class="collapse" id="auth">
-                                        <ul class="nav flex-column sub-menu rounded-bottom">
-                                            <?php if (in_groups('admin') || in_groups('admin_group') || in_groups('admin_project')) : ?>
-                                                <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>user/admin"> Admin </a></li>
-                                            <?php endif; ?>
-                                            <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>user/agent"> Group Sales </a></li>
-                                        </ul>
-                                    </div>
                                 </li>
 
                                 <li class="nav-item <?php if ($title == 'List Event') {
@@ -768,49 +680,16 @@
                                     </a>
                                 </li>
 
-                                <!-- <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-                            <i class="icon-grid-2 menu-icon"></i>
-                            <span class="menu-title">Tables</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="tables">
-                            <ul class="nav flex-column sub-menu rounded-bottom">
-                                <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
-                            <i class="icon-contract menu-icon"></i>
-                            <span class="menu-title">Icons</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="icons">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="pages/icons/mdi.html">Mdi icons</a></li>
-                            </ul>
-                        </div>
-                    </li> -->
 
 
-                                <!-- <li class="nav-item <?php if ($title == 'absen') {
-                                                                echo "active";
-                                                            } ?>">
-                            <a class="nav-link" href="/edit">
-                                <i class="ti-check-box menu-icon"></i>
-                                <span class="menu-title">Absen</span>
-                            </a>
-                        </li> -->
-
-                                <!-- <li class="nav-item <?php if ($title == 'MSDP') {
-                                                                echo "active";
-                                                            } ?>">
-                            <a class="nav-link" href="<?= base_url(); ?>msdp/list_msdp">
-                                <i class="icon-paper menu-icon"></i>
-                                <span class="menu-title">MSDP</span>
-                            </a>
-                        </li> -->
+                                <li class="nav-item <?php if ($title == 'Submission') {
+                                                        echo "active";
+                                                    } ?>">
+                                    <a class="nav-link" href="<?= base_url(); ?>submission">
+                                        <i class="icon-paper menu-icon"></i>
+                                        <span class="menu-title">Submission</span>
+                                    </a>
+                                </li>
 
 
                                 <li class="d-lg-block d-none nav-item <?php if ($title == 'edit') {
@@ -824,11 +703,11 @@
                                     <div class="collapse  " id="edit">
                                         <ul class="nav flex-column sub-menu rounded-bottom">
                                             <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>add_leads">Add Leads </a></li>
-                                            <?php if (in_groups('admin') || in_groups('admin_group') || in_groups('admin_project')) : ?>
-                                                <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>add_project">Add Project </a></li>
-                                                <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>add_user">Add User</a></li>
-                                                <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>add_event">Add Event </a></li>
-                                            <?php endif; ?>
+
+                                            <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>add_project">Add Project </a></li>
+                                            <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>add_user">Add User</a></li>
+                                            <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>add_event">Add Event </a></li>
+
                                             <!-- <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>msdp">Form MSDP </a></li> -->
 
                                         </ul>
@@ -944,7 +823,7 @@
             <!-- ADD EDIT DATA OFF CANVAS BUTTON -->
             <!-- <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Toggle bottom offcanvas</button> -->
 
-            <div class="offcanvas offcanvas-bottom bg-light" <?php if (in_groups('admin') || in_groups('admin_group') || in_groups('admin_project')) : ?>style="height:50%;" <?php endif; ?> <?php if (in_groups(['sales', 'manager', 'general_manager'])) : ?>style="height:35%;" <?php endif; ?> tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+            <div class="offcanvas offcanvas-bottom bg-light" style="height:50%;" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasBottomLabel">Add Data</h5>
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -952,12 +831,11 @@
                 <div class="offcanvas-body small">
 
                     <a href="<?= base_url(); ?>add_leads" type="button" class="btn btn-light bg-white w-100 mb-2">Add Leads</a>
-                    <?php if (in_groups('admin') || in_groups('admin_group') || in_groups('admin_project')) : ?>
-                        <a href="<?= base_url(); ?>add_user" type="button" class="btn btn-light bg-white w-100 mb-2">Add User</a>
-                        <a href="<?= base_url(); ?>add_project" type="button" class="btn btn-light bg-white  w-100 mb-2">Add Project</a>
-                        <a href="<?= base_url(); ?>add_event" type="button" class="btn btn-light bg-white  w-100 mb-2">Add Event</a>
-                    <?php endif; ?>
-                    <a href="<?= base_url(); ?>msdp" type="button" class="btn btn-light bg-white w-100 mb-2">MSDP</a>
+
+                    <a href="<?= base_url(); ?>add_user" type="button" class="btn btn-light bg-white w-100 mb-2">Add User</a>
+                    <a href="<?= base_url(); ?>add_project" type="button" class="btn btn-light bg-white  w-100 mb-2">Add Project</a>
+                    <a href="<?= base_url(); ?>add_event" type="button" class="btn btn-light bg-white  w-100 mb-2">Add Event</a>
+                    <a href="<?= base_url(); ?>msdp" type="button" class="btn btn-light bg-white w-100 mb-2">Submission</a>
                     <!-- <a href="<?= base_url(); ?>add_event" type="button" class="btn btn-light bg-white w-100 mb-2">Absen</a> -->
                 </div>
             </div>
@@ -966,25 +844,25 @@
 
 
             <!-- plugins:js -->
-            <script src="<?= base_url(); ?>/assetskydash/vendors/js/vendor.bundle.base.js"></script>
+            <script src="<?= base_url(); ?>/assets/vendors/js/vendor.bundle.base.js"></script>
             <!-- endinject -->
             <!-- Plugin js for this page -->
-            <script src="<?= base_url(); ?>/assetskydash/vendors/chart.js/Chart.min.js"></script>
-            <script src="<?= base_url(); ?>/assetskydash/vendors/datatables.net/jquery.dataTables.js"></script>
-            <script src="<?= base_url(); ?>/assetskydash/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-            <script src="<?= base_url(); ?>/assetskydash/js/dataTables.select.min.js"></script>
+            <script src="<?= base_url(); ?>/assets/vendors/chart.js/Chart.min.js"></script>
+            <script src="<?= base_url(); ?>/assets/vendors/datatables.net/jquery.dataTables.js"></script>
+            <script src="<?= base_url(); ?>/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+            <script src="<?= base_url(); ?>/assets/js/dataTables.select.min.js"></script>
 
             <!-- End plugin js for this page -->
             <!-- inject:js -->
-            <script src="<?= base_url(); ?>/assetskydash/js/off-canvas.js"></script>
-            <script src="<?= base_url(); ?>/assetskydash/js/hoverable-collapse.js"></script>
-            <script src="<?= base_url(); ?>/assetskydash/js/template.js"></script>
-            <script src="<?= base_url(); ?>/assetskydash/js/settings.js"></script>
-            <script src="<?= base_url(); ?>/assetskydash/js/todolist.js"></script>
+            <script src="<?= base_url(); ?>/assets/js/off-canvas.js"></script>
+            <script src="<?= base_url(); ?>/assets/js/hoverable-collapse.js"></script>
+            <script src="<?= base_url(); ?>/assets/js/template.js"></script>
+            <script src="<?= base_url(); ?>/assets/js/settings.js"></script>
+            <script src="<?= base_url(); ?>/assets/js/todolist.js"></script>
             <!-- endinject -->
             <!-- Custom js for this page-->
-            <script src="<?= base_url(); ?>/assetskydash/js/dashboard.js"></script>
-            <script src="<?= base_url(); ?>/assetskydash/js/Chart.roundedBarCharts.js"></script>
+            <script src="<?= base_url(); ?>/assets/js/dashboard.js"></script>
+            <script src="<?= base_url(); ?>/assets/js/Chart.roundedBarCharts.js"></script>
             <!-- End custom js for this page-->
         </body>
 

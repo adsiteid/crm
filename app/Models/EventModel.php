@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class EventModel extends Model
 {
 
-    protected $table = 'acara';
+    protected $table = 'events';
     protected $allowedFields = [
         'event_name',
         'project',

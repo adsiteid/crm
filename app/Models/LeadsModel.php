@@ -8,33 +8,21 @@ class LeadsModel extends Model
 {
 
     protected $table = 'leads';
-    protected $allowedFields = ['nama_leads','groups','admin_group', 'alamat', 'nomor_kontak', 'email',  'project', 'sumber_leads', 'general_manager', 'manager', 'sales', 'update_status', 'kategori_status', 'catatan', 'reserve', 'booking', 'catatan_admin', 'time_stamp_invalid', 'time_stamp_jam_invalid', 'time_stamp_pending', 'time_stamp_jam_pending', 'time_stamp_close', 'time_stamp_jam_close', 'time_stamp_contacted', 'time_stamp_jam_contacted', 'time_stamp_visit', 'time_stamp_jam_visit', 'time_stamp_deal', 'time_stamp_jam_deal', 'time_stamp_close', 'time_stamp_jam_close', 'time_stamp_reserve', 'time_stamp_jam_reserve', 'time_stamp_booking', 'time_stamp_jam_booking',];
+    protected $allowedFields = ['nama_leads','groups','admin_group','admin_project', 'alamat', 'nomor_kontak', 'email',  'project', 'sumber_leads', 'general_manager', 'manager', 'sales', 'update_status', 'kategori_status', 'reserve', 'booking', 'catatan_admin', 'time_stamp_invalid', 'time_stamp_jam_invalid', 'time_stamp_pending', 'time_stamp_jam_pending', 'time_stamp_close', 'time_stamp_jam_close', 'time_stamp_contacted', 'time_stamp_jam_contacted', 'time_stamp_visit', 'time_stamp_jam_visit', 'time_stamp_deal', 'time_stamp_jam_deal', 'time_stamp_close', 'time_stamp_jam_close', 'time_stamp_reserve', 'time_stamp_jam_reserve', 'time_stamp_booking', 'time_stamp_jam_booking',];
 
     public function all()
     {
         $builder = $this->db->table($this->table);
-
-
-        if (in_groups('admin')) :
-            echo '';
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+            ->Where('sales',$id)
+            ->orWhere('manager', $id)
+            ->orWhere('general_manager', $id)
+            ->orWhere('admin_project', $id)
+            ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
 
@@ -58,24 +46,16 @@ class LeadsModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-
 
         $builder->groupStart()
         ->Where('time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)')
@@ -103,6 +83,19 @@ class LeadsModel extends Model
 
 
         $builder->select('*');
+
+
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
+        endif;
+
 
         $builder->groupStart()
         ->where('time_stamp_new >=', $startDate)
@@ -144,24 +137,6 @@ class LeadsModel extends Model
             ->where('time_stamp_booking <=', $endDate);
         $builder->groupEnd();
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
 
         $builder->orderBy('id DESC');
         $result = $builder->get();
@@ -175,22 +150,16 @@ class LeadsModel extends Model
 
         $builder = $this->db->table($this->table);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('update_status', 'New');
@@ -201,23 +170,23 @@ class LeadsModel extends Model
         return $result;
     }
 
-    public function new_report_sales($level, $id)
+// BELOM
+
+
+    public function new_report_sales($id)
     {
 
         $builder = $this->db->table($this->table);
-        $builder->where($level, $id);
 
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
+        $builder->groupStart()
+            ->Where('sales', $id)
+            ->orWhere('manager', $id)
+            ->orWhere('general_manager', $id)
+            ->orWhere('admin_project', $id)
+            ->orWhere('admin_group', $id);
+        $builder->groupEnd();
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
 
         $builder->where('update_status', 'New');
         $builder->whereIn('kategori_status', ['New', 'Warm', 'Hot']);
@@ -226,6 +195,8 @@ class LeadsModel extends Model
         $result = $builder->get();
         return $result;
     }
+
+// BELOM
 
     public function new_report_sales_AdminProject($project, $groups, $groups_id)
     {
@@ -250,22 +221,15 @@ class LeadsModel extends Model
 
         $builder = $this->db->table($this->table);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('update_status', 'New');
@@ -281,22 +245,15 @@ class LeadsModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('update_status', 'New');
@@ -314,22 +271,15 @@ class LeadsModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('update_status', 'Contacted');
@@ -340,22 +290,18 @@ class LeadsModel extends Model
     }
 
 
-    public function contacted_report_sales($level,$id)
+
+    public function contacted_report_sales($id)
     {
         $builder = $this->db->table($this->table);
-        $builder->where($level, $id);
 
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
+        $builder->groupStart()
+            ->Where('sales', $id)
+            ->orWhere('manager', $id)
+            ->orWhere('general_manager', $id)
+            ->orWhere('admin_project', $id)
+            ->orWhere('admin_group', $id);
+        $builder->groupEnd();
 
         $builder->where('update_status', 'Contacted');
         $builder->where('time_stamp_contacted >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
@@ -363,6 +309,8 @@ class LeadsModel extends Model
         $result = $builder->get();
         return $result;
     }
+
+// BELOM
 
     public function contacted_report_sales_AdminProject($project, $groups, $groups_id)
     {
@@ -383,22 +331,15 @@ class LeadsModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('update_status', 'Contacted');
@@ -412,22 +353,15 @@ class LeadsModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('update_status', 'Contacted');
@@ -442,22 +376,15 @@ class LeadsModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->whereIn('update_status', ['Close', 'Invalid']);
@@ -468,22 +395,18 @@ class LeadsModel extends Model
     }
 
 
-    public function close_report_sales($level, $id)
+
+    public function close_report_sales($id)
     {
         $builder = $this->db->table($this->table);
-        $builder->where($level, $id);
 
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
+        $builder->groupStart()
+            ->Where('sales', $id)
+            ->orWhere('manager', $id)
+            ->orWhere('general_manager', $id)
+            ->orWhere('admin_project', $id)
+            ->orWhere('admin_group', $id);
+        $builder->groupEnd();
 
         $builder->whereIn('update_status', ['Close', 'Invalid']);
         $builder->where('time_stamp_close >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
@@ -492,6 +415,7 @@ class LeadsModel extends Model
         return $result;
     }
 
+    // BELOM
 
     public function close_report_sales_AdminProject($project, $groups, $groups_id)
     {
@@ -513,22 +437,15 @@ class LeadsModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->whereIn('update_status', ['Close', 'Invalid']);
@@ -542,22 +459,15 @@ class LeadsModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->whereIn('update_status', ['Close', 'Invalid']);
@@ -572,22 +482,15 @@ class LeadsModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->whereIn('update_status', ['Pending']);
@@ -598,22 +501,18 @@ class LeadsModel extends Model
     }
 
 
-    public function pending_report_sales($level, $id)
+
+    public function pending_report_sales($id)
     {
         $builder = $this->db->table($this->table);
-        $builder->where($level, $id);
 
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
+        $builder->groupStart()
+            ->Where('sales', $id)
+            ->orWhere('manager', $id)
+            ->orWhere('general_manager', $id)
+            ->orWhere('admin_project', $id)
+            ->orWhere('admin_group', $id);
+        $builder->groupEnd();
 
         $builder->whereIn('update_status', ['Pending']);
         $builder->where('time_stamp_pending >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
@@ -622,6 +521,7 @@ class LeadsModel extends Model
         return $result;
     }
 
+// BELOM
 
     public function pending_report_sales_AdminProject($project, $groups, $groups_id)
     {
@@ -644,23 +544,15 @@ class LeadsModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->whereIn('update_status', ['Pending']);
@@ -675,22 +567,15 @@ class LeadsModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->whereIn('update_status', ['Pending']);
@@ -706,22 +591,15 @@ class LeadsModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('update_status', 'Visit');
@@ -731,23 +609,18 @@ class LeadsModel extends Model
         return $result;
     }
 
-
-    public function visit_report_sales($level, $id)
+// BELOM
+    public function visit_report_sales($id)
     {
         $builder = $this->db->table($this->table);
-        $builder->where($level, $id);
 
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
+        $builder->groupStart()
+            ->Where('sales', $id)
+            ->orWhere('manager', $id)
+            ->orWhere('general_manager', $id)
+            ->orWhere('admin_project', $id)
+            ->orWhere('admin_group', $id);
+        $builder->groupEnd();
 
         $builder->where('update_status', 'Visit');
         $builder->where('time_stamp_visit >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
@@ -756,6 +629,7 @@ class LeadsModel extends Model
         return $result;
     }
 
+// BELOM
 
     public function visit_report_sales_AdminProject($project, $groups, $groups_id)
     {
@@ -777,22 +651,15 @@ class LeadsModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('update_status', 'Visit');
@@ -806,22 +673,15 @@ class LeadsModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('update_status', 'Visit');
@@ -838,22 +698,15 @@ class LeadsModel extends Model
 
         $builder = $this->db->table($this->table);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('update_status', 'Deal');
@@ -863,24 +716,19 @@ class LeadsModel extends Model
         return $result;
     }
 
+// BELOM
 
-
-    public function deal_report_sales($level, $id)
+    public function deal_report_sales($id)
     {
         $builder = $this->db->table($this->table);
-        $builder->where($level, $id);
 
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
+        $builder->groupStart()
+            ->Where('sales', $id)
+            ->orWhere('manager', $id)
+            ->orWhere('general_manager', $id)
+            ->orWhere('admin_project', $id)
+            ->orWhere('admin_group', $id);
+        $builder->groupEnd();
 
         $builder->where('update_status', 'Deal');
         $builder->whereIn('kategori_status', ['Warm', 'Hot', 'Cold']);
@@ -889,6 +737,8 @@ class LeadsModel extends Model
         $result = $builder->get();
         return $result;
     }
+
+    // BELOM
 
     public function deal_report_sales_AdminProject($project, $groups, $groups_id)
     {
@@ -912,22 +762,15 @@ class LeadsModel extends Model
 
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('update_status', 'Deal');
@@ -943,22 +786,15 @@ class LeadsModel extends Model
 
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('update_status', 'Deal');
@@ -976,22 +812,15 @@ class LeadsModel extends Model
 
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('update_status', 'Deal');
@@ -1006,23 +835,15 @@ class LeadsModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('update_status', 'Deal');
@@ -1038,22 +859,15 @@ class LeadsModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('kategori_status', 'Reserve');
@@ -1063,23 +877,19 @@ class LeadsModel extends Model
         return $result;
     }
 
+    // BELOM
 
-    public function reserve_report_sales($level, $id)
+    public function reserve_report_sales($id)
     {
         $builder = $this->db->table($this->table);
-        $builder->where($level, $id);
 
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
+        $builder->groupStart()
+            ->Where('sales', $id)
+            ->orWhere('manager', $id)
+            ->orWhere('general_manager', $id)
+            ->orWhere('admin_project', $id)
+            ->orWhere('admin_group', $id);
+        $builder->groupEnd();
 
         $builder->where('kategori_status', 'Reserve');
         $builder->where("time_stamp_reserve >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)");
@@ -1087,6 +897,8 @@ class LeadsModel extends Model
         $result = $builder->get();
         return $result;
     }
+
+// BELOM
 
     public function reserve_report_sales_AdminProject($project, $groups, $groups_id)
     {
@@ -1108,22 +920,15 @@ class LeadsModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('kategori_status', 'Reserve');
@@ -1138,23 +943,15 @@ class LeadsModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('kategori_status', 'Reserve');
@@ -1170,27 +967,15 @@ class LeadsModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_group')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_project')) :
-            $user = user()->groups;
-            $builder->where('groups', $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('kategori_status', 'Booking');
@@ -1201,22 +986,18 @@ class LeadsModel extends Model
     }
 
 
-    public function booking_report_sales($level, $id)
+    // BELOM
+    public function booking_report_sales( $id)
     {
         $builder = $this->db->table($this->table);
-        $builder->where($level, $id);
 
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
+        $builder->groupStart()
+            ->Where('sales', $id)
+            ->orWhere('manager', $id)
+            ->orWhere('general_manager', $id)
+            ->orWhere('admin_project', $id)
+            ->orWhere('admin_group', $id);
+        $builder->groupEnd();
 
         $builder->where('kategori_status', 'Booking');
         $builder->where("time_stamp_booking >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)");
@@ -1225,7 +1006,7 @@ class LeadsModel extends Model
         return $result;
     }
 
-
+// BELOM
     public function booking_report_sales_AdminProject($project, $groups, $groups_id)
     {
         $builder = $this->db->table($this->table);
@@ -1247,22 +1028,15 @@ class LeadsModel extends Model
 
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('kategori_status', 'Booking');
@@ -1277,22 +1051,15 @@ class LeadsModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('kategori_status', 'Booking');
@@ -1312,43 +1079,25 @@ class LeadsModel extends Model
         
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-
         $builder->where('id', $id);
         $builder->orderBy('id DESC');
         $result = $builder->get();
         return $result;
     }
 
-    public function getList($user)
-    {
+    // public function getList($user)
+    // {
 
-        return $this->query("SELECT * FROM leads WHERE username =  '$user' ORDER BY id DESC ");
-    }
+    //     return $this->query("SELECT * FROM leads WHERE username =  '$user' ORDER BY id DESC ");
+    // }
 
 
 
     // COUNT REPORT
 
+// BELOM
 
-
-    public function salesAll($level, $id)
+    public function salesAll($id)
     {
         $builder = $this->db->table($this->table);
 
@@ -1364,7 +1113,15 @@ class LeadsModel extends Model
         $builder->groupEnd();
 
 
-        $builder->where($level, $id);
+
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
+
 
         $builder->orderBy('id DESC');
         $result = $builder->get();
@@ -1372,24 +1129,18 @@ class LeadsModel extends Model
     }
 
 
-
-    public function salesNew($level, $id)
+// BELOM
+    public function salesNew($id)
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where($level, $id);
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
+        $builder->groupStart()
+            ->Where('sales', $id)
+            ->orWhere('manager', $id)
+            ->orWhere('general_manager', $id)
+            ->orWhere('admin_project', $id)
+            ->orWhere('admin_group', $id);
+        $builder->groupEnd();
 
 
         // $builder->where('update_status', 'New');
@@ -1400,6 +1151,7 @@ class LeadsModel extends Model
         return $result;
     }
 
+// BELOM
 
     public function salesNewAdminProject($project, $groups, $groups_id)
     {
@@ -1417,25 +1169,19 @@ class LeadsModel extends Model
         return $result;
     }
 
+// BELOM
 
-
-    public function salesClose($level, $id)
+    public function salesClose($id)
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where($level, $id);
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
+        $builder->groupStart()
+            ->Where('sales', $id)
+            ->orWhere('manager', $id)
+            ->orWhere('general_manager', $id)
+            ->orWhere('admin_project', $id)
+            ->orWhere('admin_group', $id);
+        $builder->groupEnd();
 
         // $builder->whereIn('update_status', ['Close', 'Invalid']);
         $builder->where('time_stamp_close >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
@@ -1444,7 +1190,7 @@ class LeadsModel extends Model
         return $result;
     }
 
-
+// BELOM
 
     public function
     salesCloseAdminProject($project, $groups, $groups_id)
@@ -1462,24 +1208,19 @@ class LeadsModel extends Model
         return $result;
     }
 
-    public function salesPending($level, $id)
+// BELOM
+
+    public function salesPending($id)
     {
         $builder = $this->db->table($this->table);
 
-
-        $builder->where($level, $id);
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
+        $builder->groupStart()
+            ->Where('sales', $id)
+            ->orWhere('manager', $id)
+            ->orWhere('general_manager', $id)
+            ->orWhere('admin_project', $id)
+            ->orWhere('admin_group', $id);
+        $builder->groupEnd();
 
         // $builder->whereIn('update_status', ['Pending']);
         $builder->where('time_stamp_pending >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
@@ -1488,6 +1229,7 @@ class LeadsModel extends Model
         return $result;
     }
 
+// BELOM
 
     public function
     salesPendingAdminProject($project, $groups, $groups_id)
@@ -1505,23 +1247,19 @@ class LeadsModel extends Model
         return $result;
     }
 
-    public function salesContacted($level, $id)
+// BELOM
+
+    public function salesContacted($id)
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where($level, $id);
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
+        $builder->groupStart()
+            ->Where('sales', $id)
+            ->orWhere('manager', $id)
+            ->orWhere('general_manager', $id)
+            ->orWhere('admin_project', $id)
+            ->orWhere('admin_group', $id);
+        $builder->groupEnd();
 
         // $builder->where('update_status', 'Contacted');
         $builder->where('time_stamp_contacted >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
@@ -1530,6 +1268,9 @@ class LeadsModel extends Model
         return $result;
     }
 
+
+
+// BELOM
 
     public function salesContactedAdminProject($project, $groups, $groups_id)
     {
@@ -1547,24 +1288,21 @@ class LeadsModel extends Model
     }
 
 
-    public function salesVisit($level, $id)
+    // BELOM
+
+
+    public function salesVisit($id)
     {
         $builder = $this->db->table($this->table);
         // $builder->where('update_status', 'Visit');
 
-        $builder->where($level, $id);
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
+        $builder->groupStart()
+            ->Where('sales', $id)
+            ->orWhere('manager', $id)
+            ->orWhere('general_manager', $id)
+            ->orWhere('admin_project', $id)
+            ->orWhere('admin_group', $id);
+        $builder->groupEnd();
 
         $builder->where('time_stamp_visit >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
         $builder->orderBy('id DESC');
@@ -1572,7 +1310,7 @@ class LeadsModel extends Model
         return $result;
     }
 
-
+// BELOM
     public function salesVisitAdminProject($project, $groups, $groups_id)
     {
         $builder = $this->db->table($this->table);
@@ -1588,24 +1326,18 @@ class LeadsModel extends Model
         return $result;
     }
 
-
-    public function salesDeal($level, $id)
+// BELOM
+    public function salesDeal($id)
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where($level, $id);
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
+        $builder->groupStart()
+            ->Where('sales', $id)
+            ->orWhere('manager', $id)
+            ->orWhere('general_manager', $id)
+            ->orWhere('admin_project', $id)
+            ->orWhere('admin_group', $id);
+        $builder->groupEnd();
 
         // $builder->where('update_status', 'Deal');
         // $builder->whereIn('kategori_status', ['Cold', 'Warm', 'Hot']);
@@ -1615,7 +1347,7 @@ class LeadsModel extends Model
         return $result;
     }
 
-
+// BELOM
     public function salesDealAdminProject($project, $groups, $groups_id)
     {
         $builder = $this->db->table($this->table);
@@ -1632,25 +1364,19 @@ class LeadsModel extends Model
         return $result;
     }
 
-
-    public function salesReserve($level, $id)
+// BELOM
+    public function salesReserve($id)
     {
         $builder = $this->db->table($this->table);
 
 
-        $builder->where($level, $id);
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
+        $builder->groupStart()
+            ->Where('sales', $id)
+            ->orWhere('manager', $id)
+            ->orWhere('general_manager', $id)
+            ->orWhere('admin_project', $id)
+            ->orWhere('admin_group', $id);
+        $builder->groupEnd();
 
         // $builder->where('update_status', 'Deal');
         // $builder->where('kategori_status', 'Reserve');
@@ -1660,7 +1386,7 @@ class LeadsModel extends Model
         return $result;
     }
 
-
+// BELOM
     public function salesReserveAdminProject($project, $groups, $groups_id)
     {
         $builder = $this->db->table($this->table);
@@ -1679,24 +1405,20 @@ class LeadsModel extends Model
         return $result;
     }
 
-    public function salesBooking($level, $id)
+// BELOM
+
+    public function salesBooking($id)
     {
         $builder = $this->db->table($this->table);
 
 
-        $builder->where($level, $id);
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
+        $builder->groupStart()
+            ->Where('sales', $id)
+            ->orWhere('manager', $id)
+            ->orWhere('general_manager', $id)
+            ->orWhere('admin_project', $id)
+            ->orWhere('admin_group', $id);
+        $builder->groupEnd();
 
         // $builder->where('update_status', 'Deal');
         // $builder->where('kategori_status', 'Booking');
@@ -1706,6 +1428,7 @@ class LeadsModel extends Model
         return $result;
     }
 
+    // BELOM
 
     public function salesBookingAdminProject($project, $groups, $groups_id)
     {
@@ -1729,22 +1452,15 @@ class LeadsModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->groupStart()
@@ -1770,22 +1486,15 @@ class LeadsModel extends Model
         $builder = $this->db->table($this->table);
 
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->groupStart()
@@ -1811,22 +1520,15 @@ class LeadsModel extends Model
         $builder = $this->db->table($this->table);
 
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
 
@@ -1877,22 +1579,15 @@ class LeadsModel extends Model
         ->orLike('catatan', $search)
         ->groupEnd();
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->orderBy('id DESC');
@@ -1900,9 +1595,9 @@ class LeadsModel extends Model
         return $result;
     }
 
+// BELOM
 
-
-    public function search_leads_user($search, $level, $id)
+    public function search_leads_user($search, $id)
     {
 
         $builder = $this->db->table($this->table)
@@ -1932,62 +1627,18 @@ class LeadsModel extends Model
             ->orLike('catatan', $search)
             ->groupEnd();
 
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-
-        $builder->where($level, $id);
+        $builder->groupStart()
+            ->Where('sales', $id)
+            ->orWhere('manager', $id)
+            ->orWhere('general_manager', $id)
+            ->orWhere('admin_project', $id)
+            ->orWhere('admin_group', $id);
+        $builder->groupEnd();
+        
         $builder->orderBy('id DESC');
         $result = $builder->get();
         return $result;
     }
-
-
-    public function search_leads_user_admin_project($search, $project , $group, $group_id)
-    {
-
-        $builder = $this->db->table($this->table)
-            // $builder->select('*');
-            ->groupStart()
-            ->Like('nama_leads', $search)
-            ->orLike('alamat', $search)
-            ->orLike('nomor_kontak', $search)
-            ->orLike('email', $search)
-            ->orLike('project', $search)
-            ->orLike('sumber_leads', $search)
-            ->orLike('general_manager', $search)
-            ->orLike('manager', $search)
-            ->orLike('sales', $search)
-            ->orLike('kategori_status', $search)
-            ->orLike('update_status', $search)
-            ->orLike('time_stamp_new', $search)
-            ->orLike('time_stamp_invalid', $search)
-            ->orLike('time_stamp_close', $search)
-            ->orLike('time_stamp_contacted', $search)
-            ->orLike('time_stamp_visit', $search)
-            ->orLike('time_stamp_deal', $search)
-            ->orLike('time_stamp_reserve', $search)
-            ->orLike('time_stamp_booking', $search)
-            ->orLike('reserve', $search)
-            ->orLike('booking', $search)
-            ->orLike('catatan', $search)
-            ->groupEnd();
-
-        $builder->where('project', $project);
-        $builder->where($group, $group_id);
-        $builder->orderBy('id DESC');
-        $result = $builder->get();
-        return $result;
-    }
-
 
 
 
@@ -1995,25 +1646,17 @@ class LeadsModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-       if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
-
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-     
+        
         $builder->groupBy('project','desc');
         $result = $builder->get();
         return $result;

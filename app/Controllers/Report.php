@@ -208,7 +208,6 @@ class Report extends BaseController
 
 		$data = [
 			'leads' => $this->showleads->project(),
-			// 'leads' => $this->showleads->all(),
 			'new' => $this->showleads->new(),
 			'project' => $this->chartleads,
 			'filter' => 30,
@@ -257,6 +256,21 @@ class Report extends BaseController
 		$data = [
 			'new' => $this->showleads->new(),
 			'source' => $this->chartleads,
+			'count' => 30,
+			'title' => 'Report'
+		];
+
+		return view('report/source', $data);
+	}
+
+
+	public function sourceFilter($count)
+	{
+
+		$data = [
+			'new' => $this->showleads->new(),
+			'source' => $this->chartleads,
+			'days' => "Last $count Days",
 			'title' => 'Report'
 		];
 

@@ -20,9 +20,17 @@ class Home extends BaseController
 		$this->showevent = new EventModel();
 		$this->showproject = new ProjectModel();
 	}
- 
+
+
+	public function login()
+	{
+		return view('auth/login');
+	}
+
+
 	public function index()
-	{ 
+	{
+
 		$data = [
 			'new' => $this->showleads->new(),
 			'contacted' => $this->showleads->contacted(),
@@ -125,27 +133,12 @@ class Home extends BaseController
 
 	public function project()
 	{
-		if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project') || in_groups('admin_group')) :
-
+		
 			$data = [
 				'new' => $this->showleads->new(),
 				'project' => $this->showproject->project()->getResultArray(),
 				'title' => 'Project'
 			];
-
-		endif;
-
-
-		if (in_groups('admin')) :
-
-			$data = [
-				'new' => $this->showleads->new(),
-				'project' => $this->showproject->projectAll(),
-				'title' => 'Project'
-			];
-
-		endif;
-
 
 		return view('/project/project', $data);
 	}

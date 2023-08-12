@@ -19,27 +19,15 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('admin_project') || in_groups('admin_group')) :
-            $user = user()->groups;
-            $builder->where('groups', $user);
-        endif;
-
-        if (in_groups('admin_project') ) :
-            $builder->where('project', user()->project);
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where("time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
@@ -51,19 +39,15 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('time_stamp_new >=', $startDate);
@@ -77,22 +61,15 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
         
         $builder->where("time_stamp_close >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
@@ -105,21 +82,15 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-         if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('time_stamp_close >=', $startDate);
@@ -133,21 +104,15 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where("time_stamp_pending >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
@@ -160,21 +125,15 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('time_stamp_pending >=', $startDate);
@@ -188,21 +147,15 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where("time_stamp_contacted >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
@@ -215,21 +168,15 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('time_stamp_contacted >=', $startDate);
@@ -243,21 +190,15 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where("time_stamp_visit >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
@@ -270,21 +211,15 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('time_stamp_visit >=', $startDate);
@@ -298,21 +233,15 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where("time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
@@ -325,21 +254,15 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('time_stamp_deal >=', $startDate);
@@ -352,21 +275,15 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where("time_stamp_reserve >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
@@ -379,21 +296,15 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('time_stamp_reserve >=', $startDate);
@@ -406,21 +317,15 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where("time_stamp_booking >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
@@ -432,21 +337,15 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
- if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('time_stamp_booking >=', $startDate);
@@ -459,12 +358,15 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
@@ -480,21 +382,15 @@ class ChartModel extends Model
         $builder->select("DATE(time_stamp_new) AS date, COUNT(*) AS count");
         $builder->where('time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->groupBy('DATE(time_stamp_new)');
@@ -507,21 +403,15 @@ class ChartModel extends Model
         $builder = $this->db->table($this->table);
         $builder->where('time_stamp_contacted >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->groupBy('time_stamp_contacted');
@@ -536,21 +426,15 @@ class ChartModel extends Model
         $builder->select("DATE(time_stamp_new) AS date, COUNT(*) AS count");
         $builder->where('time_stamp_contacted >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->groupBy('DATE(time_stamp_contacted)');
@@ -565,21 +449,15 @@ class ChartModel extends Model
         $builder = $this->db->table($this->table);
         $builder->where('time_stamp_visit >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->groupBy('time_stamp_visit');
@@ -593,21 +471,15 @@ class ChartModel extends Model
         $builder->select("DATE(time_stamp_new) AS date, COUNT(*) AS count");
         $builder->where('time_stamp_visit >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->groupBy('DATE(time_stamp_visit)');
@@ -621,21 +493,15 @@ class ChartModel extends Model
         $builder = $this->db->table($this->table);
         $builder->where('time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->groupBy('time_stamp_deal');
@@ -650,21 +516,15 @@ class ChartModel extends Model
         $builder->select("DATE(time_stamp_new) AS date, COUNT(*) AS count");
         $builder->where('time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->groupBy('time_stamp_deal');
@@ -680,21 +540,15 @@ class ChartModel extends Model
         $builder = $this->db->table($this->table);
         $builder->where('project', $project);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->groupStart()
@@ -720,21 +574,15 @@ class ChartModel extends Model
         $builder = $this->db->table($this->table);
         $builder->where('project', $project);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where('time_stamp_new >=', $startDate);
@@ -756,21 +604,15 @@ class ChartModel extends Model
         $builder->where('update_status', 'New');
         $builder->where('project', $project);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where("time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL $filter DAY)");
@@ -786,21 +628,15 @@ class ChartModel extends Model
         $builder->where('update_status', 'Close');
         $builder->where('project', $project);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where("time_stamp_close >= DATE_SUB(CURDATE(), INTERVAL $filter DAY)");
@@ -816,23 +652,17 @@ class ChartModel extends Model
         $builder->where('update_status', 'Contacted');
         $builder->where('project', $project);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
+        
         $builder->where("time_stamp_contacted >= DATE_SUB(CURDATE(), INTERVAL $filter DAY)");
         // $builder->where('time_stamp_contacted >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
         $builder->orderBy('id DESC');
@@ -846,21 +676,15 @@ class ChartModel extends Model
         $builder->where('update_status', 'Pending');
         $builder->where('project', $project);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where("time_stamp_pending >= DATE_SUB(CURDATE(), INTERVAL $filter DAY)");
@@ -876,21 +700,15 @@ class ChartModel extends Model
         $builder->where('update_status', 'Visit');
         $builder->where('project', $project);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where("time_stamp_visit >= DATE_SUB(CURDATE(), INTERVAL $filter DAY)");
@@ -907,25 +725,18 @@ class ChartModel extends Model
         $builder->where('update_status', 'Deal');
         $builder->where('project', $project);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where("time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL $filter DAY)");
-        // $builder->where('time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
         $builder->whereIn('kategori_status', ['Warm', 'Hot']);
         $builder->orderBy('id DESC');
         $result = $builder->get();
@@ -938,21 +749,15 @@ class ChartModel extends Model
         $builder->where('kategori_status', 'Reserve');
         $builder->where('project', $project);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where("time_stamp_reserve >= DATE_SUB(CURDATE(), INTERVAL $filter DAY)");
@@ -969,21 +774,15 @@ class ChartModel extends Model
         $builder->where('kategori_status', 'Booking');
         $builder->where('project', $project);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
         $builder->where("time_stamp_booking >= DATE_SUB(CURDATE(), INTERVAL $filter DAY)");
@@ -995,29 +794,23 @@ class ChartModel extends Model
 
     // SOURCE
 
-    public function source($source)
+    public function source($source,$count)
     {
         $builder = $this->db->table($this->table);
         $builder->where('sumber_leads', $source);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
-        endif;
-
-        $builder->where('time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
+        $builder->where("time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL $count DAY)");
         $builder->orderBy('id DESC');
         $result = $builder->get();
         return $result;
@@ -1052,21 +845,15 @@ class ChartModel extends Model
             ->orLike('catatan', $search)
             ->groupEnd();
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) :
-            $user = user()->id;
-            $level = user()->level;
-            $builder->where($level, $user);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('admin_project')) :
-            $builder->where('project', user()->project);
-        endif;
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('admin_group', user()->admin_group);
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_project', $id)
+                ->orWhere('admin_group', $id);
+            $builder->groupEnd();
         endif;
         
         $builder->orderBy('id DESC');

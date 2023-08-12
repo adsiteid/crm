@@ -104,7 +104,7 @@ class CMS extends BaseController
 		$data = [
 			'new' => $this->showleads->new(),
 			'projects' => $this->showprojects->findAll(),
-			'group'=> $this->showgroups->list(),
+			'group'=> $this->showgroups->add_group(),
 			'sales' => $this->showusers->sales(),
 			'title' => 'Group'
 		];
@@ -120,40 +120,21 @@ class CMS extends BaseController
 
 		if (!$this->validate([
 
-			'group_name' => [
+			'groups' => [
 				'rules' => 'required',
 				'errors' => [
 					'required' => 'Group Name Harus diisi'
 				]
 			],
 
-			'admin_group' => [
-				'rules' => 'required',
-				'errors' => [
-					'required' => 'Admin Harus diisi'
-				]
-				],
-
-			'sales' => [
+			'user' => [
 				'rules' => 'required',
 				'errors' => [
 					'required' => 'Sales Harus diisi'
 				]
-			],
+			]
 
-			// 'manager' => [
-			// 	'rules' => 'required',
-			// 	'errors' => [
-			// 		'required' => 'Manager Harus diisi'
-			// 	]
-			// 	],
-
-			// 'general_manager' => [
-			// 	'rules' => 'required',
-			// 	'errors' => [
-			// 		'required' => 'General Manager Harus diisi'
-			// 	]
-			// ]
+			
 
 		])) {
 			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
@@ -179,32 +160,23 @@ class CMS extends BaseController
 	}
 
 
-	public function msdp()
+	public function add_submission()
 	{
+
+		$id = user()->id;
 		$data = [
 			'new' => $this->showleads->new(),
 			'user' => $this->showusers->sales(),
-			'projects' => $this->showprojects->findAll(),
-			'group' => $this->showgroups->list(),
-			'adminProject' => $this->showusers->adminProject(),
-			'adminAssistant' => $this->showusers->adminAssistant(),
-			'title' => 'MSDP'
+			'users' => $this->showusers,
+			'user_group' => $this->showgroupsales->user($id),
+			'group' => $this->showgroupsales,
+			'group_project' => $this->showgroups,
+			'title' => 'Submission'
 		];
 
-		return view('cms/msdp', $data);
+		return view('cms/add_submission', $data);
 	}
 
-
-	public function print_msdp($id)
-	{
-		$data = [
-			'new' => $this->showleads->new(),
-			'detail' => $this->showmsdp->detail($id),
-			'title' => 'MSDP'
-		];
-
-		return view('cms/printmsdp', $data);
-	}
 
 	public function msdpSave()
 	{
@@ -261,21 +233,19 @@ class CMS extends BaseController
 				]
 			],
 
-			'divisi' => [
-				'rules' => 'required',
-				'errors' => [
-					'required' => 'Divisi Harus diisi'
-				]
-			],
+			// 'divisi' => [
+			// 	'rules' => 'required',
+			// 	'errors' => [
+			// 		'required' => 'Divisi Harus diisi'
+			// 	]
+			// ],
 
-	
-
-			'Deadline' => [
-				'rules' => 'required',
-				'errors' => [
-					'required' => 'Deadline Harus diisi'
-				]
-			],
+			// 'deadline' => [
+			// 	'rules' => 'required',
+			// 	'errors' => [
+			// 		'required' => 'Deadline Harus diisi'
+			// 	]
+			// ],
 
 			'diajukan' => [
 				'rules' => 'required',
@@ -284,13 +254,6 @@ class CMS extends BaseController
 				]
 			],
 
-
-			'deadline' => [
-				'rules' => 'required',
-				'errors' => [
-					'required' => 'Deadline Harus diisi'
-				]
-			],
 
 			'isi' => [
 				'rules' => 'required',
@@ -303,7 +266,20 @@ class CMS extends BaseController
 			return redirect()->back()->withInput()->with('error', $this->validator->getErrors());
 		}
 
+
+
+
+		foreach ($this->showgroups->detail($this->request->getVar('groups'))->getResultArray() as $admgrp) :
+			$adminGroup = $admgrp['admin_group'];
+		endforeach;
+
+		foreach ($this->showgroupsales->admin_project($this->request->getVar('project'))->getResultArray() as $admprj) :
+			$adminProject = $admprj['admin_project'];
+		endforeach;
+
+
 		$this->showmsdp->save(
+
 			[
 				'name' => $this->request->getVar('name'),
 				'email' => $this->request->getVar('email'),
@@ -317,8 +293,9 @@ class CMS extends BaseController
 				'status' => $this->request->getVar('status'),
 				'deadline' => $this->request->getVar('deadline'),
 				'groups' => $this->request->getVar('groups'),
-				'admin_group' => $this->request->getVar('admin_group'),
-				'username' => $this->request->getVar('username')
+				'admin_group' => $adminGroup,
+				'admin_project' => $adminProject,
+				'userid' => $this->request->getVar('userid')
 			]
 		);
 
@@ -327,7 +304,19 @@ class CMS extends BaseController
 			'Data Added successfully'
 		);
 
-		return redirect()->to(base_url() . 'msdp/list_msdp');
+		return redirect()->to(base_url() . 'submission');
+	}
+
+
+	public function print_msdp($id)
+	{
+		$data = [
+			'new' => $this->showleads->new(),
+			'detail' => $this->showmsdp->detail($id),
+			'title' => 'MSDP'
+		];
+
+		return view('cms/printmsdp', $data);
 	}
 
 
@@ -362,7 +351,7 @@ class CMS extends BaseController
 			'Data ' . $id . ' updated successfully'
 		);
 
-		return redirect()->to(base_url() . 'msdp/list_msdp');
+		return redirect()->to(base_url() . 'submission');
 	}
 
 
@@ -490,7 +479,7 @@ class CMS extends BaseController
 			'Data ' . $id . ' updated successfully'
 		);
 
-		return redirect()->to(base_url() . 'msdp/list_msdp');
+		return redirect()->to(base_url() . 'submission');
 	}
 
 
@@ -498,19 +487,26 @@ class CMS extends BaseController
 	{
 		$this->showmsdp->delete($id);
 		session()->setFlashdata('pesan', 'Data ' . $id . ' deleted successfully');
-		return redirect()->to(base_url() . 'msdp/list_msdp');
+		return redirect()->to(base_url() . 'submission');
 	}
 
 
-	public function listMsdp()
+	public function submission()
 	{
+
+		$id = user()->id;
+
 		$data = [
 			'new' => $this->showleads->new(),
 			'list' => $this->showmsdp->list(),
-			'title' => 'MSDP'
+			'users' => $this->showusers,
+			'user_group' => $this->showgroupsales->user($id),
+			'group' => $this->showgroupsales,
+			'group_project' => $this->showgroups,
+			'title' => 'Submission'
 		];
 
-		return view('cms/list-msdp', $data);
+		return view('cms/submission', $data);
 	}
 
 
@@ -523,16 +519,15 @@ class CMS extends BaseController
 
 		$data = [
 			'new' => $this->showleads->new(),
-			'projects' => $this->showprojects->project(),
+			'projects' => $this->showprojects,
 			'validation' => \Config\Services::validation(),
 			'user' => $this->showusers->detail($id),
+			'users' => $this->showusers,
 			'sales' => $this->showusers->sales(),
-			'gmsales' => $this->showusers->gmsales(),
-			'salesmanager' => $this->showusers->salesmanager(),
-			'group' => $this->showgroups->list(),
-			'group_name' => $this->showgroups,
-			'adminProject' => $this->showusers->adminProject(),
-			'adminAssistant' => $this->showusers->adminAssistant(),
+			'user_group' => $this->showgroupsales->user($id),
+			'group' => $this->showgroupsales,
+			'group_project' => $this->showgroups,
+
 			'title' => 'Add Leads'
 		];
 
@@ -578,13 +573,19 @@ class CMS extends BaseController
 			// 	]
 			// ],
 
+			// 'groups' => [
+			// 	'rules' => 'required',
+			// 	'errors' => [
+			// 		'required' => 'Group Harus diisi'
+			// 	]
+			// ],
 
-			'project' => [
-				'rules' => 'required',
-				'errors' => [
-					'required' => 'Project Harus diisi'
-				]
-			],
+			// 'project' => [
+			// 	'rules' => 'required',
+			// 	'errors' => [
+			// 		'required' => 'Project Harus diisi'
+			// 	]
+			// ],
 
 			'sumber_leads' => [
 				'rules' => 'required',
@@ -615,27 +616,29 @@ class CMS extends BaseController
 				'errors' => [
 					'required' => 'Sales Harus diisi'
 				]
-			],
+			]
 
-			'update_status' => [
-				'rules' => 'required',
-				'errors' => [
-					'required' => 'Status Harus diisi'
-				]
-			],
-
-
-			'kategori_status' => [
-				'rules' => 'required',
-				'errors' => [
-					'required' => 'Category Harus diisi'
-				]
-			],
-
+		
 
 
 		])) {
 			return redirect()->back()->withInput()->with('error', $this->validator->getErrors());
+		}
+
+		if ($this->request->getVar('groups') == "") {
+			$adminGroup = "";
+		} else {
+			foreach ($this->showgroups->detail($this->request->getVar('groups'))->getResultArray() as $admgrp) :
+				$adminGroup = $admgrp['admin_group'];
+			endforeach;
+		}
+
+		if ($this->request->getVar('project') == "") {
+			$adminProject = "";
+		} else {
+			foreach ($this->showgroupsales->admin_project($this->request->getVar('project'))->getResultArray() as $admprj) :
+				$adminProject = $admprj['admin_project'];
+			endforeach;
 		}
 
 
@@ -656,7 +659,8 @@ class CMS extends BaseController
 				'catatan' => $this->request->getVar('catatan'),
 				'reserve' => $this->request->getVar('reserve'),
 				'groups' => $this->request->getVar('groups'),
-				'admin_group' => $this->request->getVar('admin_group'),
+				'admin_group' => $adminGroup,
+				'admin_project' => $adminProject,
 				'booking' => $this->request->getVar('booking')
 			]
 
@@ -883,11 +887,13 @@ Terima Kasih 🙏
 
 	public function add_project()
 	{
+
+		$id = user()->id;
 		$data = [
 			'new' => $this->showleads->new(),
 			'group' => $this->showgroups->list(),
-			'adminProject' => $this->showusers->adminProject(),
-			'adminAssistant' => $this->showusers->adminAssistant(),
+			'group_project' => $this->showgroups,
+			'user_group' => $this->showgroupsales->user($id),
 			'title' => 'Add Project'
 		];
 
@@ -985,7 +991,6 @@ Terima Kasih 🙏
 				'tiktok' => $this->request->getVar('tiktok'),
 				'youtube' => $this->request->getVar('youtube'),
 				'fasilitas' => $this->request->getVar('fasilitas'),
-				'admin_group' => $this->request->getVar('admin_group'),
 				'groups' => $this->request->getVar('groups'),
 				'materport' => serialize($data),
 				'folder' => $folderName,
@@ -1591,20 +1596,7 @@ Terima Kasih 🙏
 				]
 			],
 
-			// 'project' => [
-			// 	'rules' => 'required',
-			// 	'errors' => [
-			// 		'required' => 'Project Harus diisi'
-			// 	]
-			// ],
-
-			// 'level' => [
-			// 	'rules' => 'required',
-			// 	'errors' => [
-			// 		'required' => 'Level Harus diisi'
-			// 	]
-			// ],
-
+			
 		])) {
 
 			return redirect()->back()->withInput()->with('error', $this->validator->getErrors());
@@ -1641,28 +1633,14 @@ Terima Kasih 🙏
 				'contact' => $this->request->getVar('contact'),
 				'city' => $this->request->getVar('city'),
 				'address' => $this->request->getVar('address'),
-				'level'=> $this->request->getVar('level'),
-				'project' => $this->request->getVar('project'),
-				'general_manager' => $this->request->getVar('general_manager'),
-				'manager' => $this->request->getVar('manager'),
-				'groups' => $this->request->getVar('groups'),
-				'admin_group' => $this->request->getVar('admin_group'),
 				'user_image' => $fileName
 			]
 		);
 
 		if ($this->request->getVar('level') == "admin") {
 			$group_id = "1";
-		} elseif ($this->request->getVar('level') == "sales") {
+		} elseif ($this->request->getVar('level') == "users") {
 			$group_id = "2";
-		} elseif ($this->request->getVar('level') == "manager") {
-			$group_id = "3";
-		} elseif ($this->request->getVar('level') == "general_manager") {
-			$group_id = "4";
-		} elseif ($this->request->getVar('level') == "admin_group") {
-			$group_id = "5";
-		} elseif ($this->request->getVar('level') == "admin_project") {
-			$group_id = "6";
 		}
 
 		$userId = $this->request->getVar('user_id');
@@ -1690,11 +1668,11 @@ Terima Kasih 🙏
 
 		session()->setFlashdata(
 			'pesan',
-			'Data Added successfully'
+			'Data updated successfully'
 		);
 
 		if($id == user()->id){
-			return redirect()->to(base_url() . 'user_detail');
+			return redirect()->to(base_url() . 'edit_user_id');
 		}else{
 			return redirect()->to(base_url() .'user/' . $id);
 		}
@@ -1707,13 +1685,16 @@ Terima Kasih 🙏
 
 	public function add_event()
 	{
+		$id = user()->id;
 		$data = [
 			'new' => $this->showleads->new(),
 			'error' => \Config\Services::validation(),
 			'projects' => $this->showprojects->findAll(),
-			'group' => $this->showgroups->list(),
-			'adminProject' => $this->showusers->adminProject(),
-			'adminAssistant' => $this->showusers->adminAssistant(),
+			'users' => $this->showusers,
+			'sales' => $this->showusers->sales(),
+			'user_group' => $this->showgroupsales->user($id),
+			'group' => $this->showgroupsales,
+			'group_project' => $this->showgroups,
 			'title' => 'Add Event'
 		];
 
@@ -1748,12 +1729,12 @@ Terima Kasih 🙏
 			],
 
 
-			'project' => [
-				'rules' => 'required',
-				'errors' => [
-					'required' => 'Project Harus diisi'
-				]
-			],
+			// 'project' => [
+			// 	'rules' => 'required',
+			// 	'errors' => [
+			// 		'required' => 'Project Harus diisi'
+			// 	]
+			// ],
 
 			'contact' => [
 				'rules' => 'required',
@@ -1815,6 +1796,16 @@ Terima Kasih 🙏
 		// $fileName = $file->getName();
 		$fileName = $file->getRandomName();
 
+
+		foreach ($this->showgroups->detail($this->request->getVar('groups'))->getResultArray() as $admgrp) :
+			$adminGroup = $admgrp['admin_group'];
+		endforeach;
+
+		foreach ($this->showgroupsales->admin_project($this->request->getVar('project'))->getResultArray() as $admprj) :
+			$adminProject = $admprj['admin_project'];
+		endforeach;
+
+
 		$this->showevent->save(
 			[
 				'event_name' => $this->request->getVar('event_name'),
@@ -1827,7 +1818,8 @@ Terima Kasih 🙏
 				'date_end' => $this->request->getVar('date_end'),
 				'description' => $this->request->getVar('description'),
 				'groups' => $this->request->getVar('groups'),
-				'admin_group' => $this->request->getVar('admin_group'),
+				'admin_group' => $adminGroup,
+				'admin_project' => $adminProject,
 				'image' => $fileName
 			]
 		);

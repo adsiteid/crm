@@ -67,12 +67,9 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
     <div class="card-body">
         <div class="d-flex align-items-center justify-content-between  pb-3  ">
             <div class="col-5 p-0">
-                <?php if (in_groups('admin') || in_groups('admin_group') || in_groups('admin_project')) : ?>
+               
                     <a href="<?= base_url(); ?>add_event" type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 " style="font-size:12px;">Add Event </a>
-                <?php endif; ?>
-                <?php if (in_groups('sales') || in_groups('manager') || in_groups('general_manager')) : ?>
-                    <div type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 " style="font-size:12px;"> Event </div>
-                <?php endif; ?>
+
             </div>
             <div class="d-flex p-0">
 
