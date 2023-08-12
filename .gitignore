@@ -1,4 +1,4 @@
 writable/*
 .env
-vendor
-assets/*
+vendor 
+asset/*
