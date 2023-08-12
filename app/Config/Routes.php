@@ -72,30 +72,30 @@ $routes->get('/project/video/(:num)', 'Project::video/$1');
 $routes->get('/project/file/(:num)', 'Project::file/$1');
 $routes->get('/project/interior/(:num)', 'Project::interior/$1');
 $routes->post('/project_save', 'CMS::project_save');
-$routes->delete('/delete_project/(:num)','CMS::delete_project/$1', ['filter' => 'role:admin,admin_group,admin_project']);
-$routes->get('/edit_project/(:num)', 'CMS::edit_project/$1', ['filter' => 'role:admin,admin_group,admin_project']);
-$routes->post('/update_project','CMS::update_project', ['filter' => 'role:admin,admin_group,admin_project']);
+$routes->delete('/delete_project/(:num)','CMS::delete_project/$1');
+$routes->get('/edit_project/(:num)', 'CMS::edit_project/$1');
+$routes->post('/update_project','CMS::update_project');
 
-$routes->get('/add_images_promo/(:num)', 'CMS::add_images_promo/$1', ['filter' => 'role:admin,admin_group,admin_project']);
+$routes->get('/add_images_promo/(:num)', 'CMS::add_images_promo/$1');
 $routes->post('/save_promo/(:num)', 'CMS::save_promo/$1');
 
-$routes->get('/add_images_interior/(:num)', 'CMS::add_images_interior/$1', ['filter' => 'role:admin,admin_group,admin_project']);
-$routes->post('/save_interior/(:num)','CMS::save_interior/$1', ['filter' => 'role:admin,admin_group,admin_project']);
+$routes->get('/add_images_interior/(:num)', 'CMS::add_images_interior/$1');
+$routes->post('/save_interior/(:num)','CMS::save_interior/$1');
 
-$routes->get('/add_video/(:num)', 'CMS::add_video/$1' , ['filter' => 'role:admin,admin_group,admin_project']);
+$routes->get('/add_video/(:num)', 'CMS::add_video/$1' );
 $routes->post('/save_video/(:num)', 'CMS::save_video/$1');
 
-$routes->get('/add_file/(:num)', 'CMS::add_file/$1', ['filter' => 'role:admin,admin_group,admin_project']);
+$routes->get('/add_file/(:num)', 'CMS::add_file/$1');
 $routes->post('/save_file/(:num)', 'CMS::save_file/$1');
 
 
 // REPORT
 // $routes->get('/report/chart', 'Report::chart');
 $routes->get('/report/leads_report', 'Report::leads');
-$routes->get('/report/leads_subholding','Report::subholding', ['filter' => 'role:admin,admin_group,admin_project']);
+$routes->get('/report/leads_subholding','Report::subholding');
 $routes->get('/report/leads_project', 'Report::project');
 $routes->get('/report/leads_source', 'Report::source');
-$routes->get('/report/report_sales', 'Report::sales', ['filter' => 'role:admin,admin_group,admin_project,manager,general_manager']);
+$routes->get('/report/report_sales', 'Report::sales');
 
 $routes->post('/search_report', 'Report::search_report');
 
@@ -105,28 +105,29 @@ $routes->get('/leads_subholding/(:num)', 'Report::subholdingFilter/$1');
 $routes->post('/range_leads_report', 'Report::range');
 $routes->get('/report_project/(:num)', 'Report::projectFilter/$1');
 $routes->post('/range_project_report', 'Report::projectRange');
+$routes->get('/report_source/(:num)', 'Report::sourceFilter/$1');
 
 // USER
-$routes->get('/user/agent', 'User::sales');
-$routes->get('/user/admin','User::admin', ['filter' => 'role:admin,admin_group,admin_project']);
-$routes->get('/user/(:num)', 'User::detail/$1', ['filter' => 'role:admin,admin_group,admin_project,manager,general_manager']);
+$routes->get('/user/agent', 'User::users');
+$routes->get('/user/admin','User::admin');
+$routes->get('/user/(:num)', 'User::detail/$1');
 $routes->get('/user_detail', 'User::user_loggedin');
 $routes->post('/search_leads_user/(:num)', 'User::search_leads/$1');
 $routes->post('/search_leads_user_loggedin/(:num)', 'User::search_leads_loggedin/$1');
-$routes->get('/edit_user/(:num)', 'CMS::edit_user/$1', ['filter' => 'role:admin,admin_group,admin_project']);
+$routes->get('/edit_user/(:num)', 'CMS::edit_user/$1');
 $routes->get('/edit_user_id', 'CMS::edit_user_id');
 $routes->post('/user_update', 'CMS::user_update');
 $routes->post('/search_user', 'User::search_user');
 
 // MSDP
-$routes->get('/msdp', 'CMS::msdp');
+$routes->get('/add_submission', 'CMS::add_submission');
 $routes->post('/msdp/save', 'CMS::msdpSave');
 $routes->get('print_msdp/(:num)', 'CMS::print_msdp/$1');
 $routes->post('update_msdp/(:num)', 'CMS::msdpupdate/$1');
 $routes->post('update_msdp_edit/(:num)', 'CMS::msdpupdateEdit/$1');
 $routes->get('/edit_msdp/(:num)', 'CMS::edit_msdp/$1');
 $routes->delete('/delete_msdp/(:num)', 'CMS::delete_msdp/$1');
-$routes->get('/msdp/list_msdp', 'CMS::listMsdp');
+$routes->get('/submission', 'CMS::submission');
 
 
 // EVENT
@@ -141,13 +142,13 @@ $routes->delete('/delete_event/(:num)', 'CMS::delete_event/$1');
 
 // ADD EDIT DATA
 $routes->get('/add_leads', 'CMS::add_leads');
-$routes->get('edit_leads/(:num)','CMS::edit_leads/$1', ['filter' => 'role:admin,admin_group,admin_project']);
+$routes->get('edit_leads/(:num)','CMS::edit_leads/$1');
 $routes->post('update_leads/(:num)', 'CMS::update_leads/$1');
 $routes->delete('/delete_leads/(:num)', 'CMS::delete_leads/$1');
 $routes->post('/add_leads/save', 'CMS::save_leads');
-$routes->get('/add_project', 'CMS::add_project', ['filter' => 'role:admin,admin_group,admin_project']);
-$routes->get('/add_user','CMS::add_user', ['filter' => 'role:admin,admin_group,admin_project']);
-$routes->get('/add_event', 'CMS::add_event', ['filter' => 'role:admin,admin_group,admin_project']);
+$routes->get('/add_project', 'CMS::add_project'); //, ['filter' => 'role:admin,admin_group,admin_project']
+$routes->get('/add_user','CMS::add_user');
+$routes->get('/add_event', 'CMS::add_event');
 $routes->get('/create/groups', 'CMS::groups');
 $routes->post('/groups_save', 'CMS::groups_save');
 $routes->get('/create/groupsales', 'CMS::groupsales');
@@ -158,8 +159,6 @@ $routes->post('/group_sales_save', 'CMS::group_sales_save');
 // NOT FOUND
 
 $routes->get('/404', 'Home::notfound');
-
-
 
 
 

@@ -8,17 +8,17 @@
     <title>CRM Diamondland</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- plugins:css -->
-    <link rel="stylesheet" href="<?= base_url(); ?>/assetskydash/vendors/feather/feather.css">
-    <link rel="stylesheet" href="<?= base_url(); ?>/assetskydash/vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="<?= base_url(); ?>/assetskydash/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>/assets/vendors/feather/feather.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>/assets/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>/assets/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="<?= base_url(); ?>/assetskydash/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="<?= base_url(); ?>/assetskydash/vendors/iconly/bold.css">
-    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>/assetskydash/js/select.dataTables.min.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>/assets/vendors/iconly/bold.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>/assets/js/select.dataTables.min.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="<?= base_url(); ?>/assetskydash/css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>/assets/css/vertical-layout-light/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="<?= base_url(); ?>/document/app_image/logo/favicon.jpg" />
 
@@ -442,7 +442,7 @@
                         </div>
                         <ul class="chat-list">
                             <li class="list active">
-                                <div class="profile"><img src="<?= base_url(); ?>/assetskydash/images/faces/face1.jpg" alt="image"><span class="online"></span></div>
+                                <div class="profile"><img src="<?= base_url(); ?>/assets/images/faces/face1.jpg" alt="image"><span class="online"></span></div>
                                 <div class="info">
                                     <p>Thomas Douglas</p>
                                     <p>Available</p>
@@ -450,7 +450,7 @@
                                 <small class="text-muted my-auto">19 min</small>
                             </li>
                             <li class="list">
-                                <div class="profile"><img src="<?= base_url(); ?>/assetskydash/images/faces/face2.jpg" alt="image"><span class="offline"></span></div>
+                                <div class="profile"><img src="<?= base_url(); ?>/assets/images/faces/face2.jpg" alt="image"><span class="offline"></span></div>
                                 <div class="info">
                                     <div class="wrapper d-flex">
                                         <p>Catherine</p>
@@ -977,25 +977,25 @@
 
 
     <!-- plugins:js -->
-    <script src="<?= base_url(); ?>/assetskydash/vendors/js/vendor.bundle.base.js"></script>
+    <script src="<?= base_url(); ?>/assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
-    <script src="<?= base_url(); ?>/assetskydash/vendors/chart.js/Chart.min.js"></script>
-    <script src="<?= base_url(); ?>/assetskydash/vendors/datatables.net/jquery.dataTables.js"></script>
-    <script src="<?= base_url(); ?>/assetskydash/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-    <script src="<?= base_url(); ?>/assetskydash/js/dataTables.select.min.js"></script>
+    <script src="<?= base_url(); ?>/assets/vendors/chart.js/Chart.min.js"></script>
+    <script src="<?= base_url(); ?>/assets/vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="<?= base_url(); ?>/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="<?= base_url(); ?>/assets/js/dataTables.select.min.js"></script>
 
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="<?= base_url(); ?>/assetskydash/js/off-canvas.js"></script>
-    <script src="<?= base_url(); ?>/assetskydash/js/hoverable-collapse.js"></script>
-    <script src="<?= base_url(); ?>/assetskydash/js/template.js"></script>
-    <script src="<?= base_url(); ?>/assetskydash/js/settings.js"></script>
-    <script src="<?= base_url(); ?>/assetskydash/js/todolist.js"></script>
+    <script src="<?= base_url(); ?>/assets/js/off-canvas.js"></script>
+    <script src="<?= base_url(); ?>/assets/js/hoverable-collapse.js"></script>
+    <script src="<?= base_url(); ?>/assets/js/template.js"></script>
+    <script src="<?= base_url(); ?>/assets/js/settings.js"></script>
+    <script src="<?= base_url(); ?>/assets/js/todolist.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->
-    <script src="<?= base_url(); ?>/assetskydash/js/dashboard.js"></script>
-    <script src="<?= base_url(); ?>/assetskydash/js/Chart.roundedBarCharts.js"></script>
+    <script src="<?= base_url(); ?>/assets/js/dashboard.js"></script>
+    <script src="<?= base_url(); ?>/assets/js/Chart.roundedBarCharts.js"></script>
     <!-- End custom js for this page-->
 </body>
 

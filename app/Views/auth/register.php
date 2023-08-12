@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>CRM ADSITE.ID</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="<?= base_url(); ?>assetskydash/vendors/feather/feather.css">
-    <link rel="stylesheet" href="<?= base_url(); ?>assetskydash/vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="<?= base_url(); ?>assetskydash/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/vendors/feather/feather.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="<?= base_url(); ?>assetskydash/css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/vertical-layout-light/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="<?= base_url(); ?>document/app_image/logo/logo-adsite-2.png" />
 </head>
@@ -33,6 +33,8 @@
                             <h6 class="font-weight-light lh-base text-center">It only takes a few steps to Sign up</h6>
                             <form action="<?= url_to('register') ?>" method="post" class="pt-3"  enctype="multipart/form-data">
                                 <?= csrf_field() ?>
+                                <input type="text" name="level" class="form-control d-none" autocomplete="off" value="users">
+                                
                                 <div class="form-group">
                                     <label for="email"><?= lang('Auth.email') ?></label>
                                     <input type="email" class="form-control <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" aria-describedby="emailHelp" placeholder="<?= lang('Auth.email') ?>" value="<?= old('email') ?? filter_input(INPUT_GET, 'email', FILTER_SANITIZE_URL) ?>">
@@ -83,16 +85,16 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="<?= base_url(); ?>assetskydash/vendors/js/vendor.bundle.base.js"></script>
+    <script src="<?= base_url(); ?>assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="<?= base_url(); ?>assetskydash/js/off-canvas.js"></script>
-    <script src="<?= base_url(); ?>assetskydash/js/hoverable-collapse.js"></script>
-    <script src="<?= base_url(); ?>assetskydash/js/template.js"></script>
-    <script src="<?= base_url(); ?>assetskydash/js/settings.js"></script>
-    <script src="<?= base_url(); ?>assetskydash/js/todolist.js"></script>
+    <script src="<?= base_url(); ?>assets/js/off-canvas.js"></script>
+    <script src="<?= base_url(); ?>assets/js/hoverable-collapse.js"></script>
+    <script src="<?= base_url(); ?>assets/js/template.js"></script>
+    <script src="<?= base_url(); ?>assets/js/settings.js"></script>
+    <script src="<?= base_url(); ?>assets/js/todolist.js"></script>
     <!-- endinject -->
 </body>
 
