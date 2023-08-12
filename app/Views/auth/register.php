@@ -30,7 +30,7 @@
                                 <img src="<?= base_url(); ?>/document/app_image/logo/logo-adsite.png" alt="" style="width : 200px;">
                             </div>
                             <h4 class="text-center"><?= lang('Auth.register') ?></h4>
-                            <h6 class="font-weight-light lh-base text-center">It only takes a few steps to Sign up</h6>
+                            <h6 class="font-weight-light lh-base text-center">Isi form untuk mendaftar</h6>
                             <form action="<?= url_to('register') ?>" method="post" class="pt-3"  enctype="multipart/form-data">
                                 <?= csrf_field() ?>
                                 <input type="text" name="level" class="form-control d-none" autocomplete="off" value="users">
