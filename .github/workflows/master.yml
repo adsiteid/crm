@@ -3,7 +3,7 @@ on:
     branches:
       - main 
     paths:
-      - '!assets/**'
+      - '!assets'
 name: 🚀 Deploy website on push
 jobs:
   web-deploy:
