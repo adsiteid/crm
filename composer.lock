@@ -4,8 +4,58 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "48c8ff0fc962a17bfd41683f11b3af99",
+    "content-hash": "fdfa08153c95348279043accecf8ebc4",
     "packages": [
+        {
+            "name": "adsite/skydash",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fauzancaren/SkydashAdmin.git",
+                "reference": "a40415373b553c50486263e0b66ae07bbd78c4cf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fauzancaren/SkydashAdmin/zipball/a40415373b553c50486263e0b66ae07bbd78c4cf",
+                "reference": "a40415373b553c50486263e0b66ae07bbd78c4cf",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "fauzancaren",
+                    "email": "fauzancaren@gmail.com"
+                }
+            ],
+            "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
+            "homepage": "https://dev.adsite.id/",
+            "keywords": [
+                "JS",
+                "css",
+                "framework",
+                "front-end",
+                "mobile-first",
+                "responsive",
+                "sass",
+                "skydash-admin",
+                "web"
+            ],
+            "support": {
+                "issues": "https://dev.adsite.id/issue",
+                "source": "https://github.com/fauzancaren/SkydashAdmin/tree/v1.0.1"
+            },
+            "time": "2023-08-13T07:14:08+00:00"
+        },
         {
             "name": "codeigniter4/framework",
             "version": "v4.3.7",
