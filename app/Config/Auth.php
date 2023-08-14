@@ -22,6 +22,8 @@ class Auth extends AuthConfig
      */
     public $requireActivation = null;
 
+    public $allowRemembering = true;
+
     public $views = [
         'login'           => 'App\Views\auth\login',
         'register'        => 'App\Views\auth\register', 
