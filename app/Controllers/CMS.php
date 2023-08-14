@@ -1520,13 +1520,13 @@ Terima Kasih 🙏
 
 		$data = [
 			'new' => $this->showleads->new(),
-			'projects' => $this->showprojects->findAll(),
-			'sales' => $this->showusers->sales(),
+			//'projects' => $this->showprojects->findAll(),
+			//'sales' => $this->showusers->sales(),
 			'user' => $this->showusers->detail($id),
-			'group' => $this->showgroups->list(),
-			'group_name' => $this->showgroups,
-			'user_group' => $this->showusers,
-			'auth_group' => $this->showauthgroups->group($id),
+			//'group' => $this->showgroups->list(),
+			//'group_name' => $this->showgroups,
+			//'user_group' => $this->showusers,
+			//'auth_group' => $this->showauthgroups->group($id),
 			'title' => 'Edit User'
 		];
 
@@ -1536,17 +1536,17 @@ Terima Kasih 🙏
 	public function edit_user($id)
 	{
 
-		$data = [
-			'new' => $this->showleads->new(),
-			'projects' => $this->showprojects->findAll(),
-			'sales' => $this->showusers->sales_adduser(),
-			'user' => $this->showusers->detail($id),
-			'group' => $this->showgroups->list(),
-			'group_name' => $this->showgroups,
-			'user_group' => $this->showusers,
-			'auth_group' => $this->showauthgroups->group($id),
-			'title' => 'Edit User'
-		];
+		// $data = [
+		// 	'new' => $this->showleads->new(),
+		// 	'projects' => $this->showprojects->findAll(),
+		// 	'sales' => $this->showusers->sales_adduser(),
+		// 	'user' => $this->showusers->detail($id),
+		// 	'group' => $this->showgroups->list(),
+		// 	'group_name' => $this->showgroups,
+		// 	'user_group' => $this->showusers,
+		// 	'auth_group' => $this->showauthgroups->group($id),
+		// 	'title' => 'Edit User'
+		// ];
 
 		return view('cms/edit_user', $data);
 	}
