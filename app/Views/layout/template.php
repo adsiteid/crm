@@ -6,21 +6,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>CRM ADSITE.ID</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="<?= base_url() ?>vendor/twbs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- plugins:css -->
-    <link rel="stylesheet" href="vendor/adsite/skydash/vendors/feather/feather.css">
-    <link rel="stylesheet" href="vendor/adsite/skydash/vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="vendor/adsite/skydash/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="<?= base_url() ?>vendor/adsite/skydash/vendors/feather/feather.css">
+    <link rel="stylesheet" href="<?= base_url() ?>vendor/adsite/skydash/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="<?= base_url() ?>vendor/adsite/skydash/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="vendor/adsite/skydash/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="vendor/adsite/skydash/vendors/iconly/bold.css">
-    <link rel="stylesheet" type="text/css" href="vendor/adsite/skydash/js/select.dataTables.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>vendor/adsite/skydash/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="<?= base_url() ?>vendor/adsite/skydash/vendors/iconly/bold.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>vendor/adsite/skydash/js/select.dataTables.min.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="vendor/adsite/skydash/css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="<?= base_url() ?>vendor/adsite/skydash/css/vertical-layout-light/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="<?= base_url(); ?>/document/app_image/logo/logo-adsite-2.png" />
+    <link rel="shortcut icon" href="<?= base_url() ?>document/app_image/logo/logo-adsite-2.png" />
 
 </head>
 
@@ -270,7 +270,7 @@
         <!-- sidebar-dark sidebar-icon-only -->
 
         <body class="">
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+            <script src="<?= base_url() ?>vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
             <div class="container-scroller">
                 <!-- partial:partials/_navbar.html -->
                 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-lg-flex flex-row d-none">
@@ -844,25 +844,25 @@
 
 
             <!-- plugins:js -->
-            <script src="vendor/adsite/skydash/vendors/js/vendor.bundle.base.js"></script>
+            <script src="<?= base_url() ?>vendor/adsite/skydash/vendors/js/vendor.bundle.base.js"></script>
             <!-- endinject -->
             <!-- Plugin js for this page -->
-            <script src="vendor/adsite/skydash/vendors/chart.js/Chart.min.js"></script>
-            <script src="vendor/adsite/skydash/vendors/datatables.net/jquery.dataTables.js"></script>
-            <script src="vendor/adsite/skydash/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-            <script src="vendor/adsite/skydash/js/dataTables.select.min.js"></script>
+            <script src="<?= base_url() ?>vendor/adsite/skydash/vendors/chart.js/Chart.min.js"></script>
+            <script src="<?= base_url() ?>vendor/adsite/skydash/vendors/datatables.net/jquery.dataTables.js"></script>
+            <script src="<?= base_url() ?>vendor/adsite/skydash/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+            <script src="<?= base_url() ?>vendor/adsite/skydash/js/dataTables.select.min.js"></script>
 
             <!-- End plugin js for this page -->
             <!-- inject:js -->
-            <script src="vendor/adsite/skydash/js/off-canvas.js"></script>
-            <script src="vendor/adsite/skydash/js/hoverable-collapse.js"></script>
-            <script src="vendor/adsite/skydash/js/template.js"></script>
-            <script src="vendor/adsite/skydash/js/settings.js"></script>
-            <script src="vendor/adsite/skydash/js/todolist.js"></script>
+            <script src="<?= base_url() ?>vendor/adsite/skydash/js/off-canvas.js"></script>
+            <script src="<?= base_url() ?>vendor/adsite/skydash/js/hoverable-collapse.js"></script>
+            <script src="<?= base_url() ?>vendor/adsite/skydash/js/template.js"></script>
+            <script src="<?= base_url() ?>vendor/adsite/skydash/js/settings.js"></script>
+            <script src="<?= base_url() ?>vendor/adsite/skydash/js/todolist.js"></script>
             <!-- endinject -->
             <!-- Custom js for this page-->
-            <script src="vendor/adsite/skydash/js/dashboard.js"></script>
-            <script src="vendor/adsite/skydash/js/Chart.roundedBarCharts.js"></script>
+            <script src="<?= base_url() ?>vendor/adsite/skydash/js/dashboard.js"></script>
+            <script src="<?= base_url() ?>vendor/adsite/skydash/js/Chart.roundedBarCharts.js"></script>
             <!-- End custom js for this page-->
         </body>
 

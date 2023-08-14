@@ -61,8 +61,8 @@ function gantiformat($nomorhp)
 }
 ?>
 <?php
-$now = date('Y/m/d');
-$in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
+    $now = date('Y/m/d');
+    $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 ?>
 
 
