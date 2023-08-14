@@ -32,7 +32,7 @@
     <div class="card">
         <div class="card-header bg-transparent d-flex justify-content-between">
             <h4 class=" card-title pt-3">Edit User</h4>
-            <a href="#" class="small text-primary pt-3">
+            <a href="<?= base_url()?>forgot" class="small text-primary pt-3">
                 Change Password
             </a>
         </div>
