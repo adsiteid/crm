@@ -27,7 +27,7 @@
         </div>
         <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
             <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
-                <i class="mdi mdi-calendar"></i><?= $count; ?>
+                <i class="mdi mdi-calendar"></i><?= "Last " . $count . " Days"; ?>
             </button>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
                 <a class="dropdown-item" href="<?= base_url(); ?>report_source/90">Last 90 Days</a>
@@ -182,7 +182,7 @@
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form class=" form-inline navbar-search col-12" action="<?= base_url(); ?>range_list" method="post">
+        <form class=" form-inline navbar-search col-12" action="<?= base_url(); ?>report_source_range" method="post">
             <div class="modal-content">
 
                 <div class="modal-header">
@@ -347,8 +347,6 @@
                 'Instagram',
                 'Youtube',
                 'Tiktok',
-                'Data Marcomm',
-                'Iklan STI',
                 'Data Pribadi',
                 'Iklan Pribadi',
                 'Canvasing',

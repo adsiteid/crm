@@ -91,10 +91,8 @@ $routes->post('/save_file/(:num)', 'CMS::save_file/$1');
 
 // REPORT
 // $routes->get('/report/chart', 'Report::chart');
-$routes->get('/report/leads_report', 'Report::leads');
 $routes->get('/report/leads_subholding','Report::subholding');
 $routes->get('/report/leads_project', 'Report::project');
-$routes->get('/report/leads_source', 'Report::source');
 $routes->get('/report/report_sales', 'Report::sales');
 
 $routes->post('/search_report', 'Report::search_report');
@@ -106,6 +104,7 @@ $routes->post('/range_leads_report', 'Report::range');
 $routes->get('/report_project/(:num)', 'Report::projectFilter/$1');
 $routes->post('/range_project_report', 'Report::projectRange');
 $routes->get('/report_source/(:num)', 'Report::sourceFilter/$1');
+$routes->post('/report_source_range', 'Report::sourceRange');
 
 // USER
 $routes->get('/user/agent', 'User::users');

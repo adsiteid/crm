@@ -26,43 +26,6 @@ class Report extends BaseController
 
 	/////////////////// REPORT LEADS /////////////////////////
 
-	public function leads()
-	{
-		$data = [
-
-			// chart
-			'leadsNew' => $this->chartleads->leadsNew('30'),
-			'leadsClose' => $this->chartleads->leadsClose('30'),
-			'leadsPending' => $this->chartleads->leadsPending('30'),
-			'leadsContacted' => $this->chartleads->leadsContacted('30'),
-			'leadsVisit' => $this->chartleads->leadsVisit('30'),
-			'leadsDeal' => $this->chartleads->leadsDeal('30'),
-			'leadsReserve' => $this->chartleads->leadsReserve('30'),
-			'leadsBooking' => $this->chartleads->leadsBooking('30'),
-			// end chart
-
-			'leads' => $this->showleads->all(),
-			// 'leads' => $this->showleads->all(),
-			'new' => $this->showleads->newFilter('30'),
-			'close' =>  $this->showleads->closeFilter('30'),
-			'pending' => $this->showleads->pendingFilter('30'),
-			'contacted' => $this->showleads->contactedFilter('30'),
-			'visit' => $this->showleads->visitFilter('30'),
-			'deal' => $this->showleads->dealFilter('30'),
-			'dealOnly' => $this->showleads->dealOnly('30'),
-			'reserve' => $this->showleads->reserveFilter('30'),
-			'booking' => $this->showleads->bookingFilter('30'),
-			'datenew' => $this->chartleads->dateNew(),
-			'datecontacted' => $this->chartleads->dateContacted(),
-			'datevisit' => $this->chartleads->dateVisit(),
-			'datedeal' => $this->chartleads->dateDeal(),
-			'user_group' => $this->showusers,
-			'days' => "Last 30 Days",
-			'title' => 'Report Leads'
-		];
-
-		return view('report/leads', $data);
-	}
 
 
 	public function leadsFilter($days)
@@ -224,31 +187,35 @@ class Report extends BaseController
 	/////////////////// REPORT SOURCE /////////////////////////
 
 
-	public function source()
-	{
-
-		$data = [
-			'new' => $this->showleads->new(),
-			'source' => $this->chartleads,
-			'count' => 30,
-			'title' => 'Report'
-		];
-
-		return view('report/source', $data);
-	}
-
-
 	public function sourceFilter($count)
 	{
 
 		$data = [
 			'new' => $this->showleads->new(),
 			'source' => $this->chartleads,
-			'days' => "Last $count Days",
+			'count' => "$count",
 			'title' => 'Report'
 		];
 
 		return view('report/source', $data);
+	}
+
+	public function sourceRange()
+	{
+
+		$startDate =  $this->request->getVar('date_start');
+		$endDate = $this->request->getVar('date_end');
+
+		$data = [
+			'new' => $this->showleads->new(),
+			'source' => $this->chartleads,
+			'startDate' => $startDate,
+			'endDate' => $endDate,
+			'count' => "$startDate - $endDate",
+			'title' => 'Report'
+		];
+
+		return view('report/source_range', $data);
 	}
 
 
