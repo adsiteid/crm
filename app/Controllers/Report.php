@@ -24,37 +24,7 @@ class Report extends BaseController
 		$this->showusers = new UsersModel;
 	}
 
-	public function chart()
-	{
-
-		$data = [
-			'new' => $this->showleads->new(),
-			'close' =>  $this->showleads->close(),
-			'pending' => $this->showleads->pending(),
-			'contacted' => $this->showleads->contacted(),
-			'visit' => $this->showleads->visit(),
-			'deal' => $this->showleads->deal(),
-			'sumnew' => $this->chartleads->sumNew(),
-			'sumcontacted' => $this->chartleads->sumContacted(),
-			'sumvisit' => $this->chartleads->sumVisit(),
-			'sumdeal' => $this->chartleads->sumDeal(),
-			'datenew' => $this->chartleads->dateNew(),
-			'datecontacted' => $this->chartleads->dateContacted(),
-			'datevisit' => $this->chartleads->dateVisit(),
-			'datedeal' => $this->chartleads->dateDeal(),
-			// subholding
-			'sub1' => $this->chartleads->sub1(),
-			'sub2' => $this->chartleads->sub2(),
-			'sub3' => $this->chartleads->sub3(),
-			// project
-			'project' => $this->chartleads,
-			// sumber
-			'source' => $this->chartleads,
-			'title' => 'Report'
-		];
-
-		return view('report/chart', $data);
-	}
+	/////////////////// REPORT LEADS /////////////////////////
 
 	public function leads()
 	{
@@ -130,40 +100,6 @@ class Report extends BaseController
 	}
 
 
-	public function search_report()
-	{
-
-		$search =  $this->request->getVar('search_report');
-
-		$data = [
-			'leads' => $this->chartleads->search_report($search),
-            'leadsNew' => $this->chartleads->leadsNew('30'),
-			'leadsClose' => $this->chartleads->leadsClose('30'),
-			'leadsPending' => $this->chartleads->leadsClose('30'),
-			'leadsContacted' => $this->chartleads->leadsContacted('30'),
-			'leadsVisit' => $this->chartleads->leadsVisit('30'),
-			'leadsDeal' => $this->chartleads->leadsDeal('30'),
-			'leadsReserve' => $this->chartleads->leadsReserve('30'),
-			'leadsBooking' => $this->chartleads->leadsBooking('30'),
-
-			'new' => $this->showleads->newFilter('30'),
-			'close' =>  $this->showleads->closeFilter('30'),
-			'pending' => $this->showleads->pendingFilter('30'),
-			'contacted' => $this->showleads->contactedFilter('30'),
-			'visit' => $this->showleads->visitFilter('30'),
-			'deal' => $this->showleads->dealFilter('30'),
-			'dealOnly' => $this->showleads->dealOnly('30'),
-			'reserve' => $this->showleads->reserveFilter('30'),
-			'booking' => $this->showleads->bookingFilter('30'),
-			'user_group' => $this->showusers,
-			'days'=> "Search Result",
-			'title' => 'Report Leads'
-		];
-
-        return view('report/leads', $data);
-	}
-
-
 
 	public function range()
 	{
@@ -200,7 +136,42 @@ class Report extends BaseController
 		return view('report/leads', $data);
 	}
 
-	
+
+	public function search_report()
+	{
+
+		$search =  $this->request->getVar('search_report');
+
+		$data = [
+			'leads' => $this->chartleads->search_report($search),
+			'leadsNew' => $this->chartleads->leadsNew('30'),
+			'leadsClose' => $this->chartleads->leadsClose('30'),
+			'leadsPending' => $this->chartleads->leadsClose('30'),
+			'leadsContacted' => $this->chartleads->leadsContacted('30'),
+			'leadsVisit' => $this->chartleads->leadsVisit('30'),
+			'leadsDeal' => $this->chartleads->leadsDeal('30'),
+			'leadsReserve' => $this->chartleads->leadsReserve('30'),
+			'leadsBooking' => $this->chartleads->leadsBooking('30'),
+
+			'new' => $this->showleads->newFilter('30'),
+			'close' =>  $this->showleads->closeFilter('30'),
+			'pending' => $this->showleads->pendingFilter('30'),
+			'contacted' => $this->showleads->contactedFilter('30'),
+			'visit' => $this->showleads->visitFilter('30'),
+			'deal' => $this->showleads->dealFilter('30'),
+			'dealOnly' => $this->showleads->dealOnly('30'),
+			'reserve' => $this->showleads->reserveFilter('30'),
+			'booking' => $this->showleads->bookingFilter('30'),
+			'user_group' => $this->showusers,
+			'days' => "Search Result",
+			'title' => 'Report Leads'
+		];
+
+		return view('report/leads', $data);
+	}
+
+
+		/////////////////// REPORT PROJECT /////////////////////////
 
 
 	public function project()
@@ -250,6 +221,9 @@ class Report extends BaseController
 	}
 
 
+	/////////////////// REPORT SOURCE /////////////////////////
+
+
 	public function source()
 	{
 
@@ -277,6 +251,8 @@ class Report extends BaseController
 		return view('report/source', $data);
 	}
 
+
+	/////////////////// REPORT SALES /////////////////////////
 
 
 	public function sales()
