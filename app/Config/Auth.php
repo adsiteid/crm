@@ -20,6 +20,8 @@ class Auth extends AuthConfig
      *
      * @var string|null Name of the ActivatorInterface class
      */
+    public $defaultUserGroup = 'users';
+
     public $requireActivation = null;
 
     public $allowRemembering = true;
