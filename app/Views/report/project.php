@@ -111,7 +111,7 @@
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form class=" form-inline navbar-search col-12" action="<?= base_url(); ?>range_project_report" method="post">
+        <form class=" form-inline navbar-search col-12" action="<?= base_url(); ?>project_report_range" method="post">
             <div class="modal-content">
 
                 <div class="modal-header">

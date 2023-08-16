@@ -23,7 +23,7 @@
         </div>
         <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
             <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
-                <i class="mdi mdi-calendar"></i><?php echo "$startDate - $endDate"; ?>
+                <i class="mdi mdi-calendar"></i><?= "$startDate - $endDate"; ?>
             </button>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
                 <a class="dropdown-item" href="<?= base_url(); ?>report_project/90">Last 90 Days</a>
@@ -69,15 +69,15 @@
                             ?>
                                 <tr class="">
                                     <td><?= $lproject['project']; ?></td>
-                                    <td><?= $project->project($lproject['project'], $startDate, $endDate)->getNumRows(); ?></td>
-                                    <td><?= $project->projectContacted($lproject['project'], $startDate, $endDate)->getNumRows(); ?></td>
-                                    <td><?= $project->projectVisit($lproject['project'], $startDate, $endDate)->getNumRows(); ?></td>
-                                    <td><?= $project->projectDeal($lproject['project'], $startDate, $endDate)->getNumRows(); ?></td>
-                                    <td><?= $project->projectReserve($lproject['project'], $startDate, $endDate)->getNumRows(); ?></td>
-                                    <td><?= $project->projectBooking($lproject['project'], $startDate, $endDate)->getNumRows(); ?></td>
+                                    <td><?= $project->projectRange($lproject['project'], $startDate, $endDate)->getNumRows(); ?></td>
+                                    <td><?= $project->projectContactedRange($lproject['project'], $startDate, $endDate)->getNumRows(); ?></td>
+                                    <td><?= $project->projectVisitRange($lproject['project'], $startDate, $endDate)->getNumRows(); ?></td>
+                                    <td><?= $project->projectDealRange($lproject['project'], $startDate, $endDate)->getNumRows(); ?></td>
+                                    <td><?= $project->projectReserveRange($lproject['project'], $startDate, $endDate)->getNumRows(); ?></td>
+                                    <td><?= $project->projectBookingRange($lproject['project'], $startDate, $endDate)->getNumRows(); ?></td>
                                     <td><?php
                                         $total = 0;
-                                        foreach ($project->projectReserve($lproject['project'], $startDate, $endDate)->getResultArray() as $cb) :
+                                        foreach ($project->projectReserveRange($lproject['project'], $startDate, $endDate)->getResultArray() as $cb) :
                                             $total += $cb['reserve'];
                                         endforeach;
                                         echo $total;
@@ -85,7 +85,7 @@
                                     </td>
                                     <td><?php
                                         $total = 0;
-                                        foreach ($project->projectBooking($lproject['project'], $startDate, $endDate)->getResultArray() as $cb) :
+                                        foreach ($project->projectBookingRange($lproject['project'], $startDate, $endDate)->getResultArray() as $cb) :
                                             $total += $cb['booking'];
                                         endforeach;
                                         echo $total;
@@ -111,7 +111,7 @@
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form class=" form-inline navbar-search col-12" action="<?= base_url(); ?>range_project_report" method="post">
+        <form class=" form-inline navbar-search col-12" action="<?= base_url(); ?>project_report_range" method="post">
             <div class="modal-content">
 
                 <div class="modal-header">
@@ -174,7 +174,7 @@
             data: [
                 <?php
                 foreach ($leads->getResultArray() as $lproject) {
-                    echo $project->project($lproject['project'],$startDate, $endDate)->getNumRows() . ',';
+                    echo $project->projectRange($lproject['project'],$startDate, $endDate)->getNumRows() . ',';
                 }
                 ?>
             ]
@@ -223,7 +223,7 @@
             data: [
                 <?php
                 foreach ($leads->getResultArray() as $lproject) {
-                    echo $project->project($lproject['project'], $startDate, $endDate)->getNumRows() . ',';
+                    echo $project->projectRange($lproject['project'], $startDate, $endDate)->getNumRows() . ',';
                 }
                 ?>
             ]

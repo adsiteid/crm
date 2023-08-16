@@ -153,6 +153,26 @@ class Report extends BaseController
 	}
 
 
+	public function projectRange()
+	{
+
+		$startDate =  $this->request->getVar('date_start');
+		$endDate = $this->request->getVar('date_end');
+
+		$data = [
+			'leads' => $this->showleads->project(),
+			// 'leads' => $this->showleads->all(),
+			'new' => $this->showleads->new(),
+			'project' => $this->chartleads,
+			'startDate' => $startDate,
+			'endDate'=> $endDate,
+			'title' => 'Report'
+		];
+
+		return view('report/project_range', $data);
+	}
+
+
 
 	public function projectStatus()
 	{

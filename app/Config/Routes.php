@@ -102,7 +102,7 @@ $routes->get('/reportleads/(:num)', 'Report::leadsFilter/$1');
 $routes->get('/leads_subholding/(:num)', 'Report::subholdingFilter/$1');
 $routes->post('/range_leads_report', 'Report::range');
 $routes->get('/report_project/(:num)', 'Report::projectFilter/$1');
-$routes->post('/range_project_report', 'Report::projectRange');
+$routes->post('/project_report_range', 'Report::projectRange');
 $routes->get('/report_source/(:num)', 'Report::sourceFilter/$1');
 $routes->post('/report_source_range', 'Report::sourceRange');
 
