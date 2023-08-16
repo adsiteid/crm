@@ -503,7 +503,7 @@
                                         <!-- <?php if (in_groups('admin') || in_groups('admin_group') || in_groups('admin_project')) : ?>
                                     <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>report/leads_subholding">Subholding Report</a></li>
                                 <?php endif; ?> -->
-                                        <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>report/leads_project">Project Report</a></li>
+                                        <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>report_project/30">Project Report</a></li>
                                         <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>report_source/30">Source Report</a></li>
                                         <?php if (!in_groups('sales')) : ?>
                                             <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>report/report_sales">Sales Report</a></li>
@@ -645,7 +645,7 @@
                                         <ul class="nav flex-column sub-menu rounded-bottom">
                                             <!-- <li class="nav-item"> <a class="nav-link" href="/report/chart">Chart All</a></li> -->
                                             <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>reportleads/30">Leads Report</a></li>
-                                            <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>report/leads_project">Project Report</a></li>
+                                            <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>report_project/30">Project Report</a></li>
                                             <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>report_source/30">Source Report</a></li>
                                             <?php if (!in_groups('sales')) : ?>
                                                 <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>report/report_sales">Sales Report</a></li>
