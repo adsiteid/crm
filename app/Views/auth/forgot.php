@@ -36,7 +36,7 @@
               <h4 class="text-center mt-2">Ubah / lupa kata sandi ?</h4>
               <form class="pt-3" action="<?= url_to('forgot') ?>" method="post">
 
-                <p>Masukkan email anda, kami akan mengirimkan kode untuk mengatur ulang kata sandi Anda.</p>
+                <p class="text-center mb-3 font-weight-light">Masukkan email anda, kami akan mengirimkan kode untuk mengatur ulang kata sandi Anda.</p>
                 <?= view('Myth\Auth\Views\_message_block') ?>
                 <?= csrf_field() ?>
 
@@ -49,18 +49,17 @@
                 </div>
 
                 <div class="mt-3">
-                  <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"> Kirim Kode </button> <?php // lang('Auth.sendInstructions') ?>
+                  <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"> Kirim Kode </button> <?php // lang('Auth.sendInstructions') 
+                                                                                                                                        ?>
                 </div>
                 <div class="my-2 d-flex justify-content-between align-items-center">
 
               </form>
 
-              <div class="text-center mt-4 font-weight-light">
-                <p><?= lang('Auth.alreadyRegistered') ?> <a href="<?= url_to('login') ?>"><?= lang('Auth.signIn') ?></a></p>
-              </div>
-
-              <!-- <a href="#" class="auth-link text-black">Forgot password?</a> -->
             </div>
+
+            <p class="d-flex justify-content-center mt-3 font-weight-light"><?= lang('Auth.alreadyRegistered') ?> <a class="ml-1" href="<?= url_to('login') ?>"><?= lang('Auth.signIn') ?></a></p>
+
             <!-- <div class="mb-2">
                   <button type="button" class="btn btn-block btn-facebook auth-form-btn">
                     <i class="ti-facebook mr-2"></i>Connect using facebook
