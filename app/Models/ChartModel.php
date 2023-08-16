@@ -848,12 +848,16 @@ class ChartModel extends Model
         endif;
 
         $builder->groupStart()
-        ->where('time_stamp_new >=', $startDate)
-        ->where('time_stamp_new <=', $endDate);
-
-        $builder->groupEnd();
-
-        
+        ->Where("time_stamp_new BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_close BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_pending BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_contacted BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_visit BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_deal BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_reserve BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_booking BETWEEN '$startDate' AND '$endDate'")
+        ->groupEnd();
+  
         $builder->orderBy('id DESC');
         $result = $builder->get();
         return $result;

@@ -98,45 +98,15 @@ class LeadsModel extends Model
 
 
         $builder->groupStart()
-        ->where('time_stamp_new >=', $startDate)
-        ->where('time_stamp_new <=', $endDate);
-        $builder->groupEnd();
-
-        $builder->orgroupStart()
-        ->where('time_stamp_close >=', $startDate)
-        ->where('time_stamp_close <=', $endDate);
-        $builder->groupEnd();
-
-        $builder->orgroupStart()
-        ->where('time_stamp_pending >=', $startDate)
-        ->where('time_stamp_pending <=', $endDate);
-        $builder->groupEnd();
-
-        $builder->orgroupStart()
-        ->where('time_stamp_contacted >=', $startDate)
-        ->where('time_stamp_contacted <=', $endDate);
-        $builder->groupEnd();
-
-        $builder->orgroupStart()
-            ->where('time_stamp_visit >=', $startDate)
-            ->where('time_stamp_visit <=', $endDate);
-        $builder->groupEnd();
-
-        $builder->orgroupStart()
-        ->where('time_stamp_deal >=', $startDate)
-        ->where('time_stamp_deal <=', $endDate);
-        $builder->groupEnd();
-
-        $builder->orgroupStart()
-        ->where('time_stamp_reserve >=', $startDate)
-        ->where('time_stamp_reserve <=', $endDate);
-        $builder->groupEnd();
-
-        $builder->orgroupStart()
-            ->where('time_stamp_booking >=', $startDate)
-            ->where('time_stamp_booking <=', $endDate);
-        $builder->groupEnd();
-
+        ->Where("time_stamp_new BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_close BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_pending BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_contacted BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_visit BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_deal BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_reserve BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_booking BETWEEN '$startDate' AND '$endDate'")
+        ->groupEnd();
 
         $builder->orderBy('id DESC');
         $result = $builder->get();
