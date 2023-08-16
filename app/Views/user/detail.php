@@ -299,7 +299,7 @@
                                     <table class="table table-striped table-hover">
                                         <thead>
                                             <tr>
-                                                <th class="d-sm-table-cell d-none">
+                                                <th >
                                                     No
                                                 </th>
                                                 <th>
@@ -308,55 +308,55 @@
                                                 <th class="">
                                                     Address
                                                 </th>
-                                                <th class="d-sm-table-cell d-none">
+                                                <th >
                                                     Project
                                                 </th>
-                                                <th class="d-sm-table-cell d-none">
+                                                <th >
                                                     Source
                                                 </th>
-                                                <th class="d-sm-table-cell d-none">
+                                                <th >
                                                     Sales/Agent
                                                 </th>
-                                                <th class="d-sm-table-cell d-none">
+                                                <th >
                                                     Manager
                                                 </th>
-                                                <th class="d-sm-table-cell d-none">
+                                                <th >
                                                     GM
                                                 </th>
-                                                <th class="d-sm-table-cell d-none">
+                                                <th >
                                                     Status
                                                 </th>
-                                                <th class="d-sm-table-cell d-none">
+                                                <th >
                                                     Category
                                                 </th>
-                                                <th class="d-sm-table-cell d-none">
+                                                <th >
                                                     Date In
                                                 </th>
-                                                <th class="d-sm-table-cell d-none">
+                                                <th >
                                                     Contacted
                                                 </th>
-                                                <th class="d-sm-table-cell d-none">
+                                                <th >
                                                     Visit
                                                 </th>
-                                                <th class="d-sm-table-cell d-none">
+                                                <th >
                                                     Deal
                                                 </th>
-                                                <th class="d-sm-table-cell d-none">
+                                                <th >
                                                     Reserve
                                                 </th>
-                                                <th class="d-sm-table-cell d-none">
+                                                <th >
                                                     Booking
                                                 </th>
-                                                <th class="d-sm-table-cell d-none">
+                                                <th >
                                                     Reserve Amount
                                                 </th>
-                                                <th class="d-sm-table-cell d-none">
+                                                <th >
                                                     Booking Amount
                                                 </th>
-                                                <th class="d-sm-table-cell d-none">
+                                                <th >
                                                     Feedback/Notes
                                                 </th>
-                                                <th class="d-sm-table-cell d-none">
+                                                <th >
                                                     Notes
                                                 </th>
                                             </tr>
@@ -370,7 +370,7 @@
 
                                             ?>
                                                 <tr class="list-item" onclick="location.href='<?= base_url(); ?>leads/<?= $data['id']; ?>'">
-                                                    <td class="d-sm-table-cell d-none">
+                                                    <td >
                                                         <?= $no++; ?>
                                                     </td>
                                                     <td style="width:100px;">
