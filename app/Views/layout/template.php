@@ -528,7 +528,7 @@
                                                 } ?>">
                                 <a class="nav-link" href="<?= base_url(); ?>user/agent">
                                     <i class="icon-head menu-icon"></i>
-                                    <span class="menu-title">User</span>
+                                    <span class="menu-title">Group</span>
                                 </a>
                             </li>
 
@@ -667,7 +667,7 @@
                                                     } ?>">
                                     <a class="nav-link" href="<?= base_url(); ?>user/agent">
                                         <i class="icon-head menu-icon"></i>
-                                        <span class="menu-title">User</span>
+                                        <span class="menu-title">Group</span>
                                     </a>
                                 </li>
 
@@ -835,7 +835,7 @@
                     <a href="<?= base_url(); ?>add_user" type="button" class="btn btn-light bg-white w-100 mb-2">Add User</a>
                     <a href="<?= base_url(); ?>add_project" type="button" class="btn btn-light bg-white  w-100 mb-2">Add Project</a>
                     <a href="<?= base_url(); ?>add_event" type="button" class="btn btn-light bg-white  w-100 mb-2">Add Event</a>
-                    <a href="<?= base_url(); ?>msdp" type="button" class="btn btn-light bg-white w-100 mb-2">Submission</a>
+                    <a href="<?= base_url(); ?>submission" type="button" class="btn btn-light bg-white w-100 mb-2">Submission</a>
                     <!-- <a href="<?= base_url(); ?>add_event" type="button" class="btn btn-light bg-white w-100 mb-2">Absen</a> -->
                 </div>
             </div>
