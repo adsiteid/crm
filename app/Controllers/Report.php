@@ -136,23 +136,7 @@ class Report extends BaseController
 
 		/////////////////// REPORT PROJECT /////////////////////////
 
-
-	public function project()
-	{
-
-		$data = [
-			'leads' => $this->showleads->project(),
-			'new' => $this->showleads->new(),
-			'project' => $this->chartleads,
-			'filter' => 30,
-			'title' => 'Report'
-		];
-
-		return view('report/project', $data);
-	}
-
-
-		
+	
 
 	public function projectFilter($range)
 	{

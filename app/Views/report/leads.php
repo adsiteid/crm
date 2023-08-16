@@ -79,7 +79,7 @@
 
 
 <div class="card rounded-4 pt-3 mb-4">
-    <div class="card-header mb-4 d-flex align-items-center justify-content-between bg-white">
+    <div class="card-header mb-4 d-flex align-items-center justify-content-between bg-transparent">
         <div>
             <h6 class="mb-2 font-weight-bold text-primary">Leads Funnel</h6>
             <p class="text-muted" style="font-size : 12px;"></p>
@@ -97,43 +97,7 @@
         </div>
     </div>
     <div class="card-body">
-        <div id="leads"></div>
-    </div>
-</div>
-
-
-
-
-
-
-<div class="card mb-4">
-    <!-- Card Header - Dropdown -->
-
-
-    <!-- Card Body -->
-    <div class="card-body">
-
-        <div class="pb-4 pt-2 d-flex flex-row align-items-center justify-content-between">
-            <div>
-                <h6 class="mb-2 font-weight-bold text-primary">Leads Status</h6>
-            </div>
-
-            <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
-                    <i class="mdi mdi-calendar"></i><?= $days; ?>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                    <a class="dropdown-item" href="<?= base_url(); ?>reportleads/90">Last 90 Days</a>
-                    <a class="dropdown-item" href="<?= base_url(); ?>reportleads/30">Last 30 Days</a>
-                    <a class="dropdown-item" href="<?= base_url(); ?>reportleads/7">Last 7 Days</a>
-                    <a type="button" class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Custom Range</a>
-                </div>
-            </div>
-
-
-        </div>
-
-
+        <div id="leads" class="mb-4"></div>
 
         <!-- TABLE  -->
 
@@ -202,8 +166,17 @@
 
 
         <!-- AKHIR TABLE -->
+
+
     </div>
 </div>
+
+
+
+
+
+
+
 
 
 
@@ -257,11 +230,11 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
 <div class="card">
 
-    <div class="card-header d-flex align-items-center justify-content-between bg-white">
+    <div class="card-header d-flex align-items-center justify-content-between bg-transparent">
         <div class="d-lg-none d-block"></div>
         <div class="d-lg-block d-none">
             <form action="<?= base_url(); ?>search_report" method="post" class=" form-inline ">
-                <div class="input-group input-group-sm mt-2 mr-3 ">
+                <div class="input-group input-group-sm my-3 mr-3 ">
                     <input type="text" class="form-control rounded-left bg-light pl-3 " placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_report">
                     <div class="input-group-append">
                         <button class="btn btn-primary rounded-right" type="submit">
