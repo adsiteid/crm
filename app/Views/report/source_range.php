@@ -22,7 +22,7 @@
 <div class="card rounded-4 pt-3 mb-4">
     <div class="card-header mb-4 d-flex align-items-center justify-content-between bg-white">
         <div>
-            <h6 class="mb-2 font-weight-bold text-primary">Project Report</h6>
+            <h6 class="mb-2 font-weight-bold text-primary">Source Report</h6>
             <p class="text-muted" style="font-size : 12px;"></p>
         </div>
         <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
