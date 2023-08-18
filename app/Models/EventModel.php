@@ -24,27 +24,33 @@ class EventModel extends Model
     ];
 
 
-    public function acara()
+    public function events()
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+    public function eventsAdminGroup($groups)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('groups', $groups);
+        $builder->where('created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+    public function eventsAdminProject($groups,$project)
     {
         $builder = $this->db->table($this->table);
 
-        $groups = user()->groups;
-
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project')) :
-            $builder->where('groups', $groups);
-            $result = $builder->get();
-            return $result;
-        endif;
-
-        if (in_groups('admin_group')) :
-            $builder->where('admin_group', user()->id);
-        endif;
-
-        if (in_groups('admin')) :
-            $result = $builder->get();
-            return $result;
-        endif;
-
+        $builder->groupStart()
+            ->Where('groups', $groups)
+            ->orWhere('project', $project);
+        $builder->groupEnd();
         $builder->where('created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
         $builder->orderBy('id DESC');
         $result = $builder->get();

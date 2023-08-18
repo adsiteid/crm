@@ -42,6 +42,7 @@ class Home extends BaseController
 			$pending = $this->showleads->pending();
 			$visit = $this->showleads->visit();
 			$deal = $this->showleads->deal();
+			$events = $this->showevent->events();
 		endif;
 
 		if (in_groups('users')) :
@@ -54,6 +55,7 @@ class Home extends BaseController
 					$pending = $this->showleads->pendingAdminGroup($group['groups']);
 					$visit = $this->showleads->visitAdminGroup($group['groups']);
 					$deal = $this->showleads->dealAdminGroup($group['groups']);
+					$events = $this->showevent->eventsAdminGroup($group['groups']);
 				} elseif ($group['level'] == "admin_project") {
 					$new = $this->showleads->newAdminProject($group['project']);
 					$contacted = $this->showleads->contactedAdminProject($group['project']);
@@ -61,6 +63,7 @@ class Home extends BaseController
 					$pending = $this->showleads->pendingAdminProject($group['project']);
 					$visit = $this->showleads->visitAdminProject($group['project']);
 					$deal = $this->showleads->dealAdminProject($group['project']);
+					$events = $this->showevent->eventsAdminProject($group['groups'],$group['project']);
 				} else {
 					$new = $this->showleads->new();
 					$contacted = $this->showleads->contacted();
@@ -68,6 +71,7 @@ class Home extends BaseController
 					$pending = $this->showleads->pending();
 					$visit = $this->showleads->visit();
 					$deal = $this->showleads->deal();
+					$events = $this->showevent->eventsAdminGroup($group['groups']);
 				}
 			}
 		endif;
@@ -79,7 +83,7 @@ class Home extends BaseController
 			'pending' => $pending,
 			'visit' => $visit,
 			'deal' => $deal,
-			'event' => $this->showevent->acara(),
+			'event' => $events,
 			'days'=> 'Last 30 Days',
 			'title' => 'Dashboard'
 		];
