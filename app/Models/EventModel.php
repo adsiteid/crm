@@ -57,7 +57,6 @@ class EventModel extends Model
         return $result;
     }
 
-
     public function detail($id)
     {
         $builder = $this->db->table($this->table);

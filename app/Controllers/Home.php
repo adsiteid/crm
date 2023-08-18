@@ -94,14 +94,56 @@ class Home extends BaseController
 	public function indexFilter($days)
 	{
 
+		if (in_groups('admin')) :
+			$new = $this->showleads->newFilter($days);
+			$contacted = $this->showleads->contactedFilter($days);
+			$close = $this->showleads->closeFilter($days);
+			$pending = $this->showleads->pendingFilter($days);
+			$visit = $this->showleads->visitFilter($days);
+			$deal = $this->showleads->dealFilter($days);
+			$events = $this->showevent->events();
+		endif;
+
+		if (in_groups('users')) :
+			$id = user()->id;
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "admin_group") {
+					$new = $this->showleads->newFilterAdminGroup($group['groups'],$days);
+					$contacted = $this->showleads-> contactedFilterAdminGroup($group['groups'], $days);
+					$close = $this->showleads-> closeFilterAdminGroup($group['groups'], $days);
+					$pending = $this->showleads-> pendingFilterAdminGroup($group['groups'], $days);
+					$visit = $this->showleads-> visitFilterAdminGroup($group['groups'], $days);
+					$deal = $this->showleads-> dealFilterAdminGroup($group['groups'], $days);
+					$events = $this->showevent->eventsAdminGroup($group['groups'], $days);
+				} elseif ($group['level'] == "admin_project") {
+					$new = $this->showleads-> newFilterAdminProject($group['project'], $days);
+					$contacted = $this->showleads-> contactedFilterAdminProject($group['project'], $days);
+					$close = $this->showleads-> closeFilterAdminProject($group['project'], $days);
+					$pending = $this->showleads-> pendingFilterAdminProject($group['project'], $days);
+					$visit = $this->showleads-> visitFilterAdminProject($group['project'], $days);
+					$deal = $this->showleads-> dealFilterAdminProject($group['project'], $days);
+					$events = $this->showevent->eventsAdminProject($group['groups'], $group['project'],$days);
+				} else {
+					$new = $this->showleads->newFilter($days);
+					$contacted = $this->showleads->contactedFilter($days);
+					$close = $this->showleads->closeFilter($days);
+					$pending = $this->showleads->pendingFilter($days);
+					$visit = $this->showleads->visitFilter($days);
+					$deal = $this->showleads->dealFilter($days);
+					$events = $this->showevent->eventsAdminGroup($group['groups'], $days);
+				}
+			}
+		endif;
+		
+
 		$data = [
-			'new' => $this->showleads->newFilter($days),
-			'contacted' => $this->showleads->contactedFilter($days),
-			'close' => $this->showleads->closeFilter($days),
-			'pending' => $this->showleads->pendingFilter($days),
-			'visit' => $this->showleads->visitFilter($days),
-			'deal' => $this->showleads->dealFilter($days),
-			'event' => $this->showevent->acara(),
+			'new' => $new,
+			'contacted' => $contacted,
+			'close' => $close,
+			'pending' => $pending,
+			'visit' => $visit,
+			'deal' => $deal,
+			'event' => $events,
 			'days'=> 'Last '.$days.' Days',
 			'title' => 'Dashboard'
 		];
