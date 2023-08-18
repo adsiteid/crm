@@ -54,9 +54,7 @@ class Leads extends BaseController
         endif;
 
         if (in_groups('users')) :
-
         foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
-
             if ($group['level'] == "admin_group") {
                 $leads = $this->showleads->newAdminGroup($group['groups']);
                 $new = $this->showleads->newAdminGroup($group['groups']);

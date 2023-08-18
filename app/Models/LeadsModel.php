@@ -137,17 +137,6 @@ class LeadsModel extends Model
     {
 
         $builder = $this->db->table($this->table);
-
-        $id = user()->id;
-
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
-            $builder->groupEnd();
-        endif;
-
         $builder->where('groups', $groups);
         $builder->where('update_status', 'New');
         $builder->whereIn('kategori_status', ['New', 'Warm', 'Hot']);
@@ -162,20 +151,10 @@ class LeadsModel extends Model
     {
 
         $builder = $this->db->table($this->table);
-
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
-            $builder->groupEnd();
-        endif;
-
+        $builder->where('project', $project);
         $builder->where('update_status', 'New');
         $builder->whereIn('kategori_status', ['New', 'Warm', 'Hot']);
         $builder->where('time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
-        $builder->where('project', $project);
         $builder->orderBy('id DESC');
         $result = $builder->get();
         return $result;
@@ -296,16 +275,6 @@ class LeadsModel extends Model
     public function contactedAdminGroup($groups)
     {
         $builder = $this->db->table($this->table);
-
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
-            $builder->groupEnd();
-        endif;
-
         $builder->where('groups', $groups);
         $builder->where('update_status', 'Contacted');
         $builder->where('time_stamp_contacted >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
@@ -318,16 +287,6 @@ class LeadsModel extends Model
     public function contactedAdminProject($project)
     {
         $builder = $this->db->table($this->table);
-
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
-            $builder->groupEnd();
-        endif;
-
         $builder->where('project', $project);
         $builder->where('update_status', 'Contacted');
         $builder->where('time_stamp_contacted >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
@@ -437,16 +396,6 @@ class LeadsModel extends Model
     public function closeAdminGroup($groups)
     {
         $builder = $this->db->table($this->table);
-
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
-            $builder->groupEnd();
-        endif;
-
         $builder->where('groups', $groups);
         $builder->whereIn('update_status', ['Close', 'Invalid']);
         $builder->where('time_stamp_close >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
@@ -459,16 +408,6 @@ class LeadsModel extends Model
     public function closeAdminProject($project)
     {
         $builder = $this->db->table($this->table);
-
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
-            $builder->groupEnd();
-        endif;
-
         $builder->where('project', $project);
         $builder->whereIn('update_status', ['Close', 'Invalid']);
         $builder->where('time_stamp_close >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
@@ -579,16 +518,6 @@ class LeadsModel extends Model
     public function pendingAdminGroup($groups)
     {
         $builder = $this->db->table($this->table);
-
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
-            $builder->groupEnd();
-        endif;
-
         $builder->where('groups', $groups);
         $builder->whereIn('update_status', ['Pending']);
         $builder->where('time_stamp_pending >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
@@ -601,16 +530,6 @@ class LeadsModel extends Model
     public function pendingAdminProject($project)
     {
         $builder = $this->db->table($this->table);
-
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
-            $builder->groupEnd();
-        endif;
-
         $builder->where('project', $project);
         $builder->whereIn('update_status', ['Pending']);
         $builder->where('time_stamp_pending >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
@@ -724,16 +643,6 @@ class LeadsModel extends Model
     public function visitAdminGroup($groups)
     {
         $builder = $this->db->table($this->table);
-
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
-            $builder->groupEnd();
-        endif;
-
         $builder->where('groups', $groups);
         $builder->where('update_status', 'Visit');
         $builder->where('time_stamp_visit >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
@@ -745,16 +654,6 @@ class LeadsModel extends Model
     public function visitAdminProject($project)
     {
         $builder = $this->db->table($this->table);
-
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
-            $builder->groupEnd();
-        endif;
-
         $builder->where('project', $project);
         $builder->where('update_status', 'Visit');
         $builder->where('time_stamp_visit >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
@@ -867,16 +766,6 @@ class LeadsModel extends Model
     {
 
         $builder = $this->db->table($this->table);
-
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
-            $builder->groupEnd();
-        endif;
-
         $builder->where('groups', $groups);
         $builder->where('update_status', 'Deal');
         $builder->where("time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)");
@@ -890,16 +779,6 @@ class LeadsModel extends Model
     {
 
         $builder = $this->db->table($this->table);
-
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
-            $builder->groupEnd();
-        endif;
-
         $builder->where('project', $project);
         $builder->where('update_status', 'Deal');
         $builder->where("time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)");

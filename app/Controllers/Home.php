@@ -5,6 +5,7 @@ namespace App\Controllers;
 use \App\Models\LeadsModel;
 use \App\Models\EventModel;
 use \App\Models\ProjectModel;
+use \App\Models\GroupSalesModel;
 
 class Home extends BaseController
 {
@@ -12,6 +13,7 @@ class Home extends BaseController
 	protected $showleads;
 	protected $showevent;
 	protected $showproject;
+	protected $showgroupsales;
 
 
 	public function __construct()
@@ -19,6 +21,7 @@ class Home extends BaseController
 		$this->showleads = new LeadsModel();
 		$this->showevent = new EventModel();
 		$this->showproject = new ProjectModel();
+		$this->showgroupsales = new GroupSalesModel;
 	}
 
 
@@ -31,13 +34,51 @@ class Home extends BaseController
 	public function index()
 	{
 
+
+		if(in_groups('admin')) :
+			$new = $this->showleads->new();
+			$contacted = $this->showleads->contacted();
+			$close = $this->showleads->close();
+			$pending = $this->showleads->pending();
+			$visit = $this->showleads->visit();
+			$deal = $this->showleads->deal();
+		endif;
+
+		if (in_groups('users')) :
+			$id = user()->id;
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "admin_group") {
+					$new = $this->showleads->newAdminGroup($group['groups']);
+					$contacted = $this->showleads->contactedAdminGroup($group['groups']);
+					$close = $this->showleads->closeAdminGroup($group['groups']);
+					$pending = $this->showleads->pendingAdminGroup($group['groups']);
+					$visit = $this->showleads->visitAdminGroup($group['groups']);
+					$deal = $this->showleads->dealAdminGroup($group['groups']);
+				} elseif ($group['level'] == "admin_project") {
+					$new = $this->showleads->newAdminProject($group['project']);
+					$contacted = $this->showleads->contactedAdminProject($group['project']);
+					$close = $this->showleads->closeAdminProject($group['project']);
+					$pending = $this->showleads->pendingAdminProject($group['project']);
+					$visit = $this->showleads->visitAdminProject($group['project']);
+					$deal = $this->showleads->dealAdminProject($group['project']);
+				} else {
+					$new = $this->showleads->new();
+					$contacted = $this->showleads->contacted();
+					$close = $this->showleads->close();
+					$pending = $this->showleads->pending();
+					$visit = $this->showleads->visit();
+					$deal = $this->showleads->deal();
+				}
+			}
+		endif;
+
 		$data = [
-			'new' => $this->showleads->new(),
-			'contacted' => $this->showleads->contacted(),
-			'close' => $this->showleads->close(),
-			'pending' => $this->showleads->pending(),
-			'visit' => $this->showleads->visit(),
-			'deal' => $this->showleads->deal(),
+			'new' => $new,
+			'contacted' => $contacted,
+			'close' => $close,
+			'pending' => $pending,
+			'visit' => $visit,
+			'deal' => $deal,
 			'event' => $this->showevent->acara(),
 			'days'=> 'Last 30 Days',
 			'title' => 'Dashboard'
