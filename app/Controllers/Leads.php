@@ -335,9 +335,30 @@ class Leads extends BaseController
 
 		$search =  $this->request->getVar('search_leads');
 
+
+        if (in_groups('admin')) :
+            $leads = $this->showleads->search_leads($search);
+            $new =  $this->showleads->new();
+        endif;
+        if (in_groups('users')) :
+             $id = user()->id;
+            foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+                if ($group['level'] == "admin_group") {
+                    $leads = $this->showleads->search_leads_admin_group($group['groups'],$search);
+                    $new =  $this->showleads->newAdminGroup($group['groups']);
+                } elseif ($group['level'] == "admin_project") {
+                    $leads = $this->showleads->search_leads_admin_project($group['project'], $search);
+                    $new =  $this->showleads->newAdminProject($group['project']);
+                } else {
+                    $leads = $this->showleads->search_leads($search);
+                    $new =  $this->showleads->new();
+                }
+            }
+        endif;
+
 		$data = [
-			'leads' => $this->showleads->search_leads($search),
-            'new' => $this->showleads->new(),
+			'leads' => $leads,
+            'new' => $new,
 			'days'=> "Search Result",
 			'title' => 'Search'
 		];
