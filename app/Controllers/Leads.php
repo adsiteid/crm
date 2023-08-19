@@ -72,6 +72,7 @@ class Leads extends BaseController
         $data = [
             'leads' => $leads,
             'new' => $new,
+            'groups' => $this->showgroupsales,
             'days'=> 'Last 30 Days',
             'title' => 'New Leads'
         ];
@@ -252,48 +253,40 @@ class Leads extends BaseController
     }
 
 
-    // 30 
 
-    public function seven()
+    public function indexFilter($days)
     {
-        $leads = $this->showleads->seven();
-        $new = $this->showleads->new();
+
+        if (in_groups('admin')) :
+            $leads = $this->showleads->IndexFilter($days);
+            $new = $this->showleads->newFilter($days);
+        endif;
+
+        if (in_groups('users')) :
+            $id = user()->id;
+            foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+                if ($group['level'] == "admin_group") {
+                    $leads = $this->showleads->IndexFilterAdminGroup($group['groups'],$days);
+                    $new = $this->showleads->newFilterAdminGroup($group['groups'], $days);
+                } elseif ($group['level'] == "admin_project") {
+                    $leads = $this->showleads->IndexFilterAdminProject($group['project'], $days);
+                    $new = $this->showleads->newFilterAdminProject($group['project'], $days);
+                } else {
+                    $leads = $this->showleads->IndexFilter($days);
+                    $new = $this->showleads->newFilter($days);
+                }
+            }
+        endif;
+
         $data = [
             'leads' => $leads,
             'new' => $new,
-            'days'=> 'Last 7 Days',
+            'days' => "Last $days Days",
             'title' => 'Leads'
         ];
         return view('leads/list', $data);
     }
 
-
-    public function month()
-    {
-        $leads = $this->showleads->month();
-        $new = $this->showleads->new();
-        $data = [
-            'leads' => $leads,
-            'new' => $new,
-            'days'=> 'Last 30 Days',
-            'title' => 'Leads'
-        ];
-        return view('leads/list', $data);
-    }
-
-
-    public function ninth()
-    {
-        $leads = $this->showleads->ninth();
-        $new = $this->showleads->new();
-        $data = [
-            'leads' => $leads,
-            'new' => $new,
-            'days'=> 'Last 90 Days',
-            'title' => 'Leads'
-        ];
-        return view('leads/list', $data);
-    }
 
 
     public function rangeList()
@@ -302,10 +295,33 @@ class Leads extends BaseController
 		$startDate =  $this->request->getVar('date_start');
 		$endDate = $this->request->getVar('date_end');
 
+
+        if (in_groups('admin')) :
+            $leads = $this->showleads->rangeList($startDate, $endDate);
+            $new = $this->showleads->newRange($startDate, $endDate);
+        endif;
+
+
+        if (in_groups('users')) :
+            $id = user()->id;
+            foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+                if ($group['level'] == "admin_group") {
+                    $leads = $this->showleads->rangeListAdminGroup($group['groups'], $startDate, $endDate);
+                    $new = $this->showleads->newRangeAdminGroup($group['groups'], $startDate, $endDate);
+                } elseif ($group['level'] == "admin_project") {
+                    $leads = $this->showleads->rangeListAdminProject($group['project'], $startDate, $endDate);
+                    $new = $this->showleads->newRangeAdminProject($group['project'], $startDate, $endDate);
+                } else {
+                    $leads = $this->showleads->rangeList($startDate, $endDate);
+                    $new = $this->showleads->newRange($startDate, $endDate);
+                }
+            }
+        endif;
+
         
 		$data = [
-			'leads' => $this->showleads->rangeList($startDate,$endDate),
-            'new' => $this->showleads->new(),
+			'leads' => $leads,
+            'new' => $new,
 			'days'=> "$startDate - $endDate",
 			'title' => 'Leads'
 		];

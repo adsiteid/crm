@@ -61,8 +61,8 @@ function gantiformat($nomorhp)
 }
 ?>
 <?php
-    $now = date('Y/m/d');
-    $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
+$now = date('Y/m/d');
+$in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 ?>
 
 
@@ -100,10 +100,11 @@ function gantiformat($nomorhp)
                     <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
                         <i class="mdi mdi-calendar"></i><?= $days; ?>
                     </button>
+
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                        <a class="dropdown-item" href="<?=base_url();?>getleads/90">Last 90 Days</a>
-                        <a class="dropdown-item" href="<?=base_url();?>getleads/30">Last 30 Days</a>
-                        <a class="dropdown-item" href="<?=base_url();?>getleads/7">Last 7 Days</a>
+                        <a class="dropdown-item" href="<?= base_url(); ?>getleads/90">Last 90 Days</a>
+                        <a class="dropdown-item" href="<?= base_url(); ?>getleads/30">Last 30 Days</a>
+                        <a class="dropdown-item" href="<?= base_url(); ?>getleads/7">Last 7 Days</a>
                         <a type="button" class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Custom Range</a>
                     </div>
                 </div>
@@ -285,22 +286,22 @@ function gantiformat($nomorhp)
                 </div>
                 <div class="modal-body">
 
-                <div class="row">
-                    <div class="col">
-                        <label class="mb-1">Date Start</label>
-                        <input type="date" class="form-control w-100 mb-3" name="date_start">
+                    <div class="row">
+                        <div class="col">
+                            <label class="mb-1">Date Start</label>
+                            <input type="date" class="form-control w-100 mb-3" name="date_start">
+                        </div>
+                        <div class="col">
+                            <label class="mb-1">Date End</label>
+                            <input type="date" class="form-control w-100 mb-3" name="date_end">
+                        </div>
                     </div>
-                    <div class="col">
-                        <label class="mb-1">Date End</label>
-                        <input type="date" class="form-control w-100 mb-3" name="date_end">
-                    </div>
-                </div>
 
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                     <div class="col-12">
-                    <button class="btn btn-primary w-100" type="submit">Filter</button>
+                        <button class="btn btn-primary w-100" type="submit">Filter</button>
                     </div>
                 </div>
             </div>

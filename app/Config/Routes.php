@@ -53,9 +53,7 @@ $routes->get('/leads/deal', 'Leads::deal');
 $routes->get('/leads/close', 'Leads::close');
 $routes->get('/leads/pending', 'Leads::pending');
 
-$routes->get('/getleads/7', 'Leads::seven');
-$routes->get('/getleads/30', 'Leads::month');
-$routes->get('/getleads/90', 'Leads::ninth');
+$routes->get('/getleads/(:num)', 'Leads::indexFilter/$1');
 
 $routes->get('/getleads/home/(:num)', 'Home::indexFilter/$1');
 $routes->post('/range', 'Home::range');
