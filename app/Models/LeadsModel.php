@@ -72,6 +72,50 @@ class LeadsModel extends Model
     }
 
 
+    public function allFilterAdminGroup($groups,$days)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->groupStart()
+        ->Where("time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+        ->orWhere("time_stamp_close >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+        ->orWhere("time_stamp_pending >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+        ->orWhere("time_stamp_contacted >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+        ->orWhere("time_stamp_visit >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+        ->orWhere("time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+        ->orWhere("time_stamp_reserve >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+        ->orWhere("time_stamp_booking >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
+        $builder->groupEnd();
+
+        $builder->where('groups',$groups);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function allFilterAdminProject($project, $days)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->groupStart()
+        ->Where("time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+        ->orWhere("time_stamp_close >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+        ->orWhere("time_stamp_pending >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+        ->orWhere("time_stamp_contacted >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+        ->orWhere("time_stamp_visit >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+        ->orWhere("time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+        ->orWhere("time_stamp_reserve >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+        ->orWhere("time_stamp_booking >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
+        $builder->groupEnd();
+
+        $builder->where('project', $project);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
 
     public function rangeList($startDate,$endDate)
 
@@ -1150,7 +1194,7 @@ class LeadsModel extends Model
     // }
 
 
-    public function dealOnly()
+    public function dealOnly($days)
     {
 
         $builder = $this->db->table($this->table);
@@ -1166,11 +1210,42 @@ class LeadsModel extends Model
 
         $builder->where('update_status', 'Deal');
         $builder->whereIn('kategori_status', ['Warm', 'Hot','Cold']);
-        $builder->where("time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)");
+        $builder->where("time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
         $builder->orderBy('id DESC');
         $result = $builder->get();
         return $result;
     }
+
+
+    public function dealOnlyAdminGroup($groups,$days)
+    {
+
+        $builder = $this->db->table($this->table);
+
+        $builder->where('groups', $groups);
+        $builder->where('update_status', 'Deal');
+        $builder->whereIn('kategori_status', ['Warm', 'Hot', 'Cold']);
+        $builder->where("time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function dealOnlyAdminProject($project, $days)
+    {
+
+        $builder = $this->db->table($this->table);
+
+        $builder->where('project', $project);
+        $builder->where('update_status', 'Deal');
+        $builder->whereIn('kategori_status', ['Warm', 'Hot', 'Cold']);
+        $builder->where("time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
 
     public function dealOnlyRange($startDate, $endDate)
     {
@@ -1186,6 +1261,38 @@ class LeadsModel extends Model
             $builder->groupEnd();
         endif;
 
+        $builder->where('update_status', 'Deal');
+        $builder->whereIn('kategori_status', ['Warm', 'Hot', 'Cold']);
+        $builder->where('time_stamp_deal >=', $startDate);
+        $builder->where('time_stamp_deal <=', $endDate);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function dealOnlyRangeAdminGroup($groups,$startDate, $endDate)
+    {
+
+        $builder = $this->db->table($this->table);
+
+        $builder->where('groups', $groups);
+        $builder->where('update_status', 'Deal');
+        $builder->whereIn('kategori_status', ['Warm', 'Hot', 'Cold']);
+        $builder->where('time_stamp_deal >=', $startDate);
+        $builder->where('time_stamp_deal <=', $endDate);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function dealOnlyRangeAdminProject($project, $startDate, $endDate)
+    {
+
+        $builder = $this->db->table($this->table);
+
+        $builder->where('project', $project);
         $builder->where('update_status', 'Deal');
         $builder->whereIn('kategori_status', ['Warm', 'Hot', 'Cold']);
         $builder->where('time_stamp_deal >=', $startDate);
@@ -1503,6 +1610,20 @@ class LeadsModel extends Model
         $builder = $this->db->table($this->table);
 
         $builder->where('groups', $groups);
+        $builder->where('kategori_status', 'Booking');
+        $builder->where("time_stamp_booking >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function bookingFilterAdminProject($project, $days)
+    {
+
+        $builder = $this->db->table($this->table);
+
+        $builder->where('project', $project);
         $builder->where('kategori_status', 'Booking');
         $builder->where("time_stamp_booking >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
         $builder->orderBy('id DESC');

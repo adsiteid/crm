@@ -6,6 +6,7 @@ use \App\Models\ProjectModel;
 use \App\Models\LeadsModel;
 use \App\Models\ChartModel;
 use \App\Models\UsersModel;
+use \App\Models\GroupSalesModel;
 use CodeIgniter\I18n\Time;
 
 class Report extends BaseController
@@ -15,6 +16,7 @@ class Report extends BaseController
 	protected $showleads;
 	protected $chartleads;
 	protected $showusers;
+	protected $showgroupsales;
 
 	public function __construct()
 	{
@@ -22,6 +24,7 @@ class Report extends BaseController
 		$this->showleads = new LeadsModel();
 		$this->chartleads = new ChartModel;
 		$this->showusers = new UsersModel;
+		$this->showgroupsales = new GroupSalesModel;
 	}
 
 	/////////////////// REPORT LEADS /////////////////////////
@@ -30,30 +33,132 @@ class Report extends BaseController
 
 	public function leadsFilter($days)
 	{
+
+		if(in_groups('admin')) :
+
+			$leads = $this->showleads->allFilter($days);
+
+			$leadsNew = $this->chartleads->leadsNew($days);
+			$leadsClose = $this->chartleads->leadsClose($days);
+			$leadsPending = $this->chartleads->leadsPending($days);
+			$leadsContacted = $this->chartleads->leadsContacted($days);
+			$leadsVisit = $this->chartleads->leadsVisit($days);
+			$leadsDeal = $this->chartleads->leadsDeal($days);
+			$leadsReserve = $this->chartleads->leadsReserve($days);
+			$leadsBooking = $this->chartleads->leadsBooking($days);
+
+			$new = $this->showleads->newFilter($days);
+			$close = $this->showleads->closeFilter($days);
+			$pending = $this->showleads->pendingFilter($days);
+			$contacted = $this->showleads->contactedFilter($days);
+			$visit = $this->showleads->visitFilter($days);
+			$deal = $this->showleads->dealFilter($days);
+			$dealOnly = $this->showleads->dealOnly($days);
+			$reserve = $this->showleads->reserveFilter($days);
+			$booking = $this->showleads->bookingFilter($days);
+
+		endif;
+
+		if (in_groups('users')) :
+			$id = user()->id;
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "admin_group") {
+
+					$leads = $this->showleads->allFilterAdminGroup($group['groups'],$days);
+
+					$leadsNew = $this->chartleads->leadsNewAdminGroup($group['groups'], $days);
+					$leadsClose = $this->chartleads->leadsCloseAdminGroup($group['groups'], $days);
+					$leadsPending = $this->chartleads->leadsPendingAdminGroup($group['groups'], $days);
+					$leadsContacted = $this->chartleads->leadsContactedAdminGroup($group['groups'], $days);
+					$leadsVisit = $this->chartleads->leadsVisitAdminGroup($group['groups'], $days);
+					$leadsDeal = $this->chartleads->leadsDealAdminGroup($group['groups'], $days);
+					$leadsReserve = $this->chartleads->leadsReserveAdminGroup($group['groups'], $days);
+					$leadsBooking = $this->chartleads->leadsBookingAdminGroup($group['groups'],$days);
+
+					$new = $this->showleads->newFilterAdminGroup($group['groups'], $days);
+					$close = $this->showleads->closeFilterAdminGroup($group['groups'], $days);
+					$pending = $this->showleads->pendingFilterAdminGroup($group['groups'], $days);
+					$contacted = $this->showleads->contactedFilterAdminGroup($group['groups'], $days);
+					$visit = $this->showleads->visitFilterAdminGroup($group['groups'], $days);
+					$deal = $this->showleads->dealFilterAdminGroup($group['groups'], $days);
+					$dealOnly = $this->showleads->dealOnlyAdminGroup($group['groups'],$days);
+					$reserve = $this->showleads->reserveFilterAdminGroup($group['groups'], $days);
+					$booking = $this->showleads->bookingFilterAdminGroup($group['groups'], $days);
+
+				} elseif ($group['level'] == "admin_project") {
+
+					$leads = $this->showleads->allFilterAdminProject($group['project'], $days);
+
+					$leadsNew = $this->chartleads->leadsNewAdminProject($group['project'], $days);
+					$leadsClose = $this->chartleads->leadsCloseAdminProject($group['project'], $days);
+					$leadsPending = $this->chartleads->leadsPendingAdminProject($group['project'], $days);
+					$leadsContacted = $this->chartleads->leadsContactedAdminProject($group['project'], $days);
+					$leadsVisit = $this->chartleads->leadsVisitAdminProject($group['project'], $days);
+					$leadsDeal = $this->chartleads->leadsDealAdminProject($group['project'], $days);
+					$leadsReserve = $this->chartleads->leadsReserveAdminProject($group['project'], $days);
+					$leadsBooking = $this->chartleads->leadsBookingAdminProject($group['project'],$days);
+
+					$new = $this->showleads->newFilterAdminProject($group['project'], $days);
+					$close = $this->showleads->closeFilterAdminProject($group['project'], $days);
+					$pending = $this->showleads->pendingFilterAdminProject($group['project'], $days);
+					$contacted = $this->showleads->contactedFilterAdminProject($group['project'], $days);
+					$visit = $this->showleads->visitFilterAdminProject($group['project'], $days);
+					$deal = $this->showleads->dealFilterAdminProject($group['project'], $days);
+					$dealOnly = $this->showleads->dealOnlyAdminProject($group['project'], $days);
+					$reserve = $this->showleads->reserveFilterAdminProject($group['project'], $days);
+					$booking = $this->showleads->bookingFilterAdminProject($group['project'], $days);
+					
+				} else {
+					$leads = $this->showleads->allFilter($days);
+
+					$leadsNew = $this->chartleads->leadsNew($days);
+					$leadsClose = $this->chartleads->leadsClose($days);
+					$leadsPending = $this->chartleads->leadsPending($days);
+					$leadsContacted = $this->chartleads->leadsContacted($days);
+					$leadsVisit = $this->chartleads->leadsVisit($days);
+					$leadsDeal = $this->chartleads->leadsDeal($days);
+					$leadsReserve = $this->chartleads->leadsReserve($days);
+					$leadsBooking = $this->chartleads->leadsBooking($days);
+
+					$new = $this->showleads->newFilter($days);
+					$close = $this->showleads->closeFilter($days);
+					$pending = $this->showleads->pendingFilter($days);
+					$contacted = $this->showleads->contactedFilter($days);
+					$visit = $this->showleads->visitFilter($days);
+					$deal = $this->showleads->dealFilter($days);
+					$dealOnly = $this->showleads->dealOnly($days);
+					$reserve = $this->showleads->reserveFilter($days);
+					$booking = $this->showleads->bookingFilter($days);
+
+				}
+			}
+		endif;
+
 		$data = [
 
+			'leads' => $leads,
+
 			// chart
-			'leadsNew' => $this->chartleads->leadsNew($days),
-			'leadsClose' => $this->chartleads->leadsClose($days),
-			'leadsPending' => $this->chartleads->leadsPending($days),
-			'leadsContacted' => $this->chartleads->leadsContacted($days),
-			'leadsVisit' => $this->chartleads->leadsVisit($days),
-			'leadsDeal' => $this->chartleads->leadsDeal($days),
-			'leadsReserve' => $this->chartleads->leadsReserve($days),
-			'leadsBooking' => $this->chartleads->leadsBooking($days),
+			'leadsNew' => $leadsNew,
+			'leadsClose' => $leadsClose,
+			'leadsPending' => $leadsPending,
+			'leadsContacted' => $leadsContacted,
+			'leadsVisit' => $leadsVisit,
+			'leadsDeal' => $leadsDeal,
+			'leadsReserve' => $leadsReserve,
+			'leadsBooking' => $leadsBooking,
 			// end chart
 
-			'leads' => $this->showleads->allFilter($days),
 			// 'leads' => $this->showleads->all(),
-			'new' => $this->showleads->newFilter($days),
-			'close' =>  $this->showleads->closeFilter($days),
-			'pending' => $this->showleads->pendingFilter($days),
-			'contacted' => $this->showleads->contactedFilter($days),
-			'visit' => $this->showleads->visitFilter($days),
-			'deal' => $this->showleads->dealFilter($days),
-			'dealOnly' => $this->showleads->dealOnly($days),
-			'reserve' => $this->showleads->reserveFilter($days),
-			'booking' => $this->showleads->bookingFilter($days),
+			'new' => $new,
+			'close' =>  $close,
+			'pending' => $pending,
+			'contacted' => $contacted,
+			'visit' => $visit,
+			'deal' => $deal,
+			'dealOnly' => $dealOnly,
+			'reserve' => $reserve,
+			'booking' => $booking,
 			'user_group' => $this->showusers,
 			'days' => "Last $days Days",
 			'title' => 'Report Leads'
