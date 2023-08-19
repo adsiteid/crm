@@ -151,40 +151,40 @@ class Home extends BaseController
 	}
 
 
-	public function index30()
-	{
+	// public function index30()
+	// {
 
-		$data = [
-			'new' => $this->showleads->new('30'),
-			'contacted' => $this->showleads->contacted('30'),
-			'close' => $this->showleads->close('30'),
-			'pending' => $this->showleads->pending('30'),
-			'visit' => $this->showleads->visit('30'),
-			'deal' => $this->showleads->deal('30'),
-			'event' => $this->showevent->acara(),
-			'days'=> 'Last 30 Days',
-			'title' => 'Dashboard'
-		];
-		return view('index', $data);
-	}
+	// 	$data = [
+	// 		'new' => $this->showleads->new('30'),
+	// 		'contacted' => $this->showleads->contacted('30'),
+	// 		'close' => $this->showleads->close('30'),
+	// 		'pending' => $this->showleads->pending('30'),
+	// 		'visit' => $this->showleads->visit('30'),
+	// 		'deal' => $this->showleads->deal('30'),
+	// 		'event' => $this->showevent->acara(),
+	// 		'days'=> 'Last 30 Days',
+	// 		'title' => 'Dashboard'
+	// 	];
+	// 	return view('index', $data);
+	// }
 
 
-	public function index90()
-	{
+	// public function index90()
+	// {
 
-		$data = [
-			'new' => $this->showleads->new('90'),
-			'contacted' => $this->showleads->contacted('90'),
-			'close' => $this->showleads->close('90'),
-			'pending' => $this->showleads->pending('90'),
-			'visit' => $this->showleads->visit('90'),
-			'deal' => $this->showleads->deal('90'),
-			'event' => $this->showevent->acara(),
-			'days'=> 'Last 90 Days',
-			'title' => 'Dashboard'
-		];
-		return view('index', $data);
-	}
+	// 	$data = [
+	// 		'new' => $this->showleads->new('90'),
+	// 		'contacted' => $this->showleads->contacted('90'),
+	// 		'close' => $this->showleads->close('90'),
+	// 		'pending' => $this->showleads->pending('90'),
+	// 		'visit' => $this->showleads->visit('90'),
+	// 		'deal' => $this->showleads->deal('90'),
+	// 		'event' => $this->showevent->acara(),
+	// 		'days'=> 'Last 90 Days',
+	// 		'title' => 'Dashboard'
+	// 	];
+	// 	return view('index', $data);
+	// }
 
 
 
@@ -194,14 +194,57 @@ class Home extends BaseController
 		$startDate =  $this->request->getVar('date_start');
 		$endDate = $this->request->getVar('date_end');
 
+		if (in_groups('admin')) :
+			$new = $this->showleads->newRange($startDate, $endDate);
+			$contacted = $this->showleads->contactedRange($startDate, $endDate);
+			$close = $this->showleads->closeRange($startDate, $endDate);
+			$pending = $this->showleads->pendingRange($startDate, $endDate);
+			$visit = $this->showleads->visitRange($startDate, $endDate);
+			$deal = $this->showleads->dealRange($startDate, $endDate);
+			$events = $this->showevent->events();
+		endif;
+
+
+		if (in_groups('users')) :
+			$id = user()->id;
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "admin_group") {
+					$new = $this->showleads->newRangeAdminGroup($group['groups'],$startDate, $endDate);
+					$contacted = $this->showleads->contactedRangeAdminGroup($group['groups'],$startDate, $endDate);
+					$close = $this->showleads->closeRangeAdminGroup($group['groups'],$startDate, $endDate);
+					$pending = $this->showleads->pendingRangeAdminGroup($group['groups'],$startDate, $endDate);
+					$visit = $this->showleads->visitRangeAdminGroup($group['groups'],$startDate, $endDate);
+					$deal = $this->showleads->dealRangeAdminGroup($group['groups'],$startDate, $endDate);
+					$events = $this->showevent->eventsAdminGroup($group['groups']);
+				} elseif ($group['level'] == "admin_project") {
+					$new = $this->showleads->newRangeAdminProject($group['project'],$startDate, $endDate);
+					$contacted = $this->showleads->contactedRangeAdminProject($group['project'],$startDate, $endDate);
+					$close = $this->showleads->closeRangeAdminProject($group['project'],$startDate, $endDate);
+					$pending = $this->showleads->pendingRangeAdminProject($group['project'],$startDate, $endDate);
+					$visit = $this->showleads->visitRangeAdminProject($group['project'],$startDate, $endDate);
+					$deal = $this->showleads->dealRangeAdminProject($group['project'],$startDate, $endDate);
+					$events = $this->showevent->eventsAdminProject($group['groups'], $group['project']);
+				} else {
+					$new = $this->showleads->newRange($startDate, $endDate);
+					$contacted = $this->showleads->contactedRange($startDate, $endDate);
+					$close = $this->showleads->closeRange($startDate, $endDate);
+					$pending = $this->showleads->pendingRange($startDate, $endDate);
+					$visit = $this->showleads->visitRange($startDate, $endDate);
+					$deal = $this->showleads->dealRange($startDate, $endDate);
+					$events = $this->showevent->events($group['groups']);
+				}
+			}
+		endif;
+
+
 		$data = [
-			'new' => $this->showleads->newRange($startDate,$endDate),
-			'close' => $this->showleads->closeRange($startDate,$endDate),
-			'pending' => $this->showleads->pendingRange($startDate,$endDate),
-			'contacted' => $this->showleads->contactedRange($startDate,$endDate),
-			'visit' => $this->showleads->visitRange($startDate,$endDate),
-			'deal' => $this->showleads->dealRange($startDate,$endDate),
-			'event' => $this->showevent->acara(),
+			'new' => $new,
+			'close' => $close,
+			'pending' => $pending,
+			'contacted' => $contacted,
+			'visit' => $visit,
+			'deal' => $deal,
+			'event' => $events,
 			'tipe' => 'range',
 			'days'=> "$startDate - $endDate",
 			'title' => 'Dashboard'

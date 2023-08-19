@@ -282,6 +282,36 @@ class LeadsModel extends Model
     }
 
 
+    public function newRangeAdminGroup($groups,$startDate, $endDate)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->where('groups', $groups);
+        $builder->where('update_status', 'New');
+        $builder->whereIn('kategori_status', ['New', 'Warm', 'Hot']);
+        $builder->where('time_stamp_new >=', $startDate);
+        $builder->where('time_stamp_new <=', $endDate);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function newRangeAdminProject($project, $startDate, $endDate)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->where('project', $project);
+        $builder->where('update_status', 'New');
+        $builder->whereIn('kategori_status', ['New', 'Warm', 'Hot']);
+        $builder->where('time_stamp_new >=', $startDate);
+        $builder->where('time_stamp_new <=', $endDate);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
 
     public function contacted()
     {
@@ -420,6 +450,32 @@ class LeadsModel extends Model
             $builder->groupEnd();
         endif;
 
+        $builder->where('update_status', 'Contacted');
+        $builder->where('time_stamp_contacted >=', $startDate);
+        $builder->where('time_stamp_contacted <=', $endDate);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+    public function contactedRangeAdminGroup($groups,$startDate, $endDate)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->where('groups', $groups);
+        $builder->where('update_status', 'Contacted');
+        $builder->where('time_stamp_contacted >=', $startDate);
+        $builder->where('time_stamp_contacted <=', $endDate);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+    public function contactedRangeAdminProject($project, $startDate, $endDate)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->where('project', $project);
         $builder->where('update_status', 'Contacted');
         $builder->where('time_stamp_contacted >=', $startDate);
         $builder->where('time_stamp_contacted <=', $endDate);
@@ -577,6 +633,35 @@ class LeadsModel extends Model
         return $result;
     }
 
+
+    public function closeRangeAdminGroup($groups,$startDate, $endDate)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->where('groups', $groups);
+        $builder->whereIn('update_status', ['Close', 'Invalid']);
+        $builder->where('time_stamp_close >=', $startDate);
+        $builder->where('time_stamp_close <=', $endDate);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function closeRangeAdminProject($project, $startDate, $endDate)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->where('project', $project);
+        $builder->whereIn('update_status', ['Close', 'Invalid']);
+        $builder->where('time_stamp_close >=', $startDate);
+        $builder->where('time_stamp_close <=', $endDate);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
     public function pending()
     {
         $builder = $this->db->table($this->table);
@@ -727,6 +812,33 @@ class LeadsModel extends Model
         return $result;
     }
 
+    public function pendingRangeAdminGroup($groups,$startDate, $endDate)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->where('groups', $groups);
+        $builder->whereIn('update_status', ['Pending']);
+        $builder->where('time_stamp_pending >=', $startDate);
+        $builder->where('time_stamp_pending <=', $endDate);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function pendingRangeAdminProject($project, $startDate, $endDate)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->where('project', $project);
+        $builder->whereIn('update_status', ['Pending']);
+        $builder->where('time_stamp_pending >=', $startDate);
+        $builder->where('time_stamp_pending <=', $endDate);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
 
     public function visit()
     {
@@ -866,6 +978,34 @@ class LeadsModel extends Model
             $builder->groupEnd();
         endif;
 
+        $builder->where('update_status', 'Visit');
+        $builder->where('time_stamp_visit >=', $startDate);
+        $builder->where('time_stamp_visit <=', $endDate);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function visitRangeAdminGroup($groups,$startDate, $endDate)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->where('groups', $groups);
+        $builder->where('update_status', 'Visit');
+        $builder->where('time_stamp_visit >=', $startDate);
+        $builder->where('time_stamp_visit <=', $endDate);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function visitRangeAdminProject($project, $startDate, $endDate)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->where('project', $project);
         $builder->where('update_status', 'Visit');
         $builder->where('time_stamp_visit >=', $startDate);
         $builder->where('time_stamp_visit <=', $endDate);
@@ -1069,6 +1209,33 @@ class LeadsModel extends Model
             $builder->groupEnd();
         endif;
 
+        $builder->where('update_status', 'Deal');
+        $builder->where('time_stamp_deal >=', $startDate);
+        $builder->where('time_stamp_deal <=', $endDate);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function dealRangeAdminGroup($groups,$startDate, $endDate)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->where('groups', $groups);
+        $builder->where('update_status', 'Deal');
+        $builder->where('time_stamp_deal >=', $startDate);
+        $builder->where('time_stamp_deal <=', $endDate);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+    public function dealRangeAdminProject($project, $startDate, $endDate)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->where('project', $project);
         $builder->where('update_status', 'Deal');
         $builder->where('time_stamp_deal >=', $startDate);
         $builder->where('time_stamp_deal <=', $endDate);
