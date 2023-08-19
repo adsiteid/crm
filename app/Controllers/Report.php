@@ -175,27 +175,104 @@ class Report extends BaseController
 		$startDate =  $this->request->getVar('date_start');
 		$endDate = $this->request->getVar('date_end');
 
+		if (in_groups('admin')) :
+		$leads = $this->showleads->rangeList($startDate, $endDate);
+		$leadsNew = $this->chartleads->leadsNewRange($startDate, $endDate);
+		$leadsClose = $this->chartleads->leadsCloseRange($startDate, $endDate);
+		$leadsPending = $this->chartleads->leadsPendingRange($startDate, $endDate);
+		$leadsContacted = $this->chartleads->leadsContactedRange($startDate, $endDate);
+		$leadsVisit = $this->chartleads->leadsVisitRange($startDate, $endDate);
+		$leadsDeal = $this->chartleads->leadsDealRange($startDate, $endDate);
+		$leadsReserve = $this->chartleads->leadsReserveRange($startDate, $endDate);
+		$leadsBooking = $this->chartleads->leadsBookingRange($startDate, $endDate);
+
+		$new = $this->showleads->newRange($startDate, $endDate);
+		$close = $this->showleads->closeRange($startDate, $endDate);
+		$pending = $this->showleads->pendingRange($startDate, $endDate);
+		$contacted = $this->showleads->contactedRange($startDate, $endDate);
+		$visit = $this->showleads->visitRange($startDate, $endDate);
+		$deal = $this->showleads->dealRange($startDate, $endDate);
+		$dealOnly = $this->showleads->dealOnlyRange($startDate, $endDate);
+		$reserve = $this->showleads->reserveRange($startDate, $endDate);
+		$booking = $this->showleads->bookingRange($startDate, $endDate);
+		endif;
+
+		if (in_groups('users')) :
+
+			$id = user()->id;
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "admin_group") {
+
+					$leads = $this->showleads->rangeListAdminGroup($group['groups'],$startDate, $endDate);
+					$leadsNew = $this->chartleads-> leadsNewRangeAdminGroup($group['groups'], $startDate, $endDate);
+					$leadsClose = $this->chartleads-> leadsCloseRangeAdminGroup($group['groups'], $startDate, $endDate);
+					$leadsPending = $this->chartleads-> leadsPendingRangeAdminGroup($group['groups'], $startDate, $endDate);
+					$leadsContacted = $this->chartleads-> leadsContactedRangeAdminGroup($group['groups'], $startDate, $endDate);
+					$leadsVisit = $this->chartleads-> leadsVisitRangeAdminGroup($group['groups'], $startDate, $endDate);
+					$leadsDeal = $this->chartleads-> leadsDealRangeAdminGroup($group['groups'], $startDate, $endDate);
+					$leadsReserve = $this->chartleads-> leadsReserveRangeAdminGroup($group['groups'], $startDate, $endDate);
+					$leadsBooking = $this->chartleads-> leadsBookingRangeAdminGroup($group['groups'], $startDate, $endDate);
+
+					$new = $this->showleads-> newRangeAdminGroup($group['groups'], $startDate, $endDate);
+					$close = $this->showleads-> closeRangeAdminGroup($group['groups'], $startDate, $endDate);
+					$pending = $this->showleads-> pendingRangeAdminGroup($group['groups'], $startDate, $endDate);
+					$contacted = $this->showleads-> contactedRangeAdminGroup($group['groups'], $startDate, $endDate);
+					$visit = $this->showleads-> visitRangeAdminGroup($group['groups'], $startDate, $endDate);
+					$deal = $this->showleads-> dealRangeAdminGroup($group['groups'], $startDate, $endDate);
+					$dealOnly = $this->showleads-> dealOnlyRangeAdminGroup($group['groups'], $startDate, $endDate);
+					$reserve = $this->showleads-> reserveRangeAdminGroup($group['groups'], $startDate, $endDate);
+					$booking = $this->showleads-> bookingRangeAdminGroup($group['groups'], $startDate, $endDate);
+
+				}elseif ($group['level'] == "admin_project"){
+
+
+					$leads = $this->showleads->rangeListAdminProject($group['project'], $startDate, $endDate);
+					$leadsNew = $this->chartleads->leadsNewRangeAdminProject($group['project'], $startDate, $endDate);
+					$leadsClose = $this->chartleads->leadsCloseRangeAdminProject($group['project'], $startDate, $endDate);
+					$leadsPending = $this->chartleads->leadsPendingRangeAdminProject($group['project'], $startDate, $endDate);
+					$leadsContacted = $this->chartleads->leadsContactedRangeAdminProject($group['project'], $startDate, $endDate);
+					$leadsVisit = $this->chartleads->leadsVisitRangeAdminProject($group['project'], $startDate, $endDate);
+					$leadsDeal = $this->chartleads->leadsDealRangeAdminProject($group['project'], $startDate, $endDate);
+					$leadsReserve = $this->chartleads->leadsReserveRangeAdminProject($group['project'], $startDate, $endDate);
+					$leadsBooking = $this->chartleads->leadsBookingRangeAdminProject($group['project'], $startDate, $endDate);
+
+					$new = $this->showleads->newRangeAdminProject($group['project'], $startDate, $endDate);
+					$close = $this->showleads->closeRangeAdminProject($group['project'], $startDate, $endDate);
+					$pending = $this->showleads->pendingRangeAdminProject($group['project'], $startDate, $endDate);
+					$contacted = $this->showleads->contactedRangeAdminProject($group['project'], $startDate, $endDate);
+					$visit = $this->showleads->visitRangeAdminProject($group['project'], $startDate, $endDate);
+					$deal = $this->showleads->dealRangeAdminProject($group['project'], $startDate, $endDate);
+					$dealOnly = $this->showleads->dealOnlyRangeAdminProject($group['project'], $startDate, $endDate);
+					$reserve = $this->showleads->reserveRangeAdminProject($group['project'], $startDate, $endDate);
+					$booking = $this->showleads->bookingRangeAdminProject($group['project'], $startDate, $endDate);
+
+				}else{
+
+				}
+			}
+		endif;
+
 		$data = [
 
-				'leads' => $this->showleads->rangeList($startDate, $endDate),
-				'leadsNew' => $this->chartleads->leadsNewRange($startDate, $endDate),
-				'leadsClose' => $this->chartleads->leadsCloseRange($startDate, $endDate),
-				'leadsPending' => $this->chartleads->leadsPendingRange($startDate, $endDate),
-				'leadsContacted' => $this->chartleads->leadsContactedRange($startDate, $endDate),
-				'leadsVisit' => $this->chartleads->leadsVisitRange($startDate, $endDate),
-				'leadsDeal' => $this->chartleads->leadsDealRange($startDate, $endDate),
-				'leadsReserve' => $this->chartleads->leadsReserveRange($startDate, $endDate),
-				'leadsBooking' => $this->chartleads->leadsBookingRange($startDate, $endDate),
+				'leads' => $leads,
+				'leadsNew' => $leadsNew,
+				'leadsClose' => $leadsClose,
+				'leadsPending' => $leadsPending,
+				'leadsContacted' => $leadsContacted,
+				'leadsVisit' => $leadsVisit,
+				'leadsDeal' => $leadsDeal,
+				'leadsReserve' => $leadsReserve,
+				'leadsBooking' => $leadsBooking,
 
-				'new' => $this->showleads->newRange($startDate, $endDate),
-				'close' => $this->showleads->closeRange($startDate, $endDate),
-				'pending' => $this->showleads->pendingRange($startDate, $endDate),
-				'contacted' => $this->showleads->contactedRange($startDate, $endDate),
-				'visit' => $this->showleads->visitRange($startDate, $endDate),
-				'deal' => $this->showleads->dealRange($startDate, $endDate),
-				'dealOnly' => $this->showleads->dealOnlyRange($startDate, $endDate),
-				'reserve' => $this->showleads->reserveRange($startDate, $endDate),
-				'booking' => $this->showleads->bookingRange($startDate, $endDate),
+				'new' => $new,
+				'close' => $close,
+				'pending' => $pending,
+				'contacted' => $contacted,
+				'visit' => $visit,
+				'deal' => $deal,
+				'dealOnly' => $dealOnly,
+				'reserve' => $reserve,
+				'booking' => $booking,
 				'user_group' => $this->showusers,
 				'days' => "$startDate - $endDate",
 				'title' => 'Report Leads'

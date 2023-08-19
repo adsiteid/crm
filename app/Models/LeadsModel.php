@@ -1526,6 +1526,34 @@ class LeadsModel extends Model
     }
 
 
+    public function reserveRangeAdminGroup($groups,$startDate, $endDate)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->where('groups', $groups);
+        $builder->where('kategori_status', 'Reserve');
+        $builder->where('time_stamp_reserve >=', $startDate);
+        $builder->where('time_stamp_reserve <=', $endDate);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function reserveRangeAdminProject($project, $startDate, $endDate)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->where('project', $project);
+        $builder->where('kategori_status', 'Reserve');
+        $builder->where('time_stamp_reserve >=', $startDate);
+        $builder->where('time_stamp_reserve <=', $endDate);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
     public function booking()
     {
         $builder = $this->db->table($this->table);
@@ -1653,6 +1681,34 @@ class LeadsModel extends Model
         return $result;
     }
 
+
+
+    public function bookingRangeAdminGroup($groups,$startDate, $endDate)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->where('groups', $groups);
+        $builder->where('kategori_status', 'Booking');
+        $builder->where('time_stamp_booking >=', $startDate);
+        $builder->where('time_stamp_booking <=', $endDate);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function bookingRangeAdminProject($project, $startDate, $endDate)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->where('project', $project);
+        $builder->where('kategori_status', 'Booking');
+        $builder->where('time_stamp_booking >=', $startDate);
+        $builder->where('time_stamp_booking <=', $endDate);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
 
 
     //detail leads
