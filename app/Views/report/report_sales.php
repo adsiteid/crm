@@ -134,7 +134,46 @@
 
                             <?php $no = 1; ?>
                             <?php foreach ($sales->getResultArray() as $row) :
+
+
+                                foreach ($group->user($row['id_user'])->getResultArray() as $grp) {
+
+                                    if ($grp['level'] == "admin_group") {
+                                        $newleads = $count->salesNewAdminGroup($grp['groups']);
+                                        $new_close = $count->salesCloseAdminGroup($grp['groups']);
+                                        $new_pending = $count->salesPendingAdminGroup($grp['groups']);
+                                        $contacted = $count->salesContactedAdminGroup($grp['groups']);
+                                        $visit = $count->salesVisitAdminGroup($grp['groups']);
+                                        $deal = $count->salesDealAdminGroup($grp['groups']);
+                                        $reserve = $count->salesReserveAdminGroup($grp['groups']);
+                                        $booking = $count->salesBookingAdminGroup($grp['groups']);
+                                    } elseif ($grp['level'] == "admin_project") {
+                                        $newleads = $count->salesNewAdminProject($grp['project']);
+                                        $new_close = $count->salesCloseAdminProject($grp['project']);
+                                        $new_pending = $count->salesPendingAdminProject($grp['project']);
+                                        $contacted = $count->salesContactedAdminProject($grp['project']);
+                                        $visit = $count->salesVisitAdminProject($grp['project']);
+                                        $deal = $count->salesDealAdminProject($grp['project']);
+                                        $reserve = $count->salesReserveAdminProject($grp['project']);
+                                        $booking = $count->salesBookingAdminProject($grp['project']);
+                                        // $all = $count->salesAll($row['username'])->getNumRows();
+                                    } else {
+                                        $newleads = $count->salesNew($row['id_user']);
+                                        $new_close = $count->salesClose($row['id_user']);
+                                        $new_pending = $count->salesPending($row['id_user']);
+                                        $contacted = $count->salesContacted($row['id_user']);
+                                        $visit = $count->salesVisit($row['id_user']);
+                                        $deal = $count->salesDeal($row['id_user']);
+                                        $reserve = $count->salesReserve($row['id_user']);
+                                        $booking = $count->salesBooking($row['id_user']);
+                                    }
+                                }
+
+
                             ?>
+
+
+                               
 
 
                                 <!-- list-item -->
@@ -160,31 +199,31 @@
                                     </td>
 
                                     <td>
-                                        <? //= $new->getNumRows(); 
+                                        <?= $newleads->getNumRows(); 
                                         ?>
                                     </td>
 
                                     <td>
-                                        <? //= $contacted->getNumRows(); 
+                                        <?= $contacted->getNumRows(); 
                                         ?>
                                     </td>
 
                                     <td>
-                                        <? //= $visit->getNumRows(); 
+                                        <?= $visit->getNumRows(); 
                                         ?>
                                     </td>
 
                                     <td>
-                                        <? //= $deal->getNumRows(); 
+                                        <?= $deal->getNumRows(); 
                                         ?>
                                     </td>
 
                                     <td>
-                                        <? //= $reserve->getNumRows(); 
+                                        <?= $reserve->getNumRows(); 
                                         ?>
                                     </td>
                                     <td>
-                                        <? //= $booking->getNumRows(); 
+                                        <?= $booking->getNumRows(); 
                                         ?>
                                     </td>
                                     <td>
@@ -208,10 +247,6 @@
 
                                         ?>
                                     </td>
-
-                                    <!-- <td>
-                                      
-                                    </td> -->
 
                                 </tr>
                             <?php endforeach; ?>

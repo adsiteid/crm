@@ -1776,9 +1776,6 @@ class LeadsModel extends Model
             ->orWhere('general_manager', $id);
         $builder->groupEnd();
 
-
-        // $builder->where('update_status', 'New');
-        // $builder->whereIn('kategori_status', ['New', 'Warm', 'Hot']);
         $builder->where('time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
         $builder->orderBy('id DESC');
         $result = $builder->get();
