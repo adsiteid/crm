@@ -586,7 +586,7 @@ class Report extends BaseController
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 				if ($group['level'] == "admin_group") {
 					$new = $this->showleads->newAdminGroup($group['groups']);
-					$sales = $this->showgroupsales->groups($group['groups']);
+					$sales = $this->showgroupsales->group_report($group['groups']);
 				} elseif ($group['level'] == "admin_project") {
 					$new = $this->showleads->newAdminProject($group['project']);
 					$sales = $this->showgroupsales->project($group['project']);

@@ -20,6 +20,15 @@ class GroupSalesModel extends Model
         return $result;
     }
 
+    public function group_report($id_groups)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('groups', $id_groups);
+        $builder->where('level', 'sales');
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
 
     public function group($groups,$project)
     {
@@ -32,7 +41,7 @@ class GroupSalesModel extends Model
             ->Where('groups', $groups)
             ->orWhere('project', $project);
         $builder->groupEnd();
-
+        $builder->where('level', 'sales');
         $builder->orderBy('id DESC');
         $result = $builder->get();
         return $result;
@@ -42,6 +51,7 @@ class GroupSalesModel extends Model
     {
         $builder = $this->db->table($this->table);
         $builder->where('project', $id_project);
+        $builder->where('level', 'sales');
         $builder->orderBy('id DESC');
         $result = $builder->get();
         return $result;
