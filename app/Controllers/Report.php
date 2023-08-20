@@ -503,6 +503,7 @@ class Report extends BaseController
 		$data = [
 			'new' => $this->showleads->new(),
 			'source' => $this->chartleads,
+			'group' => $this->showgroupsales,
 			'count' => "$count",
 			'title' => 'Report'
 		];
@@ -518,6 +519,7 @@ class Report extends BaseController
 
 		$data = [
 			'new' => $this->showleads->new(),
+			'group' => $this->showgroupsales,
 			'source' => $this->chartleads,
 			'startDate' => $startDate,
 			'endDate' => $endDate,
