@@ -183,7 +183,7 @@
             data: [
                 <?php
                 foreach ($leads->getResultArray() as $lproject) {
-                    echo $projects->getNumRows() . ',';
+                    echo $project->projectRange($lproject['project'],$startDate, $endDate)->getNumRows() . ',';
                 }
                 ?>
             ]
@@ -232,7 +232,7 @@
             data: [
                 <?php
                 foreach ($leads->getResultArray() as $lproject) {
-                    echo $projects->getNumRows() . ',';
+                    echo $project->projectRange($lproject['project'],$startDate, $endDate)->getNumRows() . ',';
                 }
                 ?>
             ]
