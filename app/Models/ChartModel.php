@@ -858,15 +858,6 @@ class ChartModel extends Model
         $builder = $this->db->table($this->table);
         $builder->where('project', $project);
 
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
-            $builder->groupEnd();
-        endif;
-
         $builder->groupStart()
         ->Where("time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL $filter DAY)")
         ->orWhere("time_stamp_close >= DATE_SUB(CURDATE(), INTERVAL $filter DAY)")
@@ -882,7 +873,6 @@ class ChartModel extends Model
         $result = $builder->get();
         return $result;
     }
-
 
 
     public function projectRange($project,$startDate, $endDate)
@@ -1428,6 +1418,79 @@ class ChartModel extends Model
         $result = $builder->get();
         return $result;
     }
+
+
+    public function search_report_admin_group($groups,$search)
+    {
+        $builder = $this->db->table($this->table)
+            // $builder->select('*');
+            ->groupStart()
+            ->Like('nama_leads', $search)
+            ->orLike('alamat', $search)
+            ->orLike('nomor_kontak', $search)
+            ->orLike('email', $search)
+            ->orLike('project', $search)
+            ->orLike('sumber_leads', $search)
+            ->orLike('general_manager', $search)
+            ->orLike('manager', $search)
+            ->orLike('sales', $search)
+            ->orLike('kategori_status', $search)
+            ->orLike('update_status', $search)
+            ->orLike('time_stamp_new', $search)
+            ->orLike('time_stamp_invalid', $search)
+            ->orLike('time_stamp_close', $search)
+            ->orLike('time_stamp_contacted', $search)
+            ->orLike('time_stamp_visit', $search)
+            ->orLike('time_stamp_deal', $search)
+            ->orLike('time_stamp_reserve', $search)
+            ->orLike('time_stamp_booking', $search)
+            ->orLike('reserve', $search)
+            ->orLike('booking', $search)
+            ->orLike('catatan', $search)
+            ->groupEnd();
+
+        $builder->where('groups',$groups);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function search_report_admin_project($project, $search)
+    {
+        $builder = $this->db->table($this->table)
+            // $builder->select('*');
+            ->groupStart()
+            ->Like('nama_leads', $search)
+            ->orLike('alamat', $search)
+            ->orLike('nomor_kontak', $search)
+            ->orLike('email', $search)
+            ->orLike('project', $search)
+            ->orLike('sumber_leads', $search)
+            ->orLike('general_manager', $search)
+            ->orLike('manager', $search)
+            ->orLike('sales', $search)
+            ->orLike('kategori_status', $search)
+            ->orLike('update_status', $search)
+            ->orLike('time_stamp_new', $search)
+            ->orLike('time_stamp_invalid', $search)
+            ->orLike('time_stamp_close', $search)
+            ->orLike('time_stamp_contacted', $search)
+            ->orLike('time_stamp_visit', $search)
+            ->orLike('time_stamp_deal', $search)
+            ->orLike('time_stamp_reserve', $search)
+            ->orLike('time_stamp_booking', $search)
+            ->orLike('reserve', $search)
+            ->orLike('booking', $search)
+            ->orLike('catatan', $search)
+            ->groupEnd();
+
+        $builder->where('project', $project);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
 
 
 

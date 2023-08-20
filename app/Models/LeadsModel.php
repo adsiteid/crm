@@ -2323,5 +2323,98 @@ class LeadsModel extends Model
         return $result;
     }
 
+    public function projectFilter($days)
+    {
+        $builder = $this->db->table($this->table);
+
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id);
+            $builder->groupEnd();
+        endif;
+
+        $builder->groupStart()
+            ->where("time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+            ->orWhere("time_stamp_close >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+            ->orWhere("time_stamp_pending >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+            ->orWhere("time_stamp_contacted >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+            ->orWhere("time_stamp_visit >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+            ->orWhere("time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+            ->orWhere("time_stamp_reserve >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+            ->orWhere("time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
+        $builder->groupEnd();
+
+        $builder->groupBy('project', 'desc');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function projectAdminGroup($groups)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->where('groups', $groups);
+        $builder->groupBy('project', 'desc');
+        $result = $builder->get();
+        return $result;
+    }
+
+    public function projectFilterAdminGroup($groups,$days)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->groupStart()
+            ->where("time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+            ->orWhere("time_stamp_close >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+            ->orWhere("time_stamp_pending >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+            ->orWhere("time_stamp_contacted >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+            ->orWhere("time_stamp_visit >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+            ->orWhere("time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+            ->orWhere("time_stamp_reserve >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+            ->orWhere("time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
+        $builder->groupEnd();
+
+        $builder->where('groups', $groups);
+        $builder->groupBy('project', 'desc');
+        $result = $builder->get();
+        return $result;
+    }
+
+    public function projectAdminProject($project)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->where('project', $project);
+        $builder->groupBy('project', 'desc');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function projectFilterAdminProject($project, $days)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->groupStart()
+            ->where("time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+            ->orWhere("time_stamp_close >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+            ->orWhere("time_stamp_pending >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+            ->orWhere("time_stamp_contacted >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+            ->orWhere("time_stamp_visit >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+            ->orWhere("time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+            ->orWhere("time_stamp_reserve >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
+            ->orWhere("time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
+        $builder->groupEnd();
+
+        $builder->where('project', $project);
+        $builder->groupBy('project', 'desc');
+        $result = $builder->get();
+        return $result;
+    }
+
 
 }

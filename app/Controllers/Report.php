@@ -287,26 +287,128 @@ class Report extends BaseController
 
 		$search =  $this->request->getVar('search_report');
 
-		$data = [
-			'leads' => $this->chartleads->search_report($search),
-			'leadsNew' => $this->chartleads->leadsNew('30'),
-			'leadsClose' => $this->chartleads->leadsClose('30'),
-			'leadsPending' => $this->chartleads->leadsClose('30'),
-			'leadsContacted' => $this->chartleads->leadsContacted('30'),
-			'leadsVisit' => $this->chartleads->leadsVisit('30'),
-			'leadsDeal' => $this->chartleads->leadsDeal('30'),
-			'leadsReserve' => $this->chartleads->leadsReserve('30'),
-			'leadsBooking' => $this->chartleads->leadsBooking('30'),
 
-			'new' => $this->showleads->newFilter('30'),
-			'close' =>  $this->showleads->closeFilter('30'),
-			'pending' => $this->showleads->pendingFilter('30'),
-			'contacted' => $this->showleads->contactedFilter('30'),
-			'visit' => $this->showleads->visitFilter('30'),
-			'deal' => $this->showleads->dealFilter('30'),
-			'dealOnly' => $this->showleads->dealOnly('30'),
-			'reserve' => $this->showleads->reserveFilter('30'),
-			'booking' => $this->showleads->bookingFilter('30'),
+
+		if (in_groups('admin')) :
+
+			$leads = $this->chartleads->search_report($search);
+
+			$leadsNew = $this->chartleads->leadsNew('30');
+			$leadsClose = $this->chartleads->leadsClose('30');
+			$leadsPending = $this->chartleads->leadsPending('30');
+			$leadsContacted = $this->chartleads->leadsContacted('30');
+			$leadsVisit = $this->chartleads->leadsVisit('30');
+			$leadsDeal = $this->chartleads->leadsDeal('30');
+			$leadsReserve = $this->chartleads->leadsReserve('30');
+			$leadsBooking = $this->chartleads->leadsBooking('30');
+
+			$new = $this->showleads->newFilter('30');
+			$close = $this->showleads->closeFilter('30');
+			$pending = $this->showleads->pendingFilter('30');
+			$contacted = $this->showleads->contactedFilter('30');
+			$visit = $this->showleads->visitFilter('30');
+			$deal = $this->showleads->dealFilter('30');
+			$dealOnly = $this->showleads->dealOnly('30');
+			$reserve = $this->showleads->reserveFilter('30');
+			$booking = $this->showleads->bookingFilter('30');
+
+		endif;
+
+		if (in_groups('users')) :
+			$id = user()->id;
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "admin_group") {
+
+					$leads = $this->chartleads->search_report_admin_project($group['groups'], $search);
+
+					$leadsNew = $this->chartleads->leadsNewAdminGroup($group['groups'], '30');
+					$leadsClose = $this->chartleads->leadsCloseAdminGroup($group['groups'], '30');
+					$leadsPending = $this->chartleads->leadsPendingAdminGroup($group['groups'], '30');
+					$leadsContacted = $this->chartleads->leadsContactedAdminGroup($group['groups'], '30');
+					$leadsVisit = $this->chartleads->leadsVisitAdminGroup($group['groups'], '30');
+					$leadsDeal = $this->chartleads->leadsDealAdminGroup($group['groups'], '30');
+					$leadsReserve = $this->chartleads->leadsReserveAdminGroup($group['groups'], '30');
+					$leadsBooking = $this->chartleads->leadsBookingAdminGroup($group['groups'], '30');
+
+					$new = $this->showleads->newFilterAdminGroup($group['groups'], '30');
+					$close = $this->showleads->closeFilterAdminGroup($group['groups'], '30');
+					$pending = $this->showleads->pendingFilterAdminGroup($group['groups'], '30');
+					$contacted = $this->showleads->contactedFilterAdminGroup($group['groups'], '30');
+					$visit = $this->showleads->visitFilterAdminGroup($group['groups'], '30');
+					$deal = $this->showleads->dealFilterAdminGroup($group['groups'], '30');
+					$dealOnly = $this->showleads->dealOnlyAdminGroup($group['groups'], '30');
+					$reserve = $this->showleads->reserveFilterAdminGroup($group['groups'], '30');
+					$booking = $this->showleads->bookingFilterAdminGroup($group['groups'], '30');
+				} elseif ($group['level'] == "admin_project") {
+
+					$leads = $this->chartleads->search_report_admin_project($group['project'],$search);
+
+					$leadsNew = $this->chartleads->leadsNewAdminProject($group['project'], '30');
+					$leadsClose = $this->chartleads->leadsCloseAdminProject($group['project'], '30');
+					$leadsPending = $this->chartleads->leadsPendingAdminProject($group['project'], '30');
+					$leadsContacted = $this->chartleads->leadsContactedAdminProject($group['project'], '30');
+					$leadsVisit = $this->chartleads->leadsVisitAdminProject($group['project'], '30');
+					$leadsDeal = $this->chartleads->leadsDealAdminProject($group['project'], '30');
+					$leadsReserve = $this->chartleads->leadsReserveAdminProject($group['project'], '30');
+					$leadsBooking = $this->chartleads->leadsBookingAdminProject($group['project'], '30');
+
+					$new = $this->showleads->newFilterAdminProject($group['project'], '30');
+					$close = $this->showleads->closeFilterAdminProject($group['project'], '30');
+					$pending = $this->showleads->pendingFilterAdminProject($group['project'], '30');
+					$contacted = $this->showleads->contactedFilterAdminProject($group['project'], '30');
+					$visit = $this->showleads->visitFilterAdminProject($group['project'], '30');
+					$deal = $this->showleads->dealFilterAdminProject($group['project'], '30');
+					$dealOnly = $this->showleads->dealOnlyAdminProject($group['project'], '30');
+					$reserve = $this->showleads->reserveFilterAdminProject($group['project'], '30');
+					$booking = $this->showleads->bookingFilterAdminProject($group['project'], '30');
+				} else {
+					$leads = $this->chartleads->search_report($search);
+
+					$leadsNew = $this->chartleads->leadsNew('30');
+					$leadsClose = $this->chartleads->leadsClose('30');
+					$leadsPending = $this->chartleads->leadsPending('30');
+					$leadsContacted = $this->chartleads->leadsContacted('30');
+					$leadsVisit = $this->chartleads->leadsVisit('30');
+					$leadsDeal = $this->chartleads->leadsDeal('30');
+					$leadsReserve = $this->chartleads->leadsReserve('30');
+					$leadsBooking = $this->chartleads->leadsBooking('30');
+
+					$new = $this->showleads->newFilter('30');
+					$close = $this->showleads->closeFilter('30');
+					$pending = $this->showleads->pendingFilter('30');
+					$contacted = $this->showleads->contactedFilter('30');
+					$visit = $this->showleads->visitFilter('30');
+					$deal = $this->showleads->dealFilter('30');
+					$dealOnly = $this->showleads->dealOnly('30');
+					$reserve = $this->showleads->reserveFilter('30');
+					$booking = $this->showleads->bookingFilter('30');
+				}
+			}
+		endif;
+
+
+
+		$data = [
+			'leads' => $leads,
+	
+			'leadsNew' => $leadsNew,
+			'leadsClose' => $leadsClose,
+			'leadsPending' => $leadsPending,
+			'leadsContacted' => $leadsContacted,
+			'leadsVisit' => $leadsVisit,
+			'leadsDeal' => $leadsDeal,
+			'leadsReserve' => $leadsReserve,
+			'leadsBooking' => $leadsBooking,
+
+			'new' => $new,
+			'close' => $close,
+			'pending' => $pending,
+			'contacted' => $contacted,
+			'visit' => $visit,
+			'deal' => $deal,
+			'dealOnly' => $dealOnly,
+			'reserve' => $reserve,
+			'booking' => $booking,
 			'user_group' => $this->showusers,
 			'days' => "Search Result",
 			'title' => 'Report Leads'
@@ -320,14 +422,36 @@ class Report extends BaseController
 
 	
 
-	public function projectFilter($range)
+	public function projectFilter($days)
 	{
+
+		if (in_groups('admin')) :
+			$leads = $this->showleads->projectFilter($days);
+			$new =  $this->showleads->newFilter($days);
+		endif;
+		if (in_groups('users')) :
+			$id = user()->id;
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "admin_group") {
+					$leads = $this->showleads->projectFilterAdminGroup($group['groups'],$days);
+					$new =  $this->showleads->newFilterAdminGroup($group['groups'], $days);
+				} elseif ($group['level'] == "admin_project") {
+					$leads = $this->showleads->projectFilterAdminProject($group['project'], $days);
+					$new =  $this->showleads->newFilterAdminProject($group['project'], $days);
+				} else {
+					$leads = $this->showleads->projectFilter($days);
+					$new =  $this->showleads->newFilter($days);
+				}
+			}
+		endif;
+
+
 		$data = [
-			'leads' => $this->showleads->project(),
+			'leads' => $leads,
 			// 'leads' => $this->showleads->all(),
-			'new' => $this->showleads->new(),
+			'new' => $new,
 			'project' => $this->chartleads,
-			'filter' => $range,
+			'filter' => $days,
 			'title' => 'Report'
 		];
 
