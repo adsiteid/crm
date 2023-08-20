@@ -59,7 +59,32 @@
                         <tbody class="list-wrapper">
 
 
-                            <?php foreach ($group->user(user()->id)->getResultArray() as $group) {
+                            <?php
+
+                            if (in_groups('admin')) :
+                                $facebook_ads = $source->source('Facebook Ads', $count)->getNumRows();
+                                $facebook = $source->source('Facebook', $count)->getNumRows();
+                                $instagram_ads = $source->source('Instagram Ads', $count)->getNumRows();
+                                $instagram = $source->source('Instagram', $count)->getNumRows();
+                                $youtube = $source->source('Youtube', $count)->getNumRows();
+                                $tiktok = $source->source('TikTok Ads (Marcomm)', $count)->getNumRows();
+                                $datamarcomm = $source->source('Data Marcomm', $count)->getNumRows();
+                                $datapribadi = $source->source('Data Pribadi', $count)->getNumRows();
+                                $iklanpribadi = $source->source('Iklan Pribadi', $count)->getNumRows();
+                                $canvasing = $source->source('Canvasing', $count)->getNumRows();
+                                $walkin = $source->source('Walk In', $count)->getNumRows();
+                                $pameran = $source->source('Pameran', $count)->getNumRows();
+                                $spanduk = $source->source('Spanduk', $count)->getNumRows();
+                                $hoarding = $source->source('Hoarding', $count)->getNumRows();
+                                $billboard = $source->source('Billboard', $count)->getNumRows();
+                                $refferal = $source->source('Refferal', $count)->getNumRows();
+                                $agent = $source->source('Agent', $count)->getNumRows();
+                                $whatsapp = $source->source('Whatsapp', $count)->getNumRows();
+                            endif;
+                            
+                            if(in_groups('users')) :
+                            
+                            foreach ($group->user(user()->id)->getResultArray() as $group) {
                                 if ($group['level'] == "admin_group") {
                                     $facebook_ads = $source->sourceAdminGroup($group['groups'], 'Facebook Ads', $count)->getNumRows();
                                     $facebook = $source->sourceAdminGroup($group['groups'], 'Facebook', $count)->getNumRows();
@@ -118,7 +143,10 @@
                                     $agent = $source->source('Agent', $count)->getNumRows();
                                     $whatsapp = $source->source('Whatsapp', $count)->getNumRows();
                                 }
-                            } ?>
+                            } 
+                        endif;
+                            
+                            ?>
 
                             <!-- list-item -->
                             <tr class="">

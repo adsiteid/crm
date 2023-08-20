@@ -1281,7 +1281,7 @@ class ChartModel extends Model
 
 
 
-    public function source_range($source, $startDate, $endDate)
+    public function sourceRange($source, $startDate, $endDate)
     {
         $builder = $this->db->table($this->table);
 
