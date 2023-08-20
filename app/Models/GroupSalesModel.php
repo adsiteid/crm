@@ -41,7 +41,7 @@ class GroupSalesModel extends Model
             ->Where('groups', $groups)
             ->orWhere('project', $project);
         $builder->groupEnd();
-        $builder->where('level', 'sales');
+        // $builder->where('level', 'sales');
         $builder->orderBy('id DESC');
         $result = $builder->get();
         return $result;

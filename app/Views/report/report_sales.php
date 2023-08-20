@@ -71,7 +71,7 @@
             <div>
                 <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
                     <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
-                        <i class="mdi mdi-calendar"></i><?php ?>
+                        <i class="mdi mdi-calendar"></i><?= $days;?>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
                         <a class="dropdown-item" href="<?= base_url(); ?>getleads/90">Last 90 Days</a>

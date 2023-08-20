@@ -603,6 +603,7 @@ class Report extends BaseController
 			'user' => $this->showusers,
 			'group' => $this->showgroupsales,
 			'count' => $this->showleads,
+			'days' => 'last 30 Days',
 			'title' => 'Report'
 		];
 
