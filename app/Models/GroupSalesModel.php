@@ -20,6 +20,33 @@ class GroupSalesModel extends Model
         return $result;
     }
 
+
+    public function group($groups,$project)
+    {
+        $builder = $this->db->table($this->table);
+
+        if(in_groups('users')) :
+        endif;
+
+        $builder->groupStart()
+            ->Where('groups', $groups)
+            ->orWhere('project', $project);
+        $builder->groupEnd();
+
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+    public function project($id_project)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('project', $id_project);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
     public function user($id)
     {
         $builder = $this->db->table($this->table);

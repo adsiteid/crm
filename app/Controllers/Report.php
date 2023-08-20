@@ -576,10 +576,32 @@ class Report extends BaseController
 
 	public function sales()
 	{
+
+		if(in_groups('admin')):
+			$new = $this->showleads->new();
+		endif;
+
+		if (in_groups('users')) :
+			$id = user()->id;
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "admin_group") {
+					$new = $this->showleads->newAdminGroup($group['groups']);
+					$sales = $this->showgroupsales->groups($group['groups']);
+				} elseif ($group['level'] == "admin_project") {
+					$new = $this->showleads->newAdminProject($group['project']);
+					$sales = $this->showgroupsales->project($group['project']);
+				} else {
+					$new = $this->showleads->new();
+					$sales = $this->showgroupsales->group($group['groups'], $group['project']);
+				}
+			}
+		endif;
+
 		$data = [
-			'new' => $this->showleads->new(),
-			'sales' => $this->showusers->salesUser(), //not admin
+			'new' => $new,
+			'sales' => $sales, //not admin
 			'user' => $this->showusers,
+			'group' => $this->showgroupsales,
 			'count' => $this->showleads,
 			'title' => 'Report'
 		];

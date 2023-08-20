@@ -133,66 +133,64 @@
                         <tbody class="list-wrapper">
 
                             <?php $no = 1; ?>
-                            <?php foreach ($sales->getResultArray() as $row) : ?>
-
-                                <?php
-
-                                $new = $count->salesNew('sales', $row['id'])->getNumRows();
-                                $new_close = $count->salesClose('sales', $row['id'])->getNumRows();
-                                $new_pending = $count->salesPending('sales', $row['id'])->getNumRows();
-                                $contacted = $count->salesContacted('sales', $row['id'])->getNumRows();
-                                $visit = $count->salesVisit('sales', $row['id'])->getNumRows();
-                                $deal = $count->salesDeal('sales', $row['id'])->getNumRows();
-                                $reserve = $count->salesReserve('sales', $row['id'])->getNumRows();
-                                $booking = $count->salesBooking('sales', $row['id'])->getNumRows();
-                                // $all = $count->salesAll($row['username'])->getNumRows();
-                                ?>
+                            <?php foreach ($sales->getResultArray() as $row) :
+                            ?>
 
 
                                 <!-- list-item -->
-                                <tr class="" onclick="location.href='<?= base_url(); ?>user/<?= $row['id']; ?>'">
+                                <tr class="" onclick="location.href='<?= base_url(); ?>user/<?= $row['id_user']; ?>'">
                                     <td><?= $no++; ?></td>
                                     <td>
-                                        <?php foreach ($user->detail($row['id'])->getResultArray() as $us) : ?>
+                                        <?php foreach ($user->detail($row['id_user'])->getResultArray() as $us) : ?>
                                             <?= $us['fullname']; ?>
                                         <?php endforeach; ?>
                                     </td>
                                     <td>
-                                     test
+                                        <?php foreach ($user->detail($row['manager'])->getResultArray() as $us) : ?>
+                                            <?= $us['fullname']; ?>
+                                        <?php endforeach; ?>
                                     </td>
                                     <td>
-                                        test
+                                        <?php foreach ($user->detail($row['general_manager'])->getResultArray() as $us) : ?>
+                                            <?= $us['fullname']; ?>
+                                        <?php endforeach; ?>
                                     </td>
                                     <td>
-                                        test
-                                    </td>
-
-                                    <td>
-                                        <?= $new; ?>
-                                    </td>
-
-                                    <td>
-                                        <?= $contacted; ?>
+                                        <?= $row['project']; ?>
                                     </td>
 
                                     <td>
-                                        <?= $visit; ?>
+                                        <? //= $new->getNumRows(); 
+                                        ?>
                                     </td>
 
                                     <td>
-                                        <?= $deal; ?>
+                                        <? //= $contacted->getNumRows(); 
+                                        ?>
                                     </td>
 
                                     <td>
-                                        <?= $reserve; ?>
+                                        <? //= $visit->getNumRows(); 
+                                        ?>
+                                    </td>
+
+                                    <td>
+                                        <? //= $deal->getNumRows(); 
+                                        ?>
+                                    </td>
+
+                                    <td>
+                                        <? //= $reserve->getNumRows(); 
+                                        ?>
                                     </td>
                                     <td>
-                                        <?= $booking; ?>
+                                        <? //= $booking->getNumRows(); 
+                                        ?>
                                     </td>
                                     <td>
                                         <?php
                                         $total = 0;
-                                        foreach ($count->salesReserve('sales', $row['id'])->getResultArray() as $cb) :
+                                        foreach ($count->salesReserve($row['id'])->getResultArray() as $cb) :
                                             $total += $cb['reserve'];
                                         endforeach;
                                         echo $total;
@@ -203,7 +201,7 @@
                                     <td>
                                         <?php
                                         $total = 0;
-                                        foreach ($count->salesBooking('sales', $row['id'])->getResultArray() as $cb) :
+                                        foreach ($count->salesBooking($row['id'])->getResultArray() as $cb) :
                                             $total += $cb['booking'];
                                         endforeach;
                                         echo $total;
@@ -212,14 +210,10 @@
                                     </td>
 
                                     <!-- <td>
-                                        <?php
-
-                                        echo $new + $new_close + $new_pending + $contacted + $visit + $deal + $reserve + $booking;
-                                        ?>
+                                      
                                     </td> -->
 
                                 </tr>
-
                             <?php endforeach; ?>
                         </tbody>
 
