@@ -124,9 +124,6 @@ class LeadsModel extends Model
         $builder = $this->db->table($this->table);
 
 
-        $builder->select('*');
-
-
         $id = user()->id;
         if (in_groups('users')) :
             $builder->groupStart()
@@ -2353,6 +2350,36 @@ class LeadsModel extends Model
     }
 
 
+    public function projectRange($startDate,$endDate)
+    {
+        $builder = $this->db->table($this->table);
+
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id);
+            $builder->groupEnd();
+        endif;
+
+        $builder->groupStart()
+        ->Where("time_stamp_new BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_close BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_pending BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_contacted BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_visit BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_deal BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_reserve BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_booking BETWEEN '$startDate' AND '$endDate'")
+        ->groupEnd();
+
+        $builder->groupBy('project', 'desc');
+        $result = $builder->get();
+        return $result;
+    }
+
+
     public function projectAdminGroup($groups)
     {
         $builder = $this->db->table($this->table);
@@ -2377,6 +2404,28 @@ class LeadsModel extends Model
             ->orWhere("time_stamp_reserve >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
             ->orWhere("time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
         $builder->groupEnd();
+
+        $builder->where('groups', $groups);
+        $builder->groupBy('project', 'desc');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function projectRangeAdminGroup($groups, $startDate,$endDate)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->groupStart()
+        ->Where("time_stamp_new BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_close BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_pending BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_contacted BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_visit BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_deal BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_reserve BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_booking BETWEEN '$startDate' AND '$endDate'")
+        ->groupEnd();
 
         $builder->where('groups', $groups);
         $builder->groupBy('project', 'desc');
@@ -2410,6 +2459,28 @@ class LeadsModel extends Model
             ->orWhere("time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
         $builder->groupEnd();
 
+        $builder->where('project', $project);
+        $builder->groupBy('project', 'desc');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function projectRangeAdminProject($project, $startDate, $endDate)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->groupStart()
+        ->Where("time_stamp_new BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_close BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_pending BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_contacted BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_visit BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_deal BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_reserve BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_booking BETWEEN '$startDate' AND '$endDate'")
+        ->groupEnd();
+        
         $builder->where('project', $project);
         $builder->groupBy('project', 'desc');
         $result = $builder->get();

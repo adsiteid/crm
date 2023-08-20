@@ -66,18 +66,27 @@
 
                             <?php
                             foreach ($leads->getResultArray() as $lproject) :
+
+                                $projects = $project->projectRange($lproject['project'],$startDate, $endDate);
+                                $projectContacted = $project->projectContactedRange($lproject['project'],$startDate, $endDate);
+                                $projectVisit = $project->projectVisitRange($lproject['project'],$startDate, $endDate);
+                                $projectDeal = $project->projectDealRange($lproject['project'],$startDate, $endDate);
+                                $projectReserve = $project->projectReserveRange($lproject['project'],$startDate, $endDate);
+                                $projectBooking = $project->projectBookingRange($lproject['project'],$startDate, $endDate);
+
                             ?>
                                 <tr class="">
                                     <td><?= $lproject['project']; ?></td>
-                                    <td><?= $project->projectRange($lproject['project'], $startDate, $endDate)->getNumRows(); ?></td>
-                                    <td><?= $project->projectContactedRange($lproject['project'], $startDate, $endDate)->getNumRows(); ?></td>
-                                    <td><?= $project->projectVisitRange($lproject['project'], $startDate, $endDate)->getNumRows(); ?></td>
-                                    <td><?= $project->projectDealRange($lproject['project'], $startDate, $endDate)->getNumRows(); ?></td>
-                                    <td><?= $project->projectReserveRange($lproject['project'], $startDate, $endDate)->getNumRows(); ?></td>
-                                    <td><?= $project->projectBookingRange($lproject['project'], $startDate, $endDate)->getNumRows(); ?></td>
+                                    <td><?= $projects->getNumRows(); ?></td>
+                                    <td><?= $projectContacted->getNumRows(); ?></td>
+                                    <td><?= $projectVisit->getNumRows(); ?></td>
+                                    <td><?= $projectDeal->getNumRows(); ?></td>
+                                    <td><?= $projectReserve->getNumRows(); ?></td>
+                                    <td><?= $projectBooking->getNumRows(); ?></td>
                                     <td><?php
                                         $total = 0;
-                                        foreach ($project->projectReserveRange($lproject['project'], $startDate, $endDate)->getResultArray() as $cb) :
+                                        foreach
+                                        ($projectReserve->getResultArray() as $cb) :
                                             $total += $cb['reserve'];
                                         endforeach;
                                         echo $total;
@@ -85,7 +94,7 @@
                                     </td>
                                     <td><?php
                                         $total = 0;
-                                        foreach ($project->projectBookingRange($lproject['project'], $startDate, $endDate)->getResultArray() as $cb) :
+                                        foreach ($projectBooking->getResultArray() as $cb) :
                                             $total += $cb['booking'];
                                         endforeach;
                                         echo $total;
@@ -174,7 +183,7 @@
             data: [
                 <?php
                 foreach ($leads->getResultArray() as $lproject) {
-                    echo $project->projectRange($lproject['project'],$startDate, $endDate)->getNumRows() . ',';
+                    echo $projects->getNumRows() . ',';
                 }
                 ?>
             ]
@@ -223,7 +232,7 @@
             data: [
                 <?php
                 foreach ($leads->getResultArray() as $lproject) {
-                    echo $project->projectRange($lproject['project'], $startDate, $endDate)->getNumRows() . ',';
+                    echo $projects->getNumRows() . ',';
                 }
                 ?>
             ]

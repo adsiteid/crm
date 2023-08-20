@@ -66,18 +66,26 @@
 
                             <?php
                             foreach ($leads->getResultArray() as $lproject) :
+                                  
+                                $projects = $project->project($lproject['project'], $filter);
+                                $projectContacted = $project->projectContacted($lproject['project'], $filter);
+                                $projectVisit = $project->projectVisit($lproject['project'], $filter);
+                                $projectDeal = $project->projectDeal($lproject['project'], $filter);
+                                $projectReserve = $project->projectReserve($lproject['project'], $filter);
+                                $projectBooking = $project->projectBooking($lproject['project'], $filter);
+                        
                             ?>
                                 <tr class="">
                                     <td><?= $lproject['project']; ?></td>
-                                    <td><?= $project->project($lproject['project'], $filter)->getNumRows(); ?></td>
-                                    <td><?= $project->projectContacted($lproject['project'], $filter)->getNumRows(); ?></td>
-                                    <td><?= $project->projectVisit($lproject['project'], $filter)->getNumRows(); ?></td>
-                                    <td><?= $project->projectDeal($lproject['project'], $filter)->getNumRows(); ?></td>
-                                    <td><?= $project->projectReserve($lproject['project'], $filter)->getNumRows(); ?></td>
-                                    <td><?= $project->projectBooking($lproject['project'], $filter)->getNumRows(); ?></td>
+                                    <td><?= $projects->getNumRows(); ?></td>
+                                    <td><?= $projectContacted->getNumRows(); ?></td>
+                                    <td><?= $projectVisit->getNumRows(); ?></td>
+                                    <td><?= $projectDeal->getNumRows(); ?></td>
+                                    <td><?= $projectReserve->getNumRows(); ?></td>
+                                    <td><?= $projectBooking->getNumRows(); ?></td>
                                     <td><?php
                                         $total = 0;
-                                        foreach ($project->projectReserve($lproject['project'], $filter)->getResultArray() as $cb) :
+                                        foreach ($projectReserve->getResultArray() as $cb) :
                                             $total += $cb['reserve'];
                                         endforeach;
                                         echo $total;
@@ -85,7 +93,7 @@
                                     </td>
                                     <td><?php
                                         $total = 0;
-                                        foreach ($project->projectBooking($lproject['project'], $filter)->getResultArray() as $cb) :
+                                        foreach ($projectBooking->getResultArray() as $cb) :
                                             $total += $cb['booking'];
                                         endforeach;
                                         echo $total;

@@ -247,7 +247,25 @@ class Report extends BaseController
 					$booking = $this->showleads->bookingRangeAdminProject($group['project'], $startDate, $endDate);
 
 				}else{
+					$leads = $this->showleads->rangeList($startDate, $endDate);
+					$leadsNew = $this->chartleads->leadsNewRange($startDate, $endDate);
+					$leadsClose = $this->chartleads->leadsCloseRange($startDate, $endDate);
+					$leadsPending = $this->chartleads->leadsPendingRange($startDate, $endDate);
+					$leadsContacted = $this->chartleads->leadsContactedRange($startDate, $endDate);
+					$leadsVisit = $this->chartleads->leadsVisitRange($startDate, $endDate);
+					$leadsDeal = $this->chartleads->leadsDealRange($startDate, $endDate);
+					$leadsReserve = $this->chartleads->leadsReserveRange($startDate, $endDate);
+					$leadsBooking = $this->chartleads->leadsBookingRange($startDate, $endDate);
 
+					$new = $this->showleads->newRange($startDate, $endDate);
+					$close = $this->showleads->closeRange($startDate, $endDate);
+					$pending = $this->showleads->pendingRange($startDate, $endDate);
+					$contacted = $this->showleads->contactedRange($startDate, $endDate);
+					$visit = $this->showleads->visitRange($startDate, $endDate);
+					$deal = $this->showleads->dealRange($startDate, $endDate);
+					$dealOnly = $this->showleads->dealOnlyRange($startDate, $endDate);
+					$reserve = $this->showleads->reserveRange($startDate, $endDate);
+					$booking = $this->showleads->bookingRange($startDate, $endDate);
 				}
 			}
 		endif;
@@ -465,10 +483,32 @@ class Report extends BaseController
 		$startDate =  $this->request->getVar('date_start');
 		$endDate = $this->request->getVar('date_end');
 
+
+		if (in_groups('admin')) :
+			$leads = $this->showleads->projectRange($startDate, $endDate);
+			$new =  $this->showleads->newRange($startDate, $endDate);
+		endif;
+		if (in_groups('users')) :
+			$id = user()->id;
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "admin_group") {
+					$leads = $this->showleads->projectRangeAdminGroup($group['groups'], $startDate, $endDate);
+					$new =  $this->showleads->newRangeAdminGroup($group['groups'],$startDate, $endDate);
+				} elseif ($group['level'] == "admin_project") {
+					$leads = $this->showleads->projectRangeAdminProject($group['project'],$startDate, $endDate);
+					$new =  $this->showleads->newRangeAdminProject($group['project'],$startDate, $endDate);
+				} else {
+					$leads = $this->showleads->projectRange($startDate, $endDate);
+					$new =  $this->showleads->newRange($startDate, $endDate);
+				}
+			}
+		endif;
+
+
 		$data = [
-			'leads' => $this->showleads->project(),
+			'leads' => $leads,
 			// 'leads' => $this->showleads->all(),
-			'new' => $this->showleads->new(),
+			'new' => $new,
 			'project' => $this->chartleads,
 			'startDate' => $startDate,
 			'endDate'=> $endDate,

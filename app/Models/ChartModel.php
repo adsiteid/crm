@@ -875,6 +875,7 @@ class ChartModel extends Model
     }
 
 
+
     public function projectRange($project,$startDate, $endDate)
     {
         $builder = $this->db->table($this->table);
@@ -896,7 +897,6 @@ class ChartModel extends Model
         $result = $builder->get();
         return $result;
     }
-
 
 
     public function projectNew($project,$filter)
@@ -931,6 +931,7 @@ class ChartModel extends Model
         $result = $builder->get();
         return $result;
     }
+    
 
 
     public function projectClose($project,$filter)
@@ -938,6 +939,20 @@ class ChartModel extends Model
         $builder = $this->db->table($this->table);
         $builder->where('update_status', 'Close');
         $builder->where('project', $project);
+
+        $builder->where("time_stamp_close >= DATE_SUB(CURDATE(), INTERVAL $filter DAY)");
+        // $builder->where('time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function projectCloseAdminGroup($groups, $filter)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('update_status', 'Close');
+        $builder->where('groups', $groups);
 
         $builder->where("time_stamp_close >= DATE_SUB(CURDATE(), INTERVAL $filter DAY)");
         // $builder->where('time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
