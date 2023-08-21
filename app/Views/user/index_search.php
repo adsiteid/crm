@@ -48,9 +48,9 @@
 
             <div class="d-flex align-items-center justify-content-between  pb-3 row ">
                 <div class="col-lg-5 col-md-3 col-sm-3 col-12 d-lg-block d-md-block d-sm-block d-none">
-                    <?php foreach ($users->groups($id_user['groups'])->getresultArray() as $groupheader) ; ?>
+                    <?php foreach ($users->groups($id_user['groups'])->getresultArray() as $groupheader); ?>
 
-                        <a href="<?= base_url(); ?>add_user" type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 " style="font-size:12px;">Add User </a>
+                    <a href="<?= base_url(); ?>create/groupsales" type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 " style="font-size:12px;">Add User </a>
 
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-5 col-12 ">

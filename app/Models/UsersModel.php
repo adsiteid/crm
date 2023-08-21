@@ -119,10 +119,10 @@ class UsersModel extends Model
     }
 
 
-    public function search_user($search)
+    public function search_user($groups,$search)
     {
 
-        
+
         $builder = $this->db->table($this->table)
             ->groupStart()
             ->Like('id', $search)
@@ -133,7 +133,8 @@ class UsersModel extends Model
             ->orLike('address', $search)
             ->orLike('contact', $search)
             ->groupEnd();
-        
+
+        $builder->where('groups',$groups);
         $builder->orderBy('id DESC');
         $result = $builder->get();
         return $result;
