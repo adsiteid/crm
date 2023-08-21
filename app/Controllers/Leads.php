@@ -31,9 +31,25 @@ class Leads extends BaseController
         $leads = $this->showleads->getLeads($id);
         $new = $this->showleads->new();
         $user = $this->showusers;
+
+        $id = user()->id;
+
+        if (in_groups('admin')) :
+            $level = user()->level;
+        endif;
+
+        if (in_groups('users')) :
+
+        foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+                $level = $group['level'];
+        }
+        endif;
+
+
         $data = [
             'id' => $id,
             'leads' => $leads,
+            'level' => $level,
             'users' => $user,
             'new' => $new,
             'sales' => $this->showusers->salesUser(),
@@ -339,6 +355,7 @@ class Leads extends BaseController
         if (in_groups('admin')) :
             $leads = $this->showleads->search_leads($search);
             $new =  $this->showleads->new();
+            $level = user()->level;
         endif;
         if (in_groups('users')) :
              $id = user()->id;
@@ -353,11 +370,13 @@ class Leads extends BaseController
                     $leads = $this->showleads->search_leads($search);
                     $new =  $this->showleads->new();
                 }
+                $level = $group['level'];
             }
         endif;
 
 		$data = [
 			'leads' => $leads,
+            'level' => $level,
             'new' => $new,
 			'days'=> "Search Result",
 			'title' => 'Search'
