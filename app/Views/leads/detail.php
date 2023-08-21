@@ -242,7 +242,9 @@
                                     <?= $grp['group_name']; ?>
                                 <?php endforeach; ?></h6> <input type="hidden" name="groups" value="<?= $row['groups']; ?>">
                             <p style="font-size:12px;" class="mb-1">Project</p>
-                            <h6 style="font-size:12px;" class="mb-3"><?php echo $row['project']; ?></h6> <input type="hidden" name="project" value="<?= $row['project']; ?>">
+                            <h6 style="font-size:12px;" class="mb-3"> <?php foreach ($project->detail($row['project'])->getResultarray() as $prj) {
+                                                                            echo $prj['project'];
+                                                                        } ?></h6> <input type="hidden" name="project" value="<?= $row['project']; ?>">
                             <p style="font-size:12px;" class="mb-1">Address</p>
                             <h6 style="font-size:12px;" class="mb-3"><?php echo $row['alamat']; ?></h6> <input type="hidden" name="alamat" value="<?= $row['alamat']; ?>">
                             <p style="font-size:12px;" class="mb-1">Phone Number</p>
