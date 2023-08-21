@@ -269,7 +269,7 @@
 
         <!-- sidebar-dark sidebar-icon-only -->
 
-        <body class="">
+        <body class="sidebar-light sidebar-icon-only">
             <script src="<?= base_url() ?>vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
             <div class="container-scroller">
                 <!-- partial:partials/_navbar.html -->
