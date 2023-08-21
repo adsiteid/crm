@@ -19,11 +19,19 @@
 
 
 
-    <form action="<?= base_url('/update_leads/' . $id) ?>" method="post">
+
+
+    <?php foreach ($leads->getResultArray() as $row); ?>
+
+
+
+    <form action="<?= base_url('/update_leads/' . $row['id']) ?>" method="post">
         <?= csrf_field(); ?>
 
 
         <?php
+
+
 
         $tz = 'Asia/Jakarta';
         $dt = new DateTime("now", new DateTimeZone($tz));
@@ -32,23 +40,124 @@
 
         ?>
 
-        <input type="hidden" name="id" value="<?= $id; ?>">
 
-        <input type="hidden" name="time_stamp_invalid" value="<?= $date; ?>">
+        <input type="hidden" name="id" value="<?= $row['id']; ?>">
 
-        <input type="hidden" name="time_stamp_close" value="<?= $date; ?>">
+        <?php if ($row['time_stamp_invalid'] == NULL) : ?>
 
-        <input type="hidden" name="time_stamp_pending" value="<?= $date; ?>">
+            <input type="hidden" name="time_stamp_invalid" value="<?= $date; ?>">
 
-        <input type="hidden" name="time_stamp_contacted" value="<?= $date; ?>">
+        <?php endif; ?>
 
-        <input type="hidden" name="time_stamp_visit" value="<?= $date; ?>">
+        <?php if ($row['time_stamp_invalid'] !== NULL) : ?>
 
-        <input type="hidden" name="time_stamp_deal" value="<?= $date; ?>">
+            <input type="hidden" name="time_stamp_invalid" value="<?= $row['time_stamp_invalid']; ?>">
 
-        <input type="hidden" name="time_stamp_reserve" value="<?= $date; ?>">
 
-        <input type="hidden" name="time_stamp_booking" value="<?= $date; ?>">
+        <?php endif; ?>
+
+
+        <?php if ($row['time_stamp_close'] == NULL) : ?>
+
+            <input type="hidden" name="time_stamp_close" value="<?= $date; ?>">
+
+
+        <?php endif; ?>
+
+        <?php if ($row['time_stamp_close'] !== NULL) : ?>
+
+            <input type="hidden" name="time_stamp_close" value="<?= $row['time_stamp_close']; ?>">
+
+
+        <?php endif; ?>
+
+
+        <?php if ($row['time_stamp_pending'] == NULL) : ?>
+
+            <input type="hidden" name="time_stamp_pending" value="<?= $date; ?>">
+
+
+        <?php endif; ?>
+
+        <?php if ($row['time_stamp_pending'] !== NULL) : ?>
+
+            <input type="hidden" name="time_stamp_pending" value="<?= $row['time_stamp_pending']; ?>">
+
+
+        <?php endif; ?>
+
+
+        <?php if ($row['time_stamp_contacted'] == NULL) : ?>
+
+            <input type="hidden" name="time_stamp_contacted" value="<?= $date; ?>">
+
+
+        <?php endif; ?>
+
+        <?php if ($row['time_stamp_contacted'] !== NULL) : ?>
+
+            <input type="hidden" name="time_stamp_contacted" value="<?= $row['time_stamp_contacted']; ?>">
+
+
+        <?php endif; ?>
+
+
+        <?php if ($row['time_stamp_visit'] == NULL) : ?>
+
+            <input type="hidden" name="time_stamp_visit" value="<?= $date; ?>">
+
+
+        <?php endif; ?>
+
+        <?php if ($row['time_stamp_visit'] !== NULL) : ?>
+
+            <input type="hidden" name="time_stamp_visit" value="<?= $row['time_stamp_visit']; ?>">
+
+
+        <?php endif; ?>
+
+
+        <?php if ($row['time_stamp_deal'] == NULL) : ?>
+
+            <input type="hidden" name="time_stamp_deal" value="<?= $date; ?>">
+
+
+        <?php endif; ?>
+
+        <?php if ($row['time_stamp_deal'] !== NULL) : ?>
+
+            <input type="hidden" name="time_stamp_deal" value="<?= $row['time_stamp_deal']; ?>">
+
+
+        <?php endif; ?>
+
+
+        <?php if ($row['time_stamp_reserve'] == NULL) : ?>
+
+            <input type="hidden" name="time_stamp_reserve" value="<?= $date; ?>">
+
+
+        <?php endif; ?>
+
+        <?php if ($row['time_stamp_reserve'] !== NULL) : ?>
+
+            <input type="hidden" name="time_stamp_reserve" value="<?= $row['time_stamp_reserve']; ?>">
+
+
+        <?php endif; ?>
+
+
+        <?php if ($row['time_stamp_booking'] == NULL) : ?>
+
+            <input type="hidden" name="time_stamp_booking" value="<?= $date; ?>">
+
+        <?php endif; ?>
+
+        <?php if ($row['time_stamp_booking'] !== NULL) : ?>
+
+            <input type="hidden" name="time_stamp_booking" value="<?= $row['time_stamp_booking']; ?>">
+
+        <?php endif; ?>
 
         <?php
 
@@ -86,7 +195,7 @@
 
         ?>
 
-        <?php foreach ($leads->getResultArray() as $row); ?>
+
 
         <div class="row">
 
@@ -239,7 +348,7 @@
 
                                                             ?>"><?= $row['kategori_status']; ?></label>
                             </div>
-                            
+
                         </div>
                     </div>
 
@@ -418,7 +527,6 @@
 
             </div>
         </div>
-
 
 
 

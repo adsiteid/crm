@@ -206,9 +206,7 @@
                     <select class="form-control form-select <?php if (session('errors.general_manager')) : ?>is-invalid<?php endif ?>" id="GM" name="general_manager">
                         <option value="<?= $row['general_manager']; ?>"> <?php foreach ($user_group->detail($row['general_manager'])->getResultArray() as $gm) : ?> <?= $gm['fullname'] ?> <?php endforeach; ?> </option>
 
-                        <?php foreach ($gmsales->getResultArray() as $gm) : ?>
-                            <option value="<?= $gm['id']; ?>"><?= $gm['fullname']; ?></option>
-                        <?php endforeach; ?>
+                       
 
                     </select>
                     <div class="invalid-feedback">
@@ -220,9 +218,7 @@
                     <select class="form-control form-select <?php if (session('errors.manager')) : ?>is-invalid<?php endif ?>" id="Sales Manager" name="manager">
                         <option value="<?= $row['manager']; ?>"> <?php foreach ($user_group->detail($row['manager'])->getResultArray() as $mg) : ?> <?= $mg['fullname'] ?> <?php endforeach; ?> </option>
 
-                        <?php foreach ($salesmanager->getResultArray() as $mg) : ?>
-                            <option value="<?= $mg['id']; ?>"><?= $mg['fullname']; ?></option>
-                        <?php endforeach; ?>
+                       
                     </select>
                     <div class="invalid-feedback">
                         <?= (session('errors.manager')); ?>
@@ -385,7 +381,6 @@
                     </div>
                 </div>
 
-                <input type="hidden" name="admin_group" value="<?= $row['admin_group']; ?>">
 
             </form>
         </div>

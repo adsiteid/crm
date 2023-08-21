@@ -643,7 +643,6 @@ class CMS extends BaseController
 				'sumber_leads' => $this->request->getVar('sumber_leads'),
 				'update_status' => $this->request->getVar('update_status'),
 				'kategori_status' => $this->request->getVar('kategori_status'),
-				'catatan' => $this->request->getVar('catatan'),
 				'reserve' => $this->request->getVar('reserve'),
 				'groups' => $this->request->getVar('groups'),
 				'booking' => $this->request->getVar('booking')
@@ -718,8 +717,6 @@ Terima Kasih 🙏
 			'user_group' => $this->showusers,
 			'group' => $this->showgroups->list(),
 			'group_name' => $this->showgroups,
-			'gmsales' => $this->showusers->gmsales(),
-			'salesmanager' => $this->showusers->salesmanager(),
 			'title' => 'Edit Leads'
 		];
 
@@ -727,7 +724,7 @@ Terima Kasih 🙏
 	}
 
 
-	public function update_leads($id)
+	public function update_leads()
 	{
 
 
@@ -812,6 +809,14 @@ Terima Kasih 🙏
 			],
 
 
+			// 'catatan' => [
+			// 	'rules' => 'required',
+			// 	'errors' => [
+			// 		'required' => 'Feedback Harus dirubah'
+			// 	]
+			// 	],
+
+
 			'kategori_status' => [
 				'rules' => 'required',
 				'errors' => [
@@ -826,31 +831,28 @@ Terima Kasih 🙏
 		}
 
 
-
-
 		$status = ($this->request->getVar('kategori_status') == "Reserve") ? 'reserve' : (($this->request->getVar('kategori_status') == "Booking") ? 'booking' : strtolower($this->request->getVar('update_status')));
 
 		$this->showleads->save(
 			[
-				'id' => $id,
+				'id' => $this->request->getVar('id'),
 				'groups' => $this->request->getVar('groups'),
 				'nama_leads' => $this->request->getVar('nama_leads'),
-				'email' => $this->request->getVar('email'),
-				'nomor_kontak' => $this->request->getVar('nomor_kontak'),
 				'alamat' => $this->request->getVar('alamat'),
+				'nomor_kontak' => $this->request->getVar('nomor_kontak'),
+				'email' => $this->request->getVar('email'),
 				'project' => $this->request->getVar('project'),
+				'sumber_leads' => $this->request->getVar('sumber_leads'),
 				'general_manager' => $this->request->getVar('general_manager'),
 				'manager' => $this->request->getVar('manager'),
 				'sales' => $this->request->getVar('sales'),
-				'sumber_leads' => $this->request->getVar('sumber_leads'),
 				'update_status' => $this->request->getVar('update_status'),
 				'kategori_status' => $this->request->getVar('kategori_status'),
 				'catatan' => $this->request->getVar('catatan'),
 				'catatan_admin' => $this->request->getVar('catatan_admin'),
 				'reserve' => $this->request->getVar('reserve'),
 				'booking' => $this->request->getVar('booking'),
-				'time_stamp_' . $status => $this->request->getVar('time_stamp_' . $status),
-				// 'time_stamp_jam_' . $status => $this->request->getVar('time_stamp_jam_' . $status),
+				'time_stamp_' . $status => $this->request->getVar('time_stamp_' . $status)
 			]
 		);
 
@@ -1515,23 +1517,23 @@ Terima Kasih 🙏
 		return view('cms/edit_user', $data);
 	}
 
-	public function edit_user($id)
-	{
+	// public function edit_user($id)
+	// {
 
-		// $data = [
-		// 	'new' => $this->showleads->new(),
-		// 	'projects' => $this->showprojects->findAll(),
-		// 	'sales' => $this->showusers->sales_adduser(),
-		// 	'user' => $this->showusers->detail($id),
-		// 	'group' => $this->showgroups->list(),
-		// 	'group_name' => $this->showgroups,
-		// 	'user_group' => $this->showusers,
-		// 	'auth_group' => $this->showauthgroups->group($id),
-		// 	'title' => 'Edit User'
-		// ];
+	// 	// $data = [
+	// 	// 	'new' => $this->showleads->new(),
+	// 	// 	'projects' => $this->showprojects->findAll(),
+	// 	// 	'sales' => $this->showusers->sales_adduser(),
+	// 	// 	'user' => $this->showusers->detail($id),
+	// 	// 	'group' => $this->showgroups->list(),
+	// 	// 	'group_name' => $this->showgroups,
+	// 	// 	'user_group' => $this->showusers,
+	// 	// 	'auth_group' => $this->showauthgroups->group($id),
+	// 	// 	'title' => 'Edit User'
+	// 	// ];
 
-		return view('cms/edit_user', $data);
-	}
+	// 	return view('cms/edit_user', $data);
+	// }
 
 
 	public function user_update()
