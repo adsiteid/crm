@@ -63,7 +63,7 @@
     <!-- Card Body -->
     <div class="card-body">
 
-        <div class="pb-4 pt-2 d-flex flex-row align-items-center justify-content-between">
+        <div class=" d-flex flex-row align-items-center justify-content-between">
             <div>
                 <h6 class="mb-2 font-weight-bold text-primary">Report Sales</h6>
             </div>

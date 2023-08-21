@@ -266,6 +266,7 @@ class Home extends BaseController
 		
 			$data = [
 				'new' => $this->showleads->new(),
+				'group' => $this->showgroupsales,
 				'project' => $this->showproject->project()->getResultArray(),
 				'title' => 'Project'
 			];
