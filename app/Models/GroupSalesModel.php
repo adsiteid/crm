@@ -20,6 +20,27 @@ class GroupSalesModel extends Model
         return $result;
     }
 
+    public function groupSearch($id_groups,$search)
+    {
+
+        $builder = $this->db->table($this->table)
+            ->groupStart()
+            ->Like('id', $search)
+            ->orLike('email', $search)
+            ->orLike('username', $search)
+            ->orLike('fullname', $search)
+            ->orLike('city', $search)
+            ->orLike('address', $search)
+            ->orLike('contact', $search)
+            ->groupEnd();
+        
+
+        $builder->where('groups', $id_groups);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
     public function group_report($id_groups)
     {
         $builder = $this->db->table($this->table);

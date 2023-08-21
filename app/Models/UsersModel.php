@@ -121,6 +121,8 @@ class UsersModel extends Model
 
     public function search_user($search)
     {
+
+        
         $builder = $this->db->table($this->table)
             ->groupStart()
             ->Like('id', $search)

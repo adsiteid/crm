@@ -44,15 +44,20 @@ class User extends BaseController
 
 	public function search_user()
 	{
+
+
 		$search =  $this->request->getVar('search');
 		$data = [
 			'new' => $this->showleads->new(),
-			'sales' => $this->showusers->search_user($search),
+			// 'sales' => $this->showusers->search_user($search),
+			'search' => $search,
 			'user' => $this->showusers,
+			'users' => $this->showgroupsales,
+			'group' => $this->showgroups,
 			'title' => 'User'
 		];
 
-		return view('user/index', $data);
+		return view('user/index_search', $data);
 	}
 
 
