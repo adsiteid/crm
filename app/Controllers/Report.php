@@ -622,6 +622,7 @@ class Report extends BaseController
 	{
 
 		if (in_groups('admin')) :
+			$all = $this->showleads->salesFilter($days);
 			$new = $this->showleads->newFilter($days);
 		endif;
 
@@ -629,12 +630,15 @@ class Report extends BaseController
 			$id = user()->id;
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 				if ($group['level'] == "admin_group") {
+					$all = $this->showleads->allFilterAdminGroup($group['groups'], $days);
 					$new = $this->showleads->newFilterAdminGroup($group['groups'],$days);
 					$sales = $this->showgroupsales->group_report($group['groups']);
 				} elseif ($group['level'] == "admin_project") {
+					$all = $this->showleads->allFilterAdminProject($group['project'], $days);
 					$new = $this->showleads->newFilterAdminProject($group['project'], $days);
 					$sales = $this->showgroupsales->project($group['project']);
 				} else {
+					$all = $this->showleads->salesFilter($days);
 					$new = $this->showleads->newFilter($days);
 					$sales = $this->showgroupsales->group($group['groups'], $group['project']);
 				}
@@ -642,6 +646,7 @@ class Report extends BaseController
 		endif;
 
 		$data = [
+			'all' => $all,
 			'new' => $new,
 			'days' => $days,
 			'sales' => $sales, //not admin
