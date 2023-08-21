@@ -71,12 +71,12 @@
             <div>
                 <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
                     <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
-                        <i class="mdi mdi-calendar"></i><?= $days;?>
+                        <i class="mdi mdi-calendar"></i><?= $day; ?>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                        <a class="dropdown-item" href="<?= base_url(); ?>getleads/90">Last 90 Days</a>
-                        <a class="dropdown-item" href="<?= base_url(); ?>getleads/30">Last 30 Days</a>
-                        <a class="dropdown-item" href="<?= base_url(); ?>getleads/7">Last 7 Days</a>
+                        <a class="dropdown-item" href="<?= base_url(); ?>report_sales_filter/90">Last 90 Days</a>
+                        <a class="dropdown-item" href="<?= base_url(); ?>report_sales_filter/30">Last 30 Days</a>
+                        <a class="dropdown-item" href="<?= base_url(); ?>report_sales_filter/7">Last 7 Days</a>
                         <a type="button" class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Custom Range</a>
                     </div>
                 </div>
@@ -139,40 +139,40 @@
                                 foreach ($group->user($row['id_user'])->getResultArray() as $grp) {
 
                                     if ($grp['level'] == "admin_group") {
-                                        $newleads = $count->salesNewAdminGroup($grp['groups']);
-                                        $new_close = $count->salesCloseAdminGroup($grp['groups']);
-                                        $new_pending = $count->salesPendingAdminGroup($grp['groups']);
-                                        $contacted = $count->salesContactedAdminGroup($grp['groups']);
-                                        $visit = $count->salesVisitAdminGroup($grp['groups']);
-                                        $deal = $count->salesDealAdminGroup($grp['groups']);
-                                        $reserve = $count->salesReserveAdminGroup($grp['groups']);
-                                        $booking = $count->salesBookingAdminGroup($grp['groups']);
+                                        $newleads = $count->salesNewAdminGroupFilter($grp['groups'],$days);
+                                        $new_close = $count->salesCloseAdminGroupFilter($grp['groups'], $days);
+                                        $new_pending = $count->salesPendingAdminGroupFilter($grp['groups'], $days);
+                                        $contacted = $count->salesContactedAdminGroupFilter($grp['groups'], $days);
+                                        $visit = $count->salesVisitAdminGroupFilter($grp['groups'], $days);
+                                        $deal = $count->salesDealAdminGroupFilter($grp['groups'], $days);
+                                        $reserve = $count->salesReserveAdminGroupFilter($grp['groups'], $days);
+                                        $booking = $count->salesBookingAdminGroupFilter($grp['groups'], $days);
                                     } elseif ($grp['level'] == "admin_project") {
-                                        $newleads = $count->salesNewAdminProject($grp['project']);
-                                        $new_close = $count->salesCloseAdminProject($grp['project']);
-                                        $new_pending = $count->salesPendingAdminProject($grp['project']);
-                                        $contacted = $count->salesContactedAdminProject($grp['project']);
-                                        $visit = $count->salesVisitAdminProject($grp['project']);
-                                        $deal = $count->salesDealAdminProject($grp['project']);
-                                        $reserve = $count->salesReserveAdminProject($grp['project']);
-                                        $booking = $count->salesBookingAdminProject($grp['project']);
+                                        $newleads = $count->salesNewAdminProjectFilter($grp['project'], $days);
+                                        $new_close = $count->salesCloseAdminProjectFilter($grp['project'], $days);
+                                        $new_pending = $count->salesPendingAdminProjectFilter($grp['project'], $days);
+                                        $contacted = $count->salesContactedAdminProjectFilter($grp['project'], $days);
+                                        $visit = $count->salesVisitAdminProjectFilter($grp['project'], $days);
+                                        $deal = $count->salesDealAdminProjectFilter($grp['project'], $days);
+                                        $reserve = $count->salesReserveAdminProjectFilter($grp['project'], $days);
+                                        $booking = $count->salesBookingAdminProjectFilter($grp['project'], $days);
                                         // $all = $count->salesAll($row['username'])->getNumRows();
                                     } else {
-                                        $newleads = $count->salesNew($row['id_user']);
-                                        $new_close = $count->salesClose($row['id_user']);
-                                        $new_pending = $count->salesPending($row['id_user']);
-                                        $contacted = $count->salesContacted($row['id_user']);
-                                        $visit = $count->salesVisit($row['id_user']);
-                                        $deal = $count->salesDeal($row['id_user']);
-                                        $reserve = $count->salesReserve($row['id_user']);
-                                        $booking = $count->salesBooking($row['id_user']);
+                                        $newleads = $count->salesNewFilter($row['id_user'], $days);
+                                        $new_close = $count->salesCloseFilter($row['id_user'], $days);
+                                        $new_pending = $count->salesPendingFilter($row['id_user'], $days);
+                                        $contacted = $count->salesContactedFilter($row['id_user'], $days);
+                                        $visit = $count->salesVisitFilter($row['id_user'], $days);
+                                        $deal = $count->salesDealFilter($row['id_user'], $days);
+                                        $reserve = $count->salesReserveFilter($row['id_user'], $days);
+                                        $booking = $count->salesBookingFilter($row['id_user'], $days);
                                     }
                                 }
 
                             ?>
 
 
-                               
+
 
 
                                 <!-- list-item -->
@@ -198,31 +198,31 @@
                                     </td>
 
                                     <td>
-                                        <?= $newleads->getNumRows(); 
+                                        <?= $newleads->getNumRows();
                                         ?>
                                     </td>
 
                                     <td>
-                                        <?= $contacted->getNumRows(); 
+                                        <?= $contacted->getNumRows();
                                         ?>
                                     </td>
 
                                     <td>
-                                        <?= $visit->getNumRows(); 
+                                        <?= $visit->getNumRows();
                                         ?>
                                     </td>
 
                                     <td>
-                                        <?= $deal->getNumRows(); 
+                                        <?= $deal->getNumRows();
                                         ?>
                                     </td>
 
                                     <td>
-                                        <?= $reserve->getNumRows(); 
+                                        <?= $reserve->getNumRows();
                                         ?>
                                     </td>
                                     <td>
-                                        <?= $booking->getNumRows(); 
+                                        <?= $booking->getNumRows();
                                         ?>
                                     </td>
                                     <td>

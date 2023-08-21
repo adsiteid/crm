@@ -41,10 +41,10 @@ class GroupSalesModel extends Model
         return $result;
     }
 
-    public function group_report($id_groups)
+    public function group_report($groups)
     {
         $builder = $this->db->table($this->table);
-        $builder->where('groups', $id_groups);
+        $builder->where('groups', $groups);
         $builder->where('level', 'sales');
         $builder->orderBy('id DESC');
         $result = $builder->get();

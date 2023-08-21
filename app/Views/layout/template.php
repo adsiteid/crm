@@ -506,7 +506,7 @@
                                         <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>report_project/30">Project Report</a></li>
                                         <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>report_source/30">Source Report</a></li>
                                         <?php if (!in_groups('sales')) : ?>
-                                            <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>report/report_sales">Sales Report</a></li>
+                                            <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>report_sales_filter/30">Sales Report</a></li>
                                         <?php endif; ?>
                                     </ul>
                                 </div>
@@ -648,7 +648,7 @@
                                             <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>report_project/30">Project Report</a></li>
                                             <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>report_source/30">Source Report</a></li>
                                             <?php if (!in_groups('sales')) : ?>
-                                                <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>report/report_sales">Sales Report</a></li>
+                                                <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>report_sales_filter/30">Sales Report</a></li>
                                             <?php endif; ?>
                                         </ul>
                                     </div>

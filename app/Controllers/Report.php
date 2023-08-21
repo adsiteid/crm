@@ -609,4 +609,43 @@ class Report extends BaseController
 
 		return view('report/report_sales', $data);
 	}
+
+
+	public function salesFilter($days)
+	{
+
+		if (in_groups('admin')) :
+			$new = $this->showleads->newFilter($days);
+		endif;
+
+		if (in_groups('users')) :
+			$id = user()->id;
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "admin_group") {
+					$new = $this->showleads->newFilterAdminGroup($group['groups'],$days);
+					$sales = $this->showgroupsales->group_report($group['groups']);
+				} elseif ($group['level'] == "admin_project") {
+					$new = $this->showleads->newFilterAdminProject($group['project'], $days);
+					$sales = $this->showgroupsales->project($group['project']);
+				} else {
+					$new = $this->showleads->newFilter($days);
+					$sales = $this->showgroupsales->group($group['groups'], $group['project']);
+				}
+			}
+		endif;
+
+		$data = [
+			'new' => $new,
+			'days' => $days,
+			'sales' => $sales, //not admin
+			'user' => $this->showusers,
+			'group' => $this->showgroupsales,
+			'count' => $this->showleads,
+			'day' => "last $days Days",
+			'title' => 'Report'
+		];
+
+		return view('report/report_sales', $data);
+	}
+
 }

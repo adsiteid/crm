@@ -92,6 +92,7 @@ $routes->post('/save_file/(:num)', 'CMS::save_file/$1');
 $routes->get('/report/leads_subholding','Report::subholding');
 $routes->get('/report/leads_project', 'Report::project');
 $routes->get('/report/report_sales', 'Report::sales');
+$routes->get('/report_sales_filter/(:num)', 'Report::salesFilter/$1');
 
 $routes->post('/search_report', 'Report::search_report');
 
