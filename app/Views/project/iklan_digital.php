@@ -2,11 +2,12 @@
 
 <?php $this->section('content'); ?>
 
-
+    <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project") : ?>
     <div class="row mb-4 p-0">
         <div class="col d-flex "><a href="<?= base_url(); ?>add_images_promo/<?= $id ?>" type="button" class="btn btn-sm btn-primary">Add Images</a></div>
         <!-- <div class="col d-flex justify-content-end"><a href=""><a href="" type="button" class="btn btn-sm btn-outline-light bg-white">Back</a></a></div> -->
     </div>
+    <?php endif ?>
 
 
 <!-- flashdata -->

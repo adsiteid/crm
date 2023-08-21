@@ -419,9 +419,9 @@ foreach ($project->getResultArray() as $row);
 
     <div class="col-12 d-flex justify-content-between align-items-center my-3 px-4">
         <h6 class="mt-2"> Marketing Tools</h6>
-
+        <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project") : ?>
             <a href="<?= base_url(); ?>add_file/<?= $row['id']; ?>" type="button" class="btn btn-sm btn-outline-light bg-white">Add Marketing Tools</a>
-       
+       <?php endif; ?>
     </div>
 
     <!-- FILES -->
@@ -456,13 +456,14 @@ foreach ($project->getResultArray() as $row);
         </div>
     </div>
 
-
+    <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project") : ?>
     <div class="d-flex justify-content-end my-4">
        
             <a type="button" class="btn btn-outline-primary col-lg-2 col-6" data-toggle="modal" data-target="#delete-data">Delete</a>
             <a href="<?= base_url('/edit_project/' . $row['id']) ?>" class="btn btn-primary col-lg-2 col-6">Edit</a>
 
     </div>
+    <?php endif; ?>
 
 
     <!-- delete Modal-->

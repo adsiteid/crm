@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use \App\Models\ProjectModel;
 use \App\Models\LeadsModel;
+use \App\Models\GroupSalesModel;
 
 
 
@@ -12,11 +13,13 @@ class Project extends BaseController
 
 	protected $showproject;
 	protected $showleads;
+	protected $showgroupsales;
 
 	public function __construct()
 	{
 		$this->showproject = new ProjectModel();
 		$this->showleads = new LeadsModel();
+		$this->showgroupsales = new GroupSalesModel;
 	}
 
 	public function detail($id)
@@ -41,9 +44,21 @@ class Project extends BaseController
 		$folder_promotion = 'document/image/project/promotion/' . $folder . '/';
 		$file_promotion = array_diff(scandir($folder_promotion), array('.', '..'));
 
+		if (in_groups('admin')) :
+			$level = user()->level;
+		endif;
+
+		if (in_groups('users')) :
+		$id = user()->id;
+		foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+			$level = $group['level'];
+		}
+		endif;
+
 		$data = [
 			'project' => $project_id,
 			'new' => $new,
+			'level' => $level,
 			'id' => $id,
 			'interior' => $interior,
 			'file_project' => $file_project,
@@ -67,9 +82,21 @@ class Project extends BaseController
 		$folder_promotion = 'document/image/project/promotion/' . $folder . '/';
 		$file_promotion = array_diff(scandir($folder_promotion), array('.', '..'));
 
+		if (in_groups('admin')) :
+			$level = user()->level;
+		endif;
+
+		if (in_groups('users')) :
+			$id = user()->id;
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				$level = $group['level'];
+			}
+		endif;
+
 		$data = [
 			'new' => $new,
 			'folder' => $folder,
+			'level' => $level,
 			'id' => $id,
 			'promotion' => $file_promotion,
 			'title' => 'Iklan Digital'
@@ -90,9 +117,22 @@ class Project extends BaseController
 		$folder_promotion = 'document/video/project/' . $folder . '/';
 		$file_promotion = array_diff(scandir($folder_promotion), array('.', '..'));
 
+
+		if (in_groups('admin')) :
+			$level = user()->level;
+		endif;
+
+		if (in_groups('users')) :
+			$id = user()->id;
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				$level = $group['level'];
+			}
+		endif;
+
 		$data = [
 			'new' => $new,
 			'folder' => $folder,
+			'level' => $level,
 			'id' => $id,
 			'video' => $file_promotion,
 			'title' => 'Video'
@@ -115,9 +155,21 @@ class Project extends BaseController
 		$folder_promotion = 'document/image/project/interior/' . $folder . '/';
 		$file_promotion = array_diff(scandir($folder_promotion), array('.', '..'));
 
+		if (in_groups('admin')) :
+			$level = user()->level;
+		endif;
+
+		if (in_groups('users')) :
+			$id = user()->id;
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				$level = $group['level'];
+			}
+		endif;
+
 		$data = [
 			'new' => $new,
 			'id' => $id,
+			'level' => $level,
 			'folder' => $folder,
 			'interior' => $file_promotion,
 			'title' => 'Interior'
@@ -139,8 +191,20 @@ class Project extends BaseController
 		$folder_promotion = 'document/file/project/' . $folder . '/';
 		$file_promotion = array_diff(scandir($folder_promotion), array('.', '..'));
 
+		if (in_groups('admin')) :
+			$level = user()->level;
+		endif;
+
+		if (in_groups('users')) :
+			$id = user()->id;
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				$level = $group['level'];
+			}
+		endif;
+
 		$data = [
 			'new' => $new,
+			'level' => $level,
 			'id' => $id,
 			'folder' => $folder,
 			'file' => $file_promotion,
