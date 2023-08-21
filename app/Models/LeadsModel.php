@@ -8,7 +8,7 @@ class LeadsModel extends Model
 {
 
     protected $table = 'leads';
-    protected $allowedFields = ['nama_leads','groups','admin_group','admin_project', 'alamat', 'nomor_kontak', 'email',  'project', 'sumber_leads', 'general_manager', 'manager', 'sales', 'update_status', 'kategori_status', 'reserve', 'booking', 'catatan_admin', 'time_stamp_invalid', 'time_stamp_jam_invalid', 'time_stamp_pending', 'time_stamp_jam_pending', 'time_stamp_close', 'time_stamp_jam_close', 'time_stamp_contacted', 'time_stamp_jam_contacted', 'time_stamp_visit', 'time_stamp_jam_visit', 'time_stamp_deal', 'time_stamp_jam_deal', 'time_stamp_close', 'time_stamp_jam_close', 'time_stamp_reserve', 'time_stamp_jam_reserve', 'time_stamp_booking', 'time_stamp_jam_booking',];
+    protected $allowedFields = ['nama_leads','groups', 'alamat', 'nomor_kontak', 'email',  'project', 'sumber_leads', 'general_manager', 'manager', 'sales', 'update_status', 'kategori_status', 'reserve', 'booking', 'catatan_admin', 'time_stamp_invalid', 'time_stamp_pending', 'time_stamp_close',  'time_stamp_contacted',  'time_stamp_visit', 'time_stamp_deal', 'time_stamp_reserve',  'time_stamp_booking' ];
 
     // public function all()
     // {

@@ -131,11 +131,9 @@
                             <p style="font-size:12px;" class="mb-1">Group</p>
                             <h6 style="font-size:12px;" class="mb-3"> <?php foreach ($group->detail($row['groups'])->getResultArray() as $grp) : ?>
                                     <?= $grp['group_name']; ?>
-                                <?php endforeach; ?></h6> <input type="hidden" name="project" value="<?= $row['project']; ?>">
+                                <?php endforeach; ?></h6> <input type="hidden" name="groups" value="<?= $row['groups']; ?>">
                             <p style="font-size:12px;" class="mb-1">Project</p>
-                            <h6 style="font-size:12px;" class="mb-3"><?php foreach ($project->detail($row['project'])->getResultarray() as $prj) {
-                                                                            echo $prj['project'];
-                                                                        } ?></h6> <input type="hidden" name="project" value="<?= $row['project']; ?>">
+                            <h6 style="font-size:12px;" class="mb-3"><?php echo $row['project']; ?></h6> <input type="hidden" name="project" value="<?= $row['project']; ?>">
                             <p style="font-size:12px;" class="mb-1">Address</p>
                             <h6 style="font-size:12px;" class="mb-3"><?php echo $row['alamat']; ?></h6> <input type="hidden" name="alamat" value="<?= $row['alamat']; ?>">
                             <p style="font-size:12px;" class="mb-1">Phone Number</p>
@@ -241,7 +239,7 @@
 
                                                             ?>"><?= $row['kategori_status']; ?></label>
                             </div>
-                            <input type="hidden" name="kategori_status" value="<?= $row['kategori_status']; ?>">
+                            
                         </div>
                     </div>
 
@@ -263,7 +261,7 @@
                                         endforeach;
                                         ?>
                                     </a>
-                                    <input type="hidden" name="gm" value="<?= $row['general_manager']; ?>">
+                                    <input type="hidden" name="general_manager" value="<?= $row['general_manager']; ?>">
                                 </h6>
                                 <p style="font-size:12px;" class="mb-1">leader</p>
                                 <h6 style="font-size:13px;" class="mb-3">
@@ -275,7 +273,7 @@
                                         endforeach;
                                         ?>
                                     </a>
-                                    <input type="hidden" name="leader" value="<?= $row['manager']; ?>">
+                                    <input type="hidden" name="manager" value="<?= $row['manager']; ?>">
                                 </h6>
                                 <p style="font-size:12px;" class="mb-1">Sales/Agent</p>
                                 <h6 style="font-size:13px;">
@@ -421,15 +419,15 @@
             </div>
         </div>
 
-        <input type="hidden" name="admin_group" value="<?= $row['admin_group']; ?>">
-        <input type="hidden" name="groups" value="<?= $row['groups']; ?>">
+
+
 
         <div class="row d-flex justify-content-end mt-3 mb-5 px-3">
 
-            <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project") : ?>
-                <a href="<?= base_url(); ?>edit_leads/<?= $row['id']; ?>" class="btn btn-outline-primary col-lg-2 col-6 mt-lg-1 mt-3 px-0">Edit data</a>
-                <a class="btn btn-outline-primary col-lg-2 col-6  mt-lg-1 mt-3" data-toggle="modal" data-target="#delete-leads">Delete</a>
-            <?php endif; ?>
+            <a href="<?= base_url(); ?>edit_leads/<?= $row['id']; ?>" class="btn btn-outline-primary col-lg-2 col-6 mt-lg-1 mt-3 px-0">Edit data</a>
+            <a class="btn btn-outline-primary col-lg-2 col-6  mt-lg-1 mt-3" data-toggle="modal" data-target="#delete-leads">Delete</a>
+
+
             <a class=" btn btn-primary col-lg-2 col-12 mt-lg-1 mt-3" data-toggle="modal" data-target="#save-leads">Save</a>
 
         </div>

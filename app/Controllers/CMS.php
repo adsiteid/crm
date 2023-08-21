@@ -628,22 +628,6 @@ class CMS extends BaseController
 			return redirect()->back()->withInput()->with('error', $this->validator->getErrors());
 		}
 
-		if ($this->request->getVar('groups') == "") {
-			$adminGroup = "";
-		} else {
-			foreach ($this->showgroups->detail($this->request->getVar('groups'))->getResultArray() as $admgrp) :
-				$adminGroup = $admgrp['admin_group'];
-			endforeach;
-		}
-
-		if ($this->request->getVar('project') == "") {
-			$adminProject = "";
-		} else {
-			foreach ($this->showgroupsales->admin_project($this->request->getVar('project'))->getResultArray() as $admprj) :
-				$adminProject = $admprj['admin_project'];
-			endforeach;
-		}
-
 
 		$this->showleads->save(
 
@@ -662,8 +646,6 @@ class CMS extends BaseController
 				'catatan' => $this->request->getVar('catatan'),
 				'reserve' => $this->request->getVar('reserve'),
 				'groups' => $this->request->getVar('groups'),
-				'admin_group' => $adminGroup,
-				'admin_project' => $adminProject,
 				'booking' => $this->request->getVar('booking')
 			]
 
@@ -738,8 +720,6 @@ Terima Kasih 🙏
 			'group_name' => $this->showgroups,
 			'gmsales' => $this->showusers->gmsales(),
 			'salesmanager' => $this->showusers->salesmanager(),
-			'adminProject' => $this->showusers->adminProject(),
-			'adminAssistant' => $this->showusers->adminAssistant(),
 			'title' => 'Edit Leads'
 		];
 
@@ -753,20 +733,20 @@ Terima Kasih 🙏
 
 		if (!$this->validate([
 
-			'nama_leads' => [
-				'rules' => 'required',
-				'errors' => [
-					'required' => 'Name Harus diisi'
-				]
-			],
+			// 'nama_leads' => [
+			// 	'rules' => 'required',
+			// 	'errors' => [
+			// 		'required' => 'Name Harus diisi'
+			// 	]
+			// ],
 
-			'nomor_kontak' => [
-				'rules' => 'required',
-				'errors' => [
-					'required' => 'Phone Harus diisi'
-					// 'is_unique' => '{field} already registered'
-				]
-			],
+			// 'nomor_kontak' => [
+			// 	'rules' => 'required',
+			// 	'errors' => [
+			// 		'required' => 'Phone Harus diisi'
+			// 		// 'is_unique' => '{field} already registered'
+			// 	]
+			// ],
 
 
 			// 'alamat' => [
@@ -786,19 +766,19 @@ Terima Kasih 🙏
 
 
 
-			'project' => [
-				'rules' => 'required',
-				'errors' => [
-					'required' => 'Project Harus diisi'
-				]
-			],
+			// 'project' => [
+			// 	'rules' => 'required',
+			// 	'errors' => [
+			// 		'required' => 'Project Harus diisi'
+			// 	]
+			// ],
 
-			'sumber_leads' => [
-				'rules' => 'required',
-				'errors' => [
-					'required' => 'Lead Source Harus diisi'
-				]
-			],
+			// 'sumber_leads' => [
+			// 	'rules' => 'required',
+			// 	'errors' => [
+			// 		'required' => 'Lead Source Harus diisi'
+			// 	]
+			// ],
 
 
 			// 'general_manager' => [
@@ -817,12 +797,12 @@ Terima Kasih 🙏
 			// ],
 
 
-			'sales' => [
-				'rules' => 'required',
-				'errors' => [
-					'required' => 'Sales Harus diisi'
-				]
-			],
+			// 'sales' => [
+			// 	'rules' => 'required',
+			// 	'errors' => [
+			// 		'required' => 'Sales Harus diisi'
+			// 	]
+			// ],
 
 			'update_status' => [
 				'rules' => 'required',
@@ -854,14 +834,13 @@ Terima Kasih 🙏
 			[
 				'id' => $id,
 				'groups' => $this->request->getVar('groups'),
-				'admin_group' => $this->request->getVar('admin_group'),
 				'nama_leads' => $this->request->getVar('nama_leads'),
 				'email' => $this->request->getVar('email'),
 				'nomor_kontak' => $this->request->getVar('nomor_kontak'),
 				'alamat' => $this->request->getVar('alamat'),
 				'project' => $this->request->getVar('project'),
-				'gm' => $this->request->getVar('gm'),
-				'leader' => $this->request->getVar('leader'),
+				'general_manager' => $this->request->getVar('general_manager'),
+				'manager' => $this->request->getVar('manager'),
 				'sales' => $this->request->getVar('sales'),
 				'sumber_leads' => $this->request->getVar('sumber_leads'),
 				'update_status' => $this->request->getVar('update_status'),
