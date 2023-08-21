@@ -171,6 +171,7 @@ class CMS extends BaseController
 			'user_group' => $this->showgroupsales->user($id),
 			'group' => $this->showgroupsales,
 			'group_project' => $this->showgroups,
+			'project' => $this->showprojects,
 			'title' => 'Submission'
 		];
 
@@ -502,6 +503,7 @@ class CMS extends BaseController
 			'users' => $this->showusers,
 			'user_group' => $this->showgroupsales->user($id),
 			'group' => $this->showgroupsales,
+			'project' => $this->showprojects,
 			'group_project' => $this->showgroups,
 			'title' => 'Submission'
 		];
@@ -527,6 +529,7 @@ class CMS extends BaseController
 			'user_group' => $this->showgroupsales->user($id),
 			'group' => $this->showgroupsales,
 			'group_project' => $this->showgroups,
+			
 
 			'title' => 'Add Leads'
 		];

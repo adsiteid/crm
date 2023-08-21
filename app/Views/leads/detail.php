@@ -133,7 +133,9 @@
                                     <?= $grp['group_name']; ?>
                                 <?php endforeach; ?></h6> <input type="hidden" name="project" value="<?= $row['project']; ?>">
                             <p style="font-size:12px;" class="mb-1">Project</p>
-                            <h6 style="font-size:12px;" class="mb-3"><?php echo $row['project']; ?></h6> <input type="hidden" name="project" value="<?= $row['project']; ?>">
+                            <h6 style="font-size:12px;" class="mb-3"><?php foreach ($project->detail($row['project'])->getResultarray() as $prj) {
+                                                                            echo $prj['project'];
+                                                                        } ?></h6> <input type="hidden" name="project" value="<?= $row['project']; ?>">
                             <p style="font-size:12px;" class="mb-1">Address</p>
                             <h6 style="font-size:12px;" class="mb-3"><?php echo $row['alamat']; ?></h6> <input type="hidden" name="alamat" value="<?= $row['alamat']; ?>">
                             <p style="font-size:12px;" class="mb-1">Phone Number</p>
@@ -423,7 +425,7 @@
         <input type="hidden" name="groups" value="<?= $row['groups']; ?>">
 
         <div class="row d-flex justify-content-end mt-3 mb-5 px-3">
-           
+
             <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project") : ?>
                 <a href="<?= base_url(); ?>edit_leads/<?= $row['id']; ?>" class="btn btn-outline-primary col-lg-2 col-6 mt-lg-1 mt-3 px-0">Edit data</a>
                 <a class="btn btn-outline-primary col-lg-2 col-6  mt-lg-1 mt-3" data-toggle="modal" data-target="#delete-leads">Delete</a>

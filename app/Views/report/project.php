@@ -66,17 +66,19 @@
 
                             <?php
                             foreach ($leads->getResultArray() as $lproject) :
-                                  
+
                                 $projects = $project->project($lproject['project'], $filter);
                                 $projectContacted = $project->projectContacted($lproject['project'], $filter);
                                 $projectVisit = $project->projectVisit($lproject['project'], $filter);
                                 $projectDeal = $project->projectDeal($lproject['project'], $filter);
                                 $projectReserve = $project->projectReserve($lproject['project'], $filter);
                                 $projectBooking = $project->projectBooking($lproject['project'], $filter);
-                        
+
                             ?>
                                 <tr class="">
-                                    <td><?= $lproject['project']; ?></td>
+                                    <td><?php foreach ($projectid->detail($lproject['project'])->getResultarray() as $prj) {
+                                            echo $prj['project'];
+                                        } ?></td>
                                     <td><?= $projects->getNumRows(); ?></td>
                                     <td><?= $projectContacted->getNumRows(); ?></td>
                                     <td><?= $projectVisit->getNumRows(); ?></td>
@@ -182,7 +184,7 @@
             data: [
                 <?php
                 foreach ($leads->getResultArray() as $lproject) {
-                    echo $project->project($lproject['project'],$filter)->getNumRows() . ',';
+                    echo $project->project($lproject['project'], $filter)->getNumRows() . ',';
                 }
                 ?>
             ]
@@ -194,7 +196,9 @@
             categories: [
                 <?php
                 foreach ($leads->getResultArray() as $lproject) {
-                    $p = $lproject['project'];
+                    foreach ($projectid->detail($lproject['project'])->getResultarray() as $prj) {
+                        $p = $prj['project'];
+                    } 
                     echo "'$p',";
                 }
                 ?>
@@ -240,7 +244,9 @@
             categories: [
                 <?php
                 foreach ($leads->getResultArray() as $lproject) {
-                    $p = $lproject['project'];
+                    foreach ($projectid->detail($lproject['project'])->getResultarray() as $prj) {
+                        $p = $prj['project'];
+                    } 
                     echo "'$p',";
                 }
                 ?>

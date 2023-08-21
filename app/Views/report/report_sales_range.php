@@ -139,33 +139,33 @@
                                 foreach ($group->user($row['id_user'])->getResultArray() as $grp) {
 
                                     if ($grp['level'] == "admin_group") {
-                                        $newleads = $count->salesNewAdminGroupRange($grp['groups'], $startDate,$endDate);
-                                        $new_close = $count->salesCloseAdminGroupRange($grp['groups'], $startDate,$endDate);
-                                        $new_pending = $count->salesPendingAdminGroupRange($grp['groups'], $startDate,$endDate);
-                                        $contacted = $count->salesContactedAdminGroupRange($grp['groups'], $startDate,$endDate);
-                                        $visit = $count->salesVisitAdminGroupRange($grp['groups'], $startDate,$endDate);
-                                        $deal = $count->salesDealAdminGroupRange($grp['groups'], $startDate,$endDate);
-                                        $reserve = $count->salesReserveAdminGroupRange($grp['groups'], $startDate,$endDate);
-                                        $booking = $count->salesBookingAdminGroupRange($grp['groups'], $startDate,$endDate);
+                                        $newleads = $count->salesNewAdminGroupRange($grp['groups'], $startDate, $endDate);
+                                        $new_close = $count->salesCloseAdminGroupRange($grp['groups'], $startDate, $endDate);
+                                        $new_pending = $count->salesPendingAdminGroupRange($grp['groups'], $startDate, $endDate);
+                                        $contacted = $count->salesContactedAdminGroupRange($grp['groups'], $startDate, $endDate);
+                                        $visit = $count->salesVisitAdminGroupRange($grp['groups'], $startDate, $endDate);
+                                        $deal = $count->salesDealAdminGroupRange($grp['groups'], $startDate, $endDate);
+                                        $reserve = $count->salesReserveAdminGroupRange($grp['groups'], $startDate, $endDate);
+                                        $booking = $count->salesBookingAdminGroupRange($grp['groups'], $startDate, $endDate);
                                     } elseif ($grp['level'] == "admin_project") {
-                                        $newleads = $count->salesNewAdminProjectRange($grp['project'], $startDate,$endDate);
-                                        $new_close = $count->salesCloseAdminProjectRange($grp['project'], $startDate,$endDate);
-                                        $new_pending = $count->salesPendingAdminProjectRange($grp['project'], $startDate,$endDate);
-                                        $contacted = $count->salesContactedAdminProjectRange($grp['project'], $startDate,$endDate);
-                                        $visit = $count->salesVisitAdminProjectRange($grp['project'], $startDate,$endDate);
-                                        $deal = $count->salesDealAdminProjectRange($grp['project'], $startDate,$endDate);
-                                        $reserve = $count->salesReserveAdminProjectRange($grp['project'], $startDate,$endDate);
-                                        $booking = $count->salesBookingAdminProjectRange($grp['project'], $startDate,$endDate);
+                                        $newleads = $count->salesNewAdminProjectRange($grp['project'], $startDate, $endDate);
+                                        $new_close = $count->salesCloseAdminProjectRange($grp['project'], $startDate, $endDate);
+                                        $new_pending = $count->salesPendingAdminProjectRange($grp['project'], $startDate, $endDate);
+                                        $contacted = $count->salesContactedAdminProjectRange($grp['project'], $startDate, $endDate);
+                                        $visit = $count->salesVisitAdminProjectRange($grp['project'], $startDate, $endDate);
+                                        $deal = $count->salesDealAdminProjectRange($grp['project'], $startDate, $endDate);
+                                        $reserve = $count->salesReserveAdminProjectRange($grp['project'], $startDate, $endDate);
+                                        $booking = $count->salesBookingAdminProjectRange($grp['project'], $startDate, $endDate);
                                         // $all = $count->salesAll($row['username'])->getNumRows();
                                     } else {
-                                        $newleads = $count->salesNewRange($row['id_user'], $startDate,$endDate);
-                                        $new_close = $count->salesCloseRange($row['id_user'], $startDate,$endDate);
-                                        $new_pending = $count->salesPendingRange($row['id_user'], $startDate,$endDate);
-                                        $contacted = $count->salesContactedRange($row['id_user'], $startDate,$endDate);
-                                        $visit = $count->salesVisitRange($row['id_user'], $startDate,$endDate);
-                                        $deal = $count->salesDealRange($row['id_user'], $startDate,$endDate);
-                                        $reserve = $count->salesReserveRange($row['id_user'], $startDate,$endDate);
-                                        $booking = $count->salesBookingRange($row['id_user'], $startDate,$endDate);
+                                        $newleads = $count->salesNewRange($row['id_user'], $startDate, $endDate);
+                                        $new_close = $count->salesCloseRange($row['id_user'], $startDate, $endDate);
+                                        $new_pending = $count->salesPendingRange($row['id_user'], $startDate, $endDate);
+                                        $contacted = $count->salesContactedRange($row['id_user'], $startDate, $endDate);
+                                        $visit = $count->salesVisitRange($row['id_user'], $startDate, $endDate);
+                                        $deal = $count->salesDealRange($row['id_user'], $startDate, $endDate);
+                                        $reserve = $count->salesReserveRange($row['id_user'], $startDate, $endDate);
+                                        $booking = $count->salesBookingRange($row['id_user'], $startDate, $endDate);
                                     }
                                 }
 
@@ -194,7 +194,9 @@
                                         <?php endforeach; ?>
                                     </td>
                                     <td>
-                                        <?= $row['project']; ?>
+                                        <?php foreach ($project->detail($row['project'])->getResultarray() as $prj) {
+                                            echo $prj['project'];
+                                        } ?>
                                     </td>
 
                                     <td>

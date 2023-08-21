@@ -210,7 +210,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                                 <?= $row['alamat']; ?>
                             </td>
                             <td class="d-sm-table-cell d-none">
-                                <?= $row['project']; ?>
+                                <?php foreach($project->detail($row['project'])->getResultarray() as $prj) { echo $prj['project'];  } ?>
                             </td>
                             <td class="d-sm-table-cell d-none">
                                 <?= $row['sumber_leads']; ?>

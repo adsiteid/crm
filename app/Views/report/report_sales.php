@@ -194,7 +194,9 @@
                                         <?php endforeach; ?>
                                     </td>
                                     <td>
-                                        <?= $row['project']; ?>
+                                        <?php foreach ($project->detail($row['project'])->getResultarray() as $prj) {
+                                            echo $prj['project'];
+                                        } ?>
                                     </td>
 
                                     <td>

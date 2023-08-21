@@ -83,6 +83,7 @@ class Home extends BaseController
 			'pending' => $pending,
 			'visit' => $visit,
 			'deal' => $deal,
+			'projects' => $this->showproject,
 			'event' => $events,
 			'days'=> 'Last 30 Days',
 			'title' => 'Dashboard'
@@ -144,6 +145,7 @@ class Home extends BaseController
 			'visit' => $visit,
 			'deal' => $deal,
 			'event' => $events,
+			'projects' => $this->showproject,
 			'days'=> 'Last '.$days.' Days',
 			'title' => 'Dashboard'
 		];
@@ -245,6 +247,7 @@ class Home extends BaseController
 			'visit' => $visit,
 			'deal' => $deal,
 			'event' => $events,
+			'projects' => $this->showproject,
 			'tipe' => 'range',
 			'days'=> "$startDate - $endDate",
 			'title' => 'Dashboard'
@@ -292,6 +295,7 @@ class Home extends BaseController
 				'group' => $this->showgroupsales,
 				'level' => $level,
 				'project' => $project,
+				'projects' => $this->showproject,
 				'title' => 'Project'
 			];
 

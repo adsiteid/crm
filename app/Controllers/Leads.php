@@ -6,6 +6,7 @@ use \App\Models\LeadsModel;
 use \App\Models\UsersModel;
 use \App\Models\GroupsModel;
 use \App\Models\GroupSalesModel;
+use \App\Models\ProjectModel;
 
 
 class Leads extends BaseController
@@ -15,6 +16,7 @@ class Leads extends BaseController
     protected $showusers;
     protected $showgroups;
     protected $showgroupsales;
+    protected $showproject;
     
 
     public function __construct()
@@ -23,6 +25,7 @@ class Leads extends BaseController
         $this->showusers = new UsersModel();
         $this->showgroups = new GroupsModel;
         $this->showgroupsales = new GroupSalesModel;
+        $this->showproject = new ProjectModel();
     }
 
 
@@ -48,6 +51,7 @@ class Leads extends BaseController
 
         $data = [
             'id' => $id,
+            'project' => $this->showproject,
             'leads' => $leads,
             'level' => $level,
             'users' => $user,
@@ -87,6 +91,7 @@ class Leads extends BaseController
 
         $data = [
             'leads' => $leads,
+            'project' => $this->showproject,
             'new' => $new,
             'groups' => $this->showgroupsales,
             'days'=> 'Last 30 Days',
@@ -123,6 +128,7 @@ class Leads extends BaseController
 
         $data = [
             'leads' => $leads,
+            'project' => $this->showproject,
             'new' => $new,
             'days'=> 'Last 30 Days',
             'title' => 'Contacted'
@@ -157,6 +163,7 @@ class Leads extends BaseController
 
         $data = [
             'leads' => $leads,
+            'project' => $this->showproject,
             'new' => $new,
             'days'=> 'Last 30 Days',
             'title' => 'Visit'
@@ -192,6 +199,7 @@ class Leads extends BaseController
 
         $data = [
             'leads' => $leads,
+            'project' => $this->showproject,
             'new' => $new,
             'days'=> 'Last 30 Days',
             'title' => 'Deal'
@@ -226,6 +234,7 @@ class Leads extends BaseController
 
         $data = [
             'leads' => $leads,
+            'project' => $this->showproject,
             'new' => $new,
             'days'=> 'Last 30 Days',
             'title' => 'Close'
@@ -261,6 +270,7 @@ class Leads extends BaseController
 
         $data = [
             'leads' => $leads,
+            'project' => $this->showproject,
             'new' => $new,
             'days'=> 'Last 30 Days',
             'title' => 'Pending'
@@ -296,6 +306,7 @@ class Leads extends BaseController
 
         $data = [
             'leads' => $leads,
+            'project' => $this->showproject,
             'new' => $new,
             'days' => "Last $days Days",
             'title' => 'Leads'
@@ -337,6 +348,7 @@ class Leads extends BaseController
         
 		$data = [
 			'leads' => $leads,
+            'project' => $this->showproject,
             'new' => $new,
 			'days'=> "$startDate - $endDate",
 			'title' => 'Leads'
@@ -376,6 +388,7 @@ class Leads extends BaseController
 
 		$data = [
 			'leads' => $leads,
+            'project' => $this->showproject,
             'level' => $level,
             'new' => $new,
 			'days'=> "Search Result",

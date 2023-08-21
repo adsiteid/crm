@@ -160,6 +160,7 @@ class Report extends BaseController
 			'reserve' => $reserve,
 			'booking' => $booking,
 			'user_group' => $this->showusers,
+			'project' => $this->showproject,
 			'days' => "Last $days Days",
 			'title' => 'Report Leads'
 		];
@@ -291,6 +292,7 @@ class Report extends BaseController
 				'dealOnly' => $dealOnly,
 				'reserve' => $reserve,
 				'booking' => $booking,
+				'project' => $this->showproject,
 				'user_group' => $this->showusers,
 				'days' => "$startDate - $endDate",
 				'title' => 'Report Leads'
@@ -427,6 +429,7 @@ class Report extends BaseController
 			'dealOnly' => $dealOnly,
 			'reserve' => $reserve,
 			'booking' => $booking,
+			'project' => $this->showproject,
 			'user_group' => $this->showusers,
 			'days' => "Search Result",
 			'title' => 'Report Leads'
@@ -469,6 +472,7 @@ class Report extends BaseController
 			// 'leads' => $this->showleads->all(),
 			'new' => $new,
 			'project' => $this->chartleads,
+			'projectid' => $this->showproject,
 			'filter' => $days,
 			'title' => 'Report'
 		];
@@ -510,6 +514,7 @@ class Report extends BaseController
 			// 'leads' => $this->showleads->all(),
 			'new' => $new,
 			'project' => $this->chartleads,
+			'projectid' => $this->showproject,
 			'startDate' => $startDate,
 			'endDate'=> $endDate,
 			'title' => 'Report'
@@ -604,6 +609,7 @@ class Report extends BaseController
 			'user' => $this->showusers,
 			'group' => $this->showgroupsales,
 			'count' => $this->showleads,
+			'project' => $this->showproject,
 			'days' => 'last 30 Days',
 			'title' => 'Report'
 		];
@@ -642,6 +648,7 @@ class Report extends BaseController
 			'user' => $this->showusers,
 			'group' => $this->showgroupsales,
 			'count' => $this->showleads,
+			'project' => $this->showproject,
 			'day' => "last $days Days",
 			'title' => 'Report'
 		];
@@ -685,6 +692,7 @@ class Report extends BaseController
 			'user' => $this->showusers,
 			'group' => $this->showgroupsales,
 			'count' => $this->showleads,
+			'project' => $this->showproject,
 			'day' => "$startDate - $endDate",
 			'title' => 'Report'
 		];
