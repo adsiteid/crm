@@ -200,7 +200,7 @@
                                     </td>
 
                                     <td>
-                                        <?= $all->getNumRows();
+                                        <?= $newleads->getNumRows();
                                         ?>
                                     </td>
 
