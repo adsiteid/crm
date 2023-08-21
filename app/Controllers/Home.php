@@ -263,11 +263,28 @@ class Home extends BaseController
 
 	public function project()
 	{
+
+		if (in_groups('admin')) :
+			$project = $this->showproject->findAll();
+		endif;
+
+		if (in_groups('users')) :
+			$id = user()->id;
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+			if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
+				$project = $this->showproject->projectAdminGroup($group['groups'])->getResultArray();
+			} 
+			
+			if ($group['level'] == "admin_project" || $group['level'] == "sales" || $group['level'] == "manager") {
+				$project = $this->showproject->projectAdminProject($group['project'])->getResultArray();
+			}
+		}
+		endif;
 		
 			$data = [
 				'new' => $this->showleads->new(),
 				'group' => $this->showgroupsales,
-				'project' => $this->showproject->project()->getResultArray(),
+				'project' => $project,
 				'title' => 'Project'
 			];
 

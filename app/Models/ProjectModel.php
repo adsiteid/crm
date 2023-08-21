@@ -59,6 +59,24 @@ class ProjectModel extends Model
     }
 
 
+    public function projectAdminGroup($groups)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('groups',$groups);
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function projectAdminProject($project)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('id', $project);
+        $result = $builder->get();
+        return $result;
+    }
+
+
     public function projectAll()
     {
         return $this->findall();
