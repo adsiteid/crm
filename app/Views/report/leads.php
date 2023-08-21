@@ -548,18 +548,18 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
             name: 'Count',
             data: [
                 <?= $leadsNew->getNumRows(); ?>,
-                // <?= $leadsClose->getNumRows(); ?>,
-                // <?= $leadsPending->getNumRows(); ?>,
+                <?= $leadsClose->getNumRows(); ?>,
+                <?= $leadsPending->getNumRows(); ?>,
                 <?= $leadsContacted->getNumRows(); ?>,
                 <?= $leadsVisit->getNumRows(); ?>,
                 <?= $leadsDeal->getNumRows(); ?>,
-                // <?= $leadsReserve->getNumRows(); ?>,
-                // <?= $leadsBooking->getNumRows(); ?>,
+                <?= $leadsReserve->getNumRows(); ?>,
+                <?= $leadsBooking->getNumRows(); ?>,
             ]
         }],
         xaxis: {
             type: 'text',
-            categories: ['Leads In', 'Contacted', 'Visit', 'Deal']
+            categories: ['Leads In', 'Close', 'Pending', 'Contacted', 'Visit', 'Deal', 'Reserve', 'Booking', ]
         }
     }
 
