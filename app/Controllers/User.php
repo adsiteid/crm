@@ -7,6 +7,7 @@ use \App\Models\LeadsModel;
 use \App\Models\UsersModel;
 use \App\Models\GroupsModel;
 use \App\Models\GroupSalesModel;
+use \App\Models\ProjectModel;
 
 class User extends BaseController
 {
@@ -15,6 +16,7 @@ class User extends BaseController
 	protected $showusers;
 	protected $showgroups;
 	protected $showgroupsales;
+	protected $showproject;
 
 	public function __construct()
 	{
@@ -23,6 +25,7 @@ class User extends BaseController
 		$this->showusers = new UsersModel;
 		$this->showgroups = new GroupsModel;
 		$this->showgroupsales = new GroupSalesModel;
+		$this->showproject = new ProjectModel();
 	}
 
 
@@ -36,6 +39,7 @@ class User extends BaseController
 			'users' => $this->showgroupsales,
 			'user' => $this->showusers,
 			'group'=>$this->showgroups,
+			'project' => $this->showproject,
 			'title' => 'User'
 		];
 
@@ -53,6 +57,7 @@ class User extends BaseController
 			'search' => $search,
 			'user' => $this->showusers,
 			'users' => $this->showgroupsales,
+			'project' => $this->showproject,
 			'group' => $this->showgroups,
 			'title' => 'User'
 		];
@@ -66,6 +71,7 @@ class User extends BaseController
 		$data = [
 			'new' => $this->showleads->new(),
 			'user' => $this->showusers->admin(),
+			'project' => $this->showproject,
 			'title' => 'User'
 		];
 
@@ -120,6 +126,7 @@ class User extends BaseController
 			'salesReserve' => $salesReserve,
 			'salesBooking' => $salesBooking,
 			'group_name' => $this->showgroups,
+			'project' => $this->showproject,
 			'days' => 'Last 30 Days',
 			'title' => 'User'
 
@@ -175,6 +182,7 @@ class User extends BaseController
 				'salesReserve' => $salesReserve,
 				'salesBooking' => $salesBooking,
 				'group_name' => $this->showgroups,
+				'project' => $this->showproject,
 				'days' => 'Last 30 Days',
 				'title' => 'User'
 
@@ -228,6 +236,7 @@ class User extends BaseController
 			'salesReserve' => $salesReserve,
 			'salesBooking' => $salesBooking,
 			'group_name' => $this->showgroups,
+			'project' => $this->showproject,
 			'days' => 'Last 30 Days',
 			'title' => 'User'
 		];
@@ -283,6 +292,7 @@ class User extends BaseController
 				'salesReserve' => $salesReserve,
 				'salesBooking' => $salesBooking,
 				'group_name' => $this->showgroups,
+				'project' => $this->showproject,
 				'days' => 'Last 30 Days',
 				'title' => 'User'
 			];
