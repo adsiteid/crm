@@ -547,7 +547,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
         series: [{
             name: 'Count',
             data: [
-                <?= $all->getNumRows(); ?>,
+                <?= $leads->getNumRows(); ?>,
                 <?= $leadsClose->getNumRows(); ?>,
                 <?= $leadsPending->getNumRows(); ?>,
                 <?= $leadsContacted->getNumRows(); ?>,
