@@ -49,12 +49,9 @@
             <div class="d-flex align-items-center justify-content-between  pb-3 row ">
                 <div class="col-lg-5 col-md-3 col-sm-3 col-12 d-lg-block d-md-block d-sm-block d-none">
                     <?php foreach ($users->groups($id_user['groups'])->getresultArray() as $groupheader) ; ?>
-                    <?php if (in_groups('admin')) : ?>
-                        <a href="<?= base_url(); ?>add_user" type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 " style="font-size:12px;">Add User </a>
-                    <?php endif; ?>
-                    <?php if (in_groups('users')) : ?>
-                        <div type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 " style="font-size:12px;"> <?php foreach ($group->detail($groupheader['groups'])->getResultArray() as $gr) : ?> <?= $gr['group_name']; ?><?php endforeach; ?> </div>
-                    <?php endif; ?>
+
+                        <a href="<?= base_url(); ?>add_user" type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 " style="font-size:12px;">Add User</a>
+
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-5 col-12 ">
                     <form action="<?= base_url() ?>search_user" method="post" class=" col-lg col-sm col-12 form-inline mr-auto p-0  ">
