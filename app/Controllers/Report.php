@@ -579,6 +579,7 @@ class Report extends BaseController
 
 		if(in_groups('admin')):
 			$new = $this->showleads->new();
+			$sales = $this->showgroupsales->all();
 		endif;
 
 		if (in_groups('users')) :
@@ -646,6 +647,49 @@ class Report extends BaseController
 		];
 
 		return view('report/report_sales', $data);
+	}
+
+
+	public function salesRange()
+	{
+
+
+		$startDate =  $this->request->getVar('date_start');
+		$endDate = $this->request->getVar('date_end');
+
+		if (in_groups('admin')) :
+			$new = $this->showleads->newRange($startDate, $endDate);
+		endif;
+
+		if (in_groups('users')) :
+			$id = user()->id;
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "admin_group") {
+					$new = $this->showleads->newRangeAdminGroup($group['groups'],$startDate, $endDate);
+					$sales = $this->showgroupsales->group_report($group['groups']);
+				} elseif ($group['level'] == "admin_project") {
+					$new = $this->showleads->newRangeAdminProject($group['project'],$startDate, $endDate);
+					$sales = $this->showgroupsales->project($group['project']);
+				} else {
+					$new = $this->showleads->newRange($startDate, $endDate);
+					$sales = $this->showgroupsales->group($group['groups'], $group['project']);
+				}
+			}
+		endif;
+
+		$data = [
+			'new' => $new,
+			'startDate' => $startDate,
+			'endDate' => $endDate,
+			'sales' => $sales, //not admin
+			'user' => $this->showusers,
+			'group' => $this->showgroupsales,
+			'count' => $this->showleads,
+			'day' => "$startDate - $endDate",
+			'title' => 'Report'
+		];
+
+		return view('report/report_sales_range', $data);
 	}
 
 }

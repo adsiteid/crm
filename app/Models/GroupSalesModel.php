@@ -11,6 +11,13 @@ class GroupSalesModel extends Model
     protected $table = 'groups_sales';
     protected $allowedFields = ['group_name', 'admin_group','admin_project', 'manager', 'general_manager','created_at'];
 
+
+    public function all()
+    {
+       $this->findAll();
+
+    }
+
     public function groups($id_groups)
     {
         $builder = $this->db->table($this->table);
@@ -55,9 +62,6 @@ class GroupSalesModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        if(in_groups('users')) :
-        endif;
-
         $builder->groupStart()
             ->Where('groups', $groups)
             ->orWhere('project', $project);
@@ -68,10 +72,10 @@ class GroupSalesModel extends Model
         return $result;
     }
 
-    public function project($id_project)
+    public function project($project)
     {
         $builder = $this->db->table($this->table);
-        $builder->where('project', $id_project);
+        $builder->where('project', $project);
         $builder->where('level', 'sales');
         $builder->orderBy('id DESC');
         $result = $builder->get();

@@ -139,7 +139,7 @@
                                 foreach ($group->user($row['id_user'])->getResultArray() as $grp) {
 
                                     if ($grp['level'] == "admin_group") {
-                                        $newleads = $count->salesNewAdminGroupFilter($grp['groups'],$days);
+                                        $newleads = $count->salesNewAdminGroupFilter($grp['groups'], $days);
                                         $new_close = $count->salesCloseAdminGroupFilter($grp['groups'], $days);
                                         $new_pending = $count->salesPendingAdminGroupFilter($grp['groups'], $days);
                                         $contacted = $count->salesContactedAdminGroupFilter($grp['groups'], $days);
@@ -261,6 +261,45 @@
     </div>
 
     <!-- <div id="pagination-container" class="my-4"></div> -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form class=" form-inline navbar-search col-12" action="<?= base_url(); ?>report_sales_range" method="post">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Filter date</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col">
+                                <label class="mb-1">Date Start</label>
+                                <input type="date" class="form-control w-100 mb-3" name="date_start">
+                            </div>
+                            <div class="col">
+                                <label class="mb-1">Date End</label>
+                                <input type="date" class="form-control w-100 mb-3" name="date_end">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100" type="submit">Filter</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
 
 
     <!-- EXPORT EXCEL -->
