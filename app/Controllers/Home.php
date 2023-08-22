@@ -47,6 +47,7 @@ class Home extends BaseController
 
 		if (in_groups('users')) :
 			$id = user()->id;
+
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 				if ($group['level'] == "admin_group") {
 					$new = $this->showleads->newAdminGroup($group['groups']);
@@ -64,7 +65,17 @@ class Home extends BaseController
 					$visit = $this->showleads->visitAdminProject($group['project']);
 					$deal = $this->showleads->dealAdminProject($group['project']);
 					$events = $this->showevent->eventsAdminProject($group['groups'],$group['project']);
-				} else {
+				} elseif($group['id_user'] == ""){
+
+					$new = $this->showleads->new();
+					$contacted = $this->showleads->contacted();
+					$close = $this->showleads->close();
+					$pending = $this->showleads->pending();
+					$visit = $this->showleads->visit();
+					$deal = $this->showleads->deal();
+					$events = $this->showevent->eventsAdminGroup($group['groups']);
+
+				}else {
 					$new = $this->showleads->new();
 					$contacted = $this->showleads->contacted();
 					$close = $this->showleads->close();

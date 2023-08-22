@@ -82,7 +82,7 @@
                 </div>
 
 
-                <div class="dropdown no-arrow">
+                <!-- <div class="dropdown no-arrow">
 
                     <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="ti-more text-gray-400"></i>
@@ -93,7 +93,7 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" type="button" onclick="printDiv('export_pdf')">Print/Save PDF</a>
                     </div>
-                </div>
+                </div> -->
 
 
 
