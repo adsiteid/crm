@@ -425,6 +425,7 @@ class Leads extends BaseController
             if (empty($this->showgroupsales->user($id)->getResultArray())) {
                 $leads = $this->showleads->search_leads($search);
                 $new =  $this->showleads->new();
+                $level = user()->level;
             }
 
             foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
