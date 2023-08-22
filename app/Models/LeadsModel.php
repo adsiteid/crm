@@ -1834,6 +1834,34 @@ class LeadsModel extends Model
     }
 
 
+    public function salesAllRange($id, $startDate, $endDate)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->groupStart()
+            ->Where('sales', $id)
+            ->orWhere('manager', $id)
+            ->orWhere('general_manager', $id);
+        $builder->groupEnd();
+
+
+        $builder->groupStart()
+        ->Where("time_stamp_new BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_close BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_pending BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_contacted BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_visit BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_deal BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_reserve BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_booking BETWEEN '$startDate' AND '$endDate'")
+        ->groupEnd();
+
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
     public function salesNewRange($id, $startDate , $endDate)
     {
         $builder = $this->db->table($this->table);
@@ -1852,6 +1880,8 @@ class LeadsModel extends Model
         return $result;
     }
 
+
+    
 
     public function salesNewAdminGroup($groups)
     {
@@ -1894,6 +1924,26 @@ class LeadsModel extends Model
         return $result;
     }
 
+    public function salesAllAdminGroupRange($groups, $startDate, $endDate)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('groups', $groups);
+
+        $builder->groupStart()
+        ->Where("time_stamp_new BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_close BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_pending BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_contacted BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_visit BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_deal BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_reserve BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_booking BETWEEN '$startDate' AND '$endDate'")
+        ->groupEnd();
+
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
 
     public function salesNewAdminGroupRange($groups,$startDate, $endDate)
     {
@@ -1947,6 +1997,29 @@ class LeadsModel extends Model
         $result = $builder->get();
         return $result;
     }
+
+
+    public function salesAllAdminProjectRange($project, $startDate, $endDate)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('project', $project);
+
+        $builder->groupStart()
+        ->Where("time_stamp_new BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_close BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_pending BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_contacted BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_visit BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_deal BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_reserve BETWEEN '$startDate' AND '$endDate'")
+        ->orWhere("time_stamp_booking BETWEEN '$startDate' AND '$endDate'")
+        ->groupEnd();
+
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
 
 
     public function salesNewAdminProjectRange($project,$startDate, $endDate)

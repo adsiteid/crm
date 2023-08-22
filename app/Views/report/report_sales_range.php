@@ -139,6 +139,7 @@
                                 foreach ($group->user($row['id_user'])->getResultArray() as $grp) {
 
                                     if ($grp['level'] == "admin_group") {
+                                        $all = $count->salesAllAdminGroupRange($grp['groups'], $startDate, $endDate);
                                         $newleads = $count->salesNewAdminGroupRange($grp['groups'], $startDate, $endDate);
                                         $new_close = $count->salesCloseAdminGroupRange($grp['groups'], $startDate, $endDate);
                                         $new_pending = $count->salesPendingAdminGroupRange($grp['groups'], $startDate, $endDate);
@@ -148,6 +149,7 @@
                                         $reserve = $count->salesReserveAdminGroupRange($grp['groups'], $startDate, $endDate);
                                         $booking = $count->salesBookingAdminGroupRange($grp['groups'], $startDate, $endDate);
                                     } elseif ($grp['level'] == "admin_project") {
+                                        $all = $count->salesAllAdminProjectRange($grp['project'], $startDate, $endDate);
                                         $newleads = $count->salesNewAdminProjectRange($grp['project'], $startDate, $endDate);
                                         $new_close = $count->salesCloseAdminProjectRange($grp['project'], $startDate, $endDate);
                                         $new_pending = $count->salesPendingAdminProjectRange($grp['project'], $startDate, $endDate);
@@ -158,6 +160,7 @@
                                         $booking = $count->salesBookingAdminProjectRange($grp['project'], $startDate, $endDate);
                                         // $all = $count->salesAll($row['username'])->getNumRows();
                                     } else {
+                                        $all = $count->salesAllRange($row['id_user'], $startDate, $endDate);
                                         $newleads = $count->salesNewRange($row['id_user'], $startDate, $endDate);
                                         $new_close = $count->salesCloseRange($row['id_user'], $startDate, $endDate);
                                         $new_pending = $count->salesPendingRange($row['id_user'], $startDate, $endDate);
@@ -200,7 +203,7 @@
                                     </td>
 
                                     <td>
-                                        <?= $newleads->getNumRows();
+                                        <?= $all->getNumRows();
                                         ?>
                                     </td>
 
