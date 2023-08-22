@@ -139,6 +139,7 @@
                                 foreach ($group->user($row['id_user'])->getResultArray() as $grp) {
 
                                     if ($grp['level'] == "admin_group") {
+                                        $all = $count->salesAllAdminGroupFilter($grp['groups'], $days);
                                         $newleads = $count->salesNewAdminGroupFilter($grp['groups'], $days);
                                         $new_close = $count->salesCloseAdminGroupFilter($grp['groups'], $days);
                                         $new_pending = $count->salesPendingAdminGroupFilter($grp['groups'], $days);
@@ -148,6 +149,7 @@
                                         $reserve = $count->salesReserveAdminGroupFilter($grp['groups'], $days);
                                         $booking = $count->salesBookingAdminGroupFilter($grp['groups'], $days);
                                     } elseif ($grp['level'] == "admin_project") {
+                                        $all = $count->salesAllAdminProjectFilter($grp['project'], $days);
                                         $newleads = $count->salesNewAdminProjectFilter($grp['project'], $days);
                                         $new_close = $count->salesCloseAdminProjectFilter($grp['project'], $days);
                                         $new_pending = $count->salesPendingAdminProjectFilter($grp['project'], $days);
@@ -158,6 +160,7 @@
                                         $booking = $count->salesBookingAdminProjectFilter($grp['project'], $days);
                                         // $all = $count->salesAll($row['username'])->getNumRows();
                                     } else {
+                                        $all = $count->salesAllFilter($row['id_user'], $days);
                                         $newleads = $count->salesNewFilter($row['id_user'], $days);
                                         $new_close = $count->salesCloseFilter($row['id_user'], $days);
                                         $new_pending = $count->salesPendingFilter($row['id_user'], $days);
@@ -200,7 +203,7 @@
                                     </td>
 
                                     <td>
-                                        <?= $new->getNumRows();
+                                        <?= $all->getNumRows();
                                         ?>
                                     </td>
 
