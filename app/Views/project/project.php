@@ -6,15 +6,12 @@
 
 
 
-
-
-<div class="row mb-4 p-0 d-lg-block d-none">
-    <!-- <div class="col"><a href=""><a href="" type="button" class="btn btn-sm btn-outline-light bg-white">Back</a></a></div> -->
-    <?php if ($level == "admin" || $level == "admin_group") : ?>
+<?php if ($level == "admin" || $level == "admin_group") : ?>
+    <div class="row mb-4 p-0 d-lg-block d-none">
+        <!-- <div class="col"><a href=""><a href="" type="button" class="btn btn-sm btn-outline-light bg-white">Back</a></a></div> -->
         <div class="col d-flex p-0 "><a href="<?= base_url(); ?>add_project" type="button" class="btn btn-sm btn-primary">Add Project</a></div>
-    <?php endif; ?>
-
-</div>
+    </div>
+<?php endif; ?>
 
 
 
