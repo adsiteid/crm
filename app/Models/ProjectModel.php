@@ -84,6 +84,15 @@ class ProjectModel extends Model
     }
 
 
+    public function projectId($id)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('id_user', $id);
+        $result = $builder->get();
+        return $result;
+    }
+
+
     public function detail($id)
     {
         $builder = $this->db->table($this->table);
