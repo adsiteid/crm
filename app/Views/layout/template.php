@@ -823,7 +823,7 @@
             <!-- ADD EDIT DATA OFF CANVAS BUTTON -->
             <!-- <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Toggle bottom offcanvas</button> -->
 
-            <div class="offcanvas offcanvas-bottom bg-light" style="height:50%;" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+            <div class="offcanvas offcanvas-bottom bg-light" style="height:35%;" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasBottomLabel">Add Data</h5>
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -831,9 +831,6 @@
                 <div class="offcanvas-body small">
 
                     <a href="<?= base_url(); ?>add_leads" type="button" class="btn btn-light bg-white w-100 mb-2">Add Leads</a>
-
-                    <a href="<?= base_url(); ?>add_user" type="button" class="btn btn-light bg-white w-100 mb-2">Add User</a>
-                    <a href="<?= base_url(); ?>add_project" type="button" class="btn btn-light bg-white  w-100 mb-2">Add Project</a>
                     <a href="<?= base_url(); ?>add_event" type="button" class="btn btn-light bg-white  w-100 mb-2">Add Event</a>
                     <a href="<?= base_url(); ?>submission" type="button" class="btn btn-light bg-white w-100 mb-2">Submission</a>
                     <!-- <a href="<?= base_url(); ?>add_event" type="button" class="btn btn-light bg-white w-100 mb-2">Absen</a> -->
