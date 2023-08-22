@@ -87,7 +87,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 <div class="card">
     <div class="card-body">
         <div class="d-flex align-items-center justify-content-between  pb-3  ">
-            <div class="col-5 p-0">
+            <div class="col-4 p-0">
                 <a href="#" type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 " style="font-size:12px;"><?= $title . ' - ' . $leads->getNumrows(); ?></a>
                 <!-- <a href="<?= base_url(); ?>add_leads" type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 " style="font-size:12px;">Add Leads </a> -->
             </div>
