@@ -65,10 +65,10 @@
 
         <div class=" d-flex flex-row align-items-center justify-content-between">
             <div>
-                <h6 class="mb-2 font-weight-bold text-primary">Report Sales</h6>
+                <h6 class="mb-3 font-weight-bold text-primary">Report Sales</h6>
             </div>
 
-            <div>
+            <div class="mb-3">
                 <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
                     <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
                         <i class="mdi mdi-calendar"></i><?= $day; ?>
@@ -94,8 +94,6 @@
                         <a class="dropdown-item" type="button" onclick="printDiv('export_pdf')">Print/Save PDF</a>
                     </div>
                 </div> -->
-
-
 
             </div>
 
