@@ -483,19 +483,19 @@
         series: [{
             name: 'Count',
             data: [
-                <?= $salesNew->getNumRows(); ?>,
-                // <?= $salesClose->getNumRows(); ?>,
-                // <?= $salesPending->getNumRows(); ?>,
+                <?= $leads->getNumRows(); ?>,
+                <?= $salesClose->getNumRows(); ?>,
+                <?= $salesPending->getNumRows(); ?>,
                 <?= $salesContacted->getNumRows(); ?>,
                 <?= $salesVisit->getNumRows(); ?>,
                 <?= $salesDeal->getNumRows(); ?>,
-                // <?= $salesReserve->getNumRows(); ?>,
-                // <?= $salesBooking->getNumRows(); ?>,
+                <?= $salesReserve->getNumRows(); ?>,
+                <?= $salesBooking->getNumRows(); ?>,
             ]
         }],
         xaxis: {
             type: 'text',
-            categories: ['Total Leads', 'Contacted', 'Visit', 'Deal']
+            categories: ['Total Leads', 'Close', 'Pending', 'Contacted', 'Visit', 'Deal', 'Reserve', 'Booking' ]
         }
     }
 

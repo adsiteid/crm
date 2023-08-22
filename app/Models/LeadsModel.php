@@ -1757,7 +1757,6 @@ class LeadsModel extends Model
         $builder->groupEnd();
 
 
-
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
