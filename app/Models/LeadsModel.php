@@ -240,7 +240,7 @@ class LeadsModel extends Model
         
         if (in_groups('users')) :
             $builder->groupStart()
-                ->Where('sales', $id)
+                ->where('sales', $id)
                 ->orWhere('manager', $id)
                 ->orWhere('general_manager', $id);
             $builder->groupEnd();
