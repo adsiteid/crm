@@ -73,6 +73,15 @@ class EventModel extends Model
         return $result;
     }
 
+    public function eventsFilter($days)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where("created_at >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
 
     public function eventsAdminGroup($groups)
     {

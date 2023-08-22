@@ -25,7 +25,7 @@ class Event extends BaseController
     {
 
         if (in_groups('admin')) :
-            $events = $this->showevent->events();
+            $events = $this->showevent->eventsFilter($days);
         endif;
 
         if (in_groups('users')) :
