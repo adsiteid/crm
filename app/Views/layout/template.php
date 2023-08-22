@@ -566,12 +566,13 @@
                                 <div class="collapse  " id="edit">
                                     <ul class="nav flex-column sub-menu rounded-bottom">
                                         <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>add_leads">Add Leads </a></li>
-
-                                        <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>add_project">Add Project </a></li>
-                                        <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>add_user">Add User</a></li>
-                                        <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>add_event">Add Event </a></li>
                                         <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>create/groups">Add Group </a></li>
-                                        <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>create/groupsales">Add Sales to Group </a></li>
+                                        <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>add_project">Add Project </a></li>
+                                        <?php if (in_groups('admin')) : ?>
+                                            <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>add_user">Add User</a></li>
+                                        <?php endif; ?>
+                                        <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>add_event">Add Event </a></li>
+
 
                                         <!-- <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>msdp">Form MSDP </a></li> -->
 
