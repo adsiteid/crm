@@ -33,8 +33,33 @@ class User extends BaseController
 
 	public function users()
 	{
+
+		if (in_groups('admin')) :
+			$new = $this->showleads->new();
+		endif;
+
+
+		if (in_groups('users')) :
+			$id = user()->id;
+			if (empty($this->showgroupsales->user($id)->getResultArray())) {
+				$new = $this->showleads->new();
+			}
+
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "admin_group") {
+					$new = $this->showleads->newAdminGroup($group['groups']);
+				} elseif ($group['level'] == "admin_project") {
+					$new = $this->showleads->newAdminProject($group['project']);
+				} else {
+					$new = $this->showleads->new();
+				}
+			}
+
+		endif;
+
+
 		$data = [
-			'new' => $this->showleads->new(),
+			'new' => $new,
 			// 'sales' => $this->showusers->sales(),
 			'users' => $this->showgroupsales,
 			'user' => $this->showusers,
