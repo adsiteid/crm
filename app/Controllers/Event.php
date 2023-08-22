@@ -66,6 +66,7 @@ class Event extends BaseController
 
         if (in_groups('admin')) :
             $events = $this->showevent->eventsRange($startDate, $endDate);
+            $new = $this->showleads->new();
         endif;
 
         if (in_groups('users')) :
@@ -73,22 +74,26 @@ class Event extends BaseController
 
             if (empty($this->showgroupsales->user($id)->getResultArray())) {
                 $events = $this->showevent->eventsIdRange($id,$startDate, $endDate);
+                $new = $this->showleads->new();
             }
 
 
             foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
                 if ($group['level'] == "admin_group") {
                     $events = $this->showevent->eventsAdminGroupRange($group['groups'],$startDate, $endDate);
+                    $new = $this->showleads->newAdminGroup($group['groups']);
                 } elseif ($group['level'] == "admin_project") {
                     $events = $this->showevent->eventsAdminProjectRange($group['groups'], $group['project'],$startDate, $endDate);
+                    $new = $this->showleads->newAdminProject($group['project']);
                 } else {
                     $events = $this->showevent->eventsAdminGroupRange($group['groups'],$startDate, $endDate);
+                    $new = $this->showleads->new();
                 }
             }
         endif;
 
         $data = [
-            'new' => $this->showleads->new(),
+            'new' => $new,
             'days' => "$startDate - $endDate",
             'event' => $events,
             'title' => 'List Event'
