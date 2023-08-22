@@ -634,8 +634,31 @@ class Report extends BaseController
 	public function sourceFilter($count)
 	{
 
+		if (in_groups('admin')) :
+			$new = $this->showleads->new();
+		endif;
+
+
+		if (in_groups('users')) :
+				$id = user()->id;
+			if (empty($this->showgroupsales->user($id)->getResultArray())) {
+				$new = $this->showleads->new();
+			}
+
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "admin_group") {
+					$new = $this->showleads->newAdminGroup($group['groups']);
+				} elseif ($group['level'] == "admin_project") {
+					$new = $this->showleads->newAdminProject($group['project']);
+				} else {
+					$new = $this->showleads->new();
+				}
+			}
+
+		endif;
+
 		$data = [
-			'new' => $this->showleads->new(),
+			'new' => $new,
 			'source' => $this->chartleads,
 			'group' => $this->showgroupsales,
 			'count' => "$count",
