@@ -723,6 +723,7 @@ class Report extends BaseController
 
 		if (in_groups('users')) :
 			$id = user()->id;
+
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 				if ($group['level'] == "admin_group") {
 					$all = $this->showleads->allFilterAdminGroup($group['groups'], $days);
