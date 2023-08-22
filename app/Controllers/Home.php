@@ -290,10 +290,15 @@ class Home extends BaseController
 				$new = $this->showleads->newAdminGroup($group['groups']);
 			} 
 			
-			if ($group['level'] == "admin_project" || $group['level'] == "sales" || $group['level'] == "manager") {
+			if ($group['level'] == "admin_project"  || $group['level'] == "manager") {
 				$project = $this->showproject->projectAdminProject($group['project'])->getResultArray();
 				$new = $this->showleads->newAdminProject($group['project']);
 			}
+
+				if ( $group['level'] == "sales") {
+					$project = $this->showproject->projectAdminProject($group['project'])->getResultArray();
+					$new = $this->showleads->new();
+				}
 
 				$level = $group['level'];
 		}
