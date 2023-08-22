@@ -73,17 +73,30 @@ class EventModel extends Model
         return $result;
     }
 
-    public function eventsAdminGroup($groups)
+    public function eventsAdminGroup($groups,$days)
     {
         $builder = $this->db->table($this->table);
         $builder->where('groups', $groups);
-        $builder->where('created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
+        $builder->where("created_at >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
         $builder->orderBy('id DESC');
         $result = $builder->get();
         return $result;
     }
 
-    public function eventsAdminProject($groups,$project)
+
+    public function eventsAdminGroupRange($groups,$startDate, $endDate)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('groups', $groups);
+        $builder->groupStart()
+        ->Where("created_at BETWEEN '$startDate' AND '$endDate'")
+        ->groupEnd();
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+    public function eventsAdminProject($groups,$project,$days)
     {
         $builder = $this->db->table($this->table);
 
@@ -91,7 +104,24 @@ class EventModel extends Model
             ->Where('groups', $groups)
             ->orWhere('project', $project);
         $builder->groupEnd();
-        $builder->where('created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
+        $builder->where("created_at >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function eventsAdminProjectRange($groups, $project,$startDate, $endDate)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->groupStart()
+            ->Where('groups', $groups)
+            ->orWhere('project', $project);
+        $builder->groupEnd();
+        $builder->groupStart()
+        ->Where("created_at BETWEEN '$startDate' AND '$endDate'")
+        ->groupEnd();
         $builder->orderBy('id DESC');
         $result = $builder->get();
         return $result;

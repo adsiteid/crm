@@ -67,20 +67,20 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
     <div class="card-body">
         <div class="d-flex align-items-center justify-content-between  pb-3  ">
             <div class="col-5 p-0">
-               
-                    <a href="<?= base_url(); ?>add_event" type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 " style="font-size:12px;">Add Event </a>
+
+                <a href="<?= base_url(); ?>add_event" type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 " style="font-size:12px;">Add Event </a>
 
             </div>
             <div class="d-flex p-0">
 
                 <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
                     <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
-                        <i class="mdi mdi-calendar"></i><?php ?>
+                        <i class="mdi mdi-calendar"></i><?= $days;  ?>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                        <a class="dropdown-item" href="<?= base_url(); ?>getleads/90">Last 90 Days</a>
-                        <a class="dropdown-item" href="<?= base_url(); ?>getleads/30">Last 30 Days</a>
-                        <a class="dropdown-item" href="<?= base_url(); ?>getleads/7">Last 7 Days</a>
+                        <a class="dropdown-item" href="<?= base_url(); ?>list_event/90">Last 90 Days</a>
+                        <a class="dropdown-item" href="<?= base_url(); ?>list_event/30">Last 30 Days</a>
+                        <a class="dropdown-item" href="<?= base_url(); ?>list_event/7">Last 7 Days</a>
                         <a type="button" class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Custom Range</a>
                     </div>
                 </div>
@@ -200,7 +200,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form class=" form-inline navbar-search col-12" action="<?= base_url(); ?>range_list" method="post">
+        <form class=" form-inline navbar-search col-12" action="<?= base_url(); ?>range_event" method="post">
             <div class="modal-content">
 
                 <div class="modal-header">

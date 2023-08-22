@@ -131,11 +131,12 @@ $routes->get('/submission', 'CMS::submission');
 
 // EVENT
 $routes->post('/event_save', 'CMS::EventSave');
-$routes->get('/list_event', 'Event::list');
+$routes->get('/list_event/(:num)', 'Event::list/$1');
 $routes->get('/event/(:num)', 'Event::detail/$1');
 $routes->get('/edit_event/(:num)', 'CMS::edit_event/$1');
 $routes->post('update_event/(:num)', 'CMS::update_event/$1');
 $routes->delete('/delete_event/(:num)', 'CMS::delete_event/$1');
+$routes->post('/range_event', 'Event::listRange');
 
 
 
