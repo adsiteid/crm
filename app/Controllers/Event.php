@@ -65,7 +65,7 @@ class Event extends BaseController
         $endDate = $this->request->getVar('date_end');
 
         if (in_groups('admin')) :
-            $events = $this->showevent->events();
+            $events = $this->showevent->eventsRange($startDate, $endDate);
         endif;
 
         if (in_groups('users')) :

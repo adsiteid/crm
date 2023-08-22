@@ -82,6 +82,17 @@ class EventModel extends Model
         return $result;
     }
 
+    public function eventsRange($startDate, $endDate)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->groupStart()
+        ->Where("created_at BETWEEN '$startDate' AND '$endDate'")
+        ->groupEnd();
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
 
     public function eventsAdminGroup($groups)
     {
