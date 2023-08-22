@@ -102,7 +102,7 @@ class Leads extends BaseController
             'new' => $new,
             'groups' => $this->showgroupsales,
             'days'=> 'Last 30 Days',
-            'title' => 'New Leads'
+            'title' => 'New'
         ];
 
         return view('leads/list', $data);
