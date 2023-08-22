@@ -26,6 +26,11 @@ class Auth extends AuthConfig
 
     public $allowRemembering = true;
 
+    public $personalFields = [
+        'level',
+        'fullname'
+    ];
+
     public $views = [
         'login'           => 'App\Views\auth\login',
         'register'        => 'App\Views\auth\register', 

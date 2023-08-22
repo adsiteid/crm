@@ -31,14 +31,22 @@
                             </div>
                             <h4 class="text-center"><?= lang('Auth.register') ?></h4>
                             <h6 class="font-weight-light lh-base text-center">Isi form untuk mendaftar</h6>
-                            <form action="<?= url_to('register') ?>" method="post" class="pt-3"  enctype="multipart/form-data">
+                            <form action="<?= url_to('register') ?>" method="post" class="pt-3" enctype="multipart/form-data">
                                 <?= csrf_field() ?>
                                 <input type="text" name="level" class="form-control d-none" autocomplete="off" value="users">
-                                
+
                                 <div class="form-group">
                                     <label for="email"><?= lang('Auth.email') ?></label>
                                     <input type="email" class="form-control <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" aria-describedby="emailHelp" placeholder="<?= lang('Auth.email') ?>" value="<?= old('email') ?? filter_input(INPUT_GET, 'email', FILTER_SANITIZE_URL) ?>">
-                                    <small id="emailHelp" class="form-text text-muted"><?= lang('Auth.weNeverShare') ?></small>
+                                    <!-- <small id="emailHelp" class="form-text text-muted"><?= lang('Auth.weNeverShare') ?></small> -->
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="fullname">Nama Lengkap</label>
+                                    <input type="text" class="form-control <?php if (session('errors.fullname')) : ?>is-invalid<?php endif ?>" name="fullname" placeholder="Nama Lengkap" value="<?= old('fullname') ?>">
+                                    <div class="invalid-feedback">
+                                        <?= session('errors.fullname') ?>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
@@ -63,7 +71,10 @@
                                     <div class="invalid-feedback">
                                         <?= session('errors.repeatPassword') ?>
                                     </div>
-                                </div> 
+                                </div>
+
+                                <input type="hidden" name="level" value="users">
+
                                 <div class="mt-3">
                                     <button type="submit" class="btn btn-primary btn-block"><?= lang('Auth.register') ?></button>
                                 </div>
