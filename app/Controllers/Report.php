@@ -61,6 +61,33 @@ class Report extends BaseController
 
 		if (in_groups('users')) :
 			$id = user()->id;
+
+			if (empty($this->showgroupsales->user($id)->getResultArray())) {
+
+				$leads = $this->showleads->allFilter($days);
+
+				$leadsNew = $this->chartleads->leadsNew($days);
+				$leadsClose = $this->chartleads->leadsClose($days);
+				$leadsPending = $this->chartleads->leadsPending($days);
+				$leadsContacted = $this->chartleads->leadsContacted($days);
+				$leadsVisit = $this->chartleads->leadsVisit($days);
+				$leadsDeal = $this->chartleads->leadsDeal($days);
+				$leadsReserve = $this->chartleads->leadsReserve($days);
+				$leadsBooking = $this->chartleads->leadsBooking($days);
+
+				$new = $this->showleads->newFilter($days);
+				$close = $this->showleads->closeFilter($days);
+				$pending = $this->showleads->pendingFilter($days);
+				$contacted = $this->showleads->contactedFilter($days);
+				$visit = $this->showleads->visitFilter($days);
+				$deal = $this->showleads->dealFilter($days);
+				$dealOnly = $this->showleads->dealOnly($days);
+				$reserve = $this->showleads->reserveFilter($days);
+				$booking = $this->showleads->bookingFilter($days);
+			}
+
+
+
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 				if ($group['level'] == "admin_group") {
 
@@ -201,6 +228,31 @@ class Report extends BaseController
 		if (in_groups('users')) :
 
 			$id = user()->id;
+
+
+			if (empty($this->showgroupsales->user($id)->getResultArray())) {
+				$leads = $this->showleads->rangeList($startDate, $endDate);
+				$leadsNew = $this->chartleads->leadsNewRange($startDate, $endDate);
+				$leadsClose = $this->chartleads->leadsCloseRange($startDate, $endDate);
+				$leadsPending = $this->chartleads->leadsPendingRange($startDate, $endDate);
+				$leadsContacted = $this->chartleads->leadsContactedRange($startDate, $endDate);
+				$leadsVisit = $this->chartleads->leadsVisitRange($startDate, $endDate);
+				$leadsDeal = $this->chartleads->leadsDealRange($startDate, $endDate);
+				$leadsReserve = $this->chartleads->leadsReserveRange($startDate, $endDate);
+				$leadsBooking = $this->chartleads->leadsBookingRange($startDate, $endDate);
+
+				$new = $this->showleads->newRange($startDate, $endDate);
+				$close = $this->showleads->closeRange($startDate, $endDate);
+				$pending = $this->showleads->pendingRange($startDate, $endDate);
+				$contacted = $this->showleads->contactedRange($startDate, $endDate);
+				$visit = $this->showleads->visitRange($startDate, $endDate);
+				$deal = $this->showleads->dealRange($startDate, $endDate);
+				$dealOnly = $this->showleads->dealOnlyRange($startDate, $endDate);
+				$reserve = $this->showleads->reserveRange($startDate, $endDate);
+				$booking = $this->showleads->bookingRange($startDate, $endDate);
+			}
+
+
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 				if ($group['level'] == "admin_group") {
 
@@ -336,6 +388,30 @@ class Report extends BaseController
 
 		if (in_groups('users')) :
 			$id = user()->id;
+
+			if (empty($this->showgroupsales->user($id)->getResultArray())) {
+				$leads = $this->chartleads->search_report($search);
+
+				$leadsNew = $this->chartleads->leadsNew('30');
+				$leadsClose = $this->chartleads->leadsClose('30');
+				$leadsPending = $this->chartleads->leadsPending('30');
+				$leadsContacted = $this->chartleads->leadsContacted('30');
+				$leadsVisit = $this->chartleads->leadsVisit('30');
+				$leadsDeal = $this->chartleads->leadsDeal('30');
+				$leadsReserve = $this->chartleads->leadsReserve('30');
+				$leadsBooking = $this->chartleads->leadsBooking('30');
+
+				$new = $this->showleads->newFilter('30');
+				$close = $this->showleads->closeFilter('30');
+				$pending = $this->showleads->pendingFilter('30');
+				$contacted = $this->showleads->contactedFilter('30');
+				$visit = $this->showleads->visitFilter('30');
+				$deal = $this->showleads->dealFilter('30');
+				$dealOnly = $this->showleads->dealOnly('30');
+				$reserve = $this->showleads->reserveFilter('30');
+				$booking = $this->showleads->bookingFilter('30');
+			}
+
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 				if ($group['level'] == "admin_group") {
 
@@ -452,6 +528,12 @@ class Report extends BaseController
 		endif;
 		if (in_groups('users')) :
 			$id = user()->id;
+
+			if (empty($this->showgroupsales->user($id)->getResultArray())) {
+				$leads = $this->showleads->projectFilter($days);
+				$new =  $this->showleads->newFilter($days);
+			}
+
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 				if ($group['level'] == "admin_group") {
 					$leads = $this->showleads->projectFilterAdminGroup($group['groups'],$days);
@@ -494,6 +576,13 @@ class Report extends BaseController
 		endif;
 		if (in_groups('users')) :
 			$id = user()->id;
+
+			if (empty($this->showgroupsales->user($id)->getResultArray())) {
+				$leads = $this->showleads->projectRange($startDate, $endDate);
+				$new =  $this->showleads->newRange($startDate, $endDate);
+			}
+
+
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 				if ($group['level'] == "admin_group") {
 					$leads = $this->showleads->projectRangeAdminGroup($group['groups'], $startDate, $endDate);
@@ -589,6 +678,12 @@ class Report extends BaseController
 
 		if (in_groups('users')) :
 			$id = user()->id;
+
+			if (empty($this->showgroupsales->user($id)->getResultArray())) {
+				$new = $this->showleads->new();
+				$sales = $this->showgroupsales->all();
+			}
+
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 				if ($group['level'] == "admin_group") {
 					$new = $this->showleads->newAdminGroup($group['groups']);
