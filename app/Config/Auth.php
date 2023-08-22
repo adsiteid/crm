@@ -34,8 +34,10 @@ class Auth extends AuthConfig
         'reset'           => 'App\Views\auth\reset',
     ];
     private function clientgoogle(){
-        $clientID = '808577488978-s0raqqteh5ot3nhca0drdcrh15lr15uu.apps.googleusercontent.com';
-        $clientSecret = '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';
+        $clientID = '993108724312-qam1vuumrin1cd58cd95sla6qb3alg5a.apps.googleusercontent.com';
+        $clientSecret = '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';
+       // $clientID = '808577488978-s0raqqteh5ot3nhca0drdcrh15lr15uu.apps.googleusercontent.com';
+        //$clientSecret = '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';
         $redirectUri = base_url().'google-auth'; //Harus sama dengan yang kita daftarkan
                 
         $client = new Google_Client();
