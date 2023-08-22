@@ -45,10 +45,21 @@ class Home extends BaseController
 			$events = $this->showevent->events();
 		endif;
 
-		if (in_groups('users')) :
+		if(in_groups('users')) :
 			$id = user()->id;
 
+			if (empty($this->showgroupsales->user($id)->getResultArray())) {
+				$new = $this->showleads->new();
+				$contacted = $this->showleads->contacted();
+				$close = $this->showleads->close();
+				$pending = $this->showleads->pending();
+				$visit = $this->showleads->visit();
+				$deal = $this->showleads->deal();
+				$events = $this->showevent->eventsId($id);
+			}
+
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				
 				if ($group['level'] == "admin_group") {
 					$new = $this->showleads->newAdminGroup($group['groups']);
 					$contacted = $this->showleads->contactedAdminGroup($group['groups']);
@@ -65,17 +76,7 @@ class Home extends BaseController
 					$visit = $this->showleads->visitAdminProject($group['project']);
 					$deal = $this->showleads->dealAdminProject($group['project']);
 					$events = $this->showevent->eventsAdminProject($group['groups'],$group['project']);
-				} elseif($group['id_user'] == ""){
-
-					$new = $this->showleads->new();
-					$contacted = $this->showleads->contacted();
-					$close = $this->showleads->close();
-					$pending = $this->showleads->pending();
-					$visit = $this->showleads->visit();
-					$deal = $this->showleads->deal();
-					$events = $this->showevent->eventsAdminGroup($group['groups']);
-
-				}else {
+				} else{
 					$new = $this->showleads->new();
 					$contacted = $this->showleads->contacted();
 					$close = $this->showleads->close();
@@ -118,6 +119,18 @@ class Home extends BaseController
 
 		if (in_groups('users')) :
 			$id = user()->id;
+
+
+			if (empty($this->showgroupsales->user($id)->getResultArray())) {
+				$new = $this->showleads->newFilter($days);
+				$contacted = $this->showleads->contactedFilter($days);
+				$close = $this->showleads->closeFilter($days);
+				$pending = $this->showleads->pendingFilter($days);
+				$visit = $this->showleads->visitFilter($days);
+				$deal = $this->showleads->dealFilter($days);
+				$events = $this->showevent->eventsIdFilter($id, $days);
+			}
+
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 				if ($group['level'] == "admin_group") {
 					$new = $this->showleads->newFilterAdminGroup($group['groups'],$days);
@@ -164,43 +177,6 @@ class Home extends BaseController
 	}
 
 
-	// public function index30()
-	// {
-
-	// 	$data = [
-	// 		'new' => $this->showleads->new('30'),
-	// 		'contacted' => $this->showleads->contacted('30'),
-	// 		'close' => $this->showleads->close('30'),
-	// 		'pending' => $this->showleads->pending('30'),
-	// 		'visit' => $this->showleads->visit('30'),
-	// 		'deal' => $this->showleads->deal('30'),
-	// 		'event' => $this->showevent->acara(),
-	// 		'days'=> 'Last 30 Days',
-	// 		'title' => 'Dashboard'
-	// 	];
-	// 	return view('index', $data);
-	// }
-
-
-	// public function index90()
-	// {
-
-	// 	$data = [
-	// 		'new' => $this->showleads->new('90'),
-	// 		'contacted' => $this->showleads->contacted('90'),
-	// 		'close' => $this->showleads->close('90'),
-	// 		'pending' => $this->showleads->pending('90'),
-	// 		'visit' => $this->showleads->visit('90'),
-	// 		'deal' => $this->showleads->deal('90'),
-	// 		'event' => $this->showevent->acara(),
-	// 		'days'=> 'Last 90 Days',
-	// 		'title' => 'Dashboard'
-	// 	];
-	// 	return view('index', $data);
-	// }
-
-
-
 	public function range()
 	{
 
@@ -220,6 +196,19 @@ class Home extends BaseController
 
 		if (in_groups('users')) :
 			$id = user()->id;
+
+
+			if (empty($this->showgroupsales->user($id)->getResultArray())) {
+				$new = $this->showleads->newRange($startDate, $endDate);
+				$contacted = $this->showleads->contactedRange($startDate, $endDate);
+				$close = $this->showleads->closeRange($startDate, $endDate);
+				$pending = $this->showleads->pendingRange($startDate, $endDate);
+				$visit = $this->showleads->visitRange($startDate, $endDate);
+				$deal = $this->showleads->dealRange($startDate, $endDate);
+				$events = $this->showevent->eventsIdRange($id,$startDate, $endDate);
+			}
+
+
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 				if ($group['level'] == "admin_group") {
 					$new = $this->showleads->newRangeAdminGroup($group['groups'],$startDate, $endDate);

@@ -24,6 +24,46 @@ class EventModel extends Model
     ];
 
 
+    public function eventsId($id)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('id_user',$id);
+        $builder->where('created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function eventsIdFilter($id,$days)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('id_user', $id);
+
+        $builder->groupStart()
+        ->Where("created_at >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
+        $builder->groupEnd();
+
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function eventsIdRange($id, $startDate , $endDate)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('id_user', $id);
+
+        $builder->groupStart()
+        ->Where("created_at BETWEEN '$startDate' AND '$endDate'")
+        ->groupEnd();
+
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
     public function events()
     {
         $builder = $this->db->table($this->table);
