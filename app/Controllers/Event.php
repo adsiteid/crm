@@ -38,11 +38,11 @@ class Event extends BaseController
 
             foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
                 if ($group['level'] == "admin_group") {
-                    $events = $this->showevent->eventsAdminGroup($group['groups'],$days);
+                    $events = $this->showevent->eventsAdminGroupFilter($group['groups'],$days);
                 } elseif ($group['level'] == "admin_project") {
-                    $events = $this->showevent->eventsAdminProject($group['groups'], $group['project'],$days);
+                    $events = $this->showevent->eventsAdminProjectFilter($group['groups'], $group['project'],$days);
                 } else {
-                    $events = $this->showevent->eventsAdminGroup($group['groups'],$days);
+                    $events = $this->showevent->eventsAdminGroupFilter($group['groups'],$days);
                 }
             }
         endif;

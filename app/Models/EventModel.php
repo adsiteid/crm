@@ -73,7 +73,18 @@ class EventModel extends Model
         return $result;
     }
 
-    public function eventsAdminGroup($groups,$days)
+
+    public function eventsAdminGroup($groups)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('groups', $groups);
+        $builder->where("created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)");
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+    public function eventsAdminGroupFilter($groups,$days)
     {
         $builder = $this->db->table($this->table);
         $builder->where('groups', $groups);
@@ -96,7 +107,22 @@ class EventModel extends Model
         return $result;
     }
 
-    public function eventsAdminProject($groups,$project,$days)
+    public function eventsAdminProject($groups,$project)
+    {
+        $builder = $this->db->table($this->table);
+
+        $builder->groupStart()
+            ->Where('groups', $groups)
+            ->orWhere('project', $project);
+        $builder->groupEnd();
+        $builder->where("created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)");
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function eventsAdminProjectFilter($groups, $project, $days)
     {
         $builder = $this->db->table($this->table);
 
