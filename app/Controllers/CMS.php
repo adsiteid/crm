@@ -1982,7 +1982,7 @@ Terima Kasih 🙏
 			'Data updated successfully'
 		);
 
-		return redirect()->to(base_url() . 'list_event');
+		return redirect()->to(base_url() . 'list_event/30');
 	}
 
 
@@ -2004,6 +2004,6 @@ Terima Kasih 🙏
 		$this->showevent->delete($id);
 
 		session()->setFlashdata('pesan', 'Data ' . $id . ' deleted successfully');
-		return redirect()->to(base_url() . 'list_event');
+		return redirect()->to(base_url() . 'list_event/30');
 	}
 }
