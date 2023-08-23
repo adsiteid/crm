@@ -1802,15 +1802,6 @@ Terima Kasih 🙏
 		$fileName = $file->getRandomName();
 
 
-		foreach ($this->showgroups->detail($this->request->getVar('groups'))->getResultArray() as $admgrp) :
-			$adminGroup = $admgrp['admin_group'];
-		endforeach;
-
-		foreach ($this->showgroupsales->admin_project($this->request->getVar('project'))->getResultArray() as $admprj) :
-			$adminProject = $admprj['admin_project'];
-		endforeach;
-
-
 		$this->showevent->save(
 			[
 				'event_name' => $this->request->getVar('event_name'),
@@ -1823,8 +1814,6 @@ Terima Kasih 🙏
 				'date_end' => $this->request->getVar('date_end'),
 				'description' => $this->request->getVar('description'),
 				'groups' => $this->request->getVar('groups'),
-				'admin_group' => $adminGroup,
-				'admin_project' => $adminProject,
 				'image' => $fileName
 			]
 		);

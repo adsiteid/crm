@@ -130,15 +130,8 @@
                     </div>
                 </div>
 
-                <?php if (in_groups('admin_group')) : ?>
-                    <input type="hidden" name="admin_group" value="<?= user()->id; ?>">
-                <?php endif; ?>
 
-                <?php if (in_groups('admin_project')) : ?>
-                    <?php foreach ($adminAssistant->getResultArray() as $adas); ?>
-                    <input type="hidden" name="admin_group" value="<?= $adas['admin_group']; ?>">
-                <?php endif; ?>
-
+               
 
 
                 <div class="d-flex justify-content-end my-3 p-0">

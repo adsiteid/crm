@@ -19,7 +19,6 @@ class EventModel extends Model
         'date_end',
         'description',
         'groups',
-        'admin_group',
         'image'
     ];
 
