@@ -95,7 +95,7 @@
                     <tbody class="list-wrapper ">
                         <?php $no = 1; ?>
                         <?php foreach ($users->groups($id_user['groups'])->getresultArray() as $row) : ?>
-                            <tr class="list-item " onclick="location.href='<?= base_url(); ?>user/<?php echo $row['id_user']; ?>'">
+                            <tr class="list-item " <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project" || $level == "manager" || $level == "general_manager") : ?> onclick="location.href='<?= base_url(); ?>user/<?php echo $row['id_user']; ?>'" <?php endif; ?>>
                                 <?php foreach ($user->detail($row['id_user'])->getresultArray() as $userdetail) : ?>
                                     <td class="d-sm-table-cell d-none">
                                         <?= $no++; ?>

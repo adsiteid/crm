@@ -53,6 +53,8 @@ class User extends BaseController
 				} else {
 					$new = $this->showleads->new();
 				}
+
+				$level = $group['level'];
 			}
 
 		endif;
@@ -64,6 +66,7 @@ class User extends BaseController
 			'users' => $this->showgroupsales,
 			'user' => $this->showusers,
 			'group'=>$this->showgroups,
+			'level' => $level,
 			'project' => $this->showproject,
 			'title' => 'User'
 		];
