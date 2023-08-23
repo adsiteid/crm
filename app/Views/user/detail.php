@@ -35,6 +35,13 @@
 
                     </div>
 
+                    <div class="col mb-2">
+                        <p class="text-muted mb-1" style="color : #fff; font-size: 11px;">ID user</p>
+                        <h6 class="mb-1" style="font-size : 14px;"><?php echo $row['id'];
+                                                                    if ($row['id'] == "") {
+                                                                        echo "-";
+                                                                    } ?></h6>
+                    </div>
 
                     <div class="col mb-2">
                         <p class="text-muted mb-1" style="color : #fff; font-size: 11px;">Alamat</p>
