@@ -108,7 +108,7 @@ class Home extends BaseController
 	{
 
 		if (in_groups('admin')) :
-			$new = $this->showleads->newFilter($days);
+			$new = $this->showleads->new();
 			$contacted = $this->showleads->contactedFilter($days);
 			$close = $this->showleads->closeFilter($days);
 			$pending = $this->showleads->pendingFilter($days);
@@ -122,7 +122,7 @@ class Home extends BaseController
 
 
 			if (empty($this->showgroupsales->user($id)->getResultArray())) {
-				$new = $this->showleads->newFilter($days);
+				$new = $this->showleads->new();
 				$contacted = $this->showleads->contactedFilter($days);
 				$close = $this->showleads->closeFilter($days);
 				$pending = $this->showleads->pendingFilter($days);
@@ -133,7 +133,7 @@ class Home extends BaseController
 
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 				if ($group['level'] == "admin_group") {
-					$new = $this->showleads->newFilterAdminGroup($group['groups'],$days);
+					$new = $this->showleads->newAdminGroup($group['groups']);
 					$contacted = $this->showleads-> contactedFilterAdminGroup($group['groups'], $days);
 					$close = $this->showleads-> closeFilterAdminGroup($group['groups'], $days);
 					$pending = $this->showleads-> pendingFilterAdminGroup($group['groups'], $days);
@@ -141,7 +141,7 @@ class Home extends BaseController
 					$deal = $this->showleads-> dealFilterAdminGroup($group['groups'], $days);
 					$events = $this->showevent->eventsAdminGroup($group['groups'], $days);
 				} elseif ($group['level'] == "admin_project") {
-					$new = $this->showleads-> newFilterAdminProject($group['project'], $days);
+					$new = $this->showleads-> newAdminProject($group['project']);
 					$contacted = $this->showleads-> contactedFilterAdminProject($group['project'], $days);
 					$close = $this->showleads-> closeFilterAdminProject($group['project'], $days);
 					$pending = $this->showleads-> pendingFilterAdminProject($group['project'], $days);
@@ -149,7 +149,7 @@ class Home extends BaseController
 					$deal = $this->showleads-> dealFilterAdminProject($group['project'], $days);
 					$events = $this->showevent->eventsAdminProject($group['groups'], $group['project'],$days);
 				} else {
-					$new = $this->showleads->newFilter($days);
+					$new = $this->showleads->new();
 					$contacted = $this->showleads->contactedFilter($days);
 					$close = $this->showleads->closeFilter($days);
 					$pending = $this->showleads->pendingFilter($days);
@@ -184,7 +184,7 @@ class Home extends BaseController
 		$endDate = $this->request->getVar('date_end');
 
 		if (in_groups('admin')) :
-			$new = $this->showleads->newRange($startDate, $endDate);
+			$new = $this->showleads->new();
 			$contacted = $this->showleads->contactedRange($startDate, $endDate);
 			$close = $this->showleads->closeRange($startDate, $endDate);
 			$pending = $this->showleads->pendingRange($startDate, $endDate);
@@ -199,7 +199,7 @@ class Home extends BaseController
 
 
 			if (empty($this->showgroupsales->user($id)->getResultArray())) {
-				$new = $this->showleads->newRange($startDate, $endDate);
+				$new = $this->showleads->new();
 				$contacted = $this->showleads->contactedRange($startDate, $endDate);
 				$close = $this->showleads->closeRange($startDate, $endDate);
 				$pending = $this->showleads->pendingRange($startDate, $endDate);
@@ -211,7 +211,7 @@ class Home extends BaseController
 
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 				if ($group['level'] == "admin_group") {
-					$new = $this->showleads->newRangeAdminGroup($group['groups'],$startDate, $endDate);
+					$new = $this->showleads->newAdminGroup($group['groups']);
 					$contacted = $this->showleads->contactedRangeAdminGroup($group['groups'],$startDate, $endDate);
 					$close = $this->showleads->closeRangeAdminGroup($group['groups'],$startDate, $endDate);
 					$pending = $this->showleads->pendingRangeAdminGroup($group['groups'],$startDate, $endDate);
@@ -219,7 +219,7 @@ class Home extends BaseController
 					$deal = $this->showleads->dealRangeAdminGroup($group['groups'],$startDate, $endDate);
 					$events = $this->showevent->eventsAdminGroup($group['groups']);
 				} elseif ($group['level'] == "admin_project") {
-					$new = $this->showleads->newRangeAdminProject($group['project'],$startDate, $endDate);
+					$new = $this->showleads->newAdminProject($group['project']);
 					$contacted = $this->showleads->contactedRangeAdminProject($group['project'],$startDate, $endDate);
 					$close = $this->showleads->closeRangeAdminProject($group['project'],$startDate, $endDate);
 					$pending = $this->showleads->pendingRangeAdminProject($group['project'],$startDate, $endDate);
@@ -227,7 +227,7 @@ class Home extends BaseController
 					$deal = $this->showleads->dealRangeAdminProject($group['project'],$startDate, $endDate);
 					$events = $this->showevent->eventsAdminProject($group['groups'], $group['project']);
 				} else {
-					$new = $this->showleads->newRange($startDate, $endDate);
+					$new = $this->showleads->new();
 					$contacted = $this->showleads->contactedRange($startDate, $endDate);
 					$close = $this->showleads->closeRange($startDate, $endDate);
 					$pending = $this->showleads->pendingRange($startDate, $endDate);
