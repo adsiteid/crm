@@ -45,7 +45,18 @@
                     </div>
                     <div class="col mb-2">
                         <p class="text-muted mb-1" style="color : #fff; font-size: 11px;">Nomor Kontak</p>
-                        <h6 class="mb-1" style="font-size : 14px;"><?= $row['contact'] ?></h6>
+                        <h6 class="mb-1" style="font-size : 14px;"><?php echo $row['contact'];
+                                                                    if ($row['contact'] == "") {
+                                                                        echo "-";
+                                                                    } ?></h6>
+                    </div>
+
+                    <div class="col mb-2">
+                        <p class="text-muted mb-1" style="color : #fff; font-size: 11px;">Email</p>
+                        <h6 class="mb-1" style="font-size : 14px;"><?php echo $row['email'];
+                                                                    if ($row['email'] == "") {
+                                                                        echo "-";
+                                                                    } ?></h6>
                     </div>
 
 
@@ -115,14 +126,7 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-lg-4 col-12 px-lg-2 px-3">
-                <div class="card mb-lg-0 mb-3">
-                    <div class="card-body py-4">
-                        <p class="text-muted small">Total Earnings</p>
-                        <h5 class="fw-bolder">Rp. 10.000.000</h5>
-                    </div>
-                </div>
-            </div> -->
+
         </div>
 
         <div class="row mt-lg-3 mt-0">
@@ -495,7 +499,7 @@
         }],
         xaxis: {
             type: 'text',
-            categories: ['Total Leads', 'Close', 'Pending', 'Contacted', 'Visit', 'Deal', 'Reserve', 'Booking' ]
+            categories: ['Total Leads', 'Close', 'Pending', 'Contacted', 'Visit', 'Deal', 'Reserve', 'Booking']
         }
     }
 
