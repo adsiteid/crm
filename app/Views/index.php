@@ -192,7 +192,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                         <div class="col-3 p-0"> <img src="<?= base_url(); ?>document/image/event/<?= $ev2['image'] ?>" alt="" class="col"> </div>
                         <div class="col-6 text-white border-right p-0">
                             <p class="mb-1" style="font-size:12px;"><?= $ev2['event_name']; ?></p>
-                            <h6 class="text-white mb-0" style="font-size:12px;"><?= $ev2['project']; ?></h6>
+                            <h6 class="text-white mb-0" style="font-size:12px;"><?php foreach ($projects->detail($ev2['project'])->getResultArray() as $prj) : ?><?= $prj['project']; ?><?php endforeach ?></h6>
                         </div>
                         <div class="col-3 text-white">
                             <div class="mb-0 p-0" style="font-size:15px; font-weight:600;"><?= $date_start2; ?>-<?= $date_end2; ?></div>
