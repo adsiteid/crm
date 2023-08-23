@@ -57,8 +57,8 @@
                         <option value="">Select Project</option>
 
                         <?php foreach ($user_group->getResultArray() as $prj) : ?>
-                            <?php foreach ($group->projectGroup($prj['groups'])->getResultArray() as $prj) : ?>
-                                <option value="<?= $prj['project']; ?>"><?php foreach ($project->projectList($prj['project'])->getResultArray() as $prjct) : ?><?= $prjct['project']; ?><?php endforeach; ?></option>
+                            <?php foreach ($project->projectGroup($prj['groups'])->getResultArray() as $prj) : ?>
+                                <option value="<?= $prj['id']; ?>"><?= $prj['project']; ?></option>
                             <?php endforeach ?>
                         <?php endforeach; ?>
 
