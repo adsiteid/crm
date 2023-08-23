@@ -109,4 +109,14 @@ class ProjectModel extends Model
         $result = $builder->get();
         return $result;
     }
+
+    public function projectList($id)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('id', $id);
+        $builder->groupBy('project');
+        $result = $builder->get();
+        return $result;
+    }
+
 }
