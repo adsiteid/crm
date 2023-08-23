@@ -1840,7 +1840,7 @@ Terima Kasih 🙏
 			'pesan',
 			'Data Added successfully'
 		);
-		return redirect()->to(base_url() . 'list_event');
+		return redirect()->to(base_url() .'list_event/30');
 	}
 
 
