@@ -1695,6 +1695,7 @@ Terima Kasih 🙏
 			'new' => $this->showleads->new(),
 			'error' => \Config\Services::validation(),
 			'projects' => $this->showprojects->findAll(),
+			'project' => $this->showprojects,
 			'users' => $this->showusers,
 			'sales' => $this->showusers->sales(),
 			'user_group' => $this->showgroupsales->user($id),

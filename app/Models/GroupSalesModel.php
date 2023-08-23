@@ -129,6 +129,16 @@ class GroupSalesModel extends Model
     }
 
 
+    public function projectGroup($groups)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('groups', $groups);
+        $builder->groupBy('project');
+        $result = $builder->get();
+        return $result;
+    }
+
+
 
 
 }

@@ -92,6 +92,15 @@ class ProjectModel extends Model
         return $result;
     }
 
+    public function projectGroup($groups)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('groups', $groups);
+        $result = $builder->get();
+        return $result;
+    }
+
+
 
     public function detail($id)
     {

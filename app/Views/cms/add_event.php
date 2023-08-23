@@ -57,7 +57,9 @@
                         <option value="">Select Project</option>
 
                         <?php foreach ($user_group->getResultArray() as $prj) : ?>
-                            <option value="<?= $prj['project']; ?>"><?= $prj['project']; ?></option>
+                            <?php foreach ($group->projectGroup($prj['groups'])->getResultArray() as $prj) : ?>
+                                <option value="<?= $prj['project']; ?>"><?php foreach ($project->detail($prj['project'])->getResultArray() as $prjct) : ?><?= $prjct['project']; ?><?php endforeach; ?></option>
+                            <?php endforeach ?>
                         <?php endforeach; ?>
 
                     </select>
@@ -131,7 +133,7 @@
                 </div>
 
 
-               
+
 
 
                 <div class="d-flex justify-content-end my-3 p-0">
