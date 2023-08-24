@@ -288,17 +288,6 @@ class CMS extends BaseController
 		}
 
 
-
-
-		foreach ($this->showgroups->detail($this->request->getVar('groups'))->getResultArray() as $admgrp) :
-			$adminGroup = $admgrp['admin_group'];
-		endforeach;
-
-		foreach ($this->showgroupsales->admin_project($this->request->getVar('project'))->getResultArray() as $admprj) :
-			$adminProject = $admprj['admin_project'];
-		endforeach;
-
-
 		$this->showmsdp->save(
 
 			[
@@ -314,8 +303,6 @@ class CMS extends BaseController
 				'status' => $this->request->getVar('status'),
 				'deadline' => $this->request->getVar('deadline'),
 				'groups' => $this->request->getVar('groups'),
-				'admin_group' => $adminGroup,
-				'admin_project' => $adminProject,
 				'userid' => $this->request->getVar('userid')
 			]
 		);
