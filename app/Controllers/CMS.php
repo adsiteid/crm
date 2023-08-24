@@ -1346,8 +1346,9 @@ Terima Kasih 🙏
 
 		$pjid = $this->showprojects->detail($id);
 
-		foreach ($pjid->getResultArray() as $pj);
+		foreach ($pjid->getResultArray() as $pj):
 		$folder = $pj['folder'];
+		
 
 
 		$uploadDir = 'document/image/project/interior/'. $folder.'/';
@@ -1362,7 +1363,7 @@ Terima Kasih 🙏
                 $file->move($uploadDir,$newName);
             }
         }
-
+		endforeach;
 		session()->setFlashdata(
 			'pesan',
 			'Images Uploaded successfully'

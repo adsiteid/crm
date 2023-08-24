@@ -110,6 +110,9 @@ class User extends BaseController
 	public function detail($id)
 	{
 
+
+
+
 		$leads = $this->showleads->salesAll($id);
 		$new = $this->showleads->new_report_sales($id);
 		$close = $this->showleads->close_report_sales($id);

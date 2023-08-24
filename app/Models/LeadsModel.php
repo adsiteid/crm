@@ -1729,9 +1729,7 @@ class LeadsModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id)
-                ->orWhere('admin_project', $id)
-                ->orWhere('admin_group', $id);
+                ->orWhere('general_manager', $id);
             $builder->groupEnd();
 
 
