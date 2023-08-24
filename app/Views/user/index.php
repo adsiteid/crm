@@ -90,9 +90,11 @@
                             <th class="d-sm-table-cell d-none">
                                 Contact
                             </th>
-                            <th class="d-sm-table-cell d-none">
-                                Action
-                            </th>
+                            <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project") : ?>
+                                <th class="d-sm-table-cell d-none">
+                                    Action
+                                </th>
+                            <?php endif; ?>
                         </tr>
                     </thead>
                     <tbody class="list-wrapper ">
@@ -152,13 +154,44 @@
                                     <td class="d-sm-table-cell d-none" <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project" || $level == "manager" || $level == "general_manager") : ?> onclick="location.href='<?= base_url(); ?>user/<?php echo $row['id_user']; ?>'" <?php endif; ?>>
                                         <?= $userdetail['contact']; ?>
                                     </td>
-                                    <td class="d-sm-table-cell d-none">
-                                        <form action="<?= base_url(); ?>delete_user_group/<?= $row['id']; ?>" method="post">
-                                            <?= csrf_field(); ?>
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <button class="btn p-0"  type="submit"><i class="ti-trash menu-icon"></i></button>
-                                        </form>
-                                    </td>
+                                    <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project") : ?>
+                                        <td class="d-sm-table-cell d-none">
+
+                                            <a type="button" class="btn p-0" data-toggle="modal" data-target="#delete-data-<?= $row['id']; ?>"><i class="ti-trash menu-icon"></i></a>
+
+                                            <!-- delete Modal-->
+
+                                            <div class="modal fade" id="delete-data-<?= $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog " role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Delete User Group</h5>
+                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body text-center">Are you sure want to delete this user From Group ?</div>
+                                                        <div class="modal-footer ">
+                                                            <div class="row d-flex col-12 px-0 py-2">
+                                                                <div class="col-6">
+                                                                    <button class="btn btn-secondary w-100" type="button" data-dismiss="modal">Cancel</button>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <form action="<?= base_url(); ?>delete_user_group/<?= $row['id']; ?>" method="post">
+                                                                        <?= csrf_field(); ?>
+                                                                        <input type="hidden" name="_method" value="DELETE">
+                                                                        <button type="submit" class="btn btn-primary w-100"> Delete</button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </td>
+                                    <?php endif; ?>
 
                                 <?php endforeach; ?>
                             </tr>
@@ -172,35 +205,6 @@
 
 
 
-    <!-- delete Modal-->
-
-    <div class="modal fade" id="delete-data" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog " role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body text-center">Are you sure want to delete this user from Group ?</div>
-                <div class="modal-footer ">
-                    <div class="row d-flex col-12 px-0 py-2">
-                        <div class="col-6">
-                            <button class="btn btn-secondary w-100" type="button" data-dismiss="modal">Cancel</button>
-                        </div>
-                        <div class="col-6">
-                            <form action="<?= base_url(); ?>delete_user_group/<?= $userdetail['id']; ?>" method="post">
-                                <?= csrf_field(); ?>
-                                <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="btn btn-primary w-100"> Delete</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 
