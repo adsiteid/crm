@@ -101,10 +101,15 @@ class CMS extends BaseController
 
 	public function groupsales()
 	{
+
+		$id = user()->id;
+
 		$data = [
 			'new' => $this->showleads->new(),
-			'projects' => $this->showprojects->findAll(),
+			'project' => $this->showprojects,
+			'group_project' => $this->showgroups,
 			'group'=> $this->showgroups->add_group(),
+			'user_group'=> $this->showgroupsales->user($id),
 			'sales' => $this->showusers->sales(),
 			'title' => 'Group'
 		];

@@ -30,9 +30,9 @@
                 <div class="form-group col-lg-6 col-12">
                     <label>Group Name</label>
                     <select class="form-control form-select <?php if (session('errors.group_name')) : ?>is-invalid<?php endif ?>" name="groups">
-                        <option value="" selected>Select Group</option>
-                        <?php foreach ($group->getResultArray() as $g) : ?>
-                            <option value="<?= $g['id']; ?>"><?= $g['group_name']; ?></option>
+                        <option value="" selected>Select Option</option>
+                        <?php foreach ($user_group->getResultArray() as $grp) : ?>
+                            <option value="<?= $grp['groups']; ?>"><?php foreach ($group_project->detail($grp['groups'])->getResultArray() as $user_grp) : ?><?= $user_grp['group_name']; ?><?php endforeach; ?></option>
                         <?php endforeach; ?>
                     </select>
                     <div class="invalid-feedback">
@@ -44,8 +44,11 @@
                 <div class="form-group col-lg-6 col-12">
                     <label>Project</label>
                     <select class="form-control form-select <?php if (session('errors.admin_group')) : ?>is-invalid<?php endif ?>" name="admin_group">
-                        <?php foreach ($sales->getResultArray() as $u) : ?>
-                            <option value="<?= $u['id']; ?>"><?= $u['fullname']; ?></option>
+                        <option value="" selected>Select Option</option>
+                        <?php foreach ($user_group->getResultArray() as $prj) : ?>
+                            <?php foreach ($project->projectGroup($prj['groups'])->getResultArray() as $prj) : ?>
+                                <option value="<?= $prj['id']; ?>"><?= $prj['project']; ?></option>
+                            <?php endforeach ?>
                         <?php endforeach; ?>
                     </select>
                     <div class="invalid-feedback">
@@ -58,16 +61,18 @@
                     <label>Email User</label>
 
                     <input type="email" class="form-control" name="email" placeholder="user@email.com">
-            
+
                 </div>
 
                 <div class="form-group col-lg-6 col-12">
                     <label>Level</label>
                     <select class="form-control form-select <?php if (session('errors.sales')) : ?>is-invalid<?php endif ?>" name="sales">
                         <option value="">Select Level</option>
-                        <option value="sales">Sales</option>
-                        <option value="manager">Manager</option>
+                        <option value="admin_group">Admin Group</option>
+                        <option value="admin_project">Admin Project</option>
                         <option value="general_manager">General Manager</option>
+                        <option value="manager">Manager</option>
+                        <option value="sales">Sales</option>
                     </select>
                     <div class="invalid-feedback">
                         <?= (session('errors.sales')); ?>
