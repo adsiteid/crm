@@ -210,7 +210,7 @@ class CMS extends BaseController
 				'errors' => [
 					'required' => 'Name Harus diisi'
 				]
-				],
+			],
 
 			'groups' => [
 				'rules' => 'required',
@@ -224,7 +224,7 @@ class CMS extends BaseController
 				'errors' => [
 					'required' => 'Email Harus diisi'
 				]
-				],
+			],
 
 			'phone' => [
 				'rules' => 'required',
@@ -245,7 +245,7 @@ class CMS extends BaseController
 				'errors' => [
 					'required' => 'Jabatan Harus diisi'
 				]
-				],
+			],
 
 			'project' => [
 				'rules' => 'required',
