@@ -110,6 +110,7 @@ class CMS extends BaseController
 			'group_project' => $this->showgroups,
 			'group'=> $this->showgroups->add_group(),
 			'user_group'=> $this->showgroupsales->user($id),
+			'users' => $this->showusers,
 			'sales' => $this->showusers->sales(),
 			'title' => 'Group'
 		];

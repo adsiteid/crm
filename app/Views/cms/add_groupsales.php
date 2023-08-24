@@ -28,39 +28,9 @@
                 <?= csrf_field(); ?>
 
                 <div class="form-group col-lg-6 col-12">
-                    <label>Group Name</label>
-                    <select class="form-control form-select <?php if (session('errors.group_name')) : ?>is-invalid<?php endif ?>" name="groups">
-                        <option value="" selected>Select Option</option>
-                        <?php foreach ($user_group->getResultArray() as $grp) : ?>
-                            <option value="<?= $grp['groups']; ?>"><?php foreach ($group_project->detail($grp['groups'])->getResultArray() as $user_grp) : ?><?= $user_grp['group_name']; ?><?php endforeach; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                    <div class="invalid-feedback">
-                        <?= (session('errors.group_name')); ?>
-                    </div>
-                </div>
+                    <label>Id User</label>
 
-
-                <div class="form-group col-lg-6 col-12">
-                    <label>Project</label>
-                    <select class="form-control form-select <?php if (session('errors.admin_group')) : ?>is-invalid<?php endif ?>" name="admin_group">
-                        <option value="" selected>Select Option</option>
-                        <?php foreach ($user_group->getResultArray() as $prj) : ?>
-                            <?php foreach ($project->projectGroup($prj['groups'])->getResultArray() as $prj) : ?>
-                                <option value="<?= $prj['id']; ?>"><?= $prj['project']; ?></option>
-                            <?php endforeach ?>
-                        <?php endforeach; ?>
-                    </select>
-                    <div class="invalid-feedback">
-                        <?= (session('errors.admin_group')); ?>
-                    </div>
-                </div>
-
-
-                <div class="form-group col-lg-6 col-12">
-                    <label>Email User</label>
-
-                    <input type="email" class="form-control" name="email" placeholder="user@email.com">
+                    <input type="email" class="form-control" name="id_user" placeholder="User ID">
 
                 </div>
 
@@ -78,6 +48,65 @@
                         <?= (session('errors.sales')); ?>
                     </div>
                 </div>
+
+                <div class="form-group col-lg-3 col-12">
+                    <label>Group Name</label>
+                    <select class="form-control form-select <?php if (session('errors.group_name')) : ?>is-invalid<?php endif ?>" name="groups">
+                        <option value="" selected>Select Option</option>
+                        <?php foreach ($user_group->getResultArray() as $grp) : ?>
+                            <option value="<?= $grp['groups']; ?>"><?php foreach ($group_project->detail($grp['groups'])->getResultArray() as $user_grp) : ?><?= $user_grp['group_name']; ?><?php endforeach; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <div class="invalid-feedback">
+                        <?= (session('errors.group_name')); ?>
+                    </div>
+                </div>
+
+
+                <div class="form-group col-lg-3 col-12">
+                    <label>Project</label>
+                    <select class="form-control form-select <?php if (session('errors.admin_group')) : ?>is-invalid<?php endif ?>" name="admin_group">
+                        <option value="" selected>Select Option</option>
+                        <?php foreach ($user_group->getResultArray() as $prj) : ?>
+                            <?php foreach ($project->projectGroup($prj['groups'])->getResultArray() as $prj) : ?>
+                                <option value="<?= $prj['id']; ?>"><?= $prj['project']; ?></option>
+                            <?php endforeach ?>
+                        <?php endforeach; ?>
+                    </select>
+                    <div class="invalid-feedback">
+                        <?= (session('errors.admin_group')); ?>
+                    </div>
+                </div>
+
+                <div class="form-group col-lg-3 col-12">
+                    <label>General Manager</label>
+                    <select class="form-control form-select <?php if (session('errors.general_manager')) : ?>is-invalid<?php endif ?>" name="general_manager">
+                        <option value="" selected>Select Option</option>
+                        <?php foreach ($user_group->getResultArray() as $gm) : ?>
+                            <option value="<?= $gm['general_manager']; ?>"><?php foreach ($users->detail($gm['general_manager'])->getResultArray() as $user_gm) : ?><?= $user_gm['fullname']; ?><?php endforeach; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <div class="invalid-feedback">
+                        <?= (session('errors.general_manager')); ?>
+                    </div>
+                </div>
+
+
+                <div class="form-group col-lg-3 col-12">
+                    <label>Manager</label>
+                    <select class="form-control form-select <?php if (session('errors.manager')) : ?>is-invalid<?php endif ?>" name="manager">
+                        <option value="" selected>Select Option</option>
+                        <?php foreach ($user_group->getResultArray() as $mng) : ?>
+                            <option value="<?= $mng['manager']; ?>"><?php foreach ($users->detail($mng['manager'])->getResultArray() as $user_mng) : ?><?= $user_mng['fullname']; ?><?php endforeach; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <div class="invalid-feedback">
+                        <?= (session('errors.manager')); ?>
+                    </div>
+                </div>
+
+
+
 
 
 
