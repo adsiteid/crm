@@ -126,6 +126,21 @@ class CMS extends BaseController
 
 		if (!$this->validate([
 
+
+			'id_user' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'ID User Harus diisi'
+				]
+			],
+
+			'level' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Level Harus diisi'
+				]
+			],
+
 			'groups' => [
 				'rules' => 'required',
 				'errors' => [
@@ -133,13 +148,12 @@ class CMS extends BaseController
 				]
 			],
 
-			'user' => [
+			'project' => [
 				'rules' => 'required',
 				'errors' => [
-					'required' => 'Sales Harus diisi'
+					'required' => 'Project Harus diisi'
 				]
 			]
-
 			
 
 		])) {
@@ -147,13 +161,13 @@ class CMS extends BaseController
 		}
 
 		$this->showgroupsales->save(
-			[
-				'group_name' => $this->request->getVar('group_name'),
-				'admin_group' => $this->request->getVar('admin_group'),
-				'sales' => $this->request->getVar('sales'),
+			[	
+				'id_user' => $this->request->getVar('id_user'),
+				'level' => $this->request->getVar('level'),
+				'groups' => $this->request->getVar('groups'),
+				'project' => $this->request->getVar('project'),
 				'manager' => $this->request->getVar('manager'),
-				'general_manager' => $this->request->getVar('general_manager')
-				
+				'general_manager' => $this->request->getVar('general_manager')	
 			]
 		);
 

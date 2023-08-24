@@ -28,15 +28,15 @@
                 <?= csrf_field(); ?>
 
                 <div class="form-group col-lg-6 col-12">
-                    <label>Id User</label>
+                    <label>ID User</label>
 
-                    <input type="email" class="form-control" name="id_user" placeholder="User ID">
+                    <input type="text" class="form-control" name="id_user" placeholder="User ID">
 
                 </div>
 
                 <div class="form-group col-lg-6 col-12">
                     <label>Level</label>
-                    <select class="form-control form-select <?php if (session('errors.sales')) : ?>is-invalid<?php endif ?>" name="sales">
+                    <select class="form-control form-select <?php if (session('errors.level')) : ?>is-invalid<?php endif ?>" name="level">
                         <option value="">Select Level</option>
                         <option value="admin_group">Admin Group</option>
                         <option value="admin_project">Admin Project</option>
@@ -45,27 +45,27 @@
                         <option value="sales">Sales</option>
                     </select>
                     <div class="invalid-feedback">
-                        <?= (session('errors.sales')); ?>
+                        <?= (session('errors.level')); ?>
                     </div>
                 </div>
 
                 <div class="form-group col-lg-3 col-12">
                     <label>Group Name</label>
-                    <select class="form-control form-select <?php if (session('errors.group_name')) : ?>is-invalid<?php endif ?>" name="groups">
+                    <select class="form-control form-select <?php if (session('errors.groups')) : ?>is-invalid<?php endif ?>" name="groups">
                         <option value="" selected>Select Option</option>
                         <?php foreach ($user_group->getResultArray() as $grp) : ?>
                             <option value="<?= $grp['groups']; ?>"><?php foreach ($group_project->detail($grp['groups'])->getResultArray() as $user_grp) : ?><?= $user_grp['group_name']; ?><?php endforeach; ?></option>
                         <?php endforeach; ?>
                     </select>
                     <div class="invalid-feedback">
-                        <?= (session('errors.group_name')); ?>
+                        <?= (session('errors.groups')); ?>
                     </div>
                 </div>
 
 
                 <div class="form-group col-lg-3 col-12">
                     <label>Project</label>
-                    <select class="form-control form-select <?php if (session('errors.admin_group')) : ?>is-invalid<?php endif ?>" name="admin_group">
+                    <select class="form-control form-select <?php if (session('errors.project')) : ?>is-invalid<?php endif ?>" name="project">
                         <option value="" selected>Select Option</option>
                         <?php foreach ($user_group->getResultArray() as $prj) : ?>
                             <?php foreach ($project->projectGroup($prj['groups'])->getResultArray() as $prj) : ?>
@@ -74,7 +74,7 @@
                         <?php endforeach; ?>
                     </select>
                     <div class="invalid-feedback">
-                        <?= (session('errors.admin_group')); ?>
+                        <?= (session('errors.project')); ?>
                     </div>
                 </div>
 

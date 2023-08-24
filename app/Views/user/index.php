@@ -90,6 +90,9 @@
                             <th class="d-sm-table-cell d-none">
                                 Contact
                             </th>
+                            <th class="d-sm-table-cell d-none">
+                                Action
+                            </th>
                         </tr>
                     </thead>
                     <tbody class="list-wrapper ">
@@ -148,6 +151,9 @@
 
                                     <td class="d-sm-table-cell d-none">
                                         <?= $userdetail['contact']; ?>
+                                    </td>
+                                    <td class="d-sm-table-cell d-none">
+                                        <i class="ti-trash menu-icon"></i>
                                     </td>
 
                                 <?php endforeach; ?>

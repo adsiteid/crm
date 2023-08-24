@@ -9,7 +9,7 @@ class GroupSalesModel extends Model
 {
 
     protected $table = 'groups_sales';
-    protected $allowedFields = ['group_name', 'admin_group','admin_project', 'manager', 'general_manager','created_at'];
+    protected $allowedFields = ['id_user', 'level','groups', 'project','manager', 'general_manager','created_at'];
 
 
     public function all()
