@@ -153,6 +153,7 @@ $routes->get('/create/groups', 'CMS::groups');
 $routes->post('/groups_save', 'CMS::groups_save');
 $routes->get('/create/groupsales', 'CMS::groupsales');
 $routes->post('/group_sales_save', 'CMS::group_sales_save');
+$routes->delete('/delete_user_group/(:num)', 'CMS::delete_id_group/$1');
 
 
 

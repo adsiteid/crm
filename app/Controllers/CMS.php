@@ -119,6 +119,13 @@ class CMS extends BaseController
 	}
 
 
+	public function delete_id_group($id)
+	{
+		$this->showgroupsales->delete($id);
+		session()->setFlashdata('pesan', 'Data ' . $id . ' deleted successfully');
+		return redirect()->to(base_url() . 'user/agent');
+	}
+
 
 	public function group_sales_save()
 	{
