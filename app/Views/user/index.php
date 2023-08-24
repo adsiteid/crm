@@ -170,7 +170,13 @@
                                                                 <span aria-hidden="true">×</span>
                                                             </button>
                                                         </div>
-                                                        <div class="modal-body text-center">Are you sure want to delete this user from Group ?</div>
+                                                        <div class="modal-body text-center">Are you sure want to delete <b> <?php
+                                                                                                                        $str = $userdetail['fullname'];
+                                                                                                                        if (strlen($str) > 15) {
+                                                                                                                            $str = substr($str, 0, 15) . ' ...';
+                                                                                                                        }
+                                                                                                                        echo $str;
+                                                                                                                        ?> </b>from Group ?</div>
                                                         <div class="modal-footer ">
                                                             <div class="row d-flex col-12 px-0 py-2">
                                                                 <div class="col-6">
