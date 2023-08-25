@@ -743,6 +743,7 @@ class Report extends BaseController
 					$new = $this->showleads->new();
 					$sales = $this->showgroupsales->group($group['groups'], $group['project']);
 				}
+				$level = $group['level'];
 			}
 		endif;
 
@@ -753,6 +754,7 @@ class Report extends BaseController
 			'group' => $this->showgroupsales,
 			'count' => $this->showleads,
 			'project' => $this->showproject,
+			'level' => $level,
 			'days' => 'last 30 Days',
 			'title' => 'Report'
 		];
@@ -786,6 +788,7 @@ class Report extends BaseController
 					$new = $this->showleads->newFilter($days);
 					$sales = $this->showgroupsales->group($group['groups'], $group['project']);
 				}
+				$level = $group['level'];
 			}
 		endif;
 
@@ -798,6 +801,7 @@ class Report extends BaseController
 			'group' => $this->showgroupsales,
 			'count' => $this->showleads,
 			'project' => $this->showproject,
+			'level' => $level,
 			'day' => "last $days Days",
 			'title' => 'Report'
 		];
@@ -830,6 +834,7 @@ class Report extends BaseController
 					$new = $this->showleads->newRange($startDate, $endDate);
 					$sales = $this->showgroupsales->group($group['groups'], $group['project']);
 				}
+				$level = $group['level'];
 			}
 		endif;
 
@@ -842,6 +847,7 @@ class Report extends BaseController
 			'group' => $this->showgroupsales,
 			'count' => $this->showleads,
 			'project' => $this->showproject,
+			'level' => $level,
 			'day' => "$startDate - $endDate",
 			'title' => 'Report'
 		];
