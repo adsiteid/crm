@@ -696,16 +696,17 @@ endforeach;
 		$nama = $this->request->getVar('nama_leads');
 		$project = $this->request->getVar('project');
 		$no_cust = $this->request->getVar('nomor_kontak');
+		$sumber = $this->request->getVar('sumber_leads');
 		$nohp = $no_sales;
 		$pesan = "New Leads
 
-Project : $project
+*New Lead*
 
-Nama : $nama
-Nomor : $no_cust
+*Nama* : $nama
+*Sumber* : $sumber
+*Project* : $project
 
-Mohon segera di Follow Up 
-Terima Kasih 🙏
+*Note* Nomor kontak hanya ada di CRM silahkan di follow up. Terima kasih
 ";
 		// $file = 'https://i.ibb.co/S5GYRNL/bird-thumbnail.jpg';
 

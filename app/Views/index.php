@@ -177,14 +177,11 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
 
 
-
         <?php
         foreach ($event->getResultArray() as $ev2) :
-
             $date_start2 = date('d', strtotime($ev2['date_start']));
             $date_end2 = date('d', strtotime($ev2['date_end']));
             $mo_ye2 = date('M Y', strtotime($ev2['date_start']));
-
         ?>
             <div type="button" class="carousel-item p-1" onclick="location.href='<?= base_url(); ?>event/<?= $ev2['id']; ?>'">
                 <div class="col-12 rounded h-50 px-3 py-3" style="background : #6290D4;">
