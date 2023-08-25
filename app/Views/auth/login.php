@@ -16,7 +16,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="vendor/adsite/skydash/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="<?= base_url() ?>document/app_image/logo/logo-adsite-2.png" />
+  <link rel="shortcut icon" href="<?= base_url() ?>document/app_image/logo/logo-adsite-2.png"/>
 </head>
 
 <body>
