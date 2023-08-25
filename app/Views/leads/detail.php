@@ -533,11 +533,10 @@
 
 
         <div class="row d-flex justify-content-end mt-3 mb-5 px-3">
-
+        <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project") : ?>
             <a href="<?= base_url(); ?>edit_leads/<?= $row['id']; ?>" class="btn btn-outline-primary col-lg-2 col-6 mt-lg-1 mt-3 px-0">Edit data</a>
             <a class="btn btn-outline-primary col-lg-2 col-6  mt-lg-1 mt-3" data-toggle="modal" data-target="#delete-leads">Delete</a>
-
-
+        <?php endif; ?>
             <a class=" btn btn-primary col-lg-2 col-12 mt-lg-1 mt-3" data-toggle="modal" data-target="#save-leads">Save</a>
 
         </div>
