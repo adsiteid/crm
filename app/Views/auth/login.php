@@ -11,8 +11,6 @@
   <link rel="stylesheet" href="vendor/adsite/skydash/vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="vendor/adsite/skydash/vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
-  <!-- Plugin css for this page -->
-  <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="vendor/adsite/skydash/css/vertical-layout-light/style.css">
   <!-- endinject -->
