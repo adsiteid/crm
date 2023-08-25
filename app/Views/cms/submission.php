@@ -135,7 +135,9 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                                 <?= $row['name']; ?>
                             </td>
                             <td class="d-sm-table-cell d-none">
-                                <?= $row['manager']; ?>
+                                <?php foreach ($users->detail($row['manager'])->getResultArray() as $mg) : ?>
+                                    <?= $mg['fullname']; ?>
+                                <?php endforeach; ?>
                             </td>
                             <td class="d-sm-table-cell d-none">
                                 <?php foreach ($project->detail($row['project'])->getResultarray() as $prj) {
