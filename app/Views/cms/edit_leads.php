@@ -191,10 +191,7 @@
                 <div class="form-group col-lg-3 col-12">
                     <label for="project">Project</label>
                     <select class="form-control form-select <?php if (session('errors.project')) : ?>is-invalid<?php endif ?>" id="project" name="project">
-                        <option value="<?= $row['project']; ?>" selected><?= $row['project']; ?></option>
-                        <?php foreach ($projects->getResultArray() as $pj) : ?>
-                            <option value="<?= $pj['project']; ?>"><?= $pj['project']; ?></option>
-                        <?php endforeach; ?>
+                        <option value="<?= $row['project']; ?>" selected> <?php foreach ($project->detail($row['project'])->getResultArray() as $pj) : ?><?= $pj['project'];?><?php endforeach;?></option>
                     </select>
                     <div class="invalid-feedback">
                         <?= (session('errors.project')); ?>

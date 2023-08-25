@@ -744,13 +744,16 @@ endforeach;
 
 	public function edit_leads($id)
 	{
+
 		$data = [
 			'new' => $this->showleads->new(),
 			'leads' => $this->showleads->getLeads($id),
 			'validation' => \Config\Services::validation(),
 			'projects' => $this->showprojects->project(),
+			'project' => $this->showprojects,
 			'sales' => $this->showusers->salesUser(),
 			'user_group' => $this->showusers,
+
 			'group' => $this->showgroups->list(),
 			'group_name' => $this->showgroups,
 			'title' => 'Edit Leads'
