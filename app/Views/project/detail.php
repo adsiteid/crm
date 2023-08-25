@@ -66,7 +66,7 @@ foreach ($project->getResultArray() as $row);
 
                                 <?php if (empty($files)) : ?>
                                     <a href="<?= base_url() . 'project/interior/' . $row['id']; ?>">
-                                        <img src="<?= base_url(); ?>document/image/default.png"  alt="...">
+                                        <img src="<?= base_url(); ?>document/image/default.png" alt="...">
                                     </a>
                                 <?php endif; ?>
                             </div>
@@ -99,10 +99,10 @@ foreach ($project->getResultArray() as $row);
                 <h6>Detail Project</h6>
                 <hr class="my-4" style="border:1px;">
 
+                <p class="text-muted small mb-1">ID Project</p>
+                <h6 class="mb-3"><?= $row['id']; ?></h6>
                 <p class="text-muted small mb-1">Project</p>
                 <h6 class="mb-3"><?= $row['project']; ?></h6>
-                <p class="text-muted small mb-1">Subholding</p>
-                <h6 class="mb-3"><?= $row['subholding']; ?></h6>
                 <p class="text-muted small mb-1">Alamat</p>
                 <h6 class="mb-3"><?= $row['alamat']; ?></h6>
                 <p class="text-muted small mb-1">Email</p>
@@ -421,7 +421,7 @@ foreach ($project->getResultArray() as $row);
         <h6 class="mt-2"> Marketing Tools</h6>
         <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project") : ?>
             <a href="<?= base_url(); ?>add_file/<?= $row['id']; ?>" type="button" class="btn btn-sm btn-outline-light bg-white">Add Marketing Tools</a>
-       <?php endif; ?>
+        <?php endif; ?>
     </div>
 
     <!-- FILES -->
@@ -457,12 +457,12 @@ foreach ($project->getResultArray() as $row);
     </div>
 
     <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project") : ?>
-    <div class="d-flex justify-content-end my-4">
-       
+        <div class="d-flex justify-content-end my-4">
+
             <a type="button" class="btn btn-outline-primary col-lg-2 col-6" data-toggle="modal" data-target="#delete-data">Delete</a>
             <a href="<?= base_url('/edit_project/' . $row['id']) ?>" class="btn btn-primary col-lg-2 col-6">Edit</a>
 
-    </div>
+        </div>
     <?php endif; ?>
 
 
