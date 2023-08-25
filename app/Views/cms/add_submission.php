@@ -84,8 +84,10 @@
                     <select class="form-control form-select <?php if (session('error.project')) : ?>is-invalid<?php endif ?> " id="project" name="project">
                         <option value="">Select Option</option>
 
-                        <?php foreach ($user_group->getResultArray() as $prj) : ?>
-                            <option value="<?= $prj['project']; ?>"><?= $prj['project']; ?></option>
+                        <?php foreach ($user_group->getResultArray() as $usergroup) : ?>
+                            <?php foreach ($group->projects($usergroup['groups'])->getResultArray() as $prj) : ?>
+                                <option value="<?= $prj['project']; ?>"><?php foreach ($project->detail($prj['project'])->getResultArray() as $prjct) : ?><?= $prjct['project']; ?><?php endforeach; ?></option>
+                            <?php endforeach ?>
                         <?php endforeach; ?>
 
                     </select>
