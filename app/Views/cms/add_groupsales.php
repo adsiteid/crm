@@ -30,7 +30,7 @@
                 <div class="form-group col-lg-6 col-12">
                     <label>ID User</label>
 
-                    <input type="text" class="form-control" name="id_user" placeholder="User ID">
+                    <input type="number" class="form-control" name="id_user" placeholder="User ID">
 
                 </div>
 
@@ -54,7 +54,7 @@
                     <select class="form-control form-select <?php if (session('errors.groups')) : ?>is-invalid<?php endif ?>" name="groups">
                         <option value="" selected>Select Option</option>
                         <?php foreach ($user_group->getResultArray() as $grp) : ?>
-                            <option value="<?= $grp['groups']; ?>"><?php foreach ($group_project->detail($grp['groups'])->getResultArray() as $user_grp) : ?><?= $user_grp['group_name']; ?><?php endforeach; ?></option>
+                            <option value="<?= $grp['groups']; ?>"><?= $grp['group_name']; ?></option>
                         <?php endforeach; ?>
                     </select>
                     <div class="invalid-feedback">

@@ -38,6 +38,48 @@
     }
 </style>
 
+<div class="d-flex align-items-center justify-content-between  pb-4 row ">
+    <div class="col-lg-5 col-md-3 col-sm-3 col-12 ">
+
+        <div class="dropdown flex-md-grow-1 flex-xl-grow-0 ">
+            <button class="btn btn-primary dropdown-toggle mb-lg-0 mb-3 d-lg-block d-md-block d-sm-block d-none" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
+                Add Group / User
+            </button>
+
+            <div class="row d-lg-none d-md-none d-sm-none ">
+                <div class="col-6 "><button class="btn btn-primary mb-lg-0 mb-4 w-100" type="button" style="font-size: 11px;">
+                        Add Group / User
+                    </button>
+                </div>
+                <div class="col-6"><button class="btn btn-primary mb-lg-0 mb-4 w-100" type="button" style="font-size: 11px;">
+                        Add Group / User
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                <a class="dropdown-item" href="<?= base_url(); ?>create/groups">Create Group</a>
+                <a class="dropdown-item" href="<?= base_url(); ?>create/groupsales">Add User</a>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-5 col-12 text-right ">
+        <form action="<?= base_url() ?>search_user" method="post" class=" col-lg col-sm col-12 form-inline mr-auto p-0  ">
+            <div class="input-group input-group-sm d-flex justify-content-end ">
+                <input type="text" class="form-control rounded-left bg-white pl-3 " placeholder="Search User ..." aria-label="Search" aria-describedby="basic-addon2" name="search">
+                <div class="input-group-append">
+                    <button class="btn btn-primary rounded-right" type="submit">
+                        <i class="icon-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
 
 <?php foreach ($users->user(user()->id)->getresultArray() as $id_user) : ?>
 
@@ -47,23 +89,41 @@
         <div class="card-body">
 
             <div class="d-flex align-items-center justify-content-between  pb-3 row ">
-                <div class="col-lg-5 col-md-3 col-sm-3 col-12 d-lg-block d-md-block d-sm-block d-none">
+                <div class="col-lg-5 col-md-3 col-sm-3 col-6">
                     <?php foreach ($users->groups($id_user['groups'])->getresultArray() as $groupheader); ?>
-
-                    <a href="<?= base_url(); ?>create/groupsales" type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 " style="font-size:12px;">Add User</a>
-
+                    <a type="button" class=" btn btn-sm btn-light shadow-sm mr-1 " style="font-size:12px;"><?= $id_user['group_name'] ?></a>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-5 col-12 ">
-                    <form action="<?= base_url() ?>search_user" method="post" class=" col-lg col-sm col-12 form-inline mr-auto p-0  ">
-                        <div class="input-group input-group-sm d-flex justify-content-end ">
-                            <input type="text" class="form-control rounded-left bg-light pl-3 " placeholder="Search User ..." aria-label="Search" aria-describedby="basic-addon2" name="search">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary rounded-right" type="submit">
-                                    <i class="icon-search"></i>
-                                </button>
+                <div class="col-lg-3 col-md-4 col-sm-5 col-6 text-right ">
+
+                    <a type="button" class=" btn btn-sm btn-light shadow-sm mr-1 " style="font-size:12px;" data-toggle="modal" data-target="#delete-data-<?= $id_user['groups'] ?>">Delete Group</a>
+
+                    <div class="modal fade" id="delete-data-<?= $id_user['groups'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog " role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Delete Data</h5>
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body text-center">Are you sure want to delete Group <b><?= $id_user['group_name'] ?></b> ?</div>
+                                <div class="modal-footer ">
+                                    <div class="row d-flex col-12 px-0 py-2">
+                                        <div class="col-6">
+                                            <button class="btn btn-secondary w-100" type="button" data-dismiss="modal">Cancel</button>
+                                        </div>
+                                        <div class="col-6">
+                                            <form action="<?= base_url(); ?>delete_group/<?= $id_user['groups'] ?>" method="post">
+                                                <?= csrf_field(); ?>
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <button type="submit" class="btn btn-primary w-100"> Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
 
@@ -81,9 +141,14 @@
                             <th class="text-lg-left text-right pl-0">
                                 Level
                             </th>
+
                             <th class="d-sm-table-cell d-none">
-                                Address
+                                Group
                             </th>
+
+                            <!-- <th class="d-sm-table-cell d-none">
+                                Address
+                            </th> -->
                             <th class="d-sm-table-cell d-none">
                                 Email
                             </th>
@@ -97,10 +162,10 @@
                             <?php endif; ?>
                         </tr>
                     </thead>
-                    <tbody class="list-wrapper ">
+                    <tbody class="list-wrapper-<?= $id_user['groups']; ?> ">
                         <?php $no = 1; ?>
                         <?php foreach ($users->groups($id_user['groups'])->getresultArray() as $row) : ?>
-                            <tr class="list-item ">
+                            <tr class="list-item-<?= $id_user['groups']; ?> ">
                                 <?php foreach ($user->detail($row['id_user'])->getresultArray() as $userdetail) : ?>
                                     <td class="d-sm-table-cell d-none" <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project" || $level == "manager" || $level == "general_manager") : ?> onclick="location.href='<?= base_url(); ?>user/<?php echo $row['id_user']; ?>'" <?php endif; ?>>
                                         <?= $no++; ?>
@@ -143,10 +208,13 @@
                                                                                                         echo $row['level'];
                                                                                                     } ?> </label>
                                     </td>
-
                                     <td class="d-sm-table-cell d-none" <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project" || $level == "manager" || $level == "general_manager") : ?> onclick="location.href='<?= base_url(); ?>user/<?php echo $row['id_user']; ?>'" <?php endif; ?>>
-                                        <?= $userdetail['address']; ?>
+                                        <?= $row['group_name']; ?>
                                     </td>
+
+                                    <!-- <td class="d-sm-table-cell d-none" <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project" || $level == "manager" || $level == "general_manager") : ?> onclick="location.href='<?= base_url(); ?>user/<?php echo $row['id_user']; ?>'" <?php endif; ?>>
+                                        <?= $userdetail['address']; ?>
+                                    </td> -->
                                     <td class="d-sm-table-cell d-none" <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project" || $level == "manager" || $level == "general_manager") : ?> onclick="location.href='<?= base_url(); ?>user/<?php echo $row['id_user']; ?>'" <?php endif; ?>>
                                         <?= $userdetail['email']; ?>
                                     </td>
@@ -171,12 +239,12 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body text-center">Are you sure want to delete <b> <?php
-                                                                                                                        $str = $userdetail['fullname'];
-                                                                                                                        if (strlen($str) > 15) {
-                                                                                                                            $str = substr($str, 0, 15) . ' ...';
-                                                                                                                        }
-                                                                                                                        echo $str;
-                                                                                                                        ?> </b>from Group ?</div>
+                                                                                                                            $str = $userdetail['fullname'];
+                                                                                                                            if (strlen($str) > 15) {
+                                                                                                                                $str = substr($str, 0, 15) . ' ...';
+                                                                                                                            }
+                                                                                                                            echo $str;
+                                                                                                                            ?> </b>from Group ?</div>
                                                         <div class="modal-footer ">
                                                             <div class="row d-flex col-12 px-0 py-2">
                                                                 <div class="col-6">
@@ -205,47 +273,50 @@
                     </tbody>
                 </table>
             </div>
-
         </div>
     </div>
+    
 
 
 
+
+    <div id="pagination-container-<?= $id_user['groups']; ?>" class="my-4"></div>
+
+    <!-- Pagination -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js"></script>
+
+    <!-- <script>
+        var items = $(".list-wrapper-<?= $id_user['groups']; ?> .list-item-<?= $id_user['groups']; ?>");
+        var numItems = items.length;
+        var perPage = 10;
+
+        items.slice(perPage).hide();
+
+        $('#pagination-container-<?= $id_user['groups']; ?>').pagination({
+                items: numItems,
+                itemsOnPage: perPage,
+                prevText: "&laquo;",
+                nextText: "&raquo;",
+                onPageClick: function(pageNumber) {
+                    var showFrom = perPage * (pageNumber - 1);
+                    var showTo = showFrom + perPage;
+                    items.hide().slice(showFrom, showTo).show();
+                }
+            }
+
+        );
+    </script> -->
 
 
 
 <?php endforeach; ?>
 
 
-<div id="pagination-container" class="my-4"></div>
 
 
-<!-- Pagination -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js"></script>
-
-<script>
-    var items = $(".list-wrapper .list-item");
-    var numItems = items.length;
-    var perPage = 10;
-
-    items.slice(perPage).hide();
-
-    $('#pagination-container').pagination({
-            items: numItems,
-            itemsOnPage: perPage,
-            prevText: "&laquo;",
-            nextText: "&raquo;",
-            onPageClick: function(pageNumber) {
-                var showFrom = perPage * (pageNumber - 1);
-                var showTo = showFrom + perPage;
-                items.hide().slice(showFrom, showTo).show();
-            }
-        }
-
-    );
-</script>
 
 
 

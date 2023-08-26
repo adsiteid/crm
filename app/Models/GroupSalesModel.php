@@ -9,7 +9,7 @@ class GroupSalesModel extends Model
 {
 
     protected $table = 'groups_sales';
-    protected $allowedFields = ['id_user', 'level','groups', 'project','manager', 'general_manager','created_at'];
+    protected $allowedFields = ['id_user', 'level','groups','group_name', 'project','manager', 'general_manager','created_at'];
 
 
     public function all()
@@ -138,7 +138,7 @@ class GroupSalesModel extends Model
         return $result;
     }
 
-
+    
 
 
 }

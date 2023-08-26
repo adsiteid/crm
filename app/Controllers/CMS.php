@@ -83,10 +83,22 @@ class CMS extends BaseController
 			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
 		}
 
+
+		$random = rand(1, 1000000000);
+
 		$this->showgroups->save(
 			[
 				'group_name' => $this->request->getVar('group_name'),
-				'admin_group' => $this->request->getVar('admin_group'),
+				'group_id' => $random,
+			]
+		);
+
+		$this->showgroupsales->save(
+			[
+				'group_name' => $this->request->getVar('group_name'),
+				'id_user' => $this->request->getVar('admin_group'),
+				'groups'=> $random,
+				'level'=> 'admin_group'
 			]
 		);
 
@@ -108,7 +120,6 @@ class CMS extends BaseController
 			'new' => $this->showleads->new(),
 			'project' => $this->showprojects,
 			'group_project' => $this->showgroups,
-			'group'=> $this->showgroups->add_group(),
 			'user_group'=> $this->showgroupsales->user($id),
 			'users' => $this->showusers,
 			'sales' => $this->showusers->sales(),
@@ -123,6 +134,16 @@ class CMS extends BaseController
 	{
 		$this->showgroupsales->delete($id);
 		session()->setFlashdata('pesan', 'Data ' . $id . ' deleted successfully');
+		return redirect()->to(base_url() . 'user/agent');
+	}
+
+
+	public function delete_group($id)
+	{
+		// $this->showgroups->delete($id);
+		$this->showgroups->where('group_id', $id)->delete();
+		$this->showgroupsales->where('groups', $id)->delete();
+
 		return redirect()->to(base_url() . 'user/agent');
 	}
 
@@ -167,10 +188,14 @@ class CMS extends BaseController
 			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
 		}
 
+		foreach ($this->showgroups->detail($this->request->getVar('groups'))->getResultArray() as $group_name);
+
 		$this->showgroupsales->save(
+
 			[	
 				'id_user' => $this->request->getVar('id_user'),
 				'level' => $this->request->getVar('level'),
+				'group_name' => $group_name['group_name'],
 				'groups' => $this->request->getVar('groups'),
 				'project' => $this->request->getVar('project'),
 				'manager' => $this->request->getVar('manager'),
@@ -711,7 +736,8 @@ endforeach;
 		// $file = 'https://i.ibb.co/S5GYRNL/bird-thumbnail.jpg';
 
 		$data = array(
-			'device_id' => 'ad741cadc5f1600e983a0cfce284c1f7',
+			// 'device_id' => 'ad741cadc5f1600e983a0cfce284c1f7',
+			'device_id' => '05270e349d62ad8abad1624af7bf3ce2',
 			'number' => $nohp,
 			'message' => $pesan,
 			// 'file' => $file,

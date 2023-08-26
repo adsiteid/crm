@@ -9,7 +9,7 @@ class GroupsModel extends Model
 {
 
     protected $table = 'groups';
-    protected $allowedFields = ['group_name', 'admin_group','created_at'];
+    protected $allowedFields = ['group_name', 'group_id','created_at'];
 
     public function list()
     {
@@ -22,18 +22,6 @@ class GroupsModel extends Model
     }
 
 
-    public function add_group()
-    {
-        $builder = $this->db->table($this->table);
-
-        $groups = user()->groups;
-
-        $builder->where('admin_group', user()->id);
-
-        $builder->orderBy('id DESC');
-        $result = $builder->get();
-        return $result;
-    }
 
     public function detail($id)
     {
