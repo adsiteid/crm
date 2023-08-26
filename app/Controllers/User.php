@@ -36,6 +36,7 @@ class User extends BaseController
 
 		if (in_groups('admin')) :
 			$new = $this->showleads->new();
+			$level = user()->level;
 		endif;
 
 
