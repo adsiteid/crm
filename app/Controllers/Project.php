@@ -50,8 +50,16 @@ class Project extends BaseController
 
 		if (in_groups('users')) :
 		$id = user()->id;
+
+		if (empty($this->showgroupsales->user($id)->getResultArray())) {
+			$level = "";
+		}
+
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
 		foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 			$level = $group['level'];
+		}
 		}
 		endif;
 
@@ -88,8 +96,16 @@ class Project extends BaseController
 
 		if (in_groups('users')) :
 			$id = user()->id;
-			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
-				$level = $group['level'];
+
+			if (empty($this->showgroupsales->user($id)->getResultArray())) {
+				$level = "";
+			}
+
+			if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+				foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+					$level = $group['level'];
+				}
 			}
 		endif;
 
@@ -124,8 +140,16 @@ class Project extends BaseController
 
 		if (in_groups('users')) :
 			$id = user()->id;
-			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
-				$level = $group['level'];
+
+			if (empty($this->showgroupsales->user($id)->getResultArray())) {
+				$level = "";
+			}
+
+			if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+				foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+					$level = $group['level'];
+				}
 			}
 		endif;
 
@@ -161,8 +185,16 @@ class Project extends BaseController
 
 		if (in_groups('users')) :
 			$id = user()->id;
-			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
-				$level = $group['level'];
+
+			if (empty($this->showgroupsales->user($id)->getResultArray())) {
+				$level = "";
+			}
+
+			if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+				foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+					$level = $group['level'];
+				}
 			}
 		endif;
 
@@ -197,8 +229,16 @@ class Project extends BaseController
 
 		if (in_groups('users')) :
 			$id = user()->id;
-			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
-				$level = $group['level'];
+
+			if (empty($this->showgroupsales->user($id)->getResultArray())) {
+				$level = "";
+			}
+
+			if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+				foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+					$level = $group['level'];
+				}
 			}
 		endif;
 

@@ -541,9 +541,13 @@ class CMS extends BaseController
 
 		if (in_groups('users')) :
 			$id = user()->id;
+
+
 			if (empty($this->showgroupsales->user($id)->getResultArray())) {
 				$new = $this->showleads->new();
 			}
+
+			if (!empty($this->showgroupsales->user($id)->getResultArray())) {
 
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 				if ($group['level'] == "admin_group") {
@@ -553,6 +557,7 @@ class CMS extends BaseController
 				} else {
 					$new = $this->showleads->new();
 				}
+			}
 			}
 
 		endif;

@@ -80,6 +80,8 @@ class Leads extends BaseController
                 $new = $this->showleads->new();
             }
 
+            if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
 
         foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
             if ($group['level'] == "admin_group") {
@@ -94,6 +96,7 @@ class Leads extends BaseController
                 $new = $this->showleads->new();
             }
         }
+    }
         endif;
 
         $data = [
@@ -124,6 +127,8 @@ class Leads extends BaseController
                 $new = $this->showleads->new();
             }
 
+            if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
         foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
             if ($group['level'] == "admin_group") {
                 $leads = $this->showleads->contactedAdminGroup($group['groups']);
@@ -136,6 +141,7 @@ class Leads extends BaseController
                 $new = $this->showleads->new();
             }
         }
+    }
         endif;
 
 
@@ -165,6 +171,8 @@ class Leads extends BaseController
                 $new = $this->showleads->new();
             }
 
+            if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
         foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 
             if ($group['level'] == "admin_group") {
@@ -178,6 +186,7 @@ class Leads extends BaseController
                 $new = $this->showleads->new();
             }
         }
+    }
         endif;
 
         $data = [
@@ -206,6 +215,8 @@ class Leads extends BaseController
                 $new = $this->showleads->new();
             }
 
+            if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
         foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 
             if ($group['level'] == "admin_group") {
@@ -219,6 +230,7 @@ class Leads extends BaseController
                 $new = $this->showleads->new();
             }
         }
+    }
         endif;
 
 
@@ -248,6 +260,8 @@ class Leads extends BaseController
                 $new = $this->showleads->new();
             }
 
+            if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
         foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 
             if ($group['level'] == "admin_group") {
@@ -261,6 +275,7 @@ class Leads extends BaseController
                 $new = $this->showleads->new();
             }
         }
+    }
         endif;
 
         $data = [
@@ -288,6 +303,8 @@ class Leads extends BaseController
                 $leads = $this->showleads->pending();
                 $new = $this->showleads->new();
             }
+
+            if (!empty($this->showgroupsales->user($id)->getResultArray())) {
         
         foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 
@@ -302,6 +319,7 @@ class Leads extends BaseController
                 $new = $this->showleads->new();
             }
         }
+    }
         endif;
 
 
@@ -333,6 +351,8 @@ class Leads extends BaseController
                 $new = $this->showleads->newFilter($days);
             }
 
+            if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
             foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
                 if ($group['level'] == "admin_group") {
                     $leads = $this->showleads->IndexFilterAdminGroup($group['groups'],$days);
@@ -345,6 +365,7 @@ class Leads extends BaseController
                     $new = $this->showleads->newFilter($days);
                 }
             }
+        }
         endif;
 
         $data = [
@@ -380,6 +401,8 @@ class Leads extends BaseController
                 $new = $this->showleads->newRange($startDate, $endDate);
             }
 
+            if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
             foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
                 if ($group['level'] == "admin_group") {
                     $leads = $this->showleads->rangeListAdminGroup($group['groups'], $startDate, $endDate);
@@ -392,6 +415,7 @@ class Leads extends BaseController
                     $new = $this->showleads->newRange($startDate, $endDate);
                 }
             }
+        }
         endif;
 
         
@@ -428,6 +452,8 @@ class Leads extends BaseController
                 $level = user()->level;
             }
 
+            if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
             foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
                 if ($group['level'] == "admin_group") {
                     $leads = $this->showleads->search_leads_admin_group($group['groups'],$search);
@@ -441,6 +467,7 @@ class Leads extends BaseController
                 }
                 $level = $group['level'];
             }
+        }
         endif;
 
 		$data = [

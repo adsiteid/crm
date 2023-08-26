@@ -37,6 +37,7 @@ class Event extends BaseController
                 $new = $this->showleads->new();
             }
 
+            if (!empty($this->showgroupsales->user($id)->getResultArray())) {
 
             foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
                 if ($group['level'] == "admin_group") {
@@ -50,6 +51,7 @@ class Event extends BaseController
                     $new = $this->showleads->new();
                 }
             }
+        }
         endif;
 
         $data = [
@@ -82,7 +84,7 @@ class Event extends BaseController
                 $new = $this->showleads->new();
             }
 
-
+            if (!empty($this->showgroupsales->user($id)->getResultArray())) {
             foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
                 if ($group['level'] == "admin_group") {
                     $events = $this->showevent->eventsAdminGroupRange($group['groups'],$startDate, $endDate);
@@ -94,6 +96,7 @@ class Event extends BaseController
                     $events = $this->showevent->eventsAdminGroupRange($group['groups'],$startDate, $endDate);
                     $new = $this->showleads->new();
                 }
+            }
             }
         endif;
 
