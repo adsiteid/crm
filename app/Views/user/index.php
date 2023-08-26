@@ -47,13 +47,15 @@
             </button>
 
             <div class="row d-lg-none d-md-none d-sm-none ">
-                <div class="col-6 "><button class="btn btn-primary mb-lg-0 mb-4 w-100" type="button" style="font-size: 11px;">
-                        Add Group / User
-                    </button>
+                <div class="col-6 ">
+                    <a type="button" href="<?= base_url(); ?>create/groups" class="btn btn-primary mb-lg-0 mb-4 w-100" type="button" style="font-size: 11px;">
+                        Create Group
+                    </a>
                 </div>
-                <div class="col-6"><button class="btn btn-primary mb-lg-0 mb-4 w-100" type="button" style="font-size: 11px;">
-                        Add Group / User
-                    </button>
+                <div class="col-6">
+                    <a type="button" href="<?= base_url(); ?>create/groupsales" class="btn btn-primary mb-lg-0 mb-4 w-100" type="button" style="font-size: 11px;">
+                        Add User
+                    </a>
                 </div>
             </div>
 
@@ -275,7 +277,7 @@
             </div>
         </div>
     </div>
-    
+
 
 
 
