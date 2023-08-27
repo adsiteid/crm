@@ -11,10 +11,6 @@ class ChartModel extends Model
 
     // NEW
 
-
-
-    
-
     public function leadsNew($days)
     {
         $builder = $this->db->table($this->table);
@@ -38,7 +34,15 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('groups',$groups);
+        $builder->groupStart()
+            ->where('groups', $groups)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+
+        // $builder->where('groups',$groups);
         $builder->where("time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
         $result = $builder->get();
         return $result;
@@ -49,7 +53,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('project', $project);
+        $builder->groupStart()
+            ->where('project', $project)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('project', $project);
         $builder->where("time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
         $result = $builder->get();
         return $result;
@@ -79,7 +90,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('groups', $groups);
+        $builder->groupStart()
+            ->where('groups', $groups)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('groups', $groups);
         $builder->where('time_stamp_new >=', $startDate);
         $builder->where('time_stamp_new <=', $endDate);
         $result = $builder->get();
@@ -90,7 +108,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('project', $project);
+        $builder->groupStart()
+            ->where('project', $project)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('project', $project);
         $builder->where('time_stamp_new >=', $startDate);
         $builder->where('time_stamp_new <=', $endDate);
         $result = $builder->get();
@@ -120,7 +145,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('groups', $groups);
+        $builder->groupStart()
+            ->where('groups', $groups)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('groups', $groups);
         $builder->where("time_stamp_close >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
         $result = $builder->get();
         return $result;
@@ -131,7 +163,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('project', $project);
+        $builder->groupStart()
+            ->where('project', $project)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('project', $project);
         $builder->where("time_stamp_close >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
         $result = $builder->get();
         return $result;
@@ -162,7 +201,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('groups', $groups);
+        $builder->groupStart()
+            ->where('groups', $groups)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('groups', $groups);
         $builder->where('time_stamp_close >=', $startDate);
         $builder->where('time_stamp_close <=', $endDate);
         $result = $builder->get();
@@ -174,7 +220,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('project', $project);
+        $builder->groupStart()
+            ->where('project', $project)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('project', $project);
         $builder->where('time_stamp_close >=', $startDate);
         $builder->where('time_stamp_close <=', $endDate);
         $result = $builder->get();
@@ -205,7 +258,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('groups', $groups);
+        $builder->groupStart()
+            ->where('groups', $groups)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('groups', $groups);
         $builder->where("time_stamp_pending >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
         $result = $builder->get();
         return $result;
@@ -216,7 +276,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('project', $project);
+        $builder->groupStart()
+            ->where('project', $project)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('project', $project);
         $builder->where("time_stamp_pending >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
         $result = $builder->get();
         return $result;
@@ -247,7 +314,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('groups', $groups);
+        $builder->groupStart()
+            ->where('groups', $groups)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('groups', $groups);
         $builder->where('time_stamp_pending >=', $startDate);
         $builder->where('time_stamp_pending <=', $endDate);
         $result = $builder->get();
@@ -259,7 +333,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('project', $project);
+        $builder->groupStart()
+            ->where('project', $project)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('project', $project);
         $builder->where('time_stamp_pending >=', $startDate);
         $builder->where('time_stamp_pending <=', $endDate);
         $result = $builder->get();
@@ -289,7 +370,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('groups', $groups);
+        $builder->groupStart()
+            ->where('groups', $groups)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('groups', $groups);
         $builder->where("time_stamp_contacted >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
         $result = $builder->get();
         return $result;
@@ -299,7 +387,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('project', $project);
+        $builder->groupStart()
+            ->where('project', $project)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('project', $project);
         $builder->where("time_stamp_contacted >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
         $result = $builder->get();
         return $result;
@@ -330,7 +425,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('groups', $groups);
+        $builder->groupStart()
+            ->where('groups', $groups)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('groups', $groups);
         $builder->where('time_stamp_contacted >=', $startDate);
         $builder->where('time_stamp_contacted <=', $endDate);
         $result = $builder->get();
@@ -341,7 +443,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('project', $project);
+        $builder->groupStart()
+            ->where('project', $project)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('project', $project);
         $builder->where('time_stamp_contacted >=', $startDate);
         $builder->where('time_stamp_contacted <=', $endDate);
         $result = $builder->get();
@@ -372,7 +481,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('groups', $groups);
+        $builder->groupStart()
+            ->where('groups', $groups)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('groups', $groups);
         $builder->where("time_stamp_visit >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
         $result = $builder->get();
         return $result;
@@ -383,7 +499,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('project', $project);
+        $builder->groupStart()
+            ->where('project', $project)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('project', $project);
         $builder->where("time_stamp_visit >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
         $result = $builder->get();
         return $result;
@@ -414,7 +537,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('groups', $groups);
+        $builder->groupStart()
+            ->where('groups', $groups)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('groups', $groups);
         $builder->where('time_stamp_visit >=', $startDate);
         $builder->where('time_stamp_visit <=', $endDate);
         $result = $builder->get();
@@ -426,7 +556,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('project', $project);
+        $builder->groupStart()
+            ->where('project', $project)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('project', $project);
         $builder->where('time_stamp_visit >=', $startDate);
         $builder->where('time_stamp_visit <=', $endDate);
         $result = $builder->get();
@@ -457,7 +594,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('groups', $groups);
+        $builder->groupStart()
+            ->where('groups', $groups)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('groups', $groups);
         $builder->where("time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
         $result = $builder->get();
         return $result;
@@ -467,7 +611,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('project', $project);
+        $builder->groupStart()
+            ->where('project', $project)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('project', $project);
         $builder->where("time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
         $result = $builder->get();
         return $result;
@@ -498,7 +649,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('groups', $groups);
+        $builder->groupStart()
+            ->where('groups', $groups)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('groups', $groups);
         $builder->where('time_stamp_deal >=', $startDate);
         $builder->where('time_stamp_deal <=', $endDate);
         $result = $builder->get();
@@ -510,7 +668,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('project', $project);
+        $builder->groupStart()
+            ->where('project', $project)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('project', $project);
         $builder->where('time_stamp_deal >=', $startDate);
         $builder->where('time_stamp_deal <=', $endDate);
         $result = $builder->get();
@@ -541,7 +706,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('groups', $groups);
+        $builder->groupStart()
+            ->where('groups', $groups)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('groups', $groups);
         $builder->where("time_stamp_reserve >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
         $result = $builder->get();
         return $result;
@@ -552,7 +724,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('project', $project);
+        $builder->groupStart()
+            ->where('project', $project)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('project', $project);
         $builder->where("time_stamp_reserve >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
         $result = $builder->get();
         return $result;
@@ -584,7 +763,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('groups', $groups);
+        $builder->groupStart()
+            ->where('groups', $groups)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('groups', $groups);
         $builder->where('time_stamp_reserve >=', $startDate);
         $builder->where('time_stamp_reserve <=', $endDate);
         $result = $builder->get();
@@ -596,7 +782,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('project', $project);
+        $builder->groupStart()
+            ->where('project', $project)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('project', $project);
         $builder->where('time_stamp_reserve >=', $startDate);
         $builder->where('time_stamp_reserve <=', $endDate);
         $result = $builder->get();
@@ -627,7 +820,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('groups', $groups);
+        $builder->groupStart()
+            ->where('groups', $groups)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('groups', $groups);
         $builder->where("time_stamp_booking >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
         $result = $builder->get();
         return $result;
@@ -638,7 +838,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('project', $project);
+        $builder->groupStart()
+            ->where('project', $project)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('project', $project);
         $builder->where("time_stamp_booking >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
         $result = $builder->get();
         return $result;
@@ -668,7 +875,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('groups', $groups);
+        $builder->groupStart()
+            ->where('groups', $groups)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('groups', $groups);
         $builder->where('time_stamp_booking >=', $startDate);
         $builder->where('time_stamp_booking <=', $endDate);
         $result = $builder->get();
@@ -680,7 +894,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->where('project', $project);
+        $builder->groupStart()
+            ->where('project', $project)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('project', $project);
         $builder->where('time_stamp_booking >=', $startDate);
         $builder->where('time_stamp_booking <=', $endDate);
         $result = $builder->get();
@@ -1207,7 +1428,15 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
         $builder->where('sumber_leads', $source);
-        $builder->where('groups', $groups);
+        // $builder->where('groups', $groups);
+
+        $builder->groupStart()
+            ->where('groups', $groups)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
 
         $builder->groupStart()
             ->where("time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL $count DAY)")
@@ -1230,7 +1459,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
         $builder->where('sumber_leads', $source);
-        $builder->where('groups', $groups);
+        // $builder->where('groups', $groups);
+
+        $builder->groupStart()
+            ->where('groups', $groups)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
 
         $builder->groupStart()
         ->Where("time_stamp_new BETWEEN '$startDate' AND '$endDate'")
@@ -1253,7 +1489,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
         $builder->where('sumber_leads', $source);
-        $builder->where('project', $project);
+        // $builder->where('project', $project);
+
+        $builder->groupStart()
+            ->where('project', $project)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
 
         $builder->groupStart()
             ->where("time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL $count DAY)")
@@ -1276,7 +1519,14 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
         $builder->where('sumber_leads', $source);
-        $builder->where('project', $project);
+        // $builder->where('project', $project);
+
+        $builder->groupStart()
+            ->where('project', $project)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
 
         $builder->groupStart()
         ->Where("time_stamp_new BETWEEN '$startDate' AND '$endDate'")
@@ -1401,7 +1651,14 @@ class ChartModel extends Model
             ->orLike('catatan', $search)
             ->groupEnd();
 
-        $builder->where('groups',$groups);
+        $builder->groupStart()
+            ->where('groups', $groups)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('groups',$groups);
         $builder->orderBy('id DESC');
         $result = $builder->get();
         return $result;
@@ -1437,7 +1694,14 @@ class ChartModel extends Model
             ->orLike('catatan', $search)
             ->groupEnd();
 
-        $builder->where('project', $project);
+        $builder->groupStart()
+            ->where('project', $project)
+            ->orWhere('sales', user()->id)
+            ->orWhere('manager', user()->id)
+            ->orWhere('general_manager', user()->id);
+        $builder->groupEnd();
+
+        // $builder->where('project', $project);
         $builder->orderBy('id DESC');
         $result = $builder->get();
         return $result;
