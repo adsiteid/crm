@@ -108,7 +108,7 @@
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
-                                <div class="modal-body text-center">Are you sure want to delete Group <b><?= $id_user['group_name'] ?></b> ?</div>
+                                <div class="modal-body text-center">Are you sure want to delete <b><?= $id_user['group_name'] ?></b> ?</div>
                                 <div class="modal-footer ">
                                     <div class="row d-flex col-12 px-0 py-2">
                                         <div class="col-6">

@@ -42,8 +42,8 @@ class User extends BaseController
 
 		if (in_groups('users')) :
 
-
 			$id = user()->id;
+
 			if (empty($this->showgroupsales->user($id)->getResultArray())) {
 				$new = $this->showleads->new();
 				$level = "";
