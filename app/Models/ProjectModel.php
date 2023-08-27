@@ -49,6 +49,27 @@ class ProjectModel extends Model
 
     ];
 
+
+    public function projects($id, $groups, $project)
+    {
+        $builder = $this->db->table($this->table);
+
+
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->where('id_user', $id)
+                ->orWhere('groups', $groups)
+                ->orWhere('project', $project);
+            $builder->groupEnd();
+
+        endif;
+
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
     public function project()
     {
  
@@ -118,5 +139,9 @@ class ProjectModel extends Model
         $result = $builder->get();
         return $result;
     }
+
+
+
+
 
 }

@@ -288,8 +288,6 @@ class Home extends BaseController
 		$id = user()->id;
 
 		if (in_groups('admin')) :
-			$project = $this->showproject->findAll();
-			$level = user()->level;
 			$new = $this->showleads->new();
 		endif;
 
@@ -297,44 +295,47 @@ class Home extends BaseController
 
 
 			if (empty($this->showgroupsales->user($id)->getResultArray())) {
-				$project = $this->showproject->projectId($id);
-				$level = user()->level;
 				$new = $this->showleads->new();
 			}
-
 
 			if (!empty($this->showgroupsales->user($id)->getResultArray())) {
 			
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 			if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
-				$project = $this->showproject->projectAdminGroup($group['groups'])->getResultArray();
 				$new = $this->showleads->newAdminGroup($group['groups']);
 			} 
 			
 			if ($group['level'] == "admin_project"  || $group['level'] == "manager") {
-				$project = $this->showproject->projectAdminProject($group['project'])->getResultArray();
 				$new = $this->showleads->newAdminProject($group['project']);
 			}
 
 				if ( $group['level'] == "sales") {
-					$project = $this->showproject->projectAdminProject($group['project'])->getResultArray();
 					$new = $this->showleads->new();
 				}
 
-				$level = $group['level'];
+
 		}
 	}
 			
 		endif;
-		
-			$data = [
+
+
+		$data = [
 				'new' => $new,
 				'group' => $this->showgroupsales,
-				'level' => $level,
-				'project' => $project,
+				'project' => $this->showproject,
 				'projects' => $this->showproject,
 				'title' => 'Project'
 			];
+		
+			// $data = [
+			// 	'new' => $new,
+			// 	'group' => $this->showgroupsales,
+			// 	'level' => $level,
+			// 	'project' => $project,
+			// 	'projects' => $this->showproject,
+			// 	'title' => 'Project'
+			// ];
 
 		return view('/project/project', $data);
 	}

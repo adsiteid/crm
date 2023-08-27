@@ -3,15 +3,11 @@
 <?php $this->section('content'); ?>
 
 
-
-
-
-<?php if ($level == "admin" || $level == "admin_group") : ?>
     <div class="row mb-4 p-0 d-lg-block d-none">
         <!-- <div class="col"><a href=""><a href="" type="button" class="btn btn-sm btn-outline-light bg-white">Back</a></a></div> -->
         <div class="col d-flex p-0 "><a href="<?= base_url(); ?>add_project" type="button" class="btn btn-sm btn-primary">Add Project</a></div>
     </div>
-<?php endif; ?>
+
 
 
 
@@ -25,7 +21,13 @@
     <?php endif; ?>
 
     <?php
-    foreach ($project as $row) :
+
+    foreach ($group->user(user()->id)->getResultArray() as $group) {
+
+
+    foreach ($project->projects(user()->id, $group['groups'], $group['project'])->getResultArray() as $row) {
+
+
     ?>
         <div class="col-lg-4 col-6 d-flex align-items-stretch" type="button" onclick="location.href='<?= base_url(); ?>project/<?= $row['id']; ?>'">
             <div class="card mb-3 rounded w-100">
@@ -52,7 +54,10 @@
                 </div>
             </div>
         </div>
-    <?php endforeach; ?>
+    <?php 
+    }
+}
+?>
 
 </div>
 
