@@ -69,8 +69,6 @@ class Home extends BaseController
 
 				foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 
-					d($group['groups']);
-
 					if ($group['level'] == "admin_group") {
 						$new = $this->showleads->newAdminGroup($group['groups']);
 						$contacted = $this->showleads->contactedAdminGroup($group['groups']);
