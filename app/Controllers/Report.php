@@ -197,7 +197,7 @@ class Report extends BaseController
 			'user_group' => $this->showusers,
 			'project' => $this->showproject,
 			'days' => "Last $days Days",
-			'title' => 'Report Leads'
+			'title' => 'Report'
 		];
 
 		return view('report/leads', $data);
@@ -361,7 +361,7 @@ class Report extends BaseController
 				'project' => $this->showproject,
 				'user_group' => $this->showusers,
 				'days' => "$startDate - $endDate",
-				'title' => 'Report Leads'
+				'title' => 'Report'
 			];
 
 		return view('report/leads', $data);
@@ -531,7 +531,7 @@ class Report extends BaseController
 			'project' => $this->showproject,
 			'user_group' => $this->showusers,
 			'days' => "Search Result",
-			'title' => 'Report Leads'
+			'title' => 'Report'
 		];
 
 		return view('report/leads', $data);
