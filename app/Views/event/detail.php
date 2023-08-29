@@ -67,7 +67,9 @@
                         <p style="font-size:12px;" class="mt-4 mb-1 text-muted">Event</p>
                         <h6 style="font-size:12px;" class="mb-3 "><?= $row['event_name']; ?></h6>
                         <p style="font-size:12px;" class="mb-1 text-muted">Project</p>
-                        <h6 style="font-size:12px;" class="mb-3 "><?= $row['project']; ?></h6>
+                        <h6 style="font-size:12px;" class="mb-3 "><?php foreach ($project->detail($row['project'])->getResultarray() as $prj) {
+                                                                        echo $prj['project'];
+                                                                    } ?></h6>
                         <p style="font-size:12px;" class="mb-1 text-muted">Address</p>
                         <h6 style="font-size:12px;" class="mb-3"><?= $row['full_address']; ?></h6>
                         <p style="font-size:12px;" class="mb-1 text-muted">Contact / PIC</p>
@@ -83,7 +85,9 @@
     <div class="col-lg-8 col-12 mb-3 d-flex align-items-stretch">
         <div class="card w-100">
             <div class="card-header bg-transparent py-3">
-                <h6 class="mt-2"><?= $row['event_name'] ?> - <?= $row['project'] ?></h6>
+                <h6 class="mt-2"><?= $row['event_name'] ?> - <?php foreach ($project->detail($row['project'])->getResultarray() as $prj) {
+                                                                    echo $prj['project'];
+                                                                } ?></h6>
             </div>
             <div class="card-body">
                 <div class="row d-flex">
@@ -120,9 +124,9 @@
 
 <div class="d-flex justify-content-end my-4 row px-3">
 
-        <a type="button" class="btn btn-outline-primary col-lg-2 col-6" data-toggle="modal" data-target="#delete-data">Delete</a>
-        <a href="<?= base_url('/edit_event/' . $row['id']) ?>" class="btn btn-primary col-lg-2 col-6">Edit</a>
-    
+    <a type="button" class="btn btn-outline-primary col-lg-2 col-6" data-toggle="modal" data-target="#delete-data">Delete</a>
+    <a href="<?= base_url('/edit_event/' . $row['id']) ?>" class="btn btn-primary col-lg-2 col-6">Edit</a>
+
 </div>
 
 

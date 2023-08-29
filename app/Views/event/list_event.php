@@ -134,7 +134,9 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                             </td>
 
                             <td class="">
-                                <?= $row['project']; ?>
+                                <?php foreach ($project->detail($row['project'])->getResultarray() as $prj) {
+                                    echo $prj['project'];
+                                } ?>
                             </td>
                             <td class="d-sm-table-cell d-none">
                                 <?= $row['city']; ?>

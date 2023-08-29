@@ -5,6 +5,7 @@ namespace App\Controllers;
 use \App\Models\EventModel;
 use \App\Models\LeadsModel;
 use \App\Models\GroupSalesModel;
+use \App\Models\ProjectModel;
 
 class Event extends BaseController
 {
@@ -12,12 +13,14 @@ class Event extends BaseController
     protected $showevent;
     protected $showleads;
     protected $showgroupsales;
+    protected $showproject;
 
     public function __construct()
     {
         $this->showevent = new EventModel();
         $this->showleads = new LeadsModel();
         $this->showgroupsales = new GroupSalesModel;
+        $this->showproject = new ProjectModel();
     }
 
 
@@ -57,6 +60,7 @@ class Event extends BaseController
         $data = [
             'new' => $new,
             'days'=> "Last $days Days",
+            'project' =>$this->showproject,
             'event' => $events,
             'title' => 'List Event'
         ];
@@ -117,6 +121,7 @@ class Event extends BaseController
         $data = [
             'new' => $this->showleads->new(),
             'event' => $this->showevent->detail($id),
+            'project' => $this->showproject,
             'title' => 'List Event'
         ];
         return view('event/detail', $data);
