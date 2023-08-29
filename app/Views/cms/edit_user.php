@@ -81,7 +81,6 @@
 <?php //echo view('Myth\Auth\Views\_message_block') 
 ?>
 
-
 <div class="col-12 grid-margin stretch-card p-0">
     <div class="card">
         <div class="card-header bg-transparent d-flex justify-content-between">
