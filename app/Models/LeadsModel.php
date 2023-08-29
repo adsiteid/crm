@@ -133,7 +133,6 @@ class LeadsModel extends Model
 
     public function rangeList($startDate,$endDate)
 
-
     {
         $builder = $this->db->table($this->table);
 

@@ -51,9 +51,6 @@ class Home extends BaseController
 		if(in_groups('users')) :
 
 
-			
-			
-
 			if (empty($this->showgroupsales->user($id)->getResultArray())) {
 				$new = $this->showleads->new();
 				$contacted = $this->showleads->contacted();
@@ -68,7 +65,6 @@ class Home extends BaseController
 			if (!empty($this->showgroupsales->user($id)->getResultArray())) {
 
 				foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
-
 
 					if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
 						$new = $this->showleads->newAdminGroup($group['groups']);

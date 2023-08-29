@@ -2,23 +2,77 @@
 
 <?php $this->section('content'); ?>
 
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+
 <style>
-    .file-upload {
+    .avatar-upload {
         position: relative;
-        overflow: hidden;
+        max-width: 160px;
+        margin: 0px auto;
+    }
+
+    .avatar-edit {
+        position: absolute;
+        right: 0px;
+        z-index: 1;
+        top: 10px;
+    }
+
+    input {
+        display: none;
+
+        +label {
+            display: inline-block;
+            width: 34px;
+            height: 34px;
+            margin-bottom: 0;
+            border-radius: 100%;
+            background: #FFFFFF;
+            border: 1px solid transparent;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+            cursor: pointer;
+            font-weight: normal;
+            transition: all .2s ease-in-out;
+
+            &:hover {
+                background: #f1f1f1;
+                border-color: #d6d6d6;
+            }
+
+            &:after {
+                content: "\f040";
+                font-family: 'FontAwesome';
+                color: #757575;
+                position: absolute;
+                top: 10px;
+                left: 0;
+                right: 0;
+                text-align: center;
+                margin: auto;
+            }
+        }
     }
 
 
-    .file-upload input.file-input {
-        position: absolute;
-        top: 0;
-        right: 0;
-        margin: 0;
-        padding: 0;
-        cursor: pointer;
-        opacity: 0;
-        filter: alpha(opacity=0);
-        height: 100%;
+    .avatar-preview {
+        width: 162px;
+        height: 162px;
+        position: relative;
+        border-radius: 100%;
+        border: 6px solid #F8F8F8;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+
+        >div {
+            width: 100%;
+            height: 100%;
+            border-radius: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
     }
 </style>
 
@@ -32,7 +86,7 @@
     <div class="card">
         <div class="card-header bg-transparent d-flex justify-content-between">
             <h4 class=" card-title pt-3">Edit User</h4>
-            <a href="<?= base_url()?>forgot" class="small text-primary pt-3">
+            <a href="<?= base_url() ?>forgot" class="small text-primary pt-3">
                 Change Password
             </a>
         </div>
@@ -53,20 +107,27 @@
 
                 <input type="hidden" name="id" value="<?= $row['id'] ?>">
 
-                <div class="col-lg-2 col-12 text-center ">
-                    <label class="mb-3 small"> User Image</label><br>
-                    <a type="button" class="file-upload rounded-circle mb-lg-0 mb-4" style="width:130px; height : 130px; ">
-                        <?php if ($row['user_image'] !== 'default.jpg') : ?>
-                            <img class="image" src="<?= base_url(); ?>document/image/profile/user/<?= $row['user_image']; ?>" style="width : 100% ; height : 100% ;  overflow: hidden; object-fit:cover; ">
-                        <?php endif; ?>
-                        <?php if ($row['user_image'] == 'default.jpg') : ?>
-                            <img class="image" src="<?= base_url(); ?>document/image/profile/default.jpg" style="width : 100% ; height : 100% ;  overflow: hidden; object-fit:cover; ">
-                        <?php endif; ?>
-                        <input type="file" class="file-input <?php if (session('errors.user_image')) : ?>is-invalid<?php endif ?>" name="user_image">
-                        <div class="invalid-feedback">
-                            <?= (session('errors.user_image')); ?>
+                <div class="col-lg-3 col-12  my-3">
+                    <div class="avatar-upload">
+                        <div class="avatar-edit">
+                            <input type='file' class="<?php if (session('errors.user_image')) : ?>is-invalid<?php endif ?>" id="imageUpload" name="user_image" accept=".png, .jpg, .jpeg" />
+                            <label for="imageUpload"></label>
                         </div>
-                    </a>
+                        <div class="avatar-preview">
+                            <?php if ($row['user_image'] !== 'default.jpg') : ?>
+                                <div id="imagePreview" style="background-image: url(<?= base_url(); ?>document/image/profile/user/<?= $row['user_image']; ?>);">
+                                </div>
+                            <?php endif; ?>
+                            <?php if ($row['user_image'] == 'default.jpg') : ?>
+                                <div id="imagePreview" style="background-image: url(<?= base_url(); ?>document/image/profile/default.jpg);">
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="invalid-feedback">
+                        <?= (session('errors.user_image')); ?>
+                    </div>
+
                 </div>
 
                 <div class="col-lg-4 col-12">
@@ -88,7 +149,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 col-12">
+                <div class="col-lg-5 col-12">
                     <div class="form-group row p-0">
                         <div class="col-lg-6 col-12 mb-3">
                             <label for="hp">Email</label>
@@ -160,21 +221,22 @@
 </div>
 
 
- 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 <script>
-    $('.file-input').change(function() {
-        var curElement = $('.image');
-        console.log(curElement);
-        var reader = new FileReader();
-
-        reader.onload = function(e) {
-            // get loaded data and render thumbnail.
-            curElement.attr('src', e.target.result);
-        };
-
-        // read the image file as a data URL.
-        reader.readAsDataURL(this.files[0]);
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
+                $('#imagePreview').hide();
+                $('#imagePreview').fadeIn(650);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#imageUpload").change(function() {
+        readURL(this);
     });
 </script>
 

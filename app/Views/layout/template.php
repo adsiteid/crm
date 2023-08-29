@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="<?= base_url() ?>vendor/adsite/skydash/vendors/feather/feather.css">
     <link rel="stylesheet" href="<?= base_url() ?>vendor/adsite/skydash/vendors/ti-icons/css/themify-icons.css">
     <link rel="stylesheet" href="<?= base_url() ?>vendor/adsite/skydash/vendors/css/vendor.bundle.base.css">
+    
+
+
+
+
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="<?= base_url() ?>vendor/adsite/skydash/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
