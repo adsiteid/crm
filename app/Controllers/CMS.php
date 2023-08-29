@@ -174,14 +174,14 @@ class CMS extends BaseController
 				'errors' => [
 					'required' => 'Group Name Harus diisi'
 				]
-			],
-
-			'project' => [
-				'rules' => 'required',
-				'errors' => [
-					'required' => 'Project Harus diisi'
-				]
 			]
+
+			// 'project' => [
+			// 	'rules' => 'required',
+			// 	'errors' => [
+			// 		'required' => 'Project Harus diisi'
+			// 	]
+			// ]
 			
 
 		])) {

@@ -493,10 +493,10 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li class="d-lg-block d-none nav-item <?php if ($title == 'report') {
+                            <li class="d-lg-block d-none nav-item <?php if ($title == 'Report') {
                                                                         echo "active";
                                                                     } ?>">
-                                <a class="nav-link" data-toggle="collapse" href="#report" aria-expanded="false" aria-controls="report">
+                                <a class="nav-link" data-toggle="collapse" href="#report" aria-expanded="false" aria-controls="Report">
                                     <i class="icon-bar-graph menu-icon"></i>
                                     <span class="menu-title">Report</span>
                                     <i class="menu-arrow"></i>
@@ -504,21 +504,13 @@
                                 <div class="collapse" id="report">
                                     <ul class="nav flex-column sub-menu rounded-bottom">
                                         <!-- <li class="nav-item"> <a class="nav-link" href="/report/chart">Chart All</a></li> -->
-                                        <li class="nav-item"> <a class="nav-link <?php if ($title == 'Report') {
-                                                                                        echo "active";
-                                                                                    } ?>" href="<?= base_url(); ?>reportleads/30">Leads Report</a></li>
+                                        <li class="nav-item "> <a class="nav-link " href="<?= base_url(); ?>reportleads/30">Leads Report</a></li>
 
-                                        <li class="nav-item"> <a class="nav-link <?php if ($title == 'Report') {
-                                                                                        echo "active";
-                                                                                    } ?>" href="<?= base_url(); ?>report_project/30">Project Report</a></li>
-                                        <li class="nav-item"> <a class="nav-link  <?php if ($title == 'Report') {
-                                                                                        echo "active";
-                                                                                    } ?>" href="<?= base_url(); ?>report_source/30">Source Report</a></li>
-                                        <?php if (!in_groups('sales')) : ?>
-                                            <li class="nav-item"> <a class="nav-link  <?php if ($title == 'Report') {
-                                                                                            echo "active";
-                                                                                        } ?>" href="<?= base_url(); ?>report_sales_filter/30">Sales Report</a></li>
-                                        <?php endif; ?>
+                                        <li class="nav-item "> <a class="nav-link " href="<?= base_url(); ?>report_project/30">Project Report</a></li>
+                                        <li class="nav-item "> <a class="nav-link " href="<?= base_url(); ?>report_source/30">Source Report</a></li>
+
+                                            <li class="nav-item "> <a class="nav-link" href="<?= base_url(); ?>report_sales_filter/30">Sales Report</a></li>
+                                     
                                     </ul>
                                 </div>
                             </li>
@@ -645,10 +637,10 @@
                                         </ul>
                                     </div>
                                 </li>
-                                <li class=" nav-item <?php if ($title == 'report') {
+                                <li class=" nav-item <?php if ($title == 'Report') {
                                                             echo "active";
                                                         } ?>">
-                                    <a class="nav-link" data-toggle="collapse" href="#report" aria-expanded="false" aria-controls="report">
+                                    <a class="nav-link" data-toggle="collapse" href="#report" aria-expanded="false" aria-controls="Report">
                                         <i class="icon-bar-graph menu-icon"></i>
                                         <span class="menu-title">Report</span>
                                         <i class="menu-arrow"></i>
@@ -656,9 +648,7 @@
                                     <div class="collapse" id="report">
                                         <ul class="nav flex-column sub-menu rounded-bottom">
                                             <!-- <li class="nav-item"> <a class="nav-link" href="/report/chart">Chart All</a></li> -->
-                                            <li class="nav-item"> <a class="nav-link <?php if ($title == 'Report Leads') {
-                                                                                            echo "active";
-                                                                                        } ?>" href="<?= base_url(); ?>reportleads/30">Leads Report</a></li>
+                                            <li class="nav-item"> <a class="nav-link " href="<?= base_url(); ?>reportleads/30">Leads Report</a></li>
                                             <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>report_project/30">Project Report</a></li>
                                             <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>report_source/30">Source Report</a></li>
                                             <?php if (!in_groups('sales')) : ?>
