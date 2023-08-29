@@ -16,7 +16,7 @@
 
     .avatar-edit {
         position: absolute;
-        right: 0px;
+        right: 10px;
         z-index: 1;
         top: 10px;
     }
