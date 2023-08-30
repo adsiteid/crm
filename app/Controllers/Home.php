@@ -59,11 +59,7 @@ class Home extends BaseController
 				$visit = $this->showleads->visit();
 				$deal = $this->showleads->deal();
 				$events = $this->showevent->eventsId($id);
-			}
-
-
-			if (!empty($this->showgroupsales->user($id)->getResultArray())) {
-
+			}else{
 				foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 
 					if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
