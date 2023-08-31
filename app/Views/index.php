@@ -37,12 +37,12 @@
         background: #fff;
     }
 
-    .time-rolling {
+    /* .time-rolling {
         background: #ffd6d6;
         margin-top: 0.5rem;
         color: blue;
         font-size: 0.75rem;
-    }
+    } */
 </style>
 
 
