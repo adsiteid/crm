@@ -480,7 +480,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
                                     <td class="d-sm-table-cell d-none">
                                         <?php if ($row['kategori_status'] == 'New' && $row['rolling_leads'] == 1) : ?>
-                                            <span class='time-rolling' data-lasttime=" <?= $row['rolling_lasttime']; ?> " data-bs-toggle='tooltip' data-bs-placement='top' data-bs-title='Otomatis pindah ke user lain'></span>
+                                            <span class='time-rolling' data-interval="<?= $row['rolling_interval']; ?>" data-lasttime="<?= $row['rolling_lasttime']; ?>" data-bs-toggle='tooltip' data-bs-placement='top' data-bs-title='Otomatis pindah ke user lain'>00:00</span>
                                         <?php endif; ?>
                                     </td>
 
@@ -601,9 +601,10 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
 <!-- script countdown -->
 <script>
-    function refreshTime() {
+    
+    var refreshTime = setInterval(function () {
         $(".time-rolling").each(function() {
-            var dateleads = moment($(this).data("lasttime"), 'YYYY-MM-DD HH:mm:ss').add(15, 'minutes');
+            var dateleads = moment($(this).data("lasttime"), 'YYYY-MM-DD HH:mm:ss').add($(this).data("interval"), 'minutes');
             var datenow = moment();
             var ms = dateleads.diff(datenow);
             //$(this).html(parseInt(ms / 60) + ":" + ((ms % 60).length == 1 ? "0" + (ms % 60) : (ms % 60)));
@@ -611,12 +612,15 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                 $(this).html(moment.utc(ms).format("mm:ss"));
                 console.log(ms);
             } else {
-                console.log("sudah habis");
+                clearInterval(refreshTime); 
+                setTimeout(function() {
+                    window.location.reload(); 
+                }, 2000);
+
             }
         });
 
-    }
-    setInterval(refreshTime, 1000);
+    }, 1000);
 </script>
 
 <!-- End of countdown -->
