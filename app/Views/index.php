@@ -90,9 +90,9 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                 <i class="mdi mdi-calendar"></i><?= $days; ?>
             </button>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                <a class="dropdown-item" href="<?= base_url(); ?>getleads/home/90">Last 90 Days</a>
-                <a class="dropdown-item" href="<?= base_url(); ?>getleads/home/30">Last 30 Days</a>
-                <a class="dropdown-item" href="<?= base_url(); ?>getleads/home/7">Last 7 Days</a>
+                <a class="dropdown-item" href="<?= base_url(); ?>home/90">Last 90 Days</a>
+                <a class="dropdown-item" href="<?= base_url(); ?>home/30">Last 30 Days</a>
+                <a class="dropdown-item" href="<?= base_url(); ?>home/7">Last 7 Days</a>
                 <a type="button" class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Custom Range</a>
             </div>
         </div>
@@ -365,9 +365,9 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                                 <i class="mdi mdi-calendar"></i><?= $days; ?>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                                <a class="dropdown-item" href="<?= base_url(); ?>getleads/home/90">Last 90 Days</a>
-                                <a class="dropdown-item" href="<?= base_url(); ?>getleads/home/30">Last 30 Days</a>
-                                <a class="dropdown-item" href="<?= base_url(); ?>getleads/home/7">Last 7 Days</a>
+                                <a class="dropdown-item" href="<?= base_url(); ?>home/90">Last 90 Days</a>
+                                <a class="dropdown-item" href="<?= base_url(); ?>home/30">Last 30 Days</a>
+                                <a class="dropdown-item" href="<?= base_url(); ?>home/7">Last 7 Days</a>
                                 <a type="button" class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Custom Range</a>
                             </div>
                         </div>
@@ -416,7 +416,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                             <?php $no = 1; ?>
 
                             <?php
-                            // foreach ($users->user(user()->id)->getresultArray() as $id_user) :
+
                             foreach ($new->getResultArray() as $row) :
                             ?>
 
@@ -497,7 +497,6 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
                             <?php
                             endforeach;
-                            //    endforeach;
                             ?>
                         </tbody>
                     </table>

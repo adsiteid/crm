@@ -55,7 +55,7 @@ $routes->get('/leads/pending', 'Leads::pending');
 
 $routes->get('/getleads/(:num)', 'Leads::indexFilter/$1');
 
-$routes->get('/getleads/home/(:num)', 'Home::indexFilter/$1');
+$routes->get('/home/(:num)', 'Home::indexFilter/$1');
 $routes->post('/range', 'Home::range');
 $routes->post('/range_list', 'Leads::rangeList');
 

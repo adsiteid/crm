@@ -41,8 +41,6 @@ class Leads extends BaseController
             $level = user()->level;
         endif;
 
-
-
         if (in_groups('users')) :
 
             if (empty($this->showgroupsales->user($id)->getResultArray())) {
@@ -73,43 +71,43 @@ class Leads extends BaseController
 
     public function new()
     {
-        $id = user()->id;
+        // $id = user()->id;
 
-        if (in_groups('admin')) :
+        // if (in_groups('admin')) :
             $leads = $this->showleads->new();
             $new = $this->showleads->new();
-        endif;
+        // endif;
 
-        if (in_groups('users')) :
+    //     if (in_groups('users')) :
 
-            if (empty($this->showgroupsales->user($id)->getResultArray())) {
-                $leads = $this->showleads->new();
-                $new = $this->showleads->new();
-            }
+    //         if (empty($this->showgroupsales->user($id)->getResultArray())) {
+    //             $leads = $this->showleads->new();
+    //             $new = $this->showleads->new();
+    //         }
 
-            if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+    //         if (!empty($this->showgroupsales->user($id)->getResultArray())) {
 
 
-        foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
-            if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
+    //     foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+    //         if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
 
-                $leads = $this->showleads->newAdminGroup($group['groups']);
-                $new = $this->showleads->newAdminGroup($group['groups']);
-            }
+    //             $leads = $this->showleads->newAdminGroup($group['groups']);
+    //             $new = $this->showleads->newAdminGroup($group['groups']);
+    //         }
 
-            if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
-                $leads = $this->showleads->newAdminProject($group['project']);
-                $new = $this->showleads->newAdminProject($group['project']);
+    //         if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
+    //             $leads = $this->showleads->newAdminProject($group['project']);
+    //             $new = $this->showleads->newAdminProject($group['project']);
 
-            }
+    //         }
             
-            // else{
-            //     $leads = $this->showleads->new();
-            //     $new = $this->showleads->new();
-            // }
-        }
-    }
-        endif;
+    //         // else{
+    //         //     $leads = $this->showleads->new();
+    //         //     $new = $this->showleads->new();
+    //         // }
+    //     }
+    // }
+    //     endif;
 
         $data = [
             'leads' => $leads,
@@ -126,38 +124,38 @@ class Leads extends BaseController
     public function contacted()
     {
 
-        if (in_groups('admin')) :
+        // if (in_groups('admin')) :
             $leads = $this->showleads->contacted();
             $new = $this->showleads->new();
-        endif;
+        // endif;
 
-        if (in_groups('users')) :
-        $id = user()->id;
+    //     if (in_groups('users')) :
+    //     $id = user()->id;
 
-            if (empty($this->showgroupsales->user($id)->getResultArray())) {
-                $leads = $this->showleads->contacted();
-                $new = $this->showleads->new();
-            }
+    //         if (empty($this->showgroupsales->user($id)->getResultArray())) {
+    //             $leads = $this->showleads->contacted();
+    //             $new = $this->showleads->new();
+    //         }
 
-            if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+    //         if (!empty($this->showgroupsales->user($id)->getResultArray())) {
 
-        foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
-            if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
-                $leads = $this->showleads->contactedAdminGroup($group['groups']);
-                $new = $this->showleads->newAdminGroup($group['groups']);
-            }
-            if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
-                $leads = $this->showleads->contactedAdminProject($group['project']);
-                $new = $this->showleads->newAdminProject($group['project']);
-            } 
+    //     foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+    //         if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
+    //             $leads = $this->showleads->contactedAdminGroup($group['groups']);
+    //             $new = $this->showleads->newAdminGroup($group['groups']);
+    //         }
+    //         if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
+    //             $leads = $this->showleads->contactedAdminProject($group['project']);
+    //             $new = $this->showleads->newAdminProject($group['project']);
+    //         } 
             
-            // else {
-            //     $leads = $this->showleads->contacted();
-            //     $new = $this->showleads->new();
-            // }
-        }
-    }
-        endif;
+    //         // else {
+    //         //     $leads = $this->showleads->contacted();
+    //         //     $new = $this->showleads->new();
+    //         // }
+    //     }
+    // }
+    //     endif;
 
 
         $data = [
@@ -173,40 +171,40 @@ class Leads extends BaseController
     public function visit()
     {
 
-        if (in_groups('admin')) :
+        // if (in_groups('admin')) :
             $leads = $this->showleads->visit();
             $new = $this->showleads->new();
-        endif;
+        // endif;
 
-        if (in_groups('users')) :
-        $id = user()->id;
+    //     if (in_groups('users')) :
+    //     $id = user()->id;
 
-            if (empty($this->showgroupsales->user($id)->getResultArray())) {
-                $leads = $this->showleads->visit();
-                $new = $this->showleads->new();
-            }
+    //         if (empty($this->showgroupsales->user($id)->getResultArray())) {
+    //             $leads = $this->showleads->visit();
+    //             $new = $this->showleads->new();
+    //         }
 
-            if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+    //         if (!empty($this->showgroupsales->user($id)->getResultArray())) {
 
-        foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+    //     foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 
-            if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
-                $leads = $this->showleads->visitAdminGroup($group['groups']);
-                $new = $this->showleads->newAdminGroup($group['groups']);
-            }
+    //         if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
+    //             $leads = $this->showleads->visitAdminGroup($group['groups']);
+    //             $new = $this->showleads->newAdminGroup($group['groups']);
+    //         }
 
-            if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
-                $leads = $this->showleads->visitAdminProject($group['project']);
-                $new = $this->showleads->newAdminProject($group['project']);
-            } 
+    //         if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
+    //             $leads = $this->showleads->visitAdminProject($group['project']);
+    //             $new = $this->showleads->newAdminProject($group['project']);
+    //         } 
             
-            // else {
-            //     $leads = $this->showleads->visit();
-            //     $new = $this->showleads->new();
-            // }
-        }
-    }
-        endif;
+    //         // else {
+    //         //     $leads = $this->showleads->visit();
+    //         //     $new = $this->showleads->new();
+    //         // }
+    //     }
+    // }
+    //     endif;
 
         $data = [
             'leads' => $leads,
@@ -221,39 +219,39 @@ class Leads extends BaseController
     public function deal()
     {
 
-        if (in_groups('admin')) :
+        // if (in_groups('admin')) :
             $leads = $this->showleads->deal();
             $new = $this->showleads->new();
-        endif;
+        // endif;
 
-        if(in_groups('users')) :
-        $id = user()->id;
+    //     if(in_groups('users')) :
+    //     $id = user()->id;
 
-            if (empty($this->showgroupsales->user($id)->getResultArray())) {
-                $leads = $this->showleads->deal();
-                $new = $this->showleads->new();
-            }
+    //         if (empty($this->showgroupsales->user($id)->getResultArray())) {
+    //             $leads = $this->showleads->deal();
+    //             $new = $this->showleads->new();
+    //         }
 
-            if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+    //         if (!empty($this->showgroupsales->user($id)->getResultArray())) {
 
-        foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+    //     foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 
-            if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
-                $leads = $this->showleads->dealAdminGroup($group['groups']);
-                $new = $this->showleads->newAdminGroup($group['groups']);
-            }
-            if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
-                $leads = $this->showleads->dealAdminProject($group['project']);
-                $new = $this->showleads->newAdminProject($group['project']);
-            } 
+    //         if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
+    //             $leads = $this->showleads->dealAdminGroup($group['groups']);
+    //             $new = $this->showleads->newAdminGroup($group['groups']);
+    //         }
+    //         if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
+    //             $leads = $this->showleads->dealAdminProject($group['project']);
+    //             $new = $this->showleads->newAdminProject($group['project']);
+    //         } 
             
-            // else {
-            //     $leads = $this->showleads->deal();
-            //     $new = $this->showleads->new();
-            // }
-        }
-    }
-        endif;
+    //         // else {
+    //         //     $leads = $this->showleads->deal();
+    //         //     $new = $this->showleads->new();
+    //         // }
+    //     }
+    // }
+    //     endif;
 
 
         $data = [
@@ -269,40 +267,40 @@ class Leads extends BaseController
     public function close()
     {
 
-        if (in_groups('admin')) :
+        // if (in_groups('admin')) :
             $leads = $this->showleads->close();
             $new = $this->showleads->new();
-        endif;
+        // endif;
 
-        if (in_groups('users')) :
-        $id = user()->id;
+    //     if (in_groups('users')) :
+    //     $id = user()->id;
 
-            if (empty($this->showgroupsales->user($id)->getResultArray())) {
-                $leads = $this->showleads->close();
-                $new = $this->showleads->new();
-            }
+    //         if (empty($this->showgroupsales->user($id)->getResultArray())) {
+    //             $leads = $this->showleads->close();
+    //             $new = $this->showleads->new();
+    //         }
 
-            if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+    //         if (!empty($this->showgroupsales->user($id)->getResultArray())) {
 
-        foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+    //     foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 
-            if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
-                $leads = $this->showleads->closeAdminGroup($group['groups']);
-                $new = $this->showleads->newAdminGroup($group['groups']);
-            }
+    //         if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
+    //             $leads = $this->showleads->closeAdminGroup($group['groups']);
+    //             $new = $this->showleads->newAdminGroup($group['groups']);
+    //         }
 
-            if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
-                $leads = $this->showleads->closeAdminProject($group['project']);
-                $new = $this->showleads->newAdminProject($group['project']);
-            } 
+    //         if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
+    //             $leads = $this->showleads->closeAdminProject($group['project']);
+    //             $new = $this->showleads->newAdminProject($group['project']);
+    //         } 
             
-            // else {
-            //     $leads = $this->showleads->close();
-            //     $new = $this->showleads->new();
-            // }
-        }
-    }
-        endif;
+    //         // else {
+    //         //     $leads = $this->showleads->close();
+    //         //     $new = $this->showleads->new();
+    //         // }
+    //     }
+    // }
+    //     endif;
 
         $data = [
             'leads' => $leads,
@@ -317,40 +315,40 @@ class Leads extends BaseController
     public function pending()
     {
 
-        if (in_groups('admin')) :
+        // if (in_groups('admin')) :
             $leads = $this->showleads->pending();
             $new = $this->showleads->new();
-        endif;
+        // endif;
 
-        if (in_groups('users')) :
-        $id = user()->id;
+    //     if (in_groups('users')) :
+    //     $id = user()->id;
 
-            if (empty($this->showgroupsales->user($id)->getResultArray())) {
-                $leads = $this->showleads->pending();
-                $new = $this->showleads->new();
-            }
+    //         if (empty($this->showgroupsales->user($id)->getResultArray())) {
+    //             $leads = $this->showleads->pending();
+    //             $new = $this->showleads->new();
+    //         }
 
-            if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+    //         if (!empty($this->showgroupsales->user($id)->getResultArray())) {
         
-        foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+    //     foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 
-            if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
-                $leads = $this->showleads->pendingAdminGroup($group['groups']);
-                $new = $this->showleads->newAdminGroup($group['groups']);
-            }
+    //         if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
+    //             $leads = $this->showleads->pendingAdminGroup($group['groups']);
+    //             $new = $this->showleads->newAdminGroup($group['groups']);
+    //         }
 
-            if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
-                $leads = $this->showleads->pendingAdminProject($group['project']);
-                $new = $this->showleads->newAdminProject($group['project']);
-            } 
+    //         if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
+    //             $leads = $this->showleads->pendingAdminProject($group['project']);
+    //             $new = $this->showleads->newAdminProject($group['project']);
+    //         } 
             
-            // else {
-            //     $leads = $this->showleads->pending();
-            //     $new = $this->showleads->new();
-            // }
-        }
-    }
-        endif;
+    //         // else {
+    //         //     $leads = $this->showleads->pending();
+    //         //     $new = $this->showleads->new();
+    //         // }
+    //     }
+    // }
+    //     endif;
 
 
         $data = [
@@ -368,39 +366,39 @@ class Leads extends BaseController
     public function indexFilter($days)
     {
 
-        if (in_groups('admin')) :
+        // if (in_groups('admin')) :
             $leads = $this->showleads->IndexFilter($days);
             $new = $this->showleads->newFilter($days);
-        endif;
+        // endif;
 
-        if (in_groups('users')) :
-            $id = user()->id;
+        // if (in_groups('users')) :
+        //     $id = user()->id;
 
-            if (empty($this->showgroupsales->user($id)->getResultArray())) {
-                $leads = $this->showleads->IndexFilter($days);
-                $new = $this->showleads->newFilter($days);
-            }
+        //     if (empty($this->showgroupsales->user($id)->getResultArray())) {
+        //         $leads = $this->showleads->IndexFilter($days);
+        //         $new = $this->showleads->newFilter($days);
+        //     }
 
-            if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+        //     if (!empty($this->showgroupsales->user($id)->getResultArray())) {
 
-            foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
-                if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
-                    $leads = $this->showleads->IndexFilterAdminGroup($group['groups'],$days);
-                    $new = $this->showleads->newFilterAdminGroup($group['groups'], $days);
-                }
+        //     foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+        //         if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
+        //             $leads = $this->showleads->IndexFilterAdminGroup($group['groups'],$days);
+        //             $new = $this->showleads->newFilterAdminGroup($group['groups'], $days);
+        //         }
 
-                if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
-                    $leads = $this->showleads->IndexFilterAdminProject($group['project'], $days);
-                    $new = $this->showleads->newFilterAdminProject($group['project'], $days);
-                } 
+        //         if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
+        //             $leads = $this->showleads->IndexFilterAdminProject($group['project'], $days);
+        //             $new = $this->showleads->newFilterAdminProject($group['project'], $days);
+        //         } 
                 
-                // else {
-                //     $leads = $this->showleads->IndexFilter($days);
-                //     $new = $this->showleads->newFilter($days);
-                // }
-            }
-        }
-        endif;
+        //         // else {
+        //         //     $leads = $this->showleads->IndexFilter($days);
+        //         //     $new = $this->showleads->newFilter($days);
+        //         // }
+        //     }
+        // }
+        // endif;
 
         $data = [
             'leads' => $leads,
@@ -421,39 +419,39 @@ class Leads extends BaseController
 		$endDate = $this->request->getVar('date_end');
 
 
-        if (in_groups('admin')) :
+        // if (in_groups('admin')) :
             $leads = $this->showleads->rangeList($startDate, $endDate);
             $new = $this->showleads->newRange($startDate, $endDate);
-        endif;
+        // endif;
 
 
-        if (in_groups('users')) :
-            $id = user()->id;
+        // if (in_groups('users')) :
+        //     $id = user()->id;
 
-            if (empty($this->showgroupsales->user($id)->getResultArray())) {
-                $leads = $this->showleads->rangeList($startDate, $endDate);
-                $new = $this->showleads->newRange($startDate, $endDate);
-            }
+        //     if (empty($this->showgroupsales->user($id)->getResultArray())) {
+        //         $leads = $this->showleads->rangeList($startDate, $endDate);
+        //         $new = $this->showleads->newRange($startDate, $endDate);
+        //     }
 
-            if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+        //     if (!empty($this->showgroupsales->user($id)->getResultArray())) {
 
-            foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
-                if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
-                    $leads = $this->showleads->rangeListAdminGroup($group['groups'], $startDate, $endDate);
-                    $new = $this->showleads->newRangeAdminGroup($group['groups'], $startDate, $endDate);
-                }
-                if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
-                    $leads = $this->showleads->rangeListAdminProject($group['project'], $startDate, $endDate);
-                    $new = $this->showleads->newRangeAdminProject($group['project'], $startDate, $endDate);
-                } 
+        //     foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+        //         if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
+        //             $leads = $this->showleads->rangeListAdminGroup($group['groups'], $startDate, $endDate);
+        //             $new = $this->showleads->newRangeAdminGroup($group['groups'], $startDate, $endDate);
+        //         }
+        //         if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
+        //             $leads = $this->showleads->rangeListAdminProject($group['project'], $startDate, $endDate);
+        //             $new = $this->showleads->newRangeAdminProject($group['project'], $startDate, $endDate);
+        //         } 
                 
-                // else {
-                //     $leads = $this->showleads->rangeList($startDate, $endDate);
-                //     $new = $this->showleads->newRange($startDate, $endDate);
-                // }
-            }
-        }
-        endif;
+        //         // else {
+        //         //     $leads = $this->showleads->rangeList($startDate, $endDate);
+        //         //     $new = $this->showleads->newRange($startDate, $endDate);
+        //         // }
+        //     }
+        // }
+        // endif;
 
         
 		$data = [
@@ -474,40 +472,40 @@ class Leads extends BaseController
 		$search =  $this->request->getVar('search_leads');
 
 
-        if (in_groups('admin')) :
+        // if (in_groups('admin')) :
             $leads = $this->showleads->search_leads($search);
             $new =  $this->showleads->new();
             $level = user()->level;
-        endif;
+        // endif;
 
-        if (in_groups('users')) :
-             $id = user()->id;
+        // if (in_groups('users')) :
+        //      $id = user()->id;
 
-            if (empty($this->showgroupsales->user($id)->getResultArray())) {
-                $leads = $this->showleads->search_leads($search);
-                $new =  $this->showleads->new();
-                $level = user()->level;
-            }
+        //     if (empty($this->showgroupsales->user($id)->getResultArray())) {
+        //         $leads = $this->showleads->search_leads($search);
+        //         $new =  $this->showleads->new();
+        //         $level = user()->level;
+        //     }
 
-            if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+        //     if (!empty($this->showgroupsales->user($id)->getResultArray())) {
 
-            foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
-                if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
-                    $leads = $this->showleads->search_leads_admin_group($group['groups'],$search);
-                    $new =  $this->showleads->newAdminGroup($group['groups']);
-                }
-                if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
-                    $leads = $this->showleads->search_leads_admin_project($group['project'], $search);
-                    $new =  $this->showleads->newAdminProject($group['project']);
-                } 
-                // else {
-                //     $leads = $this->showleads->search_leads($search);
-                //     $new =  $this->showleads->new();
-                // }
-                $level = $group['level'];
-            }
-        }
-        endif;
+        //     foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+        //         if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
+        //             $leads = $this->showleads->search_leads_admin_group($group['groups'],$search);
+        //             $new =  $this->showleads->newAdminGroup($group['groups']);
+        //         }
+        //         if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
+        //             $leads = $this->showleads->search_leads_admin_project($group['project'], $search);
+        //             $new =  $this->showleads->newAdminProject($group['project']);
+        //         } 
+        //         // else {
+        //         //     $leads = $this->showleads->search_leads($search);
+        //         //     $new =  $this->showleads->new();
+        //         // }
+        //         $level = $group['level'];
+        //     }
+        // }
+        // endif;
 
 		$data = [
 			'leads' => $leads,

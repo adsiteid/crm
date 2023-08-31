@@ -137,9 +137,6 @@ class User extends BaseController
 		$salesDeal = $this->showleads->salesDeal($id);
 		$salesReserve = $this->showleads->salesReserve($id);
 		$salesBooking = $this->showleads->salesBooking($id);
-
-
-
 		
 	
 		$data = [

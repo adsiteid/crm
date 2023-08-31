@@ -9,7 +9,7 @@ class ChartModel extends Model
 
     protected $table = 'leads';
 
-    // NEW
+    //
 
     public function leadsNew($days)
     {
@@ -20,7 +20,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -75,7 +77,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -122,7 +126,7 @@ class ChartModel extends Model
         return $result;
     }
 
-
+//
     public function leadsClose($days)
     {
         $builder = $this->db->table($this->table);
@@ -132,7 +136,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
         
@@ -186,7 +192,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -234,6 +242,7 @@ class ChartModel extends Model
         return $result;
     }
 
+    //
 
     public function leadsPending($days)
     {
@@ -244,7 +253,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -299,7 +310,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -347,7 +360,7 @@ class ChartModel extends Model
         return $result;
     }
     
-
+//
     public function leadsContacted($days)
     {
         $builder = $this->db->table($this->table);
@@ -357,7 +370,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -410,7 +425,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -457,7 +474,7 @@ class ChartModel extends Model
         return $result;
     }
 
-
+//
     public function leadsVisit($days)
     {
         $builder = $this->db->table($this->table);
@@ -467,7 +484,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -522,7 +541,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -571,6 +592,7 @@ class ChartModel extends Model
     }
 
 
+    //
     public function leadsDeal($days)
     {
         $builder = $this->db->table($this->table);
@@ -580,7 +602,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -634,7 +658,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -683,6 +709,7 @@ class ChartModel extends Model
     }
 
 
+    //
     public function leadsReserve($days)
     {
         $builder = $this->db->table($this->table);
@@ -692,7 +719,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -748,7 +777,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -806,7 +837,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -861,7 +894,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -918,7 +953,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -940,7 +977,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -959,7 +998,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -980,7 +1021,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -1001,7 +1044,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -1021,7 +1066,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -1041,7 +1088,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -1062,7 +1111,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -1403,7 +1454,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -1557,7 +1610,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
 
@@ -1612,7 +1667,9 @@ class ChartModel extends Model
             $builder->groupStart()
                 ->Where('sales', $id)
                 ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
             $builder->groupEnd();
         endif;
         

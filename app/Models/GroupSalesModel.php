@@ -14,7 +14,7 @@ class GroupSalesModel extends Model
 
     public function all()
     {
-       $this->findAll();
+$this->findAll();
 
     }
 
