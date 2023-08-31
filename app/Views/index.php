@@ -400,16 +400,13 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                                 </th>
 
 
-                           
-                           
-                                <?php
-                                foreach ($new->getResultArray() as $row) :
-                                if ($row['kategori_status'] == 'New' && $row['rolling_leads'] == 1) : ?>
-                                    <th class="d-sm-table-cell d-none">
-                                        Rolling time
-                                    </th>
-                                <?php endif;
-                                endforeach; ?>
+
+
+
+                                <th class="d-sm-table-cell d-none">
+                                    Rolling time
+                                </th>
+
                                 <th class="d-sm-table-cell d-none">
                                     Whatsapp
                                 </th>
@@ -480,11 +477,13 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                                         <?= $row['sumber_leads']; ?>
                                     </td>
 
-                                    <?php if ($row['kategori_status'] == 'New' && $row['rolling_leads'] == 1) : ?>
-                                        <td class="d-sm-table-cell d-none">
+
+                                    <td class="d-sm-table-cell d-none">
+                                        <?php if ($row['kategori_status'] == 'New' && $row['rolling_leads'] == 1) : ?>
                                             <span class='time-rolling' data-lasttime=" <?= $row['rolling_lasttime']; ?> " data-bs-toggle='tooltip' data-bs-placement='top' data-bs-title='Otomatis pindah ke user lain'></span>
-                                        </td>
-                                    <?php endif; ?>
+                                        <?php endif; ?>
+                                    </td>
+
 
                                     <?php
                                     $hp = $row['nomor_kontak'];

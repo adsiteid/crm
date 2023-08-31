@@ -326,6 +326,7 @@ class LeadsModel extends Model
         $builder = $this->db->table($this->table);
 
         $id = user()->id;
+        
         if (in_groups('users')) :
             $builder->groupStart()
                 ->Where('sales', $id)
