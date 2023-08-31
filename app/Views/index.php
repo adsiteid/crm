@@ -398,9 +398,18 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                                 <th class="d-sm-table-cell d-none">
                                     Source
                                 </th>
-                                <th class="d-sm-table-cell d-none">
-                                    remaining time
-                                </th>
+
+
+                           
+                           
+                                <?php
+                                foreach ($new->getResultArray() as $row) :
+                                if ($row['kategori_status'] == 'New' && $row['rolling_leads'] == 1) : ?>
+                                    <th class="d-sm-table-cell d-none">
+                                        Rolling time
+                                    </th>
+                                <?php endif;
+                                endforeach; ?>
                                 <th class="d-sm-table-cell d-none">
                                     Whatsapp
                                 </th>
@@ -448,7 +457,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                                                                         } elseif ($row['kategori_status'] == 'Booking') {
                                                                             echo 'default';
                                                                         } ?>" style="font-size: 10px;"><?= $row['kategori_status']; ?></label>
-                                           
+
                                         </div>
                                     </td>
 
@@ -471,13 +480,11 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                                         <?= $row['sumber_leads']; ?>
                                     </td>
 
-                                    <td class="d-sm-table-cell d-none">
-                                        <?php
-                                            if ($row['kategori_status'] == 'New' && $row['rolling_leads'] == 1) {
-                                                echo "<span class='time-rolling' data-lasttime='" . $row['rolling_lasttime'] . "' data-bs-toggle='tooltip' data-bs-placement='top' data-bs-title='Otomatis pindah ke user lain'></span>";
-                                            }
-                                            ?>
-                                    </td>
+                                    <?php if ($row['kategori_status'] == 'New' && $row['rolling_leads'] == 1) : ?>
+                                        <td class="d-sm-table-cell d-none">
+                                            <span class='time-rolling' data-lasttime=" <?= $row['rolling_lasttime']; ?> " data-bs-toggle='tooltip' data-bs-placement='top' data-bs-title='Otomatis pindah ke user lain'></span>
+                                        </td>
+                                    <?php endif; ?>
 
                                     <?php
                                     $hp = $row['nomor_kontak'];
