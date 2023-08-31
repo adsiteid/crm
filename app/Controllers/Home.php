@@ -101,7 +101,11 @@ class Home extends BaseController
 			
 		endif;
 
+		
+
 		$data = [
+			'users'=>$this->showgroupsales,
+			'newtest' => $this->showleads,
 			'new' => $new,
 			'contacted' => $contacted,
 			'close' => $close,

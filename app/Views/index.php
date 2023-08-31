@@ -398,11 +398,12 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                         </thead>
                         <tbody class="list-wrapper ">
                             <?php $no = 1; ?>
-                            <?php
-
-                            foreach ($new->getResultArray() as $row) :
-
+                            
+                        <?php
+                        // foreach ($users->user(user()->id)->getresultArray() as $id_user) :
+                                foreach ($new->getResultArray() as $row) :  
                             ?>
+
                                 <tr class="list-item " onclick="location.href='<?= base_url(); ?>leads/<?= $row['id']; ?>'">
                                     <td class="d-sm-table-cell d-none">
                                         <?= $no++; ?>
@@ -467,7 +468,10 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                                     </td>
                                 </tr>
 
-                            <?php endforeach; ?>
+                            <?php
+                            endforeach;
+                            //    endforeach;
+                            ?>
                         </tbody>
                     </table>
                 </div>

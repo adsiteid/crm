@@ -41,11 +41,18 @@ class Leads extends BaseController
             $level = user()->level;
         endif;
 
+
+
         if (in_groups('users')) :
 
-        foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+            if (empty($this->showgroupsales->user($id)->getResultArray())) {
+                $level = "";
+            }
+            if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+                foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
                 $level = $group['level'];
         }
+    }
         endif;
 
 

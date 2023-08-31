@@ -254,13 +254,15 @@ class LeadsModel extends Model
     {
 
         $builder = $this->db->table($this->table);
-
-        $builder->groupStart()
-            ->where('groups', $groups)
-            ->orWhere('sales', user()->id)
-            ->orWhere('manager', user()->id)
-            ->orWhere('general_manager', user()->id);
-        $builder->groupEnd();
+        
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->where('groups', $groups)
+                ->orWhere('sales', user()->id)
+                ->orWhere('manager', user()->id)
+                ->orWhere('general_manager', user()->id);
+            $builder->groupEnd();
+        endif;
 
         // $builder->where('groups', $groups);
         $builder->where('update_status', 'New');
