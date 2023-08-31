@@ -36,6 +36,7 @@
     .simple-pagination .next.current {
         background: #fff;
     }
+
     .time-rolling {
         background: #ffd6d6;
         margin-top: 0.5rem;
@@ -398,16 +399,19 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                                     Source
                                 </th>
                                 <th class="d-sm-table-cell d-none">
+                                    remaining time
+                                </th>
+                                <th class="d-sm-table-cell d-none">
                                     Whatsapp
                                 </th>
                             </tr>
                         </thead>
                         <tbody class="list-wrapper ">
                             <?php $no = 1; ?>
-                            
-                        <?php
-                        // foreach ($users->user(user()->id)->getresultArray() as $id_user) :
-                                foreach ($new->getResultArray() as $row) :  
+
+                            <?php
+                            // foreach ($users->user(user()->id)->getresultArray() as $id_user) :
+                            foreach ($new->getResultArray() as $row) :
                             ?>
 
                                 <tr class="list-item " onclick="location.href='<?= base_url(); ?>leads/<?= $row['id']; ?>'">
@@ -425,30 +429,26 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                                     </td>
                                     <td class="text-lg-left text-center">
                                         <div class="d-flex flex-column">
-                                        <label class="badge badge-<?php if ($row['kategori_status'] == 'New') {
-                                                                        echo 'success';
-                                                                    } elseif ($row['kategori_status'] == 'Cold') {
-                                                                        echo 'info';
-                                                                    } elseif ($row['kategori_status'] == 'Warm') {
-                                                                        echo 'warning';
-                                                                    } elseif ($row['kategori_status'] == 'Hot') {
-                                                                        echo 'danger';
-                                                                    } elseif ($row['kategori_status'] == 'Pending') {
-                                                                        echo 'secondary';
-                                                                    } elseif ($row['kategori_status'] == 'Invalid') {
-                                                                        echo 'secondary';
-                                                                    } elseif ($row['kategori_status'] == 'Close') {
-                                                                        echo 'secondary';
-                                                                    } elseif ($row['kategori_status'] == 'Reserve') {
-                                                                        echo 'primary';
-                                                                    } elseif ($row['kategori_status'] == 'Booking') {
-                                                                        echo 'default';
-                                                                    } ?>" style="font-size: 10px;"><?= $row['kategori_status']; ?></label>
-                                        <?php 
-                                        if ($row['kategori_status'] == 'New' && $row['rolling_leads'] == 1){
-                                            echo "<span class='time-rolling' data-lasttime='".$row['rolling_lasttime']."' data-bs-toggle='tooltip' data-bs-placement='top' data-bs-title='Otomatis pindah ke user lain'></span>".$row['sales'];
-                                        } 
-                                        ?>
+                                            <label class="badge badge-<?php if ($row['kategori_status'] == 'New') {
+                                                                            echo 'success';
+                                                                        } elseif ($row['kategori_status'] == 'Cold') {
+                                                                            echo 'info';
+                                                                        } elseif ($row['kategori_status'] == 'Warm') {
+                                                                            echo 'warning';
+                                                                        } elseif ($row['kategori_status'] == 'Hot') {
+                                                                            echo 'danger';
+                                                                        } elseif ($row['kategori_status'] == 'Pending') {
+                                                                            echo 'secondary';
+                                                                        } elseif ($row['kategori_status'] == 'Invalid') {
+                                                                            echo 'secondary';
+                                                                        } elseif ($row['kategori_status'] == 'Close') {
+                                                                            echo 'secondary';
+                                                                        } elseif ($row['kategori_status'] == 'Reserve') {
+                                                                            echo 'primary';
+                                                                        } elseif ($row['kategori_status'] == 'Booking') {
+                                                                            echo 'default';
+                                                                        } ?>" style="font-size: 10px;"><?= $row['kategori_status']; ?></label>
+                                           
                                         </div>
                                     </td>
 
@@ -469,6 +469,14 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                                     </td>
                                     <td class="d-sm-table-cell d-none">
                                         <?= $row['sumber_leads']; ?>
+                                    </td>
+
+                                    <td class="d-sm-table-cell d-none">
+                                        <?php
+                                            if ($row['kategori_status'] == 'New' && $row['rolling_leads'] == 1) {
+                                                echo "<span class='time-rolling' data-lasttime='" . $row['rolling_lasttime'] . "' data-bs-toggle='tooltip' data-bs-placement='top' data-bs-title='Otomatis pindah ke user lain'></span>";
+                                            }
+                                            ?>
                                     </td>
 
                                     <?php
@@ -587,22 +595,22 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
 
 <!-- script countdown -->
-<script> 
-    function refreshTime() { 
+<script>
+    function refreshTime() {
         $(".time-rolling").each(function() {
             var dateleads = moment($(this).data("lasttime"), 'YYYY-MM-DD HH:mm:ss').add(15, 'minutes');
             var datenow = moment();
-            var ms = dateleads.diff(datenow);  
+            var ms = dateleads.diff(datenow);
             //$(this).html(parseInt(ms / 60) + ":" + ((ms % 60).length == 1 ? "0" + (ms % 60) : (ms % 60)));
-            if(ms > 0){
+            if (ms > 0) {
                 $(this).html(moment.utc(ms).format("mm:ss"));
                 console.log(ms);
-            }else{
-                console.log("sudah habis"); 
+            } else {
+                console.log("sudah habis");
             }
         });
 
-    } 
+    }
     setInterval(refreshTime, 1000);
 </script>
 
