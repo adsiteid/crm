@@ -234,10 +234,7 @@ class LeadsModel extends Model
         $id = user()->id;
         
         if (in_groups('users')) :
-            $builder->groupStart()
-                ->where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id);
+            $builder->groupStart()->where('sales', $id)->orWhere('manager', $id)->orWhere('general_manager', $id); 
             $builder->groupEnd();
         endif;
 
@@ -281,9 +278,11 @@ class LeadsModel extends Model
 
         $builder->groupStart()
             ->where('project', $project)
-            ->orWhere('sales', user()->id)
-            ->orWhere('manager', user()->id)
-            ->orWhere('general_manager', user()->id);
+            ->groupStart()
+            ->Where('sales', user()->id)
+                ->orWhere('manager', user()->id)
+                ->orWhere('general_manager', user()->id)
+            ->groupEnd();
         $builder->groupEnd();
 
         // $builder->where('project', $project);
@@ -2280,6 +2279,7 @@ class LeadsModel extends Model
     public function salesNewAdminGroup($groups)
     {
         $builder = $this->db->table($this->table);
+        $builder->where('sales', user()->id);
         $builder->where('groups', $groups);
         $builder->where('time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
         $builder->orderBy('id DESC');

@@ -36,6 +36,12 @@
     .simple-pagination .next.current {
         background: #fff;
     }
+    .time-rolling {
+        background: #ffd6d6;
+        margin-top: 0.5rem;
+        color: blue;
+        font-size: 0.75rem;
+    }
 </style>
 
 
@@ -417,7 +423,8 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                                         echo $str;
                                         ?>
                                     </td>
-                                    <td class="text-lg-left text-right">
+                                    <td class="text-lg-left text-center">
+                                        <div class="d-flex flex-column">
                                         <label class="badge badge-<?php if ($row['kategori_status'] == 'New') {
                                                                         echo 'success';
                                                                     } elseif ($row['kategori_status'] == 'Cold') {
@@ -437,6 +444,12 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                                                                     } elseif ($row['kategori_status'] == 'Booking') {
                                                                         echo 'default';
                                                                     } ?>" style="font-size: 10px;"><?= $row['kategori_status']; ?></label>
+                                        <?php 
+                                        if ($row['kategori_status'] == 'New' && $row['rolling_leads'] == 1){
+                                            echo "<span class='time-rolling' data-lasttime='".$row['rolling_lasttime']."' data-bs-toggle='tooltip' data-bs-placement='top' data-bs-title='Otomatis pindah ke user lain'></span>".$row['sales'];
+                                        } 
+                                        ?>
+                                        </div>
                                     </td>
 
                                     <td class="d-sm-table-cell d-none">
@@ -572,6 +585,28 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
         });
 </script>
 
+
+<!-- script countdown -->
+<script> 
+    function refreshTime() { 
+        $(".time-rolling").each(function() {
+            var dateleads = moment($(this).data("lasttime"), 'YYYY-MM-DD HH:mm:ss').add(15, 'minutes');
+            var datenow = moment();
+            var ms = dateleads.diff(datenow);  
+            //$(this).html(parseInt(ms / 60) + ":" + ((ms % 60).length == 1 ? "0" + (ms % 60) : (ms % 60)));
+            if(ms > 0){
+                $(this).html(moment.utc(ms).format("mm:ss"));
+                console.log(ms);
+            }else{
+                console.log("sudah habis"); 
+            }
+        });
+
+    } 
+    setInterval(refreshTime, 1000);
+</script>
+
+<!-- End of countdown -->
 <!-- END OF DATEPICKER -->
 
 
