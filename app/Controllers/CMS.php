@@ -344,7 +344,7 @@ class CMS extends BaseController
 			'Data Added successfully'
 		);
 
-		return redirect()->to(base_url() . 'submission');
+		return redirect()->to(base_url() . 'submission/30');
 	}
 
 
@@ -391,7 +391,7 @@ class CMS extends BaseController
 			'Data ' . $id . ' updated successfully'
 		);
 
-		return redirect()->to(base_url() . 'submission');
+		return redirect()->to(base_url() . 'submission/30');
 	}
 
 
@@ -527,7 +527,7 @@ class CMS extends BaseController
 	{
 		$this->showmsdp->delete($id);
 		session()->setFlashdata('pesan', 'Data ' . $id . ' deleted successfully');
-		return redirect()->to(base_url() . 'submission');
+		return redirect()->to(base_url() . 'submission/30');
 	}
 
 
