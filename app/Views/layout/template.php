@@ -549,7 +549,7 @@
                             <li class="nav-item <?php if ($title == 'Submission') {
                                                     echo "active";
                                                 } ?>">
-                                <a class="nav-link" href="<?= base_url(); ?>submission">
+                                <a class="nav-link" href="<?= base_url(); ?>submission/30">
                                     <i class="icon-paper menu-icon"></i>
                                     <span class="menu-title">Submission</span>
                                 </a>
@@ -689,7 +689,7 @@
                                 <li class="nav-item <?php if ($title == 'Submission') {
                                                         echo "active";
                                                     } ?>">
-                                    <a class="nav-link" href="<?= base_url(); ?>submission">
+                                    <a class="nav-link" href="<?= base_url(); ?>submission/30">
                                         <i class="icon-paper menu-icon"></i>
                                         <span class="menu-title">Submission</span>
                                     </a>
@@ -836,7 +836,7 @@
 
                     <a href="<?= base_url(); ?>add_leads" type="button" class="btn btn-light bg-white w-100 mb-2">Add Leads</a>
                     <a href="<?= base_url(); ?>add_event" type="button" class="btn btn-light bg-white  w-100 mb-2">Add Event</a>
-                    <a href="<?= base_url(); ?>submission" type="button" class="btn btn-light bg-white w-100 mb-2">Submission</a>
+                    <a href="<?= base_url(); ?>submission/30" type="button" class="btn btn-light bg-white w-100 mb-2">Submission</a>
                     <!-- <a href="<?= base_url(); ?>add_event" type="button" class="btn btn-light bg-white w-100 mb-2">Absen</a> -->
                 </div>
             </div>

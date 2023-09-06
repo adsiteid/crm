@@ -11,7 +11,7 @@ class MsdpModel extends Model
     protected $table = 'msdp';
     protected $allowedFields = ['name', 'email', 'phone', 'manager', 'jabatan', 'project', 'divisi', 'diajukan', 'isi', 'status', 'deadline', 'catatan', 'userid', 'updated_at','groups','admin_group','admin_project'];
 
-    public function list()
+    public function list($days)
     {
         $builder = $this->db->table($this->table);
 
@@ -26,7 +26,7 @@ class MsdpModel extends Model
             $builder->groupEnd();
         endif;
 
-        $builder->where('created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
+        $builder->where("created_at >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
         $builder->orderBy('id DESC');
         $result = $builder->get();
         return $result;
@@ -37,7 +37,7 @@ class MsdpModel extends Model
         
         $builder = $this->db->table($this->table);
 
-        if (in_groups('sales') || in_groups('manager') || in_groups('general_manager') || in_groups('admin_project') || in_groups('admin_group')) :
+        if (in_groups('users') ) :
             $user = user()->id;
             $builder->where('userid', $user);
         endif;

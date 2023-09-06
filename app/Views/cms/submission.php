@@ -72,12 +72,12 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
                 <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
                     <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
-                        <i class="mdi mdi-calendar"></i><?php ?>
+                        <?= $countDay; ?>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                        <a class="dropdown-item" href="<?= base_url(); ?>getleads/90">Last 90 Days</a>
-                        <a class="dropdown-item" href="<?= base_url(); ?>getleads/30">Last 30 Days</a>
-                        <a class="dropdown-item" href="<?= base_url(); ?>getleads/7">Last 7 Days</a>
+                        <a class="dropdown-item" href="<?= base_url(); ?>submission/90">Last 90 Days</a>
+                        <a class="dropdown-item" href="<?= base_url(); ?>submission/30">Last 30 Days</a>
+                        <a class="dropdown-item" href="<?= base_url(); ?>submission/7">Last 7 Days</a>
                         <a type="button" class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Custom Range</a>
                     </div>
                 </div>

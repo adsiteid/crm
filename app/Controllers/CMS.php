@@ -531,17 +531,16 @@ class CMS extends BaseController
 	}
 
 
-	public function submission()
+	public function submission($days)
 	{
 
-		if (in_groups('admin')) :
+		// if (in_groups('admin')) :
 			$new = $this->showleads->new();
-		endif;
+		// endif;
 
 
 		if (in_groups('users')) :
 			$id = user()->id;
-
 
 			if (empty($this->showgroupsales->user($id)->getResultArray())) {
 				$new = $this->showleads->new();
@@ -564,12 +563,13 @@ class CMS extends BaseController
 
 		$data = [
 			'new' => $new,
-			'list' => $this->showmsdp->list(),
+			'list' => $this->showmsdp->list($days),
 			'users' => $this->showusers,
-			'user_group' => $this->showgroupsales->user($id),
+			// 'user_group' => $this->showgroupsales->user($id),
 			'group' => $this->showgroupsales,
 			'project' => $this->showprojects,
 			'group_project' => $this->showgroups,
+			'countDay' => "Last $days Days",
 			'title' => 'Submission'
 		];
 
