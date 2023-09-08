@@ -761,7 +761,7 @@
                     </span>
                 </a>
                 <a class="col d-flex justify-content-center p-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
-                    <span class=" rounded px-3 mx-3  " style="background: rgb(0,108,155); background: linear-gradient(0deg, rgba(0,108,155,1) 35%, rgba(42,52,135,1) 100%);">
+                    <span class="px-3 mx-3  " style="border-radius:15px; background: rgb(0,108,155); background: linear-gradient(0deg, rgba(0,108,155,1) 35%, rgba(42,52,135,1) 100%);">
                         <div id="addIcon" class="material-icons py-2" style="font-size: 20px; color:#fff;">+</div>
                     </span>
                 </a>
