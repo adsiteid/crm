@@ -106,7 +106,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
 <!-- search -->
 
-<form action="<?= base_url(); ?>search_leads" method="post" class=" d-lg-none d-sm-block d-block  form-inline mr-auto ml-md-3 mb-4 mt-3  navbar-search">
+<!-- <form action="<?= base_url(); ?>search_leads" method="post" class=" d-lg-none d-sm-block d-block  form-inline mr-auto ml-md-3 mb-4 mt-3  navbar-search">
     <div class="input-group ">
         <input type="text" class="form-control rounded-left  small bg-white border-0" placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_leads">
         <div class="input-group-append">
@@ -115,235 +115,185 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
             </button>
         </div>
     </div>
-</form>
+</form> -->
 
 <!-- end of search -->
 
+<div class="card my-3 d-lg-none d-block" style="background-image: url(' <?= base_url() ?>document/app_image/images/bg-earnings.png'); background-repeat : no-repeat; background-size : cover;">
+    <div class="col p-4">
+        <div class="row">
+            <div class="col-8">
+                <h6 class="text-white small">Total Income</h6>
+                <h4 class="text-white"> <strong>
+Rp.
+                        <?php
+                        $booking = 0;
+                        foreach ($leadsBooking->getResultArray() as $cb) :
+                            $booking += $cb['booking'];
+                        endforeach;
 
-<div id="carouselExampleControls" class="carousel slide mb-3 d-lg-none d-block" data-ride="carousel">
-    <div class="carousel-inner ">
+                        $reserve = 0;
+                        foreach ($leadsReserve->getResultArray() as $cr) :
+                            $reserve += $cr['reserve'];
+                        endforeach;
 
-        <?php
-        foreach ($event->getResultArray() as $ev);
-        ?>
+                        echo $reserve + $booking;
 
-        <?php
+                        ?>
 
-        if (!empty($ev)) :
-
-            $date_start = date('d', strtotime($ev['date_start']));
-            $date_end = date('d', strtotime($ev['date_end']));
-            $mo_ye = date('M Y', strtotime($ev['date_start']));
-
-        ?>
-
-            <div type="button" class="carousel-item active p-1" onclick="location.href='<?= base_url(); ?>event/<?= $ev['id']; ?>'">
-                <div class="col-12 rounded h-50 px-3 py-3" style="background : #6290D4;">
-                    <div class="row d-flex align-items-center">
-                        <div class="col-3 p-0"> <img src="<?= base_url(); ?>document/image/event/<?= $ev['image'] ?>" alt="" class="col"> </div>
-                        <div class="col-6 text-white border-right p-0">
-                            <p class="mb-1" style="font-size:12px;"><?= $ev['event_name']; ?></p>
-                            <h6 class="text-white mb-0" style="font-size:12px;"><?php foreach ($projects->detail($ev['project'])->getResultArray() as $prj) : ?><?= $prj['project']; ?><?php endforeach ?> </h6>
-                        </div>
-                        <div class="col-3 text-white">
-                            <div class="mb-0 p-0" style="font-size:15px; font-weight:600;"><?= $date_start; ?>-<?= $date_end; ?></div>
-                            <div class="m-0 p-0" style="font-size:10px;"><?= $mo_ye; ?></div>
-                        </div>
-                    </div>
-                </div>
+                    </strong></h4>
             </div>
-
-        <?php endif; ?>
-
-
-
-        <?php
-
-        if (empty($ev)) :
-
-        ?>
-
-            <div type="button" class="carousel-item active p-1">
-                <div class="col-12 rounded h-50 px-3 py-3" style="background : #6290D4;">
-                    <div class="row d-flex align-items-center">
-                        <div class="col-3 p-0"> <img src="<?= base_url(); ?>document/image/default2.jpg" alt="" class="col"> </div>
-                        <div class="col-6 text-white border-right p-0">
-                            <p class="mb-1" style="font-size:12px;">Tidak Ada Acara</p>
-                            <h6 class="text-white mb-0" style="font-size:12px;">dijadwalkan</h6>
-                        </div>
-                        <div class="col-3 text-white">
-                            <div class="mb-0 p-0" style="font-size:15px; font-weight:600;"> - </div>
-                            <div class="m-0 p-0" style="font-size:10px;">-</div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-4 d-flex justify-content-end align-items-center">
+                <a href="<?= base_url(); ?>reportleads/30" type="button" class="rounded-circle bg-white text-center pt-1" style="width:30px; height:30px;">
+                    <i class="ti-angle-right text-primary small"></i>
+                </a>
             </div>
+        </div>
 
-        <?php endif; ?>
+        <hr style="border-width:1;color:#fff; background-color:#fff;">
 
-
-
-
-        <?php
-        foreach ($event->getResultArray() as $ev2) :
-            $date_start2 = date('d', strtotime($ev2['date_start']));
-            $date_end2 = date('d', strtotime($ev2['date_end']));
-            $mo_ye2 = date('M Y', strtotime($ev2['date_start']));
-        ?>
-            <div type="button" class="carousel-item p-1" onclick="location.href='<?= base_url(); ?>event/<?= $ev2['id']; ?>'">
-                <div class="col-12 rounded h-50 px-3 py-3" style="background : #6290D4;">
-                    <div class="row d-flex align-items-center">
-                        <div class="col-3 p-0"> <img src="<?= base_url(); ?>document/image/event/<?= $ev2['image'] ?>" alt="" class="col"> </div>
-                        <div class="col-6 text-white border-right p-0">
-                            <p class="mb-1" style="font-size:12px;"><?= $ev2['event_name']; ?></p>
-                            <h6 class="text-white mb-0" style="font-size:12px;"><?php foreach ($projects->detail($ev2['project'])->getResultArray() as $prj) : ?><?= $prj['project']; ?><?php endforeach ?></h6>
-                        </div>
-                        <div class="col-3 text-white">
-                            <div class="mb-0 p-0" style="font-size:15px; font-weight:600;"><?= $date_start2; ?>-<?= $date_end2; ?></div>
-                            <div class="m-0 p-0" style="font-size:10px;"><?= $mo_ye2; ?></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <?php endforeach; ?>
-
+        <h6 class="text-white small">Total Deals :
+             <?= $leadsDeal->getNumRows(); ?>
+        </h6>
     </div>
-
 </div>
 
 
 
-    <div class="row align-items-center px-lg px-2 mb-lg-0 mb-3" style="background : #F5F7FF;">
 
-        <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
-            <a href="<?= base_url(); ?>leads/new" class="card">
-                <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
 
-                    <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
 
-                        <i class="ti-import text-success d-lg-none d-block" style="font-size: 18px;"></i>
+<div class="row align-items-center px-lg px-2 mb-lg-0 mb-3" style="background : #F5F7FF;">
 
-                        <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-3 " style="font-size:10px;">New</h6>
-                        <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $new->getNumRows(); ?></h4>
-                        <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $new->getNumRows(); ?></p>
-                    </div>
+    <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
+        <a href="<?= base_url(); ?>leads/new" class="card">
+            <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
 
-                    <!-- <button type="button" class="btn btn-inverse-success btn-icon d-lg-block d-none">
+                <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
+
+                    <i class="ti-import text-success d-lg-none d-block" style="font-size: 18px;"></i>
+
+                    <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-3 " style="font-size:10px;">New</h6>
+                    <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $new->getNumRows(); ?></h4>
+                    <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $new->getNumRows(); ?></p>
+                </div>
+
+                <!-- <button type="button" class="btn btn-inverse-success btn-icon d-lg-block d-none">
                     <i class="ti-import"></i>
                 </button> -->
 
+            </div>
+        </a>
+    </div>
+
+
+    <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
+        <a href="<?= base_url(); ?>leads/close" class="card">
+            <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
+
+                <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
+
+                    <i class="ti-trash text-muted d-lg-none d-block" style="font-size: 18px;"></i>
+
+                    <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-3" style="font-size:10px;">Close</h6>
+                    <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $close->getNumRows(); ?></h4>
+                    <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $close->getNumRows(); ?></p>
                 </div>
-            </a>
-        </div>
-
-
-        <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
-            <a href="<?= base_url(); ?>leads/close" class="card">
-                <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
-
-                    <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
-
-                        <i class="ti-trash text-muted d-lg-none d-block" style="font-size: 18px;"></i>
-
-                        <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-3" style="font-size:10px;">Close</h6>
-                        <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $close->getNumRows(); ?></h4>
-                        <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $close->getNumRows(); ?></p>
-                    </div>
-                    <!-- <button type="button" class="btn btn-inverse-secondary btn-icon d-lg-block d-none">
+                <!-- <button type="button" class="btn btn-inverse-secondary btn-icon d-lg-block d-none">
                     <i class="ti-trash"></i>
                 </button> -->
+            </div>
+        </a>
+    </div>
+
+
+    <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
+        <a href="<?= base_url(); ?>leads/pending" class="card">
+            <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
+
+                <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
+
+                    <i class="ti-time text-primary d-lg-none d-block" style="font-size: 18px;"></i>
+
+                    <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-3 " style="font-size:10px;">Pending</h6>
+                    <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $pending->getNumRows(); ?></h4>
+                    <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $pending->getNumRows(); ?></p>
                 </div>
-            </a>
-        </div>
 
-
-        <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
-            <a href="<?= base_url(); ?>leads/pending" class="card">
-                <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
-
-                    <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
-
-                        <i class="ti-time text-primary d-lg-none d-block" style="font-size: 18px;"></i>
-
-                        <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-3 " style="font-size:10px;">Pending</h6>
-                        <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $pending->getNumRows(); ?></h4>
-                        <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $pending->getNumRows(); ?></p>
-                    </div>
-
-                    <!-- <button type="button" class="btn btn-inverse-primary btn-icon d-lg-block d-none">
+                <!-- <button type="button" class="btn btn-inverse-primary btn-icon d-lg-block d-none">
                     <i class="ti-time"></i>
                 </button> -->
 
+            </div>
+        </a>
+    </div>
+
+
+    <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
+        <a href="<?= base_url(); ?>leads/contacted" class="card">
+            <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
+
+                <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
+
+                    <i class="ti-comment-alt text-warning d-lg-none d-block" style="font-size: 18px;"></i>
+
+                    <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-3" style="font-size:10px;">Contacted</h6>
+                    <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $contacted->getNumRows(); ?></h4>
+                    <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $contacted->getNumRows(); ?></p>
                 </div>
-            </a>
-        </div>
 
-
-        <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
-            <a href="<?= base_url(); ?>leads/contacted" class="card">
-                <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
-
-                    <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
-
-                        <i class="ti-comment-alt text-warning d-lg-none d-block" style="font-size: 18px;"></i>
-
-                        <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-3" style="font-size:10px;">Contacted</h6>
-                        <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $contacted->getNumRows(); ?></h4>
-                        <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $contacted->getNumRows(); ?></p>
-                    </div>
-
-                    <!-- <button type="button" class="btn btn-inverse-warning btn-icon d-lg-block d-none">
+                <!-- <button type="button" class="btn btn-inverse-warning btn-icon d-lg-block d-none">
                     <i class="ti-comment-alt"></i>
                 </button> -->
 
+            </div>
+        </a>
+    </div>
+
+
+    <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
+        <a href="<?= base_url(); ?>leads/visit" class="card">
+            <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
+
+                <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
+
+                    <i class="ti-location-pin text-info d-lg-none d-block" style="font-size: 18px;"></i>
+
+                    <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-3 " style="font-size:10px;">Visit</h6>
+                    <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $visit->getNumRows(); ?></h4>
+                    <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $visit->getNumRows(); ?></p>
                 </div>
-            </a>
-        </div>
 
-
-        <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
-            <a href="<?= base_url(); ?>leads/visit" class="card">
-                <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
-
-                    <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
-
-                        <i class="ti-location-pin text-info d-lg-none d-block" style="font-size: 18px;"></i>
-
-                        <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-3 " style="font-size:10px;">Visit</h6>
-                        <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $visit->getNumRows(); ?></h4>
-                        <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $visit->getNumRows(); ?></p>
-                    </div>
-
-                    <!-- <button type="button" class="btn btn-inverse-info btn-icon d-lg-block d-none">
+                <!-- <button type="button" class="btn btn-inverse-info btn-icon d-lg-block d-none">
                     <i class="ti-location-pin"></i>
                 </button> -->
 
+            </div>
+        </a>
+    </div>
+
+    <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
+        <a href="<?= base_url(); ?>leads/deal" class="card">
+            <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
+
+                <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
+
+                    <i class="ti-crown text-danger d-lg-none d-block" style="font-size: 18px;"></i>
+
+                    <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-3" style="font-size:10px;">Deal</h6>
+                    <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $deal->getNumRows(); ?></h4>
+                    <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $deal->getNumRows(); ?></p>
                 </div>
-            </a>
-        </div>
 
-        <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
-            <a href="<?= base_url(); ?>leads/deal" class="card">
-                <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
-
-                    <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
-
-                        <i class="ti-crown text-danger d-lg-none d-block" style="font-size: 18px;"></i>
-
-                        <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-3" style="font-size:10px;">Deal</h6>
-                        <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $deal->getNumRows(); ?></h4>
-                        <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $deal->getNumRows(); ?></p>
-                    </div>
-
-                    <!-- <button type="button" class="btn btn-inverse-danger btn-icon d-lg-block d-none">
+                <!-- <button type="button" class="btn btn-inverse-danger btn-icon d-lg-block d-none">
                     <i class="ti-crown"></i>
                 </button> -->
 
-                </div>
-            </a>
-        </div>
-
+            </div>
+        </a>
     </div>
+
+</div>
 
 
 <!-- Content Row -->

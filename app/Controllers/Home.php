@@ -6,6 +6,7 @@ use \App\Models\LeadsModel;
 use \App\Models\EventModel;
 use \App\Models\ProjectModel;
 use \App\Models\GroupSalesModel;
+use \App\Models\ChartModel;
 
 class Home extends BaseController
 {
@@ -14,6 +15,7 @@ class Home extends BaseController
 	protected $showevent;
 	protected $showproject;
 	protected $showgroupsales;
+	protected $chartleads;
 
 
 	public function __construct()
@@ -22,6 +24,7 @@ class Home extends BaseController
 		$this->showevent = new EventModel();
 		$this->showproject = new ProjectModel();
 		$this->showgroupsales = new GroupSalesModel;
+		$this->chartleads = new ChartModel;
 	}
 
 
@@ -46,7 +49,7 @@ class Home extends BaseController
 			$events = $this->showevent->events();
 		// endif;
 
-		
+
 
 		// if(in_groups('users')) :
 
@@ -80,7 +83,7 @@ class Home extends BaseController
 		// 				$deal = $this->showleads->dealAdminProject($group['project']);
 		// 				$events = $this->showevent->eventsAdminProject($group['groups'], $group['project']);
 		// 			} 
-					
+
 		// 			// else {
 		// 			// 	$new = $this->showleads->new();
 		// 			// 	$contacted = $this->showleads->contacted();
@@ -94,10 +97,12 @@ class Home extends BaseController
 
 		// 	}
 
-			
+
 		// endif;
 
-		
+		$leadsReserve = $this->chartleads->leadsReserve(30);
+		$leadsBooking = $this->chartleads->leadsBooking(30);
+		$leadsDeal = $this->chartleads->leadsDeal(30);
 
 		$data = [
 			'new' => $new,
@@ -106,6 +111,9 @@ class Home extends BaseController
 			'pending' => $pending,
 			'visit' => $visit,
 			'deal' => $deal,
+			'leadsReserve' => $leadsReserve,
+			'leadsBooking' => $leadsBooking,
+			'leadsDeal' => $leadsDeal,
 			'projects' => $this->showproject,
 			'event' => $events,
 			'days'=> 'Last 30 Days',
@@ -118,7 +126,11 @@ class Home extends BaseController
 	public function indexFilter($days)
 	{
 
+
 		// if (in_groups('admin')) :
+			$leadsReserve = $this->chartleads->leadsReserve($days);
+			$leadsBooking = $this->chartleads->leadsBooking($days);
+			$leadsDeal = $this->chartleads->leadsDeal($days);
 			$new = $this->showleads->newFilter($days);
 			$contacted = $this->showleads->contactedFilter($days);
 			$close = $this->showleads->closeFilter($days);
@@ -188,6 +200,9 @@ class Home extends BaseController
 			'visit' => $visit,
 			'deal' => $deal,
 			'event' => $events,
+			'leadsReserve' => $leadsReserve,
+			'leadsBooking' => $leadsBooking,
+			'leadsDeal' => $leadsDeal,
 			'projects' => $this->showproject,
 			'days'=> 'Last '.$days.' Days',
 			'title' => 'Dashboard'
