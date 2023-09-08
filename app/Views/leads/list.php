@@ -157,13 +157,17 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                         </th>
                     </tr>
                 </thead>
+
+
                 <tbody class="list-wrapper">
+
                     <?php $no = 1; ?>
                     <?php
 
                     foreach ($leads->getResultArray() as $row) :
 
                     ?>
+
                         <tr class="list-item" onclick="location.href='<?= base_url(); ?>leads/<?= $row['id']; ?>'">
                             <td class="d-sm-table-cell d-none">
                                 <?= $no++; ?>
@@ -235,13 +239,23 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
                     <?php endforeach; ?>
                 </tbody>
+
             </table>
+            <?php if (empty($leads->getResultArray())) : ?>
+                <div class="col-12 d-flex justify-content-center">
+                    <img src="<?= base_url() ?>document/app_image/images/empty.gif" class="d-lg-none d-block py-5" alt="" style="width:60%;">
+                    <img src="<?= base_url() ?>document/app_image/images/empty.gif" class="d-lg-block d-none py-5" alt="" style="width:20%;">
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </div>
 
+<?php if (!empty($leads->getResultArray())) : ?>
+    <div id="pagination-container" class="my-4"></div>
+<?php endif; ?>
 
-<div id="pagination-container" class="my-4"></div>
+
 
 
 <!-- Pagination -->
