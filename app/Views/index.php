@@ -125,7 +125,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
             <div class="col-8">
                 <h6 class="text-white small">Total Income</h6>
                 <h4 class="text-white"> <strong>
-Rp.
+                        Rp.
                         <?php
                         $booking = 0;
                         foreach ($leadsBooking->getResultArray() as $cb) :
@@ -153,7 +153,7 @@ Rp.
         <hr style="border-width:1;color:#fff; background-color:#fff;">
 
         <h6 class="text-white small">Total Deals :
-             <?= $leadsDeal->getNumRows(); ?>
+            <?= $leadsDeal->getNumRows(); ?>
         </h6>
     </div>
 </div>
@@ -171,9 +171,9 @@ Rp.
 
                 <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
 
-                    <i class="ti-import text-success d-lg-none d-block" style="font-size: 18px;"></i>
+                    <i class="ti-import text-success d-lg-none d-block btn-inverse-success p-2 rounded" style="font-size: 11px;"></i>
 
-                    <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-3 " style="font-size:10px;">New</h6>
+                    <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-2 " style="font-size:10px;">New</h6>
                     <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $new->getNumRows(); ?></h4>
                     <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $new->getNumRows(); ?></p>
                 </div>
@@ -193,9 +193,9 @@ Rp.
 
                 <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
 
-                    <i class="ti-trash text-muted d-lg-none d-block" style="font-size: 18px;"></i>
+                    <i class="ti-trash text-muted d-lg-none d-block btn-inverse-secondary p-2 rounded" style="font-size: 12px; "></i>
 
-                    <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-3" style="font-size:10px;">Close</h6>
+                    <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-2" style="font-size:10px;">Close</h6>
                     <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $close->getNumRows(); ?></h4>
                     <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $close->getNumRows(); ?></p>
                 </div>
@@ -211,11 +211,11 @@ Rp.
         <a href="<?= base_url(); ?>leads/pending" class="card">
             <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
 
-                <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
+                <div class="align-items-center text-lg-left text-center  pt-lg-2 pt-3">
 
-                    <i class="ti-time text-primary d-lg-none d-block" style="font-size: 18px;"></i>
+                    <i class="ti-time text-primary d-lg-none d-block btn-inverse-primary p-2  rounded ml-1" style="font-size: 12px; width:29px; height:29px;"></i>
 
-                    <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-3 " style="font-size:10px;">Pending</h6>
+                    <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-2 " style="font-size:10px;">Pending</h6>
                     <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $pending->getNumRows(); ?></h4>
                     <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $pending->getNumRows(); ?></p>
                 </div>
@@ -235,9 +235,9 @@ Rp.
 
                 <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
 
-                    <i class="ti-comment-alt text-warning d-lg-none d-block" style="font-size: 18px;"></i>
+                    <i class="ti-comment-alt text-warning d-lg-none p-2 d-block btn-inverse-warning rounded ml-2" style="font-size: 13px; width:29px; height:29px;"></i>
 
-                    <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-3" style="font-size:10px;">Contacted</h6>
+                    <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-2" style="font-size:10px;">Contacted</h6>
                     <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $contacted->getNumRows(); ?></h4>
                     <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $contacted->getNumRows(); ?></p>
                 </div>
@@ -257,9 +257,9 @@ Rp.
 
                 <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
 
-                    <i class="ti-location-pin text-info d-lg-none d-block" style="font-size: 18px;"></i>
+                    <i class="ti-location-pin text-info d-lg-none d-block btn-inverse-info rounded p-2" style="font-size: 13px;"></i>
 
-                    <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-3 " style="font-size:10px;">Visit</h6>
+                    <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-2 " style="font-size:10px;">Visit</h6>
                     <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $visit->getNumRows(); ?></h4>
                     <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $visit->getNumRows(); ?></p>
                 </div>
@@ -278,9 +278,9 @@ Rp.
 
                 <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
 
-                    <i class="ti-crown text-danger d-lg-none d-block" style="font-size: 18px;"></i>
+                    <i class="ti-crown text-danger d-lg-none d-block btn-inverse-danger rounded p-2" style="font-size: 13px;"></i>
 
-                    <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-3" style="font-size:10px;">Deal</h6>
+                    <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-2" style="font-size:10px;">Deal</h6>
                     <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $deal->getNumRows(); ?></h4>
                     <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $deal->getNumRows(); ?></p>
                 </div>
