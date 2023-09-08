@@ -96,7 +96,7 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
             <div class="d-flex align-items-center justify-content-between  pb-3 row ">
                 <div class="col-lg-5 col-md-3 col-sm-3 col-6">
                     <?php foreach ($users->groups($id_user['groups'])->getresultArray() as $groupheader); ?>
-                    <a type="button" class=" btn btn-sm btn-light shadow-sm mr-1 " style="font-size:12px;"><?= $id_user['group_name'] ;  ?></a>
+                    <a type="button" class=" btn btn-sm btn-light shadow-sm mr-1 " style="font-size:12px;"><?= $id_user['group_name'];  ?></a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-5 col-6 text-right ">
 
@@ -277,6 +277,15 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+
+                <?php if (empty($id_user['groups'])) : ?>
+                    <div class="col-12 d-flex justify-content-center">
+                        <img src="<?= base_url() ?>document/app_image/images/empty.gif" class="d-lg-none d-block py-5" alt="" style="width:60%;">
+                        <img src="<?= base_url() ?>document/app_image/images/empty.gif" class="d-lg-block d-none py-5" alt="" style="width:20%;">
+                    </div>
+                <?php endif; ?>
+
+
             </div>
         </div>
     </div>
