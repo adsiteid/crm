@@ -4082,17 +4082,7 @@ endif;
     {
         $builder = $this->db->table($this->table);
 
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id)
-                ->orWhere('admin_group', $id)
-                ->orWhere('admin_project', $id);
-            $builder->groupEnd();
-        endif;
-
+        
         $builder->groupStart()
             ->where("time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")
             ->orWhere("time_stamp_close >= DATE_SUB(CURDATE(), INTERVAL $days DAY)")

@@ -196,9 +196,8 @@
             categories: [
                 <?php
                 foreach ($leads->getResultArray() as $lproject) {
-                    foreach ($projectid->detail($lproject['project'])->getResultarray() as $prj) {
-                        $p = $prj['project'];
-                    } 
+
+                    $p = $lproject['project'];
                     echo "'$p',";
                 }
                 ?>
