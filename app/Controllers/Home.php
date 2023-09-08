@@ -217,6 +217,7 @@ class Home extends BaseController
 		$startDate =  $this->request->getVar('date_start');
 		$endDate = $this->request->getVar('date_end');
 
+
 		// if (in_groups('admin')) :
 			$new = $this->showleads->newRange($startDate, $endDate);
 			$contacted = $this->showleads->contactedRange($startDate, $endDate);
@@ -224,6 +225,9 @@ class Home extends BaseController
 			$pending = $this->showleads->pendingRange($startDate, $endDate);
 			$visit = $this->showleads->visitRange($startDate, $endDate);
 			$deal = $this->showleads->dealRange($startDate, $endDate);
+			$leadsReserve = $this->chartleads->leadsReserveRange($startDate, $endDate);
+			$leadsBooking = $this->chartleads->leadsBookingRange($startDate, $endDate);
+			$leadsDeal = $this->chartleads->leadsDealRange($startDate, $endDate);
 			$events = $this->showevent->events();
 		// endif;
 
@@ -286,6 +290,9 @@ class Home extends BaseController
 			'contacted' => $contacted,
 			'visit' => $visit,
 			'deal' => $deal,
+			'leadsReserve' => $leadsReserve,
+			'leadsBooking' => $leadsBooking,
+			'leadsDeal' => $leadsDeal,
 			'event' => $events,
 			'projects' => $this->showproject,
 			'tipe' => 'range',
