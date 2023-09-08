@@ -68,24 +68,28 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
 
 
-<!-- search -->
 
-<form action="<?= base_url(); ?>search_leads" method="post" class=" d-lg-none d-sm-none d-block  form-inline mr-auto ml-md-3 mb-4 mt-3  navbar-search">
-    <div class="input-group ">
-        <input type="text" class="form-control rounded-left  small bg-white border-0" placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_leads">
-        <div class="input-group-append">
-            <button class="btn btn-light bg-white border-0 rounded-right px-3" type="submit">
-                <i class="icon-search"></i>
-            </button>
-        </div>
-    </div>
-</form>
-
-<!-- end of search -->
 
 
 <div class="card">
     <div class="card-body">
+
+        <!-- search -->
+
+        <form action="<?= base_url(); ?>search_leads" method="post" class=" d-lg-none d-sm-none d-block  form-inline mr-auto ml-md-3 mb-4 mt-0  navbar-search">
+            <div class="input-group ">
+                <input type="text" class="form-control rounded-left small bg-light border-0" placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_leads">
+                <div class="input-group-append">
+                    <button class="btn btn-light bg-light border-0 rounded-right px-3" type="submit">
+                        <i class="icon-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <!-- end of search -->
+
+
         <div class="d-flex align-items-center justify-content-between  pb-3  ">
             <div class=" p-0">
                 <a href="#" type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 " style="font-size:12px;"><?= $title . ' - ' . $leads->getNumrows(); ?></a>
@@ -120,6 +124,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                 <?= session()->getFlashdata('pesan'); ?>
             </div>
         <?php endif; ?>
+
 
 
         <div class="table-responsive">
@@ -210,7 +215,9 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                                 <?= $row['alamat']; ?>
                             </td>
                             <td class="d-sm-table-cell d-none">
-                                <?php foreach($project->detail($row['project'])->getResultarray() as $prj) { echo $prj['project'];  } ?>
+                                <?php foreach ($project->detail($row['project'])->getResultarray() as $prj) {
+                                    echo $prj['project'];
+                                } ?>
                             </td>
                             <td class="d-sm-table-cell d-none">
                                 <?= $row['sumber_leads']; ?>

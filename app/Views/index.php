@@ -159,6 +159,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 </div>
 
 
+<div>
 
 
 
@@ -460,6 +461,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
     </div>
 
 </div>
+
 
 
 
