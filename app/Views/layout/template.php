@@ -114,7 +114,7 @@
 
 
     <div class="d-lg-none w-100 " style="
-    background: #e9ecef;
+ background: #F5F7FF;
     height: 15rem;
     position: absolute;
     left: 0;
