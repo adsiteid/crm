@@ -16,7 +16,7 @@
 
 <div class="col-12 grid-margin stretch-card p-0">
     <div class="card">
-        <div class="card-header bg-white rounded-top">
+        <div class="card-header bg-transparent">
             <h4 class=" card-title pt-3">Add Leads</h4>
             <!-- <p class="card-description">
                 MSDP

@@ -109,20 +109,9 @@
     }
 </style>
 
-<?php if ($title == "Dashboard") : ?>
-
-    <div class="d-lg-none w-100 " style="
-    background: #0B1460;
-    height: 17rem;
-    position: absolute;
-    left: 0;
-    top: 0;
-    /* border-radius: 0px 0px 10px 10px;  */
-">
-    <?php endif; ?>
 
 
-    <?php if ($title !== "Dashboard") : ?>
+
 
         <div class="d-lg-none w-100 " style="
     background: #F5F7FF;
@@ -132,31 +121,25 @@
     top: 0;
     border-radius: 0px 0px 10px 10px; 
 ">
-        <?php endif; ?>
+
 
 
 
         <div class=" d-flex justify-content-between px-4 pt-3">
 
-            <?php if ($title == "Dashboard") : ?>
-                <h4 class="text-white pt-2"> <?= $title; ?></h4>
-            <?php endif; ?>
 
-            <?php if ($title !== "Dashboard") : ?>
+           
                 <h4 class="text-primary pt-2"> <?= $title; ?></h4>
-            <?php endif; ?>
+
 
             <div class="d-flex">
                 <div class="dropdown dropdown-animated scale-left" class="d-flex">
                     <a href="javascript:void(0);" data-toggle="dropdown">
                         <svg width="24" height="28" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="  ml-2">
-                            <?php if ($title == "Dashboard") : ?>
-                                <path d="M8.62504 20.8265V21.7218C8.62504 22.0746 8.6994 22.4238 8.84389 22.7497C8.98837 23.0756 9.20014 23.3717 9.46711 23.6211C9.73408 23.8706 10.051 24.0684 10.3998 24.2034C10.7486 24.3384 11.1225 24.4079 11.5 24.4079C11.8776 24.4079 12.2514 24.3384 12.6003 24.2034C12.9491 24.0684 13.266 23.8706 13.533 23.6211C13.7999 23.3717 14.0117 23.0756 14.1562 22.7497C14.3007 22.4238 14.375 22.0746 14.375 21.7218V20.8265M17.25 13.6637C17.25 16.3497 19.1667 20.8265 19.1667 20.8265H3.83337C3.83337 20.8265 5.75004 17.2451 5.75004 13.6637C5.75004 10.7377 8.36821 8.29166 11.5 8.29166C14.6319 8.29166 17.25 10.7377 17.25 13.6637Z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <?php endif; ?>
 
-                            <?php if ($title !== "Dashboard") : ?>
-                                <path d="M8.62504 20.8265V21.7218C8.62504 22.0746 8.6994 22.4238 8.84389 22.7497C8.98837 23.0756 9.20014 23.3717 9.46711 23.6211C9.73408 23.8706 10.051 24.0684 10.3998 24.2034C10.7486 24.3384 11.1225 24.4079 11.5 24.4079C11.8776 24.4079 12.2514 24.3384 12.6003 24.2034C12.9491 24.0684 13.266 23.8706 13.533 23.6211C13.7999 23.3717 14.0117 23.0756 14.1562 22.7497C14.3007 22.4238 14.375 22.0746 14.375 21.7218V20.8265M17.25 13.6637C17.25 16.3497 19.1667 20.8265 19.1667 20.8265H3.83337C3.83337 20.8265 5.75004 17.2451 5.75004 13.6637C5.75004 10.7377 8.36821 8.29166 11.5 8.29166C14.6319 8.29166 17.25 10.7377 17.25 13.6637Z" stroke="#0B1460" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <?php endif; ?>
+
+                            <path d="M8.62504 20.8265V21.7218C8.62504 22.0746 8.6994 22.4238 8.84389 22.7497C8.98837 23.0756 9.20014 23.3717 9.46711 23.6211C9.73408 23.8706 10.051 24.0684 10.3998 24.2034C10.7486 24.3384 11.1225 24.4079 11.5 24.4079C11.8776 24.4079 12.2514 24.3384 12.6003 24.2034C12.9491 24.0684 13.266 23.8706 13.533 23.6211C13.7999 23.3717 14.0117 23.0756 14.1562 22.7497C14.3007 22.4238 14.375 22.0746 14.375 21.7218V20.8265M17.25 13.6637C17.25 16.3497 19.1667 20.8265 19.1667 20.8265H3.83337C3.83337 20.8265 5.75004 17.2451 5.75004 13.6637C5.75004 10.7377 8.36821 8.29166 11.5 8.29166C14.6319 8.29166 17.25 10.7377 17.25 13.6637Z" stroke="#0B1460" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+
 
                             <?php if ($new->getNumRows() > 0) : ?>
                                 <ellipse cx="16.5" cy="7.00704" rx="7.5" ry="7.00704" fill="#E24848" />
@@ -225,12 +208,9 @@
                 <div data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
                     <a href="javascript:void(0);"> <!-- data-toggle="dropdown" -->
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="ml-3">
-                            <?php if ($title == "Dashboard") : ?>
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M28 8V10.6667H4V8H28ZM28 24H20V21.3333H28V24ZM12 17.3333H28V14.6667H12V17.3333Z" stroke-width="1" fill="#fff" />
-                            <?php endif; ?>
-                            <?php if ($title !== "Dashboard") : ?>
+
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M28 8V10.6667H4V8H28ZM28 24H20V21.3333H28V24ZM12 17.3333H28V14.6667H12V17.3333Z" stroke-width="1" fill="#0B1460" />
-                            <?php endif; ?>
+
                         </svg>
                     </a>
 
