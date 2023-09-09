@@ -465,7 +465,10 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
             </div>
 
 
-            <div id="pagination-container" class="my-4 rounded"></div>
+            <?php if (!empty($new->getResultArray())) : ?>
+                <div id="pagination-container" class="my-4"></div>
+            <?php endif; ?>
+
 
         </div>
 

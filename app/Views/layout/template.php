@@ -358,14 +358,14 @@
                                 </div>
                             </li>
 
-                            <!-- <?php if (in_groups('admin') || in_groups('admin_group') || in_groups('admin_project')) : ?>
+                            
 
                         <li class="nav-item nav-settings d-none d-lg-flex">
                             <a class="nav-link" href="#">
                                 <i class="icon-ellipsis"></i>
                             </a>
                         </li>
-                    <?php endif; ?> -->
+
 
                         </ul>
                         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
@@ -393,32 +393,7 @@
 
 
                                 <div class="col px-4">
-
-                                    <p class="my-2 font-weight-thin lh-base " style="font-size: 10px; color:green;">View : Admin Only</p>
-
-                                    <h4 class="text-muted font-weight-light  my-3">INFO</h4>
-                                    <p class="mb-0 font-weight-thin text-gray lh-base">Aplikasi ini dibuat dengan source code milik personal dan dimodifikasi untuk Diamondland dengan fitur terbatas. Aplikasi ini Hanya boleh digunakan untuk kegiatan inhouse Diamondland dan tidak diperbolehkan dicopy untuk kepentingan pribadi. </p>
-                                    <p class="my-2 font-weight-thin text-gray lh-base">Hak Cipta milik <a href="https://wa.me/6287720890019"> Author / Developer </a> </p>
-                                    <h4 class="text-muted font-weight-light  mt-4 mb-2">Fitur Selengkapnya</h4>
-                                    <ul class="mt-4">
-                                        <li>Sign In With Google</li>
-                                        <li>Whatsapp Integration</li>
-                                        <li>Whatsapp Broadcaster</li>
-                                        <li>Whatsapp Greetings</li>
-                                        <li>Direct Facebook Integration</li>
-                                        <li>Tiktok Integration</li>
-                                        <li>Connect Webhook</li>
-                                        <li>Pabbly Connect</li>
-                                        <li>Zapier</li>
-                                        <li>APIWAY</li>
-                                        <li>SMS Gateway</li>
-                                        <li>Bitform</li>
-                                        <li>Wordpress</li>
-                                        <li>Email Authenticator</li>
-                                        <li>Task & Approval</li>
-                                    </ul>
-
-                                    <a href="https://wa.me/6287720890019" type="button" class="btn btn-primary mt-4">Contact</a>
+                                    ...
                                 </div>
 
 
@@ -429,24 +404,7 @@
                                 <!-- CT -->
 
                                 <div class="col px-4">
-
-                                    <p class="my-2 font-weight-thin lh-base" style="font-size: 10px; color:green;">View : Admin Only</p>
-
-                                    <h4 class="text-muted font-weight-light  my-3 ">Terima Kasih Kepada :</h4>
-                                    <p class="mb-0 font-weight-thin text-gray lh-base">Rekan-rekan terbaik saya dan fair support nya selama bekerja. </p>
-
-                                    <ul class="mt-4">
-                                        <li>Mas Kas</li>
-                                        <li>Pak Ali</li>
-                                        <li>Mas Arif</li>
-                                        <li>Mba Athy</li>
-                                        <li>Mba Rere</li>
-                                        <li>Pak Hamdan</li>
-                                    </ul>
-
-                                    <p class="mb-0 font-weight-thin text-gray lh-base"> Mas kas kapan-kapan ngopi bareng lagi </p>
-
-                                    <!-- <a href="https://wa.me/6287720890019" type="button" class="btn btn-primary mt-4">Contact</a> -->
+...
                                 </div>
 
                             </div>
