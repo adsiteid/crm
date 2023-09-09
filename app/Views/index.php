@@ -326,6 +326,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
+                            <?php if (!empty($new->getResultArray())) : ?>
                             <thead>
                                 <tr class="px-0">
                                     <th class="d-sm-table-cell d-none">
@@ -363,6 +364,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                                     </th>
                                 </tr>
                             </thead>
+                            <?php endif; ?>
                             <tbody class="list-wrapper ">
                                 <?php $no = 1; ?>
 

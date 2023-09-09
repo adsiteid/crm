@@ -129,35 +129,36 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
         <div class="table-responsive">
             <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th class="d-sm-table-cell d-none">
-                            No
-                        </th>
-                        <th>
-                            Name
-                        </th>
-                        <th class="text-lg-left text-right">
-                            Category
-                        </th>
-                        <th class="d-sm-table-cell d-none">
-                            Date In
-                        </th>
-                        <th class="d-none">
-                            Address
-                        </th>
-                        <th class="d-sm-table-cell d-none">
-                            Project
-                        </th>
-                        <th class="d-sm-table-cell d-none">
-                            Source
-                        </th>
-                        <th class="d-sm-table-cell d-none">
-                            Whatsapp
-                        </th>
-                    </tr>
-                </thead>
-
+                <?php if (!empty($leads->getResultArray())) : ?>
+                    <thead>
+                        <tr>
+                            <th class="d-sm-table-cell d-none">
+                                No
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th class="text-lg-left text-right">
+                                Category
+                            </th>
+                            <th class="d-sm-table-cell d-none">
+                                Date In
+                            </th>
+                            <th class="d-none">
+                                Address
+                            </th>
+                            <th class="d-sm-table-cell d-none">
+                                Project
+                            </th>
+                            <th class="d-sm-table-cell d-none">
+                                Source
+                            </th>
+                            <th class="d-sm-table-cell d-none">
+                                Whatsapp
+                            </th>
+                        </tr>
+                    </thead>
+                <?php endif; ?>
 
                 <tbody class="list-wrapper">
 
