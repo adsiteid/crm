@@ -105,6 +105,8 @@ $routes->get('/report_project/(:num)', 'Report::projectFilter/$1');
 $routes->post('/project_report_range', 'Report::projectRange');
 $routes->get('/report_source/(:num)', 'Report::sourceFilter/$1');
 $routes->post('/report_source_range', 'Report::sourceRange');
+$routes->get('/export_leads/(:num)', 'Report::exportLeadsFilter/$1');
+$routes->post('/exportRange', 'Report::exportRange');
 
 // USER
 $routes->get('/user/agent', 'User::users');

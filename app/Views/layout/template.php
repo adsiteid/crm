@@ -291,9 +291,9 @@
                             <li>
                                 <form action="<?= base_url(); ?>search_leads" method="post" class=" d-lg-block d-none form-inline ">
                                     <div class="input-group input-group-sm mt-2 mr-3 ">
-                                        <input type="text" class="form-control rounded-left bg-light pl-3 " placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_leads">
+                                        <input type="text" class="form-control rounded-left border-0 bg-light pl-3 " placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_leads">
                                         <div class="input-group-append">
-                                            <button class="btn btn-primary rounded-right" type="submit">
+                                            <button class="btn btn-light border-0 rounded-right" type="submit">
                                                 <i class="icon-search"></i>
                                             </button>
                                         </div>
