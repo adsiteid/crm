@@ -87,8 +87,8 @@
             </div>
         </div>
 
-        <form action="<?= base_url(); ?>search_report" method="post" class=" form-inline ">
-            <div class="input-group input-group-sm mb-3  w-100 d-lg-none d-block">
+        <form action="<?= base_url(); ?>search_report" method="post" class=" form-inline d-lg-none d-block">
+            <div class="input-group input-group-sm mb-3  w-100 ">
                 <input type="text" class="form-control rounded-left border-0 bg-light pl-3 " placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_report">
                 <div class="input-group-append">
                     <button class="btn btn-light bg-light border-0 rounded-right" type="submit">
@@ -104,6 +104,7 @@
                 <div id="export_excel">
 
                     <table class="table table-striped table-hover">
+                     <?php if (!empty($leads->getResultArray())) : ?>
                         <thead>
                             <tr>
                                 <th class="">
@@ -168,6 +169,7 @@
                                 </th>
                             </tr>
                         </thead>
+                        <?php endif; ?>
                         <tbody class="list-wrapper">
                             <?php $no = 1; ?>
                             <?php
@@ -259,6 +261,16 @@
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+
+
+                    <?php if (empty($leads->getResultArray())) : ?>
+                        <div class="col-12 d-flex justify-content-center">
+                            <img src="<?= base_url() ?>document/app_image/images/empty.gif" class="d-lg-none d-block py-5" alt="" style="width:60%;">
+                            <img src="<?= base_url() ?>document/app_image/images/empty.gif" class="d-lg-block d-none py-5" alt="" style="width:20%;">
+                        </div>
+                    <?php endif; ?>
+
+
                 </div>
             </div>
         </div>
