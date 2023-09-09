@@ -70,9 +70,9 @@
     <div class="col-lg-3 col-md-4 col-sm-5 col-12 text-right ">
         <form action="<?= base_url() ?>search_user" method="post" class=" col-lg col-sm col-12 form-inline mr-auto p-0  ">
             <div class="input-group input-group-sm d-flex justify-content-end ">
-                <input type="text" class="form-control rounded-left bg-white pl-3 " placeholder="Search User ..." aria-label="Search" aria-describedby="basic-addon2" name="search">
+                <input type="text" class="form-control rounded-left bg-white border-0 pl-3 " placeholder="Search User ..." aria-label="Search" aria-describedby="basic-addon2" name="search">
                 <div class="input-group-append">
-                    <button class="btn btn-primary rounded-right" type="submit">
+                    <button class="btn btn-light bg-white border-0 rounded-right" type="submit">
                         <i class="icon-search"></i>
                     </button>
                 </div>

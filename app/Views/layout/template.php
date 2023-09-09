@@ -358,13 +358,13 @@
                                 </div>
                             </li>
 
-                            
 
-                        <li class="nav-item nav-settings d-none d-lg-flex">
-                            <a class="nav-link" href="#">
-                                <i class="icon-ellipsis"></i>
-                            </a>
-                        </li>
+
+                            <li class="nav-item nav-settings d-none d-lg-flex">
+                                <a class="nav-link" href="#">
+                                    <i class="icon-ellipsis"></i>
+                                </a>
+                            </li>
 
 
                         </ul>
@@ -404,7 +404,7 @@
                                 <!-- CT -->
 
                                 <div class="col px-4">
-...
+                                    ...
                                 </div>
 
                             </div>
@@ -462,6 +462,7 @@
                                         <li class="nav-item "> <a class="nav-link " href="<?= base_url(); ?>report_source/30">Source Report</a></li>
 
                                         <li class="nav-item "> <a class="nav-link" href="<?= base_url(); ?>report_sales_filter/30">Sales Report</a></li>
+                                        <li class="nav-item "> <a class="nav-link " href="<?= base_url(); ?>export_leads/30">Export Leads</a></li>
 
                                     </ul>
                                 </div>
@@ -478,7 +479,7 @@
 
 
 
-                            <li class="nav-item <?php if ($title == 'user') {
+                            <li class="nav-item <?php if ($title == 'User') {
                                                     echo "active";
                                                 } ?>">
                                 <a class="nav-link" href="<?= base_url(); ?>user/agent">
