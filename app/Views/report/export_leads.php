@@ -59,11 +59,12 @@
 
 <div class="card">
 
-    <div class="card-header d-flex align-items-center justify-content-between bg-transparent">
-        <div class="d-lg-none d-block"></div>
-        <div class="d-lg-block d-none">
+    <div class="card-body">
+
+        <div class="d-lg-flex d-none align-items-center justify-content-between bg-transparent">
+
             <form action="<?= base_url(); ?>search_report" method="post" class=" form-inline ">
-                <div class="input-group input-group-sm my-3 mr-3 ">
+                <div class="input-group input-group-sm mb-3  w-100">
                     <input type="text" class="form-control rounded-left border-0 bg-light pl-3 " placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_report">
                     <div class="input-group-append">
                         <button class="btn btn-light bg-light border-0 rounded-right" type="submit">
@@ -72,20 +73,8 @@
                     </div>
                 </div>
             </form>
-        </div>
 
-        <div class="row d-flex justify-content-between">
-
-            <!-- <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                <button class="btn btn-sm btn-light dropdown-toggle   " type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
-                    <i class="mdi mdi-calendar"></i> Export Data
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                    <a class="dropdown-item" href="#" onclick="exportF(this)">Export Excel</a>
-                    <a class="dropdown-item" href="#" onclick="printDiv('export_pdf')">Print</a>
-                </div>
-            </div> -->
-            <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+            <div class="dropdown pt-0">
                 <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
                     <i class="mdi mdi-calendar"></i><?= $days; ?>
                 </button>
@@ -96,26 +85,18 @@
                     <a type="button" class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Custom Range</a>
                 </div>
             </div>
-
         </div>
 
-    </div>
-
-
-    <div class="card-body">
-
-        <div class="d-lg-none d-block mb-3">
-            <form action="<?= base_url(); ?>search_report" method="post" class=" form-inline ">
-                <div class="input-group input-group-sm mt-2">
-                    <input type="text" class="form-control rounded-left border-0 bg-light pl-3 " placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_report">
-                    <div class="input-group-append">
-                        <button class="btn btn-light border-0 rounded-right" type="submit">
-                            <i class="icon-search"></i>
-                        </button>
-                    </div>
+        <form action="<?= base_url(); ?>search_report" method="post" class=" form-inline ">
+            <div class="input-group input-group-sm mb-3  w-100 d-lg-none d-block">
+                <input type="text" class="form-control rounded-left border-0 bg-light pl-3 " placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_report">
+                <div class="input-group-append">
+                    <button class="btn btn-light bg-light border-0 rounded-right" type="submit">
+                        <i class="icon-search"></i>
+                    </button>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
 
         <div id="export_pdf">
             <div class="table-responsive">
