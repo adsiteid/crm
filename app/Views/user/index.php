@@ -96,11 +96,11 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
             <div class="d-flex align-items-center justify-content-between  pb-3 row ">
                 <div class="col-lg-5 col-md-3 col-sm-3 col-6">
                     <?php foreach ($users->groups($id_user['groups'])->getresultArray() as $groupheader); ?>
-                    <a type="button" class=" btn btn-sm btn-light shadow-sm mr-1 " style="font-size:12px;"><?= $id_user['group_name'];  ?></a>
+                    <a type="button" class=" btn btn-sm btn-light  mr-1 " style="font-size:12px;"><?= $id_user['group_name'];  ?></a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-5 col-6 text-right ">
 
-                    <a type="button" class=" btn btn-sm btn-light shadow-sm mr-1 " style="font-size:12px;" data-toggle="modal" data-target="#delete-data-<?= $id_user['groups'] ?>">Delete Group</a>
+                    <a type="button" class=" btn btn-sm btn-light mr-1 " style="font-size:12px;" data-toggle="modal" data-target="#delete-data-<?= $id_user['groups'] ?>">Delete Group</a>
 
                     <div class="modal fade" id="delete-data-<?= $id_user['groups'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog " role="document">
