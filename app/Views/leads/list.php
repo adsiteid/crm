@@ -103,7 +103,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
         <div class=" d-flex align-items-center justify-content-between pb-3 ">
             <div class=" p-0">
-                <span class="small d-lg-none d-block text-success"><?= $title . ' - ' . $leads->getNumrows(); ?></span>
+                <span class="small d-lg-none d-block text-muted"><?= $title . ' - ' . $leads->getNumrows(); ?></span>
                 <a href="#" type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 d-lg-block d-none " style="font-size:12px;"><?= $title . ' - ' . $leads->getNumrows(); ?></a>
                 <!-- <a href="<?= base_url(); ?>add_leads" type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 " style="font-size:12px;">Add Leads </a> -->
             </div>
@@ -112,7 +112,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                     <p class="mb-0 pb-0" style="font-size: 10px; color:green;">Periode</p>
                     <span style="font-size: 10px;" class="mb-0 pb-0"><?= $in30 . ' - ' . $now; ?></span>
                 </div> -->
-                <span class="small d-lg-none d-block text-success"><i class="mdi mdi-calendar"></i><?= $days; ?></span>
+                <span class="small d-lg-none d-block text-muted"><i class="mdi mdi-calendar"></i><?= $days; ?></span>
                 <div class="dropdown flex-md-grow-1 flex-xl-grow-0 d-lg-block d-none">
                     <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
                         <i class="mdi mdi-calendar"></i><?= $days; ?>
