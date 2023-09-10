@@ -76,23 +76,34 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
         <!-- search -->
 
-        <form action="<?= base_url(); ?>search_leads" method="post" class=" d-lg-none d-sm-none d-block  form-inline mr-auto ml-md-3 mb-4 mt-0  navbar-search">
-            <div class="input-group ">
-                <input type="text" class="form-control rounded-left small bg-light border-0" placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_leads">
-                <div class="input-group-append">
-                    <button class="btn btn-light bg-light border-0 rounded-right px-3" type="submit">
-                        <i class="icon-search"></i>
-                    </button>
-                </div>
+        <div class="d-flex col-12 p-0">
+            <div class="col-10 px-0">
+                <form action="<?= base_url(); ?>search_leads" method="post" class=" d-lg-none d-sm-none d-block  form-inline ml-md-3 mb-4 mt-0  navbar-search">
+                    <div class="input-group ">
+                        <input type="text" class="form-control rounded-left small bg-light border-0" placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_leads">
+                        <div class="input-group-append">
+                            <button class="btn btn-light bg-light border-0 rounded-right px-3" type="submit">
+                                <i class="icon-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
+
+            <div class="col-2 d-lg-none d-sm-none d-block px-0  ">
+                <a href="#" type="button" class="btn rounded bg-primary w-100 d-flex justify-content-center align-items-center" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom"><i class="ti-filter text-white"></i> </a>
+            </div>
+
+        </div>
+
+
 
         <!-- end of search -->
 
 
-        <div class="d-flex align-items-center justify-content-between  pb-3  ">
+        <div class=" d-flex align-items-center justify-content-between pb-3 ">
             <div class=" p-0">
-                <a href="#" type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 " style="font-size:12px;"><?= $title . ' - ' . $leads->getNumrows(); ?></a>
+                <a href="#" type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 d-lg-block d-none " style="font-size:12px;"><?= $title . ' - ' . $leads->getNumrows(); ?></a>
                 <!-- <a href="<?= base_url(); ?>add_leads" type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 " style="font-size:12px;">Add Leads </a> -->
             </div>
             <div class="d-flex p-0">
@@ -100,7 +111,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                     <p class="mb-0 pb-0" style="font-size: 10px; color:green;">Periode</p>
                     <span style="font-size: 10px;" class="mb-0 pb-0"><?= $in30 . ' - ' . $now; ?></span>
                 </div> -->
-                <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                <div class="dropdown flex-md-grow-1 flex-xl-grow-0 d-lg-block d-none">
                     <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
                         <i class="mdi mdi-calendar"></i><?= $days; ?>
                     </button>
@@ -256,6 +267,27 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
     <div id="pagination-container" class="my-4"></div>
 <?php endif; ?>
 
+
+<!-- OFFCANVAS BOTTOM -->
+
+<!-- <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Toggle bottom offcanvas</button> -->
+
+<div class="offcanvas offcanvas-bottom bg-light" style="height:40%;" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasBottomLabel">Filter Data</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body small">
+
+        <a href="<?= base_url(); ?>getleads/90" type=" button" class="btn btn-light bg-white w-100 mb-2">Last 90 Days</a>
+        <a href="<?= base_url(); ?>getleads/30" type="button" class="btn btn-light bg-white  w-100 mb-2">Last 30 Days</a>
+        <a href="<?= base_url(); ?>getleads/7" type="button" class="btn btn-light bg-white w-100 mb-2">Last 7 Days</a>
+        <a href="<?= base_url(); ?>getleads/7" type="button" class="btn btn-light bg-white w-100 mb-2">Custom Range</a>
+
+    </div>
+</div>
+
+<!-- END OF OFFCANVAS BOTTOM -->
 
 
 
