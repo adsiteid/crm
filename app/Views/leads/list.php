@@ -78,7 +78,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
         <div class="d-flex col-12 p-0">
             <div class="col-10 pl-0 pr-2">
-                <form action="<?= base_url(); ?>search_leads" method="post" class=" d-lg-none d-sm-none d-block  form-inline ml-md-3 mb-4 mt-0  navbar-search">
+                <form action="<?= base_url(); ?>search_leads" method="post" class=" d-lg-none d-sm-block d-block  form-inline mb-4 mt-0  navbar-search">
                     <div class="input-group ">
                         <input type="text" class="form-control rounded-left small bg-light border-0" placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_leads">
                         <div class="input-group-append">
@@ -90,7 +90,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                 </form>
             </div>
 
-            <div class="col-2 d-lg-none d-sm-none d-block px-0  ">
+            <div class="col-2 d-lg-none d-sm-block d-block px-0  ">
                 <a href="#" type="button" class="btn rounded bg-primary w-100 d-flex justify-content-center align-items-center" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilter" aria-controls="offcanvasBottom"><i class="ti-filter text-white"></i> </a>
             </div>
 
