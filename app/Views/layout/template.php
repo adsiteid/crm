@@ -424,27 +424,16 @@
                                 </a>
                             </li>
 
-
-
-                            <li class="nav-item <?php if ($title == 'leads') {
-                                                    echo "active";
-                                                } ?>">
-                                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                            <li class="d-lg-block d-none nav-item <?php if ($title == 'leads') {
+                                                                        echo "active";
+                                                                    } ?>">
+                                <a class="nav-link" href="<?= base_url(); ?>leads/new">
                                     <i class="ti-id-badge menu-icon"></i>
-                                    <span class="menu-title">Leads</span>
-                                    <i class="menu-arrow"></i>
+                                    <span class="menu-title">leads</span>
                                 </a>
-                                <div class="collapse" id="ui-basic">
-                                    <ul class="nav flex-column sub-menu rounded-bottom">
-                                        <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>leads/new">New</a></li>
-                                        <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>leads/close">Close</a></li>
-                                        <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>leads/pending">Pending</a></li>
-                                        <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>leads/contacted">Contacted</a></li>
-                                        <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>leads/visit">Visit</a></li>
-                                        <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>leads/deal">Deal</a></li>
-                                    </ul>
-                                </div>
                             </li>
+
+                            
                             <li class="d-lg-block d-none nav-item <?php if ($title == 'Report') {
                                                                         echo "active";
                                                                     } ?>">

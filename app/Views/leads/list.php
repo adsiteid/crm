@@ -128,7 +128,18 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
                 <!-- <span class="small d-lg-none d-block text-muted"><i class="mdi mdi-calendar"></i><?= $days; ?></span> -->
 
-                <div class="dropdown flex-md-grow-1 flex-xl-grow-0 d-lg-block d-none">
+
+                <div class="d-lg-flex d-none">
+                    <a href="<?= base_url() ?>leads/new" type="button" class="col btn <?= ($title == "New") ? 'btn-primary' : 'btn-light'; ?> rounded mr-1"> New </a>
+                    <a href="<?= base_url() ?>leads/close" type=" button" class="col btn <?= ($title == "Close") ? 'btn-primary' : 'btn-light'; ?>  rounded mr-1"> Close </a>
+                    <a href="<?= base_url() ?>leads/pending" type="button" class="col btn <?= ($title == "Pending") ? 'btn-primary' : 'btn-light'; ?>  rounded mr-1"> Pending </a>
+                    <a href="<?= base_url() ?>leads/contacted" type="button" class="col btn <?= ($title == "Contacted") ? 'btn-primary' : 'btn-light'; ?>  rounded mr-1"> Contacted </a>
+                    <a href="<?= base_url() ?>leads/visit" type="button" class="col btn <?= ($title == "Visit") ? 'btn-primary' : 'btn-light'; ?> rounded mr-1"> Visit </a>
+                    <a href="<?= base_url() ?>leads/deal" type="button" class="col btn <?= ($title == "Deal") ? 'btn-primary' : 'btn-light'; ?> rounded mr-1"> Deal </a>
+                    <a href="#" type="button" class="btn rounded bg-primary w-100 d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="ti-filter text-white"></i> </a>
+                </div>
+
+                <!-- <div class="dropdown flex-md-grow-1 flex-xl-grow-0 d-lg-block d-none">
                     <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
                         <i class="mdi mdi-calendar"></i><?= $days; ?>
                     </button>
@@ -139,7 +150,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                         <a class="dropdown-item" href="<?= base_url(); ?>getleads/7">Last 7 Days</a>
                         <a type="button" class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Custom Range</a>
                     </div>
-                </div>
+                </div> -->
                 <!-- <button type="button" class="btn btn-sm btn-light bg-white d-flex align-items-center rounded border" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <i class="fa fa-ellipsis-v text-primary " aria-hidden="true"></i>
                 </button> -->
