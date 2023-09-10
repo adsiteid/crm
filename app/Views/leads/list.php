@@ -104,7 +104,19 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
         <div class=" d-flex align-items-center justify-content-between pb-3 ">
             <div class=" p-0">
                 <span class="small d-lg-none d-block text-muted"><?= $title . ' - ' . $leads->getNumrows(); ?></span>
-                <a href="#" type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 d-lg-block d-none " style="font-size:12px;"><?= $title . ' - ' . $leads->getNumrows(); ?></a>
+
+                <form action="<?= base_url(); ?>search_leads" method="post" class=" d-lg-block d-none  form-inline mt-0  navbar-search">
+                    <div class="input-group ">
+                        <input type="text" class="form-control rounded-left small bg-light border-0" placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_leads">
+                        <div class="input-group-append">
+                            <button class="btn btn-light bg-light border-0 rounded-right px-3" type="submit">
+                                <i class="icon-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- <a href="#" type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 d-lg-block d-none " style="font-size:12px;"><?= $title . ' - ' . $leads->getNumrows(); ?></a> -->
                 <!-- <a href="<?= base_url(); ?>add_leads" type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 " style="font-size:12px;">Add Leads </a> -->
             </div>
             <div class="d-flex p-0">
