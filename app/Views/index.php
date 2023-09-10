@@ -179,9 +179,9 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                         <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $new->getNumRows(); ?></p>
                     </div>
 
-                    <!-- <button type="button" class="btn btn-inverse-success btn-icon d-lg-block d-none">
+                    <button type="button" class="btn btn-inverse-success btn-icon d-lg-block d-none">
                     <i class="ti-import"></i>
-                </button> -->
+                </button>
 
                 </div>
             </a>
@@ -200,9 +200,9 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                         <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $close->getNumRows(); ?></h4>
                         <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $close->getNumRows(); ?></p>
                     </div>
-                    <!-- <button type="button" class="btn btn-inverse-secondary btn-icon d-lg-block d-none">
+                    <button type="button" class="btn btn-inverse-secondary btn-icon d-lg-block d-none">
                     <i class="ti-trash"></i>
-                </button> -->
+                </button>
                 </div>
             </a>
         </div>
@@ -221,9 +221,9 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                         <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $pending->getNumRows(); ?></p>
                     </div>
 
-                    <!-- <button type="button" class="btn btn-inverse-primary btn-icon d-lg-block d-none">
+                    <button type="button" class="btn btn-inverse-primary btn-icon d-lg-block d-none">
                     <i class="ti-time"></i>
-                </button> -->
+                </button>
 
                 </div>
             </a>
@@ -243,9 +243,9 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                         <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $contacted->getNumRows(); ?></p>
                     </div>
 
-                    <!-- <button type="button" class="btn btn-inverse-warning btn-icon d-lg-block d-none">
+                    <button type="button" class="btn btn-inverse-warning btn-icon d-lg-block d-none">
                     <i class="ti-comment-alt"></i>
-                </button> -->
+                </button>
 
                 </div>
             </a>
@@ -265,9 +265,9 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                         <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $visit->getNumRows(); ?></p>
                     </div>
 
-                    <!-- <button type="button" class="btn btn-inverse-info btn-icon d-lg-block d-none">
+                    <button type="button" class="btn btn-inverse-info btn-icon d-lg-block d-none">
                     <i class="ti-location-pin"></i>
-                </button> -->
+                </button>
 
                 </div>
             </a>
@@ -286,9 +286,9 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                         <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $deal->getNumRows(); ?></p>
                     </div>
 
-                    <!-- <button type="button" class="btn btn-inverse-danger btn-icon d-lg-block d-none">
+                    <button type="button" class="btn btn-inverse-danger btn-icon d-lg-block d-none">
                     <i class="ti-crown"></i>
-                </button> -->
+                </button>
 
                 </div>
             </a>
