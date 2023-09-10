@@ -280,8 +280,8 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
 
                 <?php if (empty($id_user['groups'])) : ?>
                     <div class="col-12 d-flex justify-content-center">
-                        <img src="<?= base_url() ?>document/app_image/images/empty.gif" class="d-lg-none d-block py-5" alt="" style="width:60%;">
-                        <img src="<?= base_url() ?>document/app_image/images/empty.gif" class="d-lg-block d-none py-5" alt="" style="width:20%;">
+                        <img src="<?= base_url() ?>document/app_image/images/empty.png" class="d-lg-none d-block py-5" alt="" style="width:60%;">
+                        <img src="<?= base_url() ?>document/app_image/images/empty.png" class="d-lg-block d-none py-5" alt="" style="width:20%;">
                     </div>
                 <?php endif; ?>
 
