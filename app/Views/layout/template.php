@@ -429,7 +429,7 @@
                                                                     } ?>">
                                 <a class="nav-link" href="<?= base_url(); ?>leads/all">
                                     <i class="ti-id-badge menu-icon"></i>
-                                    <span class="menu-title">leads</span>
+                                    <span class="menu-title">Leads</span>
                                 </a>
                             </li>
 
