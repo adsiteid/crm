@@ -571,6 +571,7 @@
                                     <div class="collapse" id="ui-basic">
                                         <ul class="nav flex-column sub-menu rounded-bottom">
                                             <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>leads/new">New</a></li>
+                                            <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>leads/new">New</a></li>
                                             <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>leads/close">Close</a></li>
                                             <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>leads/pending">Pending</a></li>
                                             <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>leads/contacted">Contacted</a></li>

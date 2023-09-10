@@ -69,6 +69,61 @@ class Leads extends BaseController
         return view('leads/detail', $data);
     }
 
+
+
+    public function all()
+    {
+        // $id = user()->id;
+
+        // if (in_groups('admin')) :
+        $leads = $this->showleads->all();
+        $new = $this->showleads->new();
+        // endif;
+
+        //     if (in_groups('users')) :
+
+        //         if (empty($this->showgroupsales->user($id)->getResultArray())) {
+        //             $leads = $this->showleads->new();
+        //             $new = $this->showleads->new();
+        //         }
+
+        //         if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+
+        //     foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+        //         if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
+
+        //             $leads = $this->showleads->newAdminGroup($group['groups']);
+        //             $new = $this->showleads->newAdminGroup($group['groups']);
+        //         }
+
+        //         if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
+        //             $leads = $this->showleads->newAdminProject($group['project']);
+        //             $new = $this->showleads->newAdminProject($group['project']);
+
+        //         }
+
+        //         // else{
+        //         //     $leads = $this->showleads->new();
+        //         //     $new = $this->showleads->new();
+        //         // }
+        //     }
+        // }
+        //     endif;
+
+        $data = [
+            'leads' => $leads,
+            'project' => $this->showproject,
+            'new' => $new,
+            'groups' => $this->showgroupsales,
+            'days' => 'Last 30 Days',
+            'title' => 'All'
+        ];
+
+        return view('leads/list', $data);
+    }
+
+
     public function new()
     {
         // $id = user()->id;

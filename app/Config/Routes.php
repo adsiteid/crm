@@ -46,6 +46,7 @@ $routes->get('/test', 'Test::index');
 $routes->get('/list_project', 'Home::project');
 
 $routes->get('/leads/(:num)', 'Leads::detail/$1');
+$routes->get('/leads/all', 'Leads::all');
 $routes->get('/leads/new', 'Leads::new');
 $routes->get('/leads/contacted', 'Leads::contacted');
 $routes->get('/leads/visit', 'Leads::visit');

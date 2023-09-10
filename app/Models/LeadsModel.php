@@ -248,6 +248,39 @@ endif;
         return $result;
     }
 
+
+    public function all()
+    {
+
+        $builder = $this->db->table($this->table);
+
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
+            $builder->groupEnd();
+        endif;
+
+        $builder->groupStart()
+        ->Where("time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)")
+        ->orWhere("time_stamp_close >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)")
+        ->orWhere("time_stamp_pending >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)")
+        ->orWhere("time_stamp_contacted >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)")
+        ->orWhere("time_stamp_visit >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)")
+        ->orWhere("time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)")
+        ->orWhere("time_stamp_reserve >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)")
+        ->orWhere("time_stamp_booking >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)");
+        $builder->groupEnd();
+
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
 //
 
     public function new()
