@@ -301,11 +301,11 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
             <div class="row">
                 <div class="col-12">
                     <label class="mb-1">Date Start</label>
-                    <input type="date" class="form-control w-100 mb-3" name="date_start">
+                    <input type="date" class="form-control border-0 w-100 mb-3" name="date_start">
                 </div>
                 <div class="col-12">
                     <label class="mb-1">Date End</label>
-                    <input type="date" class="form-control w-100 mb-3" name="date_end">
+                    <input type="date" class="form-control border-0 w-100 mb-3" name="date_end">
                 </div>
 
                 <div class="col-12">
