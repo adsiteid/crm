@@ -297,11 +297,11 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
     <div class="offcanvas-body small">
         <form class=" form-inline navbar-search col-12" action="<?= base_url(); ?>range_list" method="post">
             <div class="row">
-                <div class="col">
+                <div class="col-12">
                     <label class="mb-1">Date Start</label>
                     <input type="date" class="form-control w-100 mb-3" name="date_start">
                 </div>
-                <div class="col">
+                <div class="col-12">
                     <label class="mb-1">Date End</label>
                     <input type="date" class="form-control w-100 mb-3" name="date_end">
                 </div>
