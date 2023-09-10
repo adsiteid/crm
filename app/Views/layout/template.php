@@ -427,7 +427,7 @@
                             <li class="d-lg-block d-none nav-item <?php if ($title == 'leads') {
                                                                         echo "active";
                                                                     } ?>">
-                                <a class="nav-link" href="<?= base_url(); ?>leads/new">
+                                <a class="nav-link" href="<?= base_url(); ?>leads/all">
                                     <i class="ti-id-badge menu-icon"></i>
                                     <span class="menu-title">leads</span>
                                 </a>
@@ -570,7 +570,7 @@
                                     </a>
                                     <div class="collapse" id="ui-basic">
                                         <ul class="nav flex-column sub-menu rounded-bottom">
-                                            <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>leads/new">New</a></li>
+                                            <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>leads/all">All</a></li>
                                             <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>leads/new">New</a></li>
                                             <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>leads/close">Close</a></li>
                                             <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>leads/pending">Pending</a></li>
