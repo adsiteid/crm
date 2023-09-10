@@ -77,7 +77,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
         <!-- search -->
 
         <div class="d-flex col-12 p-0">
-            <div class="col-10 px-0">
+            <div class="col-10 pl-0 pr-2">
                 <form action="<?= base_url(); ?>search_leads" method="post" class=" d-lg-none d-sm-none d-block  form-inline ml-md-3 mb-4 mt-0  navbar-search">
                     <div class="input-group ">
                         <input type="text" class="form-control rounded-left small bg-light border-0" placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_leads">
