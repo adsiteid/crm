@@ -91,7 +91,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
             </div>
 
             <div class="col-2 d-lg-none d-sm-none d-block px-0  ">
-                <a href="#" type="button" class="btn rounded bg-primary w-100 d-flex justify-content-center align-items-center" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom"><i class="ti-filter text-white"></i> </a>
+                <a href="#" type="button" class="btn rounded bg-primary w-100 d-flex justify-content-center align-items-center" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilter" aria-controls="offcanvasBottom"><i class="ti-filter text-white"></i> </a>
             </div>
 
         </div>
@@ -272,7 +272,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
 <!-- <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Toggle bottom offcanvas</button> -->
 
-<div class="offcanvas offcanvas-bottom bg-light" style="height:43%;" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+<div class="offcanvas offcanvas-bottom bg-light" style="height:43%;" tabindex="-1" id="offcanvasFilter" aria-labelledby="offcanvasBottomLabel">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasBottomLabel">Filter Data</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
