@@ -103,7 +103,7 @@
 
                 <div id="export_excel">
 
-                    <table class="table table-striped table-hover">
+                    <table class="table table-hover">
                      <?php if (!empty($leads->getResultArray())) : ?>
                         <thead>
                             <tr>

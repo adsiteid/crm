@@ -111,7 +111,7 @@
 
                 <div id="export_excel">
 
-                    <table id="report_new_leads" name="report_new_leads" class="table table-striped table-hover" width="100%" style="font-size:12px;">
+                    <table id="report_new_leads" name="report_new_leads" class="table table-hover" width="100%" style="font-size:12px;">
                         <thead>
                             <tr>
                                 <th style="font-size:13px; text-align:left">No</th>

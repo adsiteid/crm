@@ -168,7 +168,8 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
         <span class="small d-lg-block d-none text-muted"><i class="mdi mdi-calendar"></i><?= $days; ?></span>
 
         <div class="table-responsive">
-            <table class="table table-striped table-hover">
+            <table class="table  table-hover">
+                <!-- table-striped -->
                 <?php if (!empty($leads->getResultArray())) : ?>
                     <thead>
                         <tr>

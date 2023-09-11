@@ -163,137 +163,138 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
 
 
+    <div class="" style="background : #F5F7FF;">
+        <div class="row align-items-center px-lg px-2 mb-lg-0 mb-3 " style="background : #F5F7FF;">
 
-    <div class="row align-items-center px-lg px-2 mb-lg-0 mb-3" style="background : #F5F7FF;">
+            <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
+                <a href="<?= base_url(); ?>leads/new" class="card rounded">
+                    <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
 
-        <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
-            <a href="<?= base_url(); ?>leads/new" class="card rounded">
-                <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
+                        <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
 
-                    <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
+                            <i class="ti-import text-success d-lg-none d-block btn-inverse-success p-2 rounded" style="font-size: 11px;"></i>
 
-                        <i class="ti-import text-success d-lg-none d-block btn-inverse-success p-2 rounded" style="font-size: 11px;"></i>
+                            <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-2 " style="font-size:10px;">New</h6>
+                            <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $new->getNumRows(); ?></h4>
+                            <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $new->getNumRows(); ?></p>
+                        </div>
 
-                        <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-2 " style="font-size:10px;">New</h6>
-                        <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $new->getNumRows(); ?></h4>
-                        <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $new->getNumRows(); ?></p>
+                        <button type="button" class="btn btn-inverse-success btn-icon d-lg-block d-none">
+                            <i class="ti-import"></i>
+                        </button>
+
                     </div>
-
-                    <button type="button" class="btn btn-inverse-success btn-icon d-lg-block d-none">
-                        <i class="ti-import"></i>
-                    </button>
-
-                </div>
-            </a>
-        </div>
+                </a>
+            </div>
 
 
-        <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
-            <a href="<?= base_url(); ?>leads/close" class="card rounded">
-                <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
+            <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
+                <a href="<?= base_url(); ?>leads/close" class="card rounded">
+                    <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
 
-                    <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
+                        <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
 
-                        <i class="ti-trash text-muted d-lg-none d-block btn-inverse-secondary p-2 rounded" style="font-size: 12px; "></i>
+                            <i class="ti-trash text-muted d-lg-none d-block btn-inverse-secondary p-2 rounded" style="font-size: 12px; "></i>
 
-                        <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-2" style="font-size:10px;">Close</h6>
-                        <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $close->getNumRows(); ?></h4>
-                        <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $close->getNumRows(); ?></p>
+                            <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-2" style="font-size:10px;">Close</h6>
+                            <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $close->getNumRows(); ?></h4>
+                            <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $close->getNumRows(); ?></p>
+                        </div>
+                        <button type="button" class="btn btn-inverse-secondary btn-icon d-lg-block d-none">
+                            <i class="ti-trash"></i>
+                        </button>
                     </div>
-                    <button type="button" class="btn btn-inverse-secondary btn-icon d-lg-block d-none">
-                        <i class="ti-trash"></i>
-                    </button>
-                </div>
-            </a>
-        </div>
+                </a>
+            </div>
 
 
-        <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
-            <a href="<?= base_url(); ?>leads/pending" class="card rounded">
-                <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
+            <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
+                <a href="<?= base_url(); ?>leads/pending" class="card rounded">
+                    <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
 
-                    <div class="align-items-center text-lg-left text-center  pt-lg-2 pt-3">
+                        <div class="align-items-center text-lg-left text-center  pt-lg-2 pt-3">
 
-                        <i class="ti-time text-primary d-lg-none d-block btn-inverse-primary p-2  rounded ml-1" style="font-size: 12px; width:29px; height:29px;"></i>
+                            <i class="ti-time text-primary d-lg-none d-block btn-inverse-primary p-2  rounded ml-1" style="font-size: 12px; width:29px; height:29px;"></i>
 
-                        <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-2 " style="font-size:10px;">Pending</h6>
-                        <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $pending->getNumRows(); ?></h4>
-                        <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $pending->getNumRows(); ?></p>
+                            <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-2 " style="font-size:10px;">Pending</h6>
+                            <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $pending->getNumRows(); ?></h4>
+                            <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $pending->getNumRows(); ?></p>
+                        </div>
+
+                        <button type="button" class="btn btn-inverse-primary btn-icon d-lg-block d-none">
+                            <i class="ti-time"></i>
+                        </button>
+
                     </div>
-
-                    <button type="button" class="btn btn-inverse-primary btn-icon d-lg-block d-none">
-                        <i class="ti-time"></i>
-                    </button>
-
-                </div>
-            </a>
-        </div>
+                </a>
+            </div>
 
 
-        <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
-            <a href="<?= base_url(); ?>leads/contacted" class="card rounded">
-                <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
+            <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
+                <a href="<?= base_url(); ?>leads/contacted" class="card rounded">
+                    <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
 
-                    <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
+                        <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
 
-                        <i class="ti-comment-alt text-warning d-lg-none p-2 d-block btn-inverse-warning rounded ml-2" style="font-size: 13px; width:29px; height:29px;"></i>
+                            <i class="ti-comment-alt text-warning d-lg-none p-2 d-block btn-inverse-warning rounded ml-2" style="font-size: 13px; width:29px; height:29px;"></i>
 
-                        <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-2" style="font-size:10px;">Contacted</h6>
-                        <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $contacted->getNumRows(); ?></h4>
-                        <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $contacted->getNumRows(); ?></p>
+                            <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-2" style="font-size:10px;">Contacted</h6>
+                            <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $contacted->getNumRows(); ?></h4>
+                            <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $contacted->getNumRows(); ?></p>
+                        </div>
+
+                        <button type="button" class="btn btn-inverse-warning btn-icon d-lg-block d-none">
+                            <i class="ti-comment-alt"></i>
+                        </button>
+
                     </div>
-
-                    <button type="button" class="btn btn-inverse-warning btn-icon d-lg-block d-none">
-                        <i class="ti-comment-alt"></i>
-                    </button>
-
-                </div>
-            </a>
-        </div>
+                </a>
+            </div>
 
 
-        <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
-            <a href="<?= base_url(); ?>leads/visit" class="card rounded">
-                <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
+            <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
+                <a href="<?= base_url(); ?>leads/visit" class="card rounded">
+                    <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
 
-                    <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
+                        <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
 
-                        <i class="ti-location-pin text-info d-lg-none d-block btn-inverse-info rounded p-2" style="font-size: 13px;"></i>
+                            <i class="ti-location-pin text-info d-lg-none d-block btn-inverse-info rounded p-2" style="font-size: 13px;"></i>
 
-                        <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-2 " style="font-size:10px;">Visit</h6>
-                        <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $visit->getNumRows(); ?></h4>
-                        <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $visit->getNumRows(); ?></p>
+                            <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-2 " style="font-size:10px;">Visit</h6>
+                            <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $visit->getNumRows(); ?></h4>
+                            <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $visit->getNumRows(); ?></p>
+                        </div>
+
+                        <button type="button" class="btn btn-inverse-info btn-icon d-lg-block d-none">
+                            <i class="ti-location-pin"></i>
+                        </button>
+
                     </div>
+                </a>
+            </div>
 
-                    <button type="button" class="btn btn-inverse-info btn-icon d-lg-block d-none">
-                        <i class="ti-location-pin"></i>
-                    </button>
+            <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
+                <a href="<?= base_url(); ?>leads/deal" class="card rounded">
+                    <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
 
-                </div>
-            </a>
-        </div>
+                        <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
 
-        <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
-            <a href="<?= base_url(); ?>leads/deal" class="card rounded">
-                <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
+                            <i class="ti-crown text-danger d-lg-none d-block btn-inverse-danger rounded p-2" style="font-size: 13px;"></i>
 
-                    <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
+                            <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-2" style="font-size:10px;">Deal</h6>
+                            <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $deal->getNumRows(); ?></h4>
+                            <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $deal->getNumRows(); ?></p>
+                        </div>
 
-                        <i class="ti-crown text-danger d-lg-none d-block btn-inverse-danger rounded p-2" style="font-size: 13px;"></i>
+                        <button type="button" class="btn btn-inverse-danger btn-icon d-lg-block d-none">
+                            <i class="ti-crown"></i>
+                        </button>
 
-                        <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-2" style="font-size:10px;">Deal</h6>
-                        <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $deal->getNumRows(); ?></h4>
-                        <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $deal->getNumRows(); ?></p>
                     </div>
+                </a>
+            </div>
 
-                    <button type="button" class="btn btn-inverse-danger btn-icon d-lg-block d-none">
-                        <i class="ti-crown"></i>
-                    </button>
-
-                </div>
-            </a>
         </div>
-
     </div>
 
 
@@ -325,7 +326,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover">
+                        <table class="table  table-hover">
                             <?php if (!empty($all->getResultArray())) : ?>
                                 <thead>
                                     <tr class="px-0">
