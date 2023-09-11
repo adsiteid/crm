@@ -388,7 +388,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                                             ?>
                                         </td>
                                         <td class="text-lg-left text-center">
-                                            <div class="d-flex flex-column">
+                                            
                                                 <label class="badge badge-<?php if ($row['kategori_status'] == 'New') {
                                                                                 echo 'success';
                                                                             } elseif ($row['kategori_status'] == 'Cold') {
@@ -409,7 +409,6 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                                                                                 echo 'default';
                                                                             } ?>" style="font-size: 10px;"><?= $row['kategori_status']; ?></label>
 
-                                            </div>
                                         </td>
 
                                         <td class="d-sm-table-cell d-none">
