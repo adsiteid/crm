@@ -167,7 +167,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
     <div class="row align-items-center px-lg px-2 mb-lg-0 mb-3" style="background : #F5F7FF;">
 
         <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
-            <a href="<?= base_url(); ?>leads/new" class="card">
+            <a href="<?= base_url(); ?>leads/new" class="card rounded">
                 <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
 
                     <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
@@ -180,8 +180,8 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                     </div>
 
                     <button type="button" class="btn btn-inverse-success btn-icon d-lg-block d-none">
-                    <i class="ti-import"></i>
-                </button>
+                        <i class="ti-import"></i>
+                    </button>
 
                 </div>
             </a>
@@ -189,7 +189,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
 
         <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
-            <a href="<?= base_url(); ?>leads/close" class="card">
+            <a href="<?= base_url(); ?>leads/close" class="card rounded">
                 <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
 
                     <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
@@ -201,15 +201,15 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                         <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $close->getNumRows(); ?></p>
                     </div>
                     <button type="button" class="btn btn-inverse-secondary btn-icon d-lg-block d-none">
-                    <i class="ti-trash"></i>
-                </button>
+                        <i class="ti-trash"></i>
+                    </button>
                 </div>
             </a>
         </div>
 
 
         <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
-            <a href="<?= base_url(); ?>leads/pending" class="card">
+            <a href="<?= base_url(); ?>leads/pending" class="card rounded">
                 <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
 
                     <div class="align-items-center text-lg-left text-center  pt-lg-2 pt-3">
@@ -222,8 +222,8 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                     </div>
 
                     <button type="button" class="btn btn-inverse-primary btn-icon d-lg-block d-none">
-                    <i class="ti-time"></i>
-                </button>
+                        <i class="ti-time"></i>
+                    </button>
 
                 </div>
             </a>
@@ -231,7 +231,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
 
         <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
-            <a href="<?= base_url(); ?>leads/contacted" class="card">
+            <a href="<?= base_url(); ?>leads/contacted" class="card rounded">
                 <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
 
                     <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
@@ -244,8 +244,8 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                     </div>
 
                     <button type="button" class="btn btn-inverse-warning btn-icon d-lg-block d-none">
-                    <i class="ti-comment-alt"></i>
-                </button>
+                        <i class="ti-comment-alt"></i>
+                    </button>
 
                 </div>
             </a>
@@ -253,7 +253,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
 
         <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
-            <a href="<?= base_url(); ?>leads/visit" class="card">
+            <a href="<?= base_url(); ?>leads/visit" class="card rounded">
                 <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
 
                     <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
@@ -266,15 +266,15 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                     </div>
 
                     <button type="button" class="btn btn-inverse-info btn-icon d-lg-block d-none">
-                    <i class="ti-location-pin"></i>
-                </button>
+                        <i class="ti-location-pin"></i>
+                    </button>
 
                 </div>
             </a>
         </div>
 
         <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">
-            <a href="<?= base_url(); ?>leads/deal" class="card">
+            <a href="<?= base_url(); ?>leads/deal" class="card rounded">
                 <div class=" d-flex align-items-center justify-content-lg-between justify-content-center p-lg-4 py-1 px-2 ">
 
                     <div class="align-items-center text-lg-left text-center pt-lg-2 pt-3">
@@ -287,8 +287,8 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                     </div>
 
                     <button type="button" class="btn btn-inverse-danger btn-icon d-lg-block d-none">
-                    <i class="ti-crown"></i>
-                </button>
+                        <i class="ti-crown"></i>
+                    </button>
 
                 </div>
             </a>
@@ -327,43 +327,43 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
                             <?php if (!empty($all->getResultArray())) : ?>
-                            <thead>
-                                <tr class="px-0">
-                                    <th class="d-sm-table-cell d-none">
-                                        No
-                                    </th>
-                                    <th>
-                                        Name
-                                    </th>
-                                    <th class="text-lg-left text-right">
-                                        Category
-                                    </th>
-                                    <th class="d-sm-table-cell d-none">
-                                        Date In
-                                    </th>
-                                    <th class="d-none">
-                                        Address
-                                    </th>
-                                    <th class="d-sm-table-cell d-none">
-                                        Project
-                                    </th>
-                                    <th class="d-sm-table-cell d-none">
-                                        Source
-                                    </th>
+                                <thead>
+                                    <tr class="px-0">
+                                        <th class="d-sm-table-cell d-none">
+                                            No
+                                        </th>
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th class="text-lg-left text-right">
+                                            Category
+                                        </th>
+                                        <th class="d-sm-table-cell d-none">
+                                            Date In
+                                        </th>
+                                        <th class="d-none">
+                                            Address
+                                        </th>
+                                        <th class="d-sm-table-cell d-none">
+                                            Project
+                                        </th>
+                                        <th class="d-sm-table-cell d-none">
+                                            Source
+                                        </th>
 
 
 
 
 
-                                    <th class="d-sm-table-cell d-none">
-                                        Rolling time
-                                    </th>
+                                        <th class="d-sm-table-cell d-none">
+                                            Rolling time
+                                        </th>
 
-                                    <th class="d-sm-table-cell d-none">
-                                        Whatsapp
-                                    </th>
-                                </tr>
-                            </thead>
+                                        <th class="d-sm-table-cell d-none">
+                                            Whatsapp
+                                        </th>
+                                    </tr>
+                                </thead>
                             <?php endif; ?>
                             <tbody class="list-wrapper ">
                                 <?php $no = 1; ?>
