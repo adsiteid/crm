@@ -65,7 +65,7 @@
             </div>
         </div>
     </div> -->
-    <!-- <div class="col-lg-4 col-12 px-lg-2 px-3">
+<!-- <div class="col-lg-4 col-12 px-lg-2 px-3">
                 <div class="card mb-lg-0 mb-3">
                     <div class="card-body py-4">
                         <p class="text-muted small">Total Earnings</p>
@@ -78,11 +78,20 @@
 
 
 
-<div class="card rounded-4 pt-3 mb-4">
-    <div class="card-header mb-4 d-flex align-items-center justify-content-between bg-transparent">
+<div class="card rounded-4 mb-4">
+    <div class="card-header mb-4 d-flex align-items-center justify-content-between bg-transparent py-3">
         <div>
-            <h6 class="mb-2 font-weight-bold text-primary">Leads Funnel</h6>
-            <p class="text-muted" style="font-size : 12px;"></p>
+            <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
+                    <i class="mdi mdi-calendar"></i><?= $title; ?>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                    <a class="dropdown-item" href="<?= base_url(); ?>reportleads/30">Leads Report</a>
+                    <a class="dropdown-item" href="<?= base_url(); ?>report_project/30">Project Report</a>
+                    <a class="dropdown-item" href="<?= base_url(); ?>report_source/30">Source Report</a>
+                    
+                </div>
+            </div>
         </div>
         <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
             <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
