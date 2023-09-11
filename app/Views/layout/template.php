@@ -424,14 +424,14 @@
                                 </a>
                             </li>
 
-                            <li class="d-lg-block d-none nav-item <?php if ($title == 'leads') {
+                            <!-- <li class="d-lg-block d-none nav-item <?php if ($title == 'Leads' || $title == 'New') {
                                                                         echo "active";
                                                                     } ?>">
                                 <a class="nav-link" href="<?= base_url(); ?>leads/all">
                                     <i class="ti-id-badge menu-icon"></i>
                                     <span class="menu-title">Leads</span>
                                 </a>
-                            </li>
+                            </li> -->
 
                             
                             <li class="d-lg-block d-none nav-item <?php if ($title == 'Report') {

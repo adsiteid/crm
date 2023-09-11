@@ -308,7 +308,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between  pb-2  ">
                         <div class="col p-0">
-                            <div type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 " style="font-size:12px;">New Leads</div>
+                            <div type="button" class=" btn btn-sm btn-primary shadow-sm mr-1 " style="font-size:12px;">Recent Leads</div>
                         </div>
                         <div class="d-flex p-0">
                             <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
@@ -326,7 +326,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
-                            <?php if (!empty($new->getResultArray())) : ?>
+                            <?php if (!empty($all->getResultArray())) : ?>
                             <thead>
                                 <tr class="px-0">
                                     <th class="d-sm-table-cell d-none">
@@ -370,7 +370,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
                                 <?php
 
-                                foreach ($new->getResultArray() as $row) :
+                                foreach ($all->getResultArray() as $row) :
                                 ?>
 
                                     <tr class="list-item " onclick="location.href='<?= base_url(); ?>leads/<?= $row['id']; ?>'">

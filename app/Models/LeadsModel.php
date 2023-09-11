@@ -172,7 +172,7 @@ endif;
         ->orWhere("time_stamp_booking BETWEEN '$startDate' AND '$endDate'")
         ->groupEnd();
 
-        $builder->orderBy('id DESC');
+        // $builder->orderBy('id DESC');
         $result = $builder->get();
         return $result;
     }
@@ -276,10 +276,11 @@ endif;
         ->orWhere("time_stamp_booking >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)");
         $builder->groupEnd();
 
-        $builder->orderBy('id DESC');
+        // $builder->orderBy('id DESC');
         $result = $builder->get();
         return $result;
     }
+
 
 //
 

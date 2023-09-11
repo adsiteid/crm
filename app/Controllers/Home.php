@@ -40,6 +40,7 @@ class Home extends BaseController
 		// $id = user()->id;
 
 		// if(in_groups('admin')) :
+			$all = $this->showleads->all();
 			$new = $this->showleads->new();
 			$contacted = $this->showleads->contacted();
 			$close = $this->showleads->close();
@@ -105,6 +106,7 @@ class Home extends BaseController
 		$leadsDeal = $this->chartleads->leadsDeal(30);
 
 		$data = [
+			'all' => $all,
 			'new' => $new,
 			'contacted' => $contacted,
 			'close' => $close,
@@ -131,6 +133,7 @@ class Home extends BaseController
 			$leadsReserve = $this->chartleads->leadsReserve($days);
 			$leadsBooking = $this->chartleads->leadsBooking($days);
 			$leadsDeal = $this->chartleads->leadsDeal($days);
+			$all = $this->showleads->allFilter($days);
 			$new = $this->showleads->newFilter($days);
 			$contacted = $this->showleads->contactedFilter($days);
 			$close = $this->showleads->closeFilter($days);
@@ -193,6 +196,7 @@ class Home extends BaseController
 		
 
 		$data = [
+			'all' => $all,
 			'new' => $new,
 			'contacted' => $contacted,
 			'close' => $close,
@@ -219,6 +223,7 @@ class Home extends BaseController
 
 
 		// if (in_groups('admin')) :
+		$all = $this->showleads->rangeList($startDate, $endDate);
 			$new = $this->showleads->newRange($startDate, $endDate);
 			$contacted = $this->showleads->contactedRange($startDate, $endDate);
 			$close = $this->showleads->closeRange($startDate, $endDate);
@@ -284,6 +289,7 @@ class Home extends BaseController
 
 
 		$data = [
+			'all' => $all,
 			'new' => $new,
 			'close' => $close,
 			'pending' => $pending,
