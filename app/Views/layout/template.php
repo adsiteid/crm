@@ -268,7 +268,7 @@
 
         <!-- sidebar-dark sidebar-icon-only -->
 
-        <body class="">
+        <body class="sidebar-light sidebar-icon-only">
             <script src="<?= base_url() ?>vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
             <div class="container-scroller">
                 <!-- partial:partials/_navbar.html -->
@@ -425,15 +425,15 @@
                             </li>
 
                             <!-- <li class="d-lg-block d-none nav-item <?php if ($title == 'Leads' || $title == 'New') {
-                                                                        echo "active";
-                                                                    } ?>">
+                                                                            echo "active";
+                                                                        } ?>">
                                 <a class="nav-link" href="<?= base_url(); ?>leads/all">
                                     <i class="ti-id-badge menu-icon"></i>
                                     <span class="menu-title">Leads</span>
                                 </a>
                             </li> -->
 
-                            
+
                             <li class="d-lg-block d-none nav-item <?php if ($title == 'Report') {
                                                                         echo "active";
                                                                     } ?>">
