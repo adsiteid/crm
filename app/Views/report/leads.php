@@ -19,7 +19,7 @@
 
 
 
-<div class="row mt-lg-0 my-3 px-lg-2 px-0">
+<!-- <div class="row mt-lg-0 my-3 px-lg-2 px-0">
     <div class="col-lg-6 col-12 px-lg-2 px-3">
         <div class="card mb-lg-0 mb-3">
             <div class="card-body py-lg-5  py-4 px-lg-5 px-4">
@@ -64,7 +64,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- <div class="col-lg-4 col-12 px-lg-2 px-3">
                 <div class="card mb-lg-0 mb-3">
                     <div class="card-body py-4">
@@ -73,7 +73,7 @@
                     </div>
                 </div>
             </div> -->
-</div>
+<!-- </div> -->
 
 
 
