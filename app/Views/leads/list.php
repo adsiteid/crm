@@ -107,7 +107,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                 <!-- <span class="small d-lg-none d-block text-muted"><?= $title . ' - ' . $leads->getNumrows(); ?></span> -->
 
                 <form action="<?= base_url(); ?>search_leads" method="post" class=" d-lg-block d-none  form-inline mt-0  navbar-search">
-                    <div class="input-group input-group-sm ">
+                    <div class="input-group">
                         <input type="text" class="form-control rounded-left small bg-light border-0" placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_leads">
                         <div class="input-group-append">
                             <button class="btn btn-light bg-light border-0 rounded-right px-3" type="submit">
@@ -130,14 +130,14 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
 
                 <div class="d-lg-flex d-none">
-                    <a href="<?= base_url() ?>leads/all" type="button" class="col btn btn-sm <?= ($title == "All") ? 'btn-primary' : 'btn-light'; ?> rounded mr-1"> All </a>
-                    <a href="<?= base_url() ?>leads/new" type="button" class="col btn btn-sm <?= ($title == "New") ? 'btn-primary' : 'btn-light'; ?> rounded mr-1"> New </a>
-                    <a href="<?= base_url() ?>leads/close" type=" button" class="col btn btn-sm <?= ($title == "Close") ? 'btn-primary' : 'btn-light'; ?>  rounded mr-1"> Close </a>
-                    <a href="<?= base_url() ?>leads/pending" type="button" class="col btn btn-sm <?= ($title == "Pending") ? 'btn-primary' : 'btn-light'; ?>  rounded mr-1"> Pending </a>
-                    <a href="<?= base_url() ?>leads/contacted" type="button" class="col btn btn-sm <?= ($title == "Contacted") ? 'btn-primary' : 'btn-light'; ?>  rounded mr-1"> Contacted </a>
-                    <a href="<?= base_url() ?>leads/visit" type="button" class="col btn btn-sm <?= ($title == "Visit") ? 'btn-primary' : 'btn-light'; ?> rounded mr-1"> Visit </a>
-                    <a href="<?= base_url() ?>leads/deal" type="button" class="col btn btn-sm <?= ($title == "Deal") ? 'btn-primary' : 'btn-light'; ?> rounded mr-1"> Deal </a>
-                    <a href="#" type="button" class="btn btn-sm rounded bg-primary w-100 d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="ti-filter text-white"></i> </a>
+                    <a href="<?= base_url() ?>leads/all" type="button" class="col btn <?= ($title == "All") ? 'btn-primary' : 'btn-light'; ?> rounded mr-1"> All </a>
+                    <a href="<?= base_url() ?>leads/new" type="button" class="col btn  <?= ($title == "New") ? 'btn-primary' : 'btn-light'; ?> rounded mr-1"> New </a>
+                    <a href="<?= base_url() ?>leads/close" type=" button" class="col btn <?= ($title == "Close") ? 'btn-primary' : 'btn-light'; ?>  rounded mr-1"> Close </a>
+                    <a href="<?= base_url() ?>leads/pending" type="button" class="col btn <?= ($title == "Pending") ? 'btn-primary' : 'btn-light'; ?>  rounded mr-1"> Pending </a>
+                    <a href="<?= base_url() ?>leads/contacted" type="button" class="col btn <?= ($title == "Contacted") ? 'btn-primary' : 'btn-light'; ?>  rounded mr-1"> Contacted </a>
+                    <a href="<?= base_url() ?>leads/visit" type="button" class="col btn <?= ($title == "Visit") ? 'btn-primary' : 'btn-light'; ?> rounded mr-1"> Visit </a>
+                    <a href="<?= base_url() ?>leads/deal" type="button" class="col btn <?= ($title == "Deal") ? 'btn-primary' : 'btn-light'; ?> rounded mr-1"> Deal </a>
+                    <a href="#" type="button" class="btn rounded bg-primary w-100 d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="ti-filter text-white"></i> </a>
                 </div>
 
                 <!-- <div class="dropdown flex-md-grow-1 flex-xl-grow-0 d-lg-block d-none">
