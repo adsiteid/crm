@@ -275,7 +275,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                             ?>
 
                             <td class="d-sm-table-cell d-none">
-                                <a type="button" href="https://wa.me/<?php echo $nomor; ?>" class="btn py-2 btn-sm btn-success border-0 d-lg-block d-none" style="font-size:10px; background:#198754;">Whatsapp</a>
+                                <a type="button" href="https://wa.me/<?php echo $nomor; ?>" class="btn py-2 btn-sm btn-success border-0 " style="font-size:10px; background:#198754;">Whatsapp</a>
                             </td>
                         </tr>
 
