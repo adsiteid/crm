@@ -40,7 +40,7 @@ $routes->set404Override(
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Leads::all');
 $routes->get('/google-auth', 'Googleauth::index' , ['as' => $reservedRoutes['google-auth']]); 
 $routes->get('/test', 'Test::index');
 $routes->get('/list_project', 'Home::project');

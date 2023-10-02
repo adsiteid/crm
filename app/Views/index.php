@@ -163,7 +163,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
 
 
-    <div class="" style="background : #F5F7FF;">
+    <div class="d-none" style="background : #F5F7FF;">
         <div class="row align-items-center px-lg px-2 mb-lg-0 mb-3 " style="background : #F5F7FF;">
 
             <div class="col-4 col-lg-2 col-md-6 mb-lg-4 mb-1 p-1 ">

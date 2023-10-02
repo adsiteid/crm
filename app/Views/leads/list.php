@@ -66,7 +66,44 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 ?>
 
 
+<div class="card my-3 d-lg-none d-block" style="background-image: url(' <?= base_url() ?>document/app_image/images/bg-earnings.png'); background-repeat : no-repeat; background-size : cover;">
+    <div class="col p-4">
+        <div class="row">
+            <div class="col-8">
+                <h6 class="text-white small">Total Income</h6>
+                <h4 class="text-white"> <strong>
+                        Rp.
+                        <?php
+                        $booking = 0;
+                        foreach ($leadsBooking->getResultArray() as $cb) :
+                            $booking += $cb['booking'];
+                        endforeach;
 
+                        $reserve = 0;
+                        foreach ($leadsReserve->getResultArray() as $cr) :
+                            $reserve += $cr['reserve'];
+                        endforeach;
+
+                        echo $reserve + $booking;
+
+                        ?>
+
+                    </strong></h4>
+            </div>
+            <div class="col-4 d-flex justify-content-end align-items-center">
+                <a href="<?= base_url(); ?>reportleads/30" type="button" class="rounded-circle bg-white text-center pt-1" style="width:30px; height:30px;">
+                    <i class="ti-angle-right text-primary small"></i>
+                </a>
+            </div>
+        </div>
+
+        <hr style="border-width:1;color:#fff; background-color:#fff;">
+
+        <h6 class="text-white small">Total Deals :
+            <?= $leadsDeal->getNumRows(); ?>
+        </h6>
+    </div>
+</div>
 
 
 
