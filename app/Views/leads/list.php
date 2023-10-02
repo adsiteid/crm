@@ -250,8 +250,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
         <div class=" d-flex align-items-center justify-content-between pb-3 ">
             <div class=" p-0">
-                <span class="small d-lg-none d-block text-muted"><i class="mdi mdi-calendar"></i><?= $days; ?></span>
-                <!-- <span class="small d-lg-none d-block text-muted"><?= $title . ' - ' . $leads->getNumrows(); ?></span> -->
+                
 
                 <form action="<?= base_url(); ?>search_leads" method="post" class=" d-lg-block d-none  form-inline mt-0  navbar-search">
                     <div class="input-group">
@@ -312,8 +311,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
             </div>
         <?php endif; ?>
 
-        <span class="small d-lg-block d-none text-muted"><i class="mdi mdi-calendar"></i><?= $days; ?></span>
-
+      
         <div class="table-responsive">
             <table class="table  table-hover">
                 <!-- table-striped -->
