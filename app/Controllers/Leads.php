@@ -580,7 +580,7 @@ class Leads extends BaseController
             'project' => $this->showproject,
             'new' => $new,
 			'days'=> "$startDate - $endDate",
-			'title' => 'Leads'
+			'title' => "$startDate - $endDate"
 		];
 
         return view('leads/list', $data);
@@ -641,7 +641,7 @@ class Leads extends BaseController
             'level' => $level,
             'new' => $new,
 			'days'=> "Search Result",
-			'title' => 'Search'
+			'title' => 'Search Result'
 		];
 
         return view('leads/list', $data);
