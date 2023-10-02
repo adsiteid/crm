@@ -108,9 +108,9 @@ class Home extends BaseController
 		$data = [
 			'all' => $all,
 			'new' => $new,
-			'contacted' => $contacted,
 			'close' => $close,
 			'pending' => $pending,
+			'contacted' => $contacted,
 			'visit' => $visit,
 			'deal' => $deal,
 			'leadsReserve' => $leadsReserve,

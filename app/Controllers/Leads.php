@@ -83,6 +83,11 @@ class Leads extends BaseController
         // if (in_groups('admin')) :
         $leads = $this->showleads->all();
         $new = $this->showleads->new();
+        $contacted = $this->showleads->contacted();
+        $close = $this->showleads->close();
+        $pending = $this->showleads->pending();
+        $visit = $this->showleads->visit();
+        $deal = $this->showleads->deal();
         // endif;
 
         //     if (in_groups('users')) :
@@ -128,6 +133,11 @@ class Leads extends BaseController
             'leadsDeal' => $leadsDeal,
             'project' => $this->showproject,
             'new' => $new,
+            'close' => $close,
+            'pending' => $pending,
+            'contacted' => $contacted,
+            'visit' => $visit,
+            'deal' => $deal,
             'groups' => $this->showgroupsales,
             'days' => 'Last 30 Days',
             'title' => 'Last 30 Days'
@@ -144,6 +154,11 @@ class Leads extends BaseController
         // if (in_groups('admin')) :
             $leads = $this->showleads->new();
             $new = $this->showleads->new();
+            $contacted = $this->showleads->contacted();
+            $close = $this->showleads->close();
+            $pending = $this->showleads->pending();
+            $visit = $this->showleads->visit();
+            $deal = $this->showleads->deal();
         // endif;
 
         //     if (in_groups('users')) :
@@ -188,6 +203,11 @@ class Leads extends BaseController
             'leadsDeal' => $leadsDeal,
             'project' => $this->showproject,
             'new' => $new,
+            'close' => $close,
+            'pending' => $pending,
+            'contacted' => $contacted,
+            'visit' => $visit,
+            'deal' => $deal,
             'groups' => $this->showgroupsales,
             'days'=> 'Last 30 Days',
             'title' => 'New'
@@ -202,6 +222,11 @@ class Leads extends BaseController
         // if (in_groups('admin')) :
             $leads = $this->showleads->contacted();
             $new = $this->showleads->new();
+            $contacted = $this->showleads->contacted();
+            $close = $this->showleads->close();
+            $pending = $this->showleads->pending();
+            $visit = $this->showleads->visit();
+            $deal = $this->showleads->deal();
         // endif;
 
         //     if (in_groups('users')) :
@@ -245,6 +270,11 @@ class Leads extends BaseController
             'leadsDeal' => $leadsDeal,
             'project' => $this->showproject,
             'new' => $new,
+            'close' => $close,
+            'pending' => $pending,
+            'contacted' => $contacted,
+            'visit' => $visit,
+            'deal' => $deal,
             'days'=> 'Last 30 Days',
             'title' => 'Contacted'
         ];
@@ -257,6 +287,11 @@ class Leads extends BaseController
         // if (in_groups('admin')) :
             $leads = $this->showleads->visit();
             $new = $this->showleads->new();
+            $contacted = $this->showleads->contacted();
+            $close = $this->showleads->close();
+            $pending = $this->showleads->pending();
+            $visit = $this->showleads->visit();
+            $deal = $this->showleads->deal();
         // endif;
 
         //     if (in_groups('users')) :
@@ -300,6 +335,11 @@ class Leads extends BaseController
             'leadsDeal' => $leadsDeal,
             'project' => $this->showproject,
             'new' => $new,
+            'close' => $close,
+            'pending' => $pending,
+            'contacted' => $contacted,
+            'visit' => $visit,
+            'deal' => $deal,
             'days'=> 'Last 30 Days',
             'title' => 'Visit'
         ];
@@ -312,6 +352,11 @@ class Leads extends BaseController
         // if (in_groups('admin')) :
             $leads = $this->showleads->deal();
             $new = $this->showleads->new();
+            $contacted = $this->showleads->contacted();
+            $close = $this->showleads->close();
+            $pending = $this->showleads->pending();
+            $visit = $this->showleads->visit();
+            $deal = $this->showleads->deal();
         // endif;
 
         //     if(in_groups('users')) :
@@ -354,6 +399,11 @@ class Leads extends BaseController
             'leadsDeal' => $leadsDeal,
             'project' => $this->showproject,
             'new' => $new,
+            'close' => $close,
+            'pending' => $pending,
+            'contacted' => $contacted,
+            'visit' => $visit,
+            'deal' => $deal,
             'days'=> 'Last 30 Days',
             'title' => 'Deal'
         ];
@@ -366,6 +416,11 @@ class Leads extends BaseController
         // if (in_groups('admin')) :
             $leads = $this->showleads->close();
             $new = $this->showleads->new();
+            $contacted = $this->showleads->contacted();
+            $close = $this->showleads->close();
+            $pending = $this->showleads->pending();
+            $visit = $this->showleads->visit();
+            $deal = $this->showleads->deal();
         // endif;
 
         //     if (in_groups('users')) :
@@ -409,6 +464,11 @@ class Leads extends BaseController
             'leadsDeal' => $leadsDeal,
             'project' => $this->showproject,
             'new' => $new,
+            'close' => $close,
+            'pending' => $pending,
+            'contacted' => $contacted,
+            'visit' => $visit,
+            'deal' => $deal,
             'days'=> 'Last 30 Days',
             'title' => 'Close'
         ];
@@ -421,6 +481,11 @@ class Leads extends BaseController
         // if (in_groups('admin')) :
             $leads = $this->showleads->pending();
             $new = $this->showleads->new();
+            $contacted = $this->showleads->contacted();
+            $close = $this->showleads->close();
+            $pending = $this->showleads->pending();
+            $visit = $this->showleads->visit();
+            $deal = $this->showleads->deal();
         // endif;
 
         //     if (in_groups('users')) :
@@ -464,6 +529,11 @@ class Leads extends BaseController
             'leadsDeal' => $leadsDeal,
             'project' => $this->showproject,
             'new' => $new,
+            'close' => $close,
+            'pending' => $pending,
+            'contacted' => $contacted,
+            'visit' => $visit,
+            'deal' => $deal,
             'days'=> 'Last 30 Days',
             'title' => 'Pending'
         ];
@@ -478,6 +548,11 @@ class Leads extends BaseController
         // if (in_groups('admin')) :
             $leads = $this->showleads->IndexFilter($days);
             $new = $this->showleads->newFilter($days);
+            $contacted = $this->showleads->contactedFilter($days);
+            $close = $this->showleads->closeFilter($days);
+            $pending = $this->showleads->pendingFilter($days);
+            $visit = $this->showleads->visitFilter($days);
+            $deal = $this->showleads->dealFilter($days);
         // endif;
 
         // if (in_groups('users')) :
@@ -520,6 +595,11 @@ class Leads extends BaseController
             'leadsDeal' => $leadsDeal,
             'project' => $this->showproject,
             'new' => $new,
+            'close' => $close,
+            'pending' => $pending,
+            'contacted' => $contacted,
+            'visit' => $visit,
+            'deal' => $deal,
             'days' => "Last $days Days",
             'title' => "Last $days Days"
         ];
@@ -538,6 +618,11 @@ class Leads extends BaseController
         // if (in_groups('admin')) :
             $leads = $this->showleads->rangeList($startDate, $endDate);
             $new = $this->showleads->newRange($startDate, $endDate);
+            $contacted = $this->showleads->contactedRange($startDate, $endDate);
+            $close = $this->showleads->closeRange($startDate, $endDate);
+            $pending = $this->showleads->pendingRange($startDate, $endDate);
+            $visit = $this->showleads->visitRange($startDate, $endDate);
+            $deal = $this->showleads->dealRange($startDate, $endDate);
         // endif;
 
 
@@ -579,6 +664,11 @@ class Leads extends BaseController
             'leadsDeal' => $leadsDeal,
             'project' => $this->showproject,
             'new' => $new,
+            'close' => $close,
+            'pending' => $pending,
+            'contacted' => $contacted,
+            'visit' => $visit,
+            'deal' => $deal,
 			'days'=> "$startDate - $endDate",
 			'title' => "$startDate - $endDate"
 		];
@@ -596,6 +686,11 @@ class Leads extends BaseController
         // if (in_groups('admin')) :
             $leads = $this->showleads->search_leads($search);
             $new =  $this->showleads->new();
+            $contacted = $this->showleads->contacted();
+            $close = $this->showleads->close();
+            $pending = $this->showleads->pending();
+            $visit = $this->showleads->visit();
+            $deal = $this->showleads->deal();
             $level = user()->level;
         // endif;
 
@@ -640,6 +735,11 @@ class Leads extends BaseController
             'project' => $this->showproject,
             'level' => $level,
             'new' => $new,
+            'close' => $close,
+            'pending' => $pending,
+            'contacted' => $contacted,
+            'visit' => $visit,
+            'deal' => $deal,
 			'days'=> "Search Result",
 			'title' => 'Search Result'
 		];

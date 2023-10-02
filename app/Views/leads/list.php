@@ -105,7 +105,131 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
     </div>
 </div>
 
+<style>
+    .swiper-wrapper {
+        position: relative;
+        width: 100%;
+        height: 65px !important;
+    }
+</style>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
+
+<div class="swiper-wrapper d-lg-none d-block mb-3">
+
+    <div class="swiper-container">
+
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+                <a href="<?= base_url(); ?>leads/new" class="card rounded">
+                    <div class=" d-flex align-items-center justify-content-between p-3 ">
+
+                        <div class="text-lg-left ">
+                            <h6 class="text-muted font-semibold mb-1 " style="font-size:10px;">New</h6>
+                            <h4 class="fw-bold fs-6 mb-0 "><?= $new->getNumRows(); ?></h4>
+                        </div>
+
+                        <i class="ti-import text-success d-lg-none d-block btn-inverse-success p-2 rounded" style="font-size: 11px;"></i>
+
+                    </div>
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="<?= base_url(); ?>leads/close" class="card rounded">
+                    <div class=" d-flex align-items-center justify-content-between p-3 ">
+
+                        <div class="text-lg-left ">
+                            <h6 class="text-muted font-semibold mb-1" style="font-size:10px;">Close</h6>
+                            <h4 class="fw-bold fs-6 mb-0 "><?= $close->getNumRows(); ?></h4>
+                        </div>
+
+                        <i class="ti-trash text-muted d-lg-none d-block btn-inverse-secondary p-2 rounded" style="font-size: 12px; "></i>
+
+                    </div>
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="<?= base_url(); ?>leads/pending" class="card rounded">
+                    <div class=" d-flex align-items-center justify-content-between p-3 ">
+
+                        <div class="text-lg-left ">
+                            <h6 class="text-muted font-semibold mb-1" style="font-size:10px;">Pending</h6>
+                            <h4 class="fw-bold fs-6 mb-0"><?= $pending->getNumRows(); ?></h4>
+                        </div>
+
+                        <i class="ti-time text-primary d-lg-none d-block btn-inverse-primary p-2  rounded ml-1" style="font-size: 12px; width:29px; height:29px;"></i>
+
+                    </div>
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="<?= base_url(); ?>leads/contacted" class="card rounded ">
+                    <div class=" d-flex align-items-center justify-content-between p-3 ">
+
+                        <div class="text-lg-left ">
+                            <h6 class="text-muted font-semibold mb-1" style="font-size:10px;">Contacted</h6>
+                            <h4 class="fw-bold fs-6 mb-0"><?= $contacted->getNumRows(); ?></h4>
+                        </div>
+
+                        <i class="ti-comment-alt text-warning d-lg-none p-2 d-block btn-inverse-warning rounded ml-2" style="font-size: 13px; width:29px; height:29px;"></i>
+
+                    </div>
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="<?= base_url(); ?>leads/visit" class="card rounded">
+                    <div class=" d-flex align-items-center justify-content-between p-3 ">
+
+                        <div class="text-lg-left ">
+                            <h6 class="text-muted font-semibold mb-1" style="font-size:10px;">Visit</h6>
+                            <h4 class="fw-bold fs-6 mb-0"><?= $visit->getNumRows(); ?></h4>
+                        </div>
+
+                        <i class="ti-location-pin text-info d-lg-none d-block btn-inverse-info rounded p-2" style="font-size: 13px;"></i>
+
+                    </div>
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="<?= base_url(); ?>leads/deal" class="card rounded ">
+                    <div class=" d-flex align-items-center justify-content-between p-3 ">
+
+                        <div class="text-lg-left ">
+                            <h6 class="text-muted font-semibold mb-1 " style="font-size:10px;">Deal</h6>
+                            <h4 class="fw-bold fs-6 mb-0"><?= $deal->getNumRows(); ?></h4>
+                        </div>
+
+                        <i class="ti-crown text-danger d-lg-none d-block btn-inverse-danger rounded p-2" style="font-size: 13px;"></i>
+
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- If we need pagination -->
+        <!--       <div class="swiper-pagination"></div> -->
+    </div>
+
+</div>
+
+
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 2.5,
+        spaceBetween: 10,
+        freeMode: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+</script>
 
 
 <div class="card">
