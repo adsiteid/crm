@@ -360,8 +360,8 @@
 
 
                     <div class="row">
-                        <div class="col-lg-4 col-12 mb-lg-0 mb-4">
-                            <div class=""> <!-- col-2 data leads -->
+                        <!-- <div class="col-lg-4 col-12 mb-lg-0 mb-4">
+                            <div class="">
                                 <p style="font-size:12px;" class="mb-1">GM</p>
                                 <h6 style="font-size:13px;" class="mb-3">
                                     <a class=" mb-3" href="<?= base_url(); ?>user/<?= $row['general_manager']; ?>">
@@ -400,9 +400,9 @@
                                 </h6>
 
                             </div>
-                        </div>
+                        </div> -->
 
-                        <div class="col-lg-4 col-12 ">
+                        <div class="col-lg-6 col-12 ">
 
 
                             <div>
@@ -439,7 +439,7 @@
 
                         </div>
 
-                        <div class="col-lg-4 col-12">
+                        <div class="col-lg-6 col-12">
 
                             <!-- <p style="font-size:12px;" class="mb-2"> Action <span style="color:red">* </span> </p>
                                 <div class="dropdown mb-3 border border-weight-1 rounded-1 border-secondary">
