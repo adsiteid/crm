@@ -729,7 +729,7 @@
                                 <div id="addIcon" class="material-icons py-2" style="font-size: 20px; color:#fff;">+</div>
                             </span>
                         </a>
-                        <a href="<?= base_url("/leads/all") ?>" class="col d-flex justify-content-center">
+                        <a href="<?= base_url("/user/agent") ?>" class="col d-flex justify-content-center">
                             <span class="icon-holder">
                                 <i class="ti-id-badge menu-icon " style="font-size: large;"></i>
                             </span>
