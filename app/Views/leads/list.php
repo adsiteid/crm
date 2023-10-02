@@ -36,6 +36,12 @@
     .simple-pagination .next.current {
         background: #fff;
     }
+
+    .swiper-wrapper {
+        position: relative;
+        width: 100%;
+        height: 63px !important;
+    }
 </style>
 
 
@@ -60,6 +66,11 @@ function gantiformat($nomorhp)
     return $nomorhp;
 }
 ?>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
+
 <?php
 $now = date('Y/m/d');
 $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
@@ -105,17 +116,9 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
     </div>
 </div>
 
-<style>
-    .swiper-wrapper {
-        position: relative;
-        width: 100%;
-        height: 65px !important;
-    }
-</style>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
+
+
 
 <div class="swiper-wrapper d-lg-none d-block mb-3">
 
@@ -213,23 +216,6 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
     </div>
 
 </div>
-
-
-<script>
-    var swiper = new Swiper('.swiper-container', {
-        slidesPerView: 2.5,
-        spaceBetween: 10,
-        freeMode: true,
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-    });
-</script>
 
 
 <div class="card">
@@ -602,6 +588,21 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 </script>
 
 
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 2.5,
+        spaceBetween: 10,
+        freeMode: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+</script>
 
 
 
