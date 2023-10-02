@@ -276,7 +276,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
 
                 <div class="d-lg-flex d-none">
-                    <a href="<?= base_url() ?>leads/all" type="button" class="col btn <?= ($title == "All") ? 'btn-primary' : 'btn-light'; ?> rounded mr-1"> All </a>
+                    <a href="<?= base_url() ?>leads/all" type="button" class="col btn <?= ($title == "Last 30 Days") ? 'btn-primary' : 'btn-light'; ?> rounded mr-1"> All </a>
                     <a href="<?= base_url() ?>leads/new" type="button" class="col btn  <?= ($title == "New") ? 'btn-primary' : 'btn-light'; ?> rounded mr-1"> New </a>
                     <a href="<?= base_url() ?>leads/close" type=" button" class="col btn <?= ($title == "Close") ? 'btn-primary' : 'btn-light'; ?>  rounded mr-1"> Close </a>
                     <a href="<?= base_url() ?>leads/pending" type="button" class="col btn <?= ($title == "Pending") ? 'btn-primary' : 'btn-light'; ?>  rounded mr-1"> Pending </a>
