@@ -41,6 +41,7 @@
         position: relative;
         width: 100%;
         height: 63px !important;
+        /* height: 45px !important; */
     }
 </style>
 
@@ -75,6 +76,30 @@ function gantiformat($nomorhp)
 $now = date('Y/m/d');
 $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 ?>
+
+
+<div class="d-lg-none d-flex align-items-center justify-content-between mb-lg-1 pb-3 pt-0 mt-0 ">
+    <div class="col-5 p-0">
+        <p class="mb-0 text-muted" style="font-size:12px;">Welcome Back !</p>
+        <h5 class="mb-0 text-primary d-lg-block d-none"><?= user()->fullname; ?></h5>
+        <h5 class="mb-0 text-primary d-lg-none d-block"><?= user()->fullname; ?></h5>
+    </div>
+
+    <div class="d-flex p-0">
+
+        <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+            <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
+                <i class="mdi mdi-calendar"></i><?= $days; ?>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                <a class="dropdown-item" href="<?= base_url(); ?>getleads/90">Last 90 Days</a>
+                <a class="dropdown-item" href="<?= base_url(); ?>getleads/30">Last 30 Days</a>
+                <a class="dropdown-item" href="<?= base_url(); ?>getleads/7">Last 7 Days</a>
+                <a type="button" class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRange" aria-controls="offcanvasRange">Custom Range</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <div class="card my-3 d-lg-none d-block" style="background-image: url(' <?= base_url() ?>document/app_image/images/bg-earnings.png'); background-repeat : no-repeat; background-size : cover;">
@@ -117,7 +142,38 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 </div>
 
 
+<!-- <div class="swiper-wrapper d-lg-none d-block mb-3">
 
+    <div class="swiper-container">
+
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+                <a href="<?= base_url() ?>leads/all" type="button" class="col px-0 btn <?= ($title == "Last 30 Days") ? 'btn-primary' : 'btn-light bg-white'; ?> rounded mr-1"> All </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="<?= base_url() ?>leads/new" type="button" class="col px-0 btn  <?= ($title == "New") ? 'btn-primary' : 'btn-light bg-white'; ?> rounded mr-1"> New </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="<?= base_url() ?>leads/close" type=" button" class="col px-0 btn <?= ($title == "Close") ? 'btn-primary' : 'btn-light bg-white'; ?>  rounded mr-1"> Close </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="<?= base_url() ?>leads/pending" type="button" class="col px-0 btn <?= ($title == "Pending") ? 'btn-primary' : 'btn-light bg-white'; ?>  rounded mr-1"> Pending </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="<?= base_url() ?>leads/contacted" type="button" class="col px-0 btn <?= ($title == "Contacted") ? 'btn-primary' : 'btn-light bg-white'; ?>  rounded mr-1"> Contacted </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="<?= base_url() ?>leads/visit" type="button" class="col px-0 btn <?= ($title == "Visit") ? 'btn-primary' : 'btn-light bg-white'; ?> rounded mr-1"> Visit </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="<?= base_url() ?>leads/deal" type="button" class="col px-0 btn <?= ($title == "Deal") ? 'btn-primary' : 'btn-light bg-white'; ?> rounded mr-1"> Deal </a>
+            </div>
+        </div>
+        
+    </div>
+
+</div> -->
 
 
 <div class="swiper-wrapper d-lg-none d-block mb-3">
@@ -211,11 +267,11 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                 </a>
             </div>
         </div>
-        <!-- If we need pagination -->
-        <!--       <div class="swiper-pagination"></div> -->
+
     </div>
 
 </div>
+
 
 
 <div class="card">
@@ -250,7 +306,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
         <div class=" d-flex align-items-center justify-content-between pb-3 ">
             <div class=" p-0">
-                
+
 
                 <form action="<?= base_url(); ?>search_leads" method="post" class=" d-lg-block d-none  form-inline mt-0  navbar-search">
                     <div class="input-group">
@@ -311,7 +367,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
             </div>
         <?php endif; ?>
 
-      
+
         <div class="table-responsive">
             <table class="table  table-hover">
                 <!-- table-striped -->
@@ -588,7 +644,9 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
 <script>
     var swiper = new Swiper('.swiper-container', {
+        // slidesPerView: 3.2,
         slidesPerView: 2.5,
+        // spaceBetween: 6,
         spaceBetween: 10,
         freeMode: true,
         pagination: {

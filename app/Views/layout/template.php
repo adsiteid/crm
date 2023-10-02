@@ -719,7 +719,7 @@
                                 <i class="icon-grid menu-icon"></i>
                             </span>
                         </a>
-                        <a href="<?= base_url("/reportleads/30") ?>" class="col d-flex justify-content-center">
+                        <a href="<?= base_url("/reports/30") ?>" class="col d-flex justify-content-center">
                             <span class="icon-holder">
                                 <i class="icon-bar-graph menu-icon"></i>
                             </span>

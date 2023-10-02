@@ -90,6 +90,7 @@ $routes->post('/save_file/(:num)', 'CMS::save_file/$1');
 
 // REPORT
 // $routes->get('/report/chart', 'Report::chart');
+$routes->get('/reports/(:num)', 'Reports::index/$1');
 $routes->get('/report/leads_subholding','Report::subholding');
 $routes->get('/report/leads_project', 'Report::project');
 $routes->get('/report/report_sales', 'Report::sales');
