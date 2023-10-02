@@ -521,7 +521,7 @@ class Leads extends BaseController
             'project' => $this->showproject,
             'new' => $new,
             'days' => "Last $days Days",
-            'title' => 'Leads'
+            'title' => "Last $days Days"
         ];
         return view('leads/list', $data);
     }
