@@ -155,25 +155,25 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
         <div class="swiper-wrapper">
 
             <div class="swiper-slide">
-                <a href="<?= base_url() ?>leads/all" type="button" class=" col px-0 btn  <?= ($title == "Last 30 Days") ? 'btn-primary' : 'btn-light bg-white'; ?> rounded mr-1 small"> All </a>
+                <a href="<?= base_url() ?>leads/all" type="button" class=" col px-0 btn  <?= ($title == "Last 30 Days") ? 'btn-primary' : 'btn-light bg-white'; ?> rounded mr-1 small" <?= ($title == "Last 30 Days" || $title == "Last 90 Days" || $title == "Last 7 Days") ? 'autofocus' : ''; ?>> All </a>
             </div>
             <div class="swiper-slide">
-                <a href="<?= base_url() ?>leads/new" type="button" class="col px-0 btn  <?= ($title == "New") ? 'btn-primary' : 'btn-light bg-white'; ?> rounded mr-1 small"> New </a>
+                <a href="<?= base_url() ?>leads/new" type="button" class="col px-0 btn  <?= ($title == "New") ? 'btn-primary' : 'btn-light bg-white'; ?> rounded mr-1 small" <?= ($title == "New") ? 'autofocus' : ''; ?>> New </a>
             </div>
             <div class="swiper-slide">
-                <a href="<?= base_url() ?>leads/close" type=" button" class="col px-0 btn <?= ($title == "Close") ? 'btn-primary' : 'btn-light bg-white'; ?>  rounded mr-1 small"> Close </a>
+                <a href="<?= base_url() ?>leads/close" type=" button" class="col px-0 btn <?= ($title == "Close") ? 'btn-primary' : 'btn-light bg-white'; ?>  rounded mr-1 small" <?= ($title == "Close") ? 'autofocus' : ''; ?>> Close </a>
             </div>
             <div class="swiper-slide">
-                <a href="<?= base_url() ?>leads/pending" type="button" class="col px-0 btn <?= ($title == "Pending") ? 'btn-primary' : 'btn-light bg-white'; ?>  rounded mr-1 small"> Pending </a>
+                <a href="<?= base_url() ?>leads/pending" type="button" class="col px-0 btn <?= ($title == "Pending") ? 'btn-primary' : 'btn-light bg-white'; ?>  rounded mr-1 small" <?= ($title == "Pending") ? 'autofocus' : ''; ?>> Pending </a>
             </div>
             <div class="swiper-slide">
-                <a href="<?= base_url() ?>leads/contacted" type="button" class="col px-0 btn <?= ($title == "Contacted") ? 'btn-primary' : 'btn-light bg-white'; ?>  rounded mr-1 small"> Contacted </a>
+                <a href="<?= base_url() ?>leads/contacted" type="button" class="col px-0 btn <?= ($title == "Contacted") ? 'btn-primary' : 'btn-light bg-white'; ?>  rounded mr-1 small" <?= ($title == "Contacted") ? 'autofocus' : ''; ?>> Contacted </a>
             </div>
             <div class="swiper-slide">
-                <a href="<?= base_url() ?>leads/visit" type="button" class="col px-0 btn <?= ($title == "Visit") ? 'btn-primary' : 'btn-light bg-white'; ?> rounded mr-1 small"> Visit </a>
+                <a href="<?= base_url() ?>leads/visit" type="button" class="col px-0 btn <?= ($title == "Visit") ? 'btn-primary' : 'btn-light bg-white'; ?> rounded mr-1 small" <?= ($title == "Visit") ? 'autofocus' : ''; ?>> Visit </a>
             </div>
             <div class="swiper-slide">
-                <a href="<?= base_url() ?>leads/deal" type="button" class="col px-0 btn <?= ($title == "Deal") ? 'btn-primary' : 'btn-light bg-white'; ?> rounded mr-1 small"> Deal </a>
+                <a href="<?= base_url() ?>leads/deal" type="button" class="col px-0 btn <?= ($title == "Deal") ? 'btn-primary' : 'btn-light bg-white'; ?> rounded mr-1 small" <?= ($title == "Deal") ? 'autofocus' : ''; ?>> Deal </a>
             </div>
         </div>
 
