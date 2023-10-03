@@ -40,8 +40,8 @@
     .swiper-wrapper {
         position: relative;
         width: 100%;
-        height: 63px !important;
-        /* height: 45px !important; */
+        /* height: 63px !important; */
+        height: 45px !important;
     }
 </style>
 
@@ -142,7 +142,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 </div>
 
 
-<!-- <div class="swiper-wrapper d-lg-none d-block mb-3">
+<div class="swiper-wrapper d-lg-none d-block mb-3">
 
     <div class="swiper-container">
 
@@ -173,10 +173,10 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
         
     </div>
 
-</div> -->
+</div>
 
 
-<div class="swiper-wrapper d-lg-none d-block mb-3">
+<!-- <div class="swiper-wrapper d-lg-none d-block mb-3">
 
     <div class="swiper-container">
 
@@ -270,7 +270,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
     </div>
 
-</div>
+</div> -->
 
 
 
@@ -644,10 +644,10 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
 <script>
     var swiper = new Swiper('.swiper-container', {
-        // slidesPerView: 3.2,
-        slidesPerView: 2.5,
-        // spaceBetween: 6,
-        spaceBetween: 10,
+        slidesPerView: 3.2,
+        // slidesPerView: 2.5,
+        spaceBetween: 6,
+        // spaceBetween: 10,
         freeMode: true,
         pagination: {
             el: '.swiper-pagination',
