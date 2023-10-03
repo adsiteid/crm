@@ -149,7 +149,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
         <div class="swiper-wrapper">
 
             <div class="swiper-slide">
-                <a href="<?= base_url() ?>leads/all" type="button" class=" <?= ($title == "Last 30 Days") ? 'btn-primary' : 'btn-light bg-white'; ?> rounded mr-1" > All </a>
+                <a href="<?= base_url() ?>leads/all" type="button" class=" col px-0 btn  <?= ($title == "Last 30 Days") ? 'btn-primary' : 'btn-light bg-white'; ?> rounded mr-1"> All </a>
             </div>
             <div class="swiper-slide">
                 <a href="<?= base_url() ?>leads/new" type="button" class="col px-0 btn  <?= ($title == "New") ? 'btn-primary' : 'btn-light bg-white'; ?> rounded mr-1"> New </a>
@@ -170,7 +170,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                 <a href="<?= base_url() ?>leads/deal" type="button" class="col px-0 btn <?= ($title == "Deal") ? 'btn-primary' : 'btn-light bg-white'; ?> rounded mr-1"> Deal </a>
             </div>
         </div>
-        
+
     </div>
 
 </div>
