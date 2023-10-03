@@ -424,14 +424,14 @@
                                 </a>
                             </li>
 
-                            <!-- <li class="d-lg-block d-none nav-item <?php if ($title == 'Leads' || $title == 'New') {
+                            <li class="d-lg-block d-none nav-item <?php if ($title == 'Leads' || $title == 'New') {
                                                                             echo "active";
                                                                         } ?>">
                                 <a class="nav-link" href="<?= base_url(); ?>leads/all">
                                     <i class="ti-id-badge menu-icon"></i>
                                     <span class="menu-title">Leads</span>
                                 </a>
-                            </li> -->
+                            </li>
 
 
                             <li class="d-lg-block d-none nav-item <?php if ($title == 'Report') {
@@ -719,7 +719,7 @@
                                 <i class="icon-grid menu-icon"></i>
                             </span>
                         </a>
-                        <a href="<?= base_url("/reports/30") ?>" class="col d-flex justify-content-center">
+                        <a href="<?= base_url("/reportleads/30") ?>" class="col d-flex justify-content-center">
                             <span class="icon-holder">
                                 <i class="icon-bar-graph menu-icon"></i>
                             </span>
@@ -729,7 +729,7 @@
                                 <div id="addIcon" class="material-icons py-2" style="font-size: 20px; color:#fff;">+</div>
                             </span>
                         </a>
-                        <a href="<?= base_url("/user/agent") ?>" class="col d-flex justify-content-center">
+                        <a href="<?= base_url("/leads/all") ?>" class="col d-flex justify-content-center">
                             <span class="icon-holder">
                                 <i class="ti-id-badge menu-icon " style="font-size: large;"></i>
                             </span>

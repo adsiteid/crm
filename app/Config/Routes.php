@@ -24,7 +24,7 @@ $routes->set404Override(
         return $controller->notfound();
     }
 );
-   
+
 
 // The Auto Routing (Legacy) is very dangerous. It is easy to create vulnerable apps
 // where controller filters or CSRF protection are bypassed.
@@ -40,7 +40,8 @@ $routes->set404Override(
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Leads::all');
+// $routes->get('/', 'Leads::all');
+$routes->get('/', 'Reports::index');
 $routes->get('/google-auth', 'Googleauth::index' , ['as' => $reservedRoutes['google-auth']]); 
 $routes->get('/test', 'Test::index');
 $routes->get('/list_project', 'Home::project');

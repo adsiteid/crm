@@ -49,6 +49,110 @@
     </div>
 </div> -->
 
+<!-- <div class="d-flex col-12 p-0">
+    <div class="col-10 pl-0 pr-2">
+        <form action="<?= base_url(); ?>search_leads" method="post" class=" d-lg-none  d-sm-block d-block  form-inline mb-2 mt-0  navbar-search">
+            <div class="input-group ">
+                <input type="text" class="form-control rounded-left small bg-white border-0" placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_leads">
+                <div class="input-group-append">
+                    <button class="btn btn-light bg-white border-0 rounded-right px-3" type="submit">
+                        <i class="icon-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-2 d-lg-none d-sm-block d-block px-0  ">
+        <a href="#" type="button" class="btn rounded bg-primary w-100 d-flex justify-content-center align-items-center" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilter" aria-controls="offcanvasBottom"><i class="ti-filter text-white"></i> </a>
+    </div>
+
+</div> -->
+
+<div class="d-lg-none d-flex align-items-center justify-content-between mb-lg-1 mb-0 pb-3 pt-0 mt-0 ">
+    <div class="col-10 p-0">
+        <p class="mb-0 text-muted" style="font-size:12px;">Welcome Back !</p>
+        <h5 class="mb-0 text-primary d-lg-block d-none"><?= user()->fullname; ?></h5>
+        <h5 class="mb-0 text-primary d-lg-none d-block"><?= user()->fullname; ?></h5>
+    </div>
+
+    <div class="col-2 d-lg-none d-sm-block d-block px-0  ">
+        <a href="#" type="button" class="btn btn-light bg-white rounded  w-100 d-flex justify-content-center align-items-center" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilter" aria-controls="offcanvasBottom"><i class="ti-filter "></i> </a>
+    </div>
+
+
+
+</div>
+
+
+<div class="card my-3 d-lg-none d-block" style="background-image: url(' <?= base_url() ?>document/app_image/images/bg-earnings.png'); background-repeat : no-repeat; background-size : cover;">
+    <div class="col p-4">
+        <div class="row">
+            <div class="col-8">
+                <h6 class="text-white small">Total Income</h6>
+                <h4 class="text-white"> <strong>
+                        Rp.
+                        <?php
+                        $bookingReport = 0;
+                        foreach ($leadsBooking->getResultArray() as $cbR) :
+                            $bookingReport += $cbR['booking'];
+                        endforeach;
+
+                        $reserveReport = 0;
+                        foreach ($leadsReserve->getResultArray() as $crR) :
+                            $reserveReport += $crR['reserve'];
+                        endforeach;
+
+                        echo $reserveReport + $bookingReport;
+
+                        ?>
+
+                    </strong></h4>
+            </div>
+            <div class="col-4 d-flex justify-content-end align-items-center">
+                <a href="<?= base_url(); ?>reportleads/30" type="button" class="rounded-circle bg-white text-center pt-1" style="width:30px; height:30px;">
+                    <i class="ti-angle-right text-primary small"></i>
+                </a>
+            </div>
+        </div>
+
+        <hr style="border-width:1;color:#fff; background-color:#fff;">
+
+        <h6 class="text-white small">Total Deals :
+            <?= $leadsDeal->getNumRows(); ?>
+        </h6>
+
+        <!-- <h6 class="text-white small">
+            Total Booking :
+            Rp. <?php
+                $total = 0;
+                foreach ($leadsBooking->getResultArray() as $cb) :
+                    $total += $cb['booking'];
+                endforeach;
+                echo $total;
+
+                ?>
+
+        </h6>
+        <h6 class="text-white small">
+            Total Reserve :
+            Rp. <?php
+                $total = 0;
+                foreach ($leadsReserve->getResultArray() as $cb) :
+                    $total += $cb['reserve'];
+                endforeach;
+                echo $total;
+
+                ?>
+
+        </h6> -->
+    </div>
+</div>
+
+
+
+
+
 <div class="">
     <div class="row align-items-center px-lg px-2 mb-lg-0 mb-3 ">
 
@@ -188,10 +292,10 @@
 
 <div class="row">
 
-    <div class="col-lg-4 col-12">
+    <div class="col-lg-4 col-12 d-lg-block d-none">
 
 
-        <!-- <div class="card mb-3 " style="background-image: url(' <?= base_url() ?>document/app_image/images/bg-earnings.png'); background-repeat : no-repeat; background-size : cover;">
+        <div class="card mb-3  py-4" style="background-image: url(' <?= base_url() ?>document/app_image/images/bg-earnings.png'); background-repeat : no-repeat; background-size : cover;">
             <div class="col p-4">
                 <div class="row">
                     <div class="col-8">
@@ -228,7 +332,7 @@
                     <?= $leadsDeal->getNumRows(); ?>
                 </h6>
             </div>
-        </div> -->
+        </div>
 
 
         <div class="row mt-lg-0 my-3 px-lg-2 px-0">
@@ -291,7 +395,7 @@
     <div class="col-lg-8 col-12">
 
         <div class="card rounded-4 mb-4">
-            <div class="card-header mb-4 d-flex align-items-center justify-content-between bg-transparent py-3">
+            <!-- <div class="card-header mb-4 d-flex align-items-center justify-content-between bg-transparent py-3">
                 <div>
                     <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
                         <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
@@ -316,8 +420,8 @@
                         <a type="button" class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Custom Range</a>
                     </div>
                 </div>
-            </div>
-            <div class="card-body">
+            </div> -->
+            <div class="card-body pt-2">
                 <!-- <div id="leads" class="mb-4"></div> -->
 
                 <!-- TABLE  -->
@@ -399,6 +503,55 @@
 
 
 
+<!-- OFFCANVAS BOTTOM -->
+
+<!-- <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Toggle bottom offcanvas</button> -->
+
+<div class="offcanvas offcanvas-bottom bg-light" style="height:43%;" tabindex="-1" id="offcanvasFilter" aria-labelledby="offcanvasBottomLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasBottomLabel">Filter Data</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body small">
+
+        <a href="<?= base_url(); ?>getleads/90" type=" button" class="btn btn-light bg-white w-100 mb-2">Last 90 Days</a>
+        <a href="<?= base_url(); ?>getleads/30" type="button" class="btn btn-light bg-white  w-100 mb-2">Last 30 Days</a>
+        <a href="<?= base_url(); ?>getleads/7" type="button" class="btn btn-light bg-white w-100 mb-2">Last 7 Days</a>
+        <a href="#" type="button" class="btn btn-light bg-white w-100 mb-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRange" aria-controls="offcanvasRange">Custom Range</a>
+
+    </div>
+</div>
+
+
+
+<div class="offcanvas offcanvas-bottom bg-light" style="height:43%;" tabindex="-1" id="offcanvasRange" aria-labelledby="offcanvasBottomLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasBottomLabel">Filter Data</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body small">
+        <form class=" form-inline navbar-search col-12" action="<?= base_url(); ?>range_list" method="post">
+            <div class="row">
+                <div class="col-12">
+                    <label class="mb-1">Date Start</label>
+                    <input type="date" class="form-control border-0 w-100 mb-3" name="date_start">
+                </div>
+                <div class="col-12">
+                    <label class="mb-1">Date End</label>
+                    <input type="date" class="form-control border-0 w-100 mb-3" name="date_end">
+                </div>
+
+                <div class="col-12">
+                    <button class="btn btn-primary w-100" type="submit">Filter</button>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<!-- END OF OFFCANVAS BOTTOM -->
 
 
 

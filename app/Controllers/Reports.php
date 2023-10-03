@@ -27,8 +27,10 @@ class Reports extends BaseController
 		$this->showgroupsales = new GroupSalesModel();
 	}
 
-	public function index($days)
+	public function index()
 	{
+
+		$days = 30;
 
 		$leads = $this->showleads->allFilter($days);
 
@@ -71,7 +73,7 @@ class Reports extends BaseController
 			'leadsReserve' => $leadsReserve,
 			'leadsBooking' => $leadsBooking,
 			'days' => "Last $days Days",
-			'title' => 'Report'
+			'title' => 'Dashboard'
 		];
 
 		return view('report/index', $data);
