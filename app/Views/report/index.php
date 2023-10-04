@@ -186,7 +186,7 @@
 
                         <i class="ti-trash text-muted d-lg-none d-block btn-inverse-secondary p-2 rounded" style="font-size: 12px; "></i>
 
-                        <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-2" style="font-size:10px;">Close</h6>
+                        <h6 class="text-muted font-semibold mb-lg-1 mb-0 pt-lg-0 pt-2" style="font-size:10px;">Closed</h6>
                         <h4 class="fw-bold fs-6 d-lg-block d-none"><?= $close->getNumRows(); ?></h4>
                         <p class="fw-bold text-muted d-lg-none d-block mb-lg-0 mb-2" style="font-size: 12px;"><?= $close->getNumRows(); ?></p>
                     </div>

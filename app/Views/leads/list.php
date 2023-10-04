@@ -161,7 +161,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                 <a href="<?= base_url() ?>leads/new" type="button" class="col px-0 btn  <?= ($title == "New") ? 'btn-primary' : 'btn-light bg-white'; ?> rounded mr-1 small"> New </a>
             </div>
             <div class="swiper-slide">
-                <a href="<?= base_url() ?>leads/close" type=" button" class="col px-0 btn <?= ($title == "Close") ? 'btn-primary' : 'btn-light bg-white'; ?>  rounded mr-1 small"> Close </a>
+                <a href="<?= base_url() ?>leads/close" type=" button" class="col px-0 btn <?= ($title == "Close") ? 'btn-primary' : 'btn-light bg-white'; ?>  rounded mr-1 small"> Closed </a>
             </div>
             <div class="swiper-slide">
                 <a href="<?= base_url() ?>leads/pending" type="button" class="col px-0 btn <?= ($title == "Pending") ? 'btn-primary' : 'btn-light bg-white'; ?>  rounded mr-1 small"> Pending </a>
@@ -340,7 +340,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                 <div class="d-lg-flex d-none">
                     <a href="<?= base_url() ?>leads/all" type="button" class="col btn  <?= ($title == "Last 30 Days") ? 'btn-primary' : 'btn-light'; ?> rounded mr-1"> All </a>
                     <a href="<?= base_url() ?>leads/new" type="button" class="col btn   <?= ($title == "New") ? 'btn-primary' : 'btn-light'; ?> rounded mr-1"> New </a>
-                    <a href="<?= base_url() ?>leads/close" type=" button" class="col  btn  <?= ($title == "Close") ? 'btn-primary' : 'btn-light'; ?>  rounded mr-1"> Close </a>
+                    <a href="<?= base_url() ?>leads/close" type=" button" class="col  btn  <?= ($title == "Close") ? 'btn-primary' : 'btn-light'; ?>  rounded mr-1"> Closed </a>
                     <a href="<?= base_url() ?>leads/pending" type="button" class="col btn <?= ($title == "Pending") ? 'btn-primary' : 'btn-light'; ?>  rounded mr-1"> Pending </a>
                     <a href="<?= base_url() ?>leads/contacted" type="button" class="col btn  <?= ($title == "Contacted") ? 'btn-primary' : 'btn-light'; ?>  rounded mr-1"> Contacted </a>
                     <a href="<?= base_url() ?>leads/visit" type="button" class="col btn  <?= ($title == "Visit") ? 'btn-primary' : 'btn-light'; ?> rounded mr-1"> Visit </a>
