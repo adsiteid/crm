@@ -140,7 +140,7 @@ class Leads extends BaseController
             'deal' => $deal,
             'groups' => $this->showgroupsales,
             'days' => 'Last 30 Days',
-            'title' => 'Last 30 Days'
+            'title' => 'Leads'
         ];
 
         return view('leads/list', $data);
@@ -601,7 +601,7 @@ class Leads extends BaseController
             'visit' => $visit,
             'deal' => $deal,
             'days' => "Last $days Days",
-            'title' => "Last $days Days"
+            'title' => 'Leads'
         ];
         return view('leads/list', $data);
     }
@@ -670,7 +670,7 @@ class Leads extends BaseController
             'visit' => $visit,
             'deal' => $deal,
 			'days'=> "$startDate - $endDate",
-			'title' => "$startDate - $endDate"
+			'title' => 'Leads'
 		];
 
         return view('leads/list', $data);
