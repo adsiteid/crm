@@ -125,7 +125,7 @@
 
 
 <div class="card rounded-4 mb-4">
-    <div class="card-header mb-4 d-flex align-items-center justify-content-between bg-transparent py-3">
+    <div class="card-header mb-4 d-lg-flex d-none align-items-center justify-content-between bg-transparent py-3  ">
         <div>
 
         </div>

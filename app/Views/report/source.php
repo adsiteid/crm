@@ -70,7 +70,7 @@
 
 
 <div class="card rounded-4 mb-4">
-    <div class="card-header mb-4 d-flex align-items-center justify-content-between bg-transparent py-3">
+    <div class="card-header mb-4 d-lg-flex d-none align-items-center justify-content-between bg-transparent py-3">
         <div>
             <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
                 <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
