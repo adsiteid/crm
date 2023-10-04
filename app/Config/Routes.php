@@ -40,9 +40,17 @@ $routes->set404Override(
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
+
+// HOME
 // $routes->get('/', 'Leads::all');
 $routes->get('/', 'Reports::index');
 // $routes->get('/', 'Home::index');
+$routes->get('/filter/(:num)', 'Reports::indexFilter/$1');
+$routes->post('/range', 'Reports::indexRange');
+
+
+
 $routes->get('/google-auth', 'Googleauth::index' , ['as' => $reservedRoutes['google-auth']]); 
 $routes->get('/test', 'Test::index');
 $routes->get('/list_project', 'Home::project');
@@ -58,8 +66,8 @@ $routes->get('/leads/pending', 'Leads::pending');
 
 $routes->get('/getleads/(:num)', 'Leads::indexFilter/$1');
 
-$routes->get('/home/(:num)', 'Home::indexFilter/$1');
-$routes->post('/range', 'Home::range');
+// $routes->get('/home/(:num)', 'Home::indexFilter/$1');
+// $routes->post('/range', 'Home::range');
 $routes->post('/range_list', 'Leads::rangeList');
 
 $routes->post('/search_leads', 'Leads::search_leads');

@@ -514,9 +514,9 @@
     </div>
     <div class="offcanvas-body small">
 
-        <a href="<?= base_url(); ?>getleads/90" type=" button" class="btn btn-light bg-white w-100 mb-2">Last 90 Days</a>
-        <a href="<?= base_url(); ?>getleads/30" type="button" class="btn btn-light bg-white  w-100 mb-2">Last 30 Days</a>
-        <a href="<?= base_url(); ?>getleads/7" type="button" class="btn btn-light bg-white w-100 mb-2">Last 7 Days</a>
+        <a href="<?= base_url(); ?>filter/90" type=" button" class="btn btn-light bg-white w-100 mb-2">Last 90 Days</a>
+        <a href="<?= base_url(); ?>filter/30" type="button" class="btn btn-light bg-white  w-100 mb-2">Last 30 Days</a>
+        <a href="<?= base_url(); ?>filter/7" type="button" class="btn btn-light bg-white w-100 mb-2">Last 7 Days</a>
         <a href="#" type="button" class="btn btn-light bg-white w-100 mb-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRange" aria-controls="offcanvasRange">Custom Range</a>
 
     </div>
@@ -530,7 +530,7 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body small">
-        <form class=" form-inline navbar-search col-12" action="<?= base_url(); ?>range_list" method="post">
+        <form class=" form-inline navbar-search col-12" action="<?= base_url(); ?>range" method="post">
             <div class="row">
                 <div class="col-12">
                     <label class="mb-1">Date Start</label>
