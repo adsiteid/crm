@@ -15,6 +15,42 @@
     }
 </script>
 
+<style>
+    .swiper-wrapper {
+        position: relative;
+        width: 100%;
+        /* height: 63px !important; */
+        height: 45px !important;
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
+
+
+<div class="swiper-wrapper d-lg-none d-block mb-3">
+
+    <div class="swiper-container">
+
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+                <a href="<?= base_url() ?>reportleads/30" type="button" class=" col px-0 btn  <?= ($title == "Leads Report") ? 'btn-primary' : 'btn-light bg-white'; ?> rounded mr-1 small"> Leads Report </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="<?= base_url() ?>report_project/30" type="button" class="col px-0 btn  <?= ($title == "Project Report") ? 'btn-primary' : 'btn-light bg-white'; ?> rounded mr-1 small"> Project Report </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="<?= base_url() ?>report_source/30" type=" button" class="col px-0 btn <?= ($title == "Source Report") ? 'btn-primary' : 'btn-light bg-white'; ?>  rounded mr-1 small"> Source Report </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
 <div class="card rounded-4 mb-4">
     <div class="card-header mb-4 d-flex align-items-center justify-content-between py-3 bg-transparent">
         <div>
@@ -271,6 +307,24 @@
     var chart = new ApexCharts(document.querySelector("#project-mobile"), options);
 
     chart.render();
+</script>
+
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 2.5,
+        // slidesPerView: 2.5,
+        spaceBetween: 6,
+        // spaceBetween: 10,
+        freeMode: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
 </script>
 
 <?php $this->endSection(); ?>

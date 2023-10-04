@@ -17,7 +17,18 @@
     }
 </script>
 
+<style>
+    .swiper-wrapper {
+        position: relative;
+        width: 100%;
+        /* height: 63px !important; */
+        height: 45px !important;
+    }
+</style>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
 
 <!-- <div class="row mt-lg-0 my-3 px-lg-2 px-0">
     <div class="col-lg-6 col-12 px-lg-2 px-3">
@@ -75,23 +86,33 @@
             </div> -->
 <!-- </div> -->
 
+<div class="swiper-wrapper d-lg-none d-block mb-3">
 
+    <div class="swiper-container">
+
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+                <a href="<?= base_url() ?>reportleads/30" type="button" class=" col px-0 btn  <?= ($title == "Leads Report") ? 'btn-primary' : 'btn-light bg-white'; ?> rounded mr-1 small"> Leads Report </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="<?= base_url() ?>report_project/30" type="button" class="col px-0 btn  <?= ($title == "Project Report") ? 'btn-primary' : 'btn-light bg-white'; ?> rounded mr-1 small"> Project Report </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="<?= base_url() ?>report_source/30" type=" button" class="col px-0 btn <?= ($title == "Source Report") ? 'btn-primary' : 'btn-light bg-white'; ?>  rounded mr-1 small"> Source Report </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 
 <div class="card rounded-4 mb-4">
     <div class="card-header mb-4 d-flex align-items-center justify-content-between bg-transparent py-3">
         <div>
-            <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
-                    <i class="mdi mdi-calendar"></i><?= $title; ?>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                    <a class="dropdown-item" href="<?= base_url(); ?>reportleads/30">Leads Report</a>
-                    <a class="dropdown-item" href="<?= base_url(); ?>report_project/30">Project Report</a>
-                    <a class="dropdown-item" href="<?= base_url(); ?>report_source/30">Source Report</a>
-                    
-                </div>
-            </div>
+            
         </div>
         <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
             <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
@@ -314,6 +335,25 @@
     var chart = new ApexCharts(document.querySelector("#leads"), options);
 
     chart.render();
+</script>
+
+
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 2.5,
+        // slidesPerView: 2.5,
+        spaceBetween: 6,
+        // spaceBetween: 10,
+        freeMode: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
 </script>
 
 
