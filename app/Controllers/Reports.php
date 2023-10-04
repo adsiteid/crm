@@ -73,7 +73,7 @@ class Reports extends BaseController
 			'leadsReserve' => $leadsReserve,
 			'leadsBooking' => $leadsBooking,
 			'days' => "Last $days Days",
-			'title' => 'Dashboard'
+			'title' => "Last $days Days"
 		];
 
 		return view('report/index', $data);
