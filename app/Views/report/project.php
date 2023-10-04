@@ -32,7 +32,7 @@
 <div class="d-lg-none d-flex align-items-center justify-content-between mb-lg-1 mb-3 pb-3 pt-0 mt-0 ">
     <div class="col-10 p-0">
         <p class="mb-1 text-muted" style="font-size:12px;">Update</p>
-        <h5 class="mb-0 text-primary d-lg-none d-block"><?php // $days; ?></h5>
+        <h5 class="mb-0 text-primary d-lg-none d-block"><?= $days; ?></h5>
     </div>
 
     <div class="col-2 d-lg-none d-sm-block d-block px-0  ">
@@ -173,6 +173,58 @@
     </div>
 </div>
 
+
+
+
+<!-- OFFCANVAS BOTTOM -->
+
+<!-- <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Toggle bottom offcanvas</button> -->
+
+<div class="offcanvas offcanvas-bottom bg-light" style="height:43%;" tabindex="-1" id="offcanvasFilter" aria-labelledby="offcanvasBottomLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasBottomLabel">Filter Data</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body small">
+
+        <a href="<?= base_url(); ?>report_project/90" type=" button" class="btn btn-light bg-white w-100 mb-2">Last 90 Days</a>
+        <a href="<?= base_url(); ?>report_project/30" type="button" class="btn btn-light bg-white  w-100 mb-2">Last 30 Days</a>
+        <a href="<?= base_url(); ?>report_project/7" type="button" class="btn btn-light bg-white w-100 mb-2">Last 7 Days</a>
+        <a href="#" type="button" class="btn btn-light bg-white w-100 mb-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRange" aria-controls="offcanvasRange">Custom Range</a>
+
+    </div>
+</div>
+
+
+
+
+
+<div class="offcanvas offcanvas-bottom bg-light" style="height:43%;" tabindex="-1" id="offcanvasRange" aria-labelledby="offcanvasBottomLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasBottomLabel">Filter Data</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body small">
+        <form class=" form-inline navbar-search col-12" action="<?= base_url(); ?>project_report_range" method="post">
+            <div class="row">
+                <div class="col-12">
+                    <label class="mb-1">Date Start</label>
+                    <input type="date" class="form-control border-0 w-100 mb-3" name="date_start">
+                </div>
+                <div class="col-12">
+                    <label class="mb-1">Date End</label>
+                    <input type="date" class="form-control border-0 w-100 mb-3" name="date_end">
+                </div>
+
+                <div class="col-12">
+                    <button class="btn btn-primary w-100" type="submit">Filter</button>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+</div>
 
 
 

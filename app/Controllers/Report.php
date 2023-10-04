@@ -813,6 +813,7 @@ class Report extends BaseController
 			'project' => $this->chartleads,
 			'projectid' => $this->showproject,
 			'filter' => $days,
+			'days' => "last $days Days",
 			'title' => 'Project Report'
 		];
 
@@ -871,6 +872,7 @@ class Report extends BaseController
 			'projectid' => $this->showproject,
 			'startDate' => $startDate,
 			'endDate'=> $endDate,
+			'days' => "$startDate - $endDate",
 			'title' => 'Project Report'
 		];
 
@@ -932,6 +934,7 @@ class Report extends BaseController
 			'source' => $this->chartleads,
 			'group' => $this->showgroupsales,
 			'count' => "$count",
+			'days' => "Last $count Days",
 			'title' => 'Source Report'
 		];
 
@@ -981,6 +984,7 @@ class Report extends BaseController
 			'startDate' => $startDate,
 			'endDate' => $endDate,
 			'count' => "$startDate - $endDate",
+			'days' => "$startDate - $endDate",
 			'title' => 'Source Report'
 		];
 
