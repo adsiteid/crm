@@ -147,6 +147,7 @@
     </div>
     <div class="card-body">
 
+
         <div id="chart"></div>
 
         <!-- BAR CHART -->
@@ -458,9 +459,9 @@
         dataLabels: {
             enabled: false
         },
-        stroke: {
-            curve: "straight"
-        },
+        // stroke: {
+        //     curve: "straight"
+        // },
         xaxis: {
             type: 'text',
             categories: ['New', 'Close', 'Pending', 'Contacted', 'Visit', 'Deal', 'Reserve', 'Booking', ]
