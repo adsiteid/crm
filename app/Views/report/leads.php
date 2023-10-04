@@ -328,7 +328,7 @@
         }],
         xaxis: {
             type: 'text',
-            categories: ['Leads In', 'Close', 'Pending', 'Contacted', 'Visit', 'Deal', 'Reserve', 'Booking', ]
+            categories: ['New', 'Close', 'Pending', 'Contacted', 'Visit', 'Deal', 'Reserve', 'Booking', ]
         }
     }
 
