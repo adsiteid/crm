@@ -24,6 +24,10 @@
         /* height: 63px !important; */
         height: 45px !important;
     }
+
+    /* #chart {
+        max-width: 650px;
+    } */
 </style>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.min.css">
@@ -142,7 +146,11 @@
         </div>
     </div>
     <div class="card-body">
-        <div id="leads" class="mb-4"></div>
+
+        <div id="chart"></div>
+
+        <!-- BAR CHART -->
+        <!-- <div id="leads" class="mb-4"></div>  -->
 
         <!-- TABLE  -->
 
@@ -393,6 +401,78 @@
 
     chart.render();
 </script>
+
+
+
+<!-- CHART AREA -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://apexcharts.com/samples/assets/stock-prices.js"></script>
+
+<script>
+    var options = {
+        series: [{
+            data: [
+                <?= $leads->getNumRows(); ?>,
+                <?= $leadsClose->getNumRows(); ?>,
+                <?= $leadsPending->getNumRows(); ?>,
+                <?= $leadsContacted->getNumRows(); ?>,
+                <?= $leadsVisit->getNumRows(); ?>,
+                <?= $leadsDeal->getNumRows(); ?>,
+                <?= $leadsReserve->getNumRows(); ?>,
+                <?= $leadsBooking->getNumRows(); ?>,
+            ]
+        }],
+        // annotations: {
+        //     points: [{
+        //             x: 5,
+        //             y: 322,
+        //             label: {
+        //                 text: "Lowest: 322",
+        //                 offsetY: 2
+        //             },
+        //             image: {
+        //                 path: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flat_tick_icon.svg/512px-Flat_tick_icon.svg.png",
+        //                 width: undefined,
+        //                 height: undefined,
+        //                 offsetX: 0,
+        //                 offsetY: -18
+        //             }
+        //         },
+        //         {
+        //             x: 7,
+        //             y: 383,
+        //             label: {
+        //                 text: "Highest: 383",
+        //                 offsetY: 2
+        //             }
+        //         }
+        //     ]
+        // },
+        chart: {
+            height: 350,
+            type: "area",
+            zoom: {
+                enabled: false
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: "straight"
+        },
+        xaxis: {
+            type: 'text',
+            categories: ['New', 'Close', 'Pending', 'Contacted', 'Visit', 'Deal', 'Reserve', 'Booking', ]
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+</script>
+
+
+<!-- SWIPER -->
 
 
 <script>
