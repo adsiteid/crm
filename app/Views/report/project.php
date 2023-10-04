@@ -29,6 +29,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
 
 
+<div class="d-lg-none d-flex align-items-center justify-content-between mb-lg-1 mb-3 pb-3 pt-0 mt-0 ">
+    <div class="col-10 p-0">
+        <p class="mb-1 text-muted" style="font-size:12px;">Update</p>
+        <h5 class="mb-0 text-primary d-lg-none d-block"><?php // $days; ?></h5>
+    </div>
+
+    <div class="col-2 d-lg-none d-sm-block d-block px-0  ">
+        <a href="#" type="button" class="btn btn-light bg-white rounded  w-100 d-flex justify-content-center align-items-center" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilter" aria-controls="offcanvasBottom"><i class="ti-filter "></i> </a>
+    </div>
+
+</div>
+
+
 <div class="swiper-wrapper d-lg-none d-block mb-3">
 
     <div class="swiper-container">

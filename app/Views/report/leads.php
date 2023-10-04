@@ -30,6 +30,21 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
 
+
+
+<div class="d-lg-none d-flex align-items-center justify-content-between mb-lg-1 mb-3 pb-3 pt-0 mt-0 ">
+    <div class="col-10 p-0">
+        <p class="mb-1 text-muted" style="font-size:12px;">Update</p>
+        <h5 class="mb-0 text-primary d-lg-none d-block"><?= $days; ?></h5>
+    </div>
+
+    <div class="col-2 d-lg-none d-sm-block d-block px-0  ">
+        <a href="#" type="button" class="btn btn-light bg-white rounded  w-100 d-flex justify-content-center align-items-center" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilter" aria-controls="offcanvasBottom"><i class="ti-filter "></i> </a>
+    </div>
+
+</div>
+
+
 <!-- <div class="row mt-lg-0 my-3 px-lg-2 px-0">
     <div class="col-lg-6 col-12 px-lg-2 px-3">
         <div class="card mb-lg-0 mb-3">
@@ -112,7 +127,7 @@
 <div class="card rounded-4 mb-4">
     <div class="card-header mb-4 d-flex align-items-center justify-content-between bg-transparent py-3">
         <div>
-            
+
         </div>
         <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
             <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">

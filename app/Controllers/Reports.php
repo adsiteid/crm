@@ -73,7 +73,7 @@ class Reports extends BaseController
 			'leadsReserve' => $leadsReserve,
 			'leadsBooking' => $leadsBooking,
 			'days' => "Last $days Days",
-			'title' => "Last $days Days"
+			'title' => 'Dashboard'
 		];
 
 		return view('report/index', $data);
@@ -125,7 +125,7 @@ class Reports extends BaseController
 			'leadsReserve' => $leadsReserve,
 			'leadsBooking' => $leadsBooking,
 			'days' => "Last $days Days",
-			'title' => "Last $days Days"
+			'title' => 'Dashboard'
 		];
 
 		return view('report/index', $data);
@@ -181,7 +181,7 @@ class Reports extends BaseController
 				'leadsReserve' => $leadsReserve,
 				'leadsBooking' => $leadsBooking,
 				'days' => "$startDate - $endDate",
-				'title' => "$startDate - $endDate"
+				'title' => 'Dashboard'
 			];
 
 		return view('report/index', $data);
