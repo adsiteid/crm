@@ -50,9 +50,9 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
 <form action="<?= base_url(); ?>search_leads" method="post" class=" d-lg-none d-sm-none d-block  form-inline mr-auto ml-md-3 mb-4 mt-3  navbar-search">
     <div class="input-group ">
-        <input type="text" class="form-control rounded-left  small bg-white" placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_leads">
+        <input type="text" class="form-control rounded-left border-0  small bg-white" placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_leads">
         <div class="input-group-append">
-            <button class="btn btn-primary rounded-right px-3" type="submit">
+            <button class="btn btn-light bg-white rounded-right px-3" type="submit">
                 <i class="icon-search"></i>
             </button>
         </div>
