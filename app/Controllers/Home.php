@@ -322,7 +322,7 @@ class Home extends BaseController
 
 
 		$data = [
-				'new' => $new,
+			
 				'notifNew' => $notifNew,
 				'group' => $this->showgroupsales,
 				'project' => $this->showproject,
