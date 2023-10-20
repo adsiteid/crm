@@ -425,8 +425,8 @@
                             </li>
 
                             <li class="d-lg-block d-none nav-item <?php if ($title == 'Leads' || $title == 'New') {
-                                                                            echo "active";
-                                                                        } ?>">
+                                                                        echo "active";
+                                                                    } ?>">
                                 <a class="nav-link" href="<?= base_url(); ?>leads/all">
                                     <i class="ti-id-badge menu-icon"></i>
                                     <span class="menu-title">Leads</span>
@@ -434,9 +434,9 @@
                             </li>
 
 
-                            <li class="d-lg-block d-none nav-item <?php if ($title == "Leads Report" || $title == "Project Report"|| $title == "Report") {
+                            <li class="d-lg-block d-none nav-item <?php if ($title == "Leads Report" || $title == "Project Report" || $title == "Report") {
                                                                         echo "active";
-                                                                    } ?>">
+                                                                    } ?> <?php echo $title == 'Leads Report' ? "active" : ""; ?>">
                                 <a class="nav-link" data-toggle="collapse" href="#report" aria-expanded="false" aria-controls="Report">
                                     <i class="icon-bar-graph menu-icon"></i>
                                     <span class="menu-title">Report</span>
@@ -449,6 +449,7 @@
 
                                         <li class="nav-item "> <a class="nav-link " href="<?= base_url(); ?>report_project/30">Project Report</a></li>
                                         <li class="nav-item "> <a class="nav-link " href="<?= base_url(); ?>report_source/30">Source Report</a></li>
+
 
                                         <li class="nav-item "> <a class="nav-link pb-4" href="<?= base_url(); ?>report_sales_filter/30">Sales Report</a></li>
 
@@ -562,8 +563,8 @@
 
 
                                 <!-- <li class="nav-item <?php if ($title == 'leads') {
-                                                        echo "active";
-                                                    } ?>">
+                                                                echo "active";
+                                                            } ?>">
                                     <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                                         <i class="ti-id-badge menu-icon"></i>
                                         <span class="menu-title">Leads</span>
@@ -582,8 +583,8 @@
                                     </div>
                                 </li> -->
                                 <!-- <li class=" nav-item <?php if ($title == 'Report') {
-                                                            echo "active";
-                                                        } ?>">
+                                                                echo "active";
+                                                            } ?>">
                                     <a class="nav-link" data-toggle="collapse" href="#report" aria-expanded="false" aria-controls="Report">
                                         <i class="icon-bar-graph menu-icon"></i>
                                         <span class="menu-title">Report</span>
