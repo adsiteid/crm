@@ -434,7 +434,7 @@
                             </li>
 
 
-                            <li class="d-lg-block d-none nav-item <?php if ($title == 'Report') {
+                            <li class="d-lg-block d-none nav-item <?php if ($title == "Leads Report" || $title == "Project Report"|| $title == "Report") {
                                                                         echo "active";
                                                                     } ?>">
                                 <a class="nav-link" data-toggle="collapse" href="#report" aria-expanded="false" aria-controls="Report">
@@ -478,7 +478,7 @@
                             </li>
 
 
-                            <li class="nav-item <?php if ($title == 'List Event') {
+                            <li class="nav-item <?php if ($title == "List Event") {
                                                     echo "active";
                                                 } ?>">
                                 <a class="nav-link  " href="<?= base_url(); ?>list_event/30">
