@@ -582,7 +582,6 @@ class Report extends BaseController
 
 		$data = [
 			'leads' => $leads,
-			// 'leads' => $this->showleads->all(),
 			'new' => $new,
 			'project' => $this->chartleads,
 			'projectid' => $this->showproject,

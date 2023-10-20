@@ -4223,15 +4223,16 @@ endif;
 
     public function projectFilterAdminGroup($groups,$days)
     {
+
+
+        $id = user()->id;
         $builder = $this->db->table($this->table);
 
-        
 
- $id = user()->id;
- if (in_groups('users')) :
+        if (in_groups('users')) :
             $builder->groupStart()
                 ->where('groups', $groups)
-               ->orWhere('sales', $id)
+                ->orWhere('sales', $id)
                 ->orWhere('manager', $id)
                 ->orWhere('general_manager', $id)
                 ->orWhere('admin_group', $id)
