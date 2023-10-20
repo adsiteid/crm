@@ -159,10 +159,10 @@
     <div class="card-body">
 
 
-        <div id="chart"></div>
+        <!-- <div id="chart"></div> -->
 
         <!-- BAR CHART -->
-        <!-- <div id="leads" class="mb-4"></div>  -->
+        <div id="leads" class="mb-4"></div> 
 
         <!-- TABLE  -->
 
