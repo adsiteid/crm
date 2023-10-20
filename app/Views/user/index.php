@@ -193,7 +193,7 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
                                         ?>
                                     </td>
                                     <td class="text-lg-left text-right pl-0" <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project" || $level == "manager" || $level == "general_manager") : ?> onclick="location.href='<?= base_url(); ?>user/<?php echo $row['id_user']; ?>'" <?php endif; ?>>
-                                        <label style="font-size: 9px;" class="badge badge-<?php if ($row['level'] == 'admin') {
+                                        <label style="font-size: 9px;" class="badge text-white badge-<?php if ($row['level'] == 'admin') {
                                                                                                 echo 'primary';
                                                                                             } elseif ($row['level'] == 'sales') {
                                                                                                 echo 'info';
@@ -205,6 +205,8 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
                                                                                                 echo 'success';
                                                                                             } elseif ($row['level'] == 'admin_project') {
                                                                                                 echo 'primary';
+                                                                                            } elseif ($row['level'] == 'management') {
+                                                                                                echo 'secondary';
                                                                                             } ?>"><?php if ($row['level'] == "admin_group" || $row['level'] == "admin_project") {
                                                                                                         echo 'admin';
                                                                                                     } elseif ($row['level'] == "general_manager") {
