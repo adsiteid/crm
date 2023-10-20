@@ -75,6 +75,7 @@
                     <a class="dropdown-item" href="<?= base_url(); ?>reportleads/30">Leads Report</a>
                     <a class="dropdown-item" href="<?= base_url(); ?>report_project/30">Project Report</a>
                     <a class="dropdown-item" href="<?= base_url(); ?>report_source/30">Source Report</a>
+                    <a class="dropdown-item" href="<?= base_url(); ?>report_sales_filter/30">Sales Report</a>
 
                 </div>
             </div>
@@ -307,9 +308,9 @@
                 <?php
                 foreach ($leads->getResultArray() as $lproject) {
 
-                    foreach ($projectid->detail($lproject['project'])->getResultarray() as $prj){
-                    $p = $prj['project'];
-                    echo "'$p',";
+                    foreach ($projectid->detail($lproject['project'])->getResultarray() as $prj) {
+                        $p = $prj['project'];
+                        echo "'$p',";
                     }
                 }
                 ?>

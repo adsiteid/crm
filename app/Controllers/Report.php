@@ -775,7 +775,7 @@ class Report extends BaseController
 			'project' => $this->showproject,
 			'level' => $level,
 			'days' => 'last 30 Days',
-			'title' => 'Report'
+			'title' => 'Sales Report'
 		];
 
 		return view('report/report_sales', $data);
@@ -826,7 +826,7 @@ class Report extends BaseController
 			'project' => $this->showproject,
 			'level' => $level,
 			'day' => "last $days Days",
-			'title' => 'Report'
+			'title' => 'Sales Report'
 		];
 
 		return view('report/report_sales', $data);
@@ -876,7 +876,7 @@ class Report extends BaseController
 			'project' => $this->showproject,
 			'level' => $level,
 			'day' => "$startDate - $endDate",
-			'title' => 'Report'
+			'title' => 'Sales Report'
 		];
 
 		return view('report/report_sales_range', $data);

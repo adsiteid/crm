@@ -65,7 +65,18 @@
 
         <div class=" d-flex flex-row align-items-center justify-content-between">
             <div>
-                <h6 class="mb-4 font-weight-bold text-primary">Report Sales</h6>
+                <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                    <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
+                        <i class="mdi mdi-calendar"></i><?= $title; ?>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                        <a class="dropdown-item" href="<?= base_url(); ?>reportleads/30">Leads Report</a>
+                        <a class="dropdown-item" href="<?= base_url(); ?>report_project/30">Project Report</a>
+                        <a class="dropdown-item" href="<?= base_url(); ?>report_source/30">Source Report</a>
+                        <a class="dropdown-item" href="<?= base_url(); ?>report_sales_filter/30">Sales Report</a>
+
+                    </div>
+                </div>
             </div>
 
             <div class="mb-4">
