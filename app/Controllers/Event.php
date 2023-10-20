@@ -28,6 +28,7 @@ class Event extends BaseController
     {
 
         if (in_groups('admin')) :
+            $notifNew = $this->showleads->notifNew();
             $events = $this->showevent->eventsFilter($days);
             $new = $this->showleads->new();
         endif;
@@ -36,6 +37,7 @@ class Event extends BaseController
             $id = user()->id;
 
             if (empty($this->showgroupsales->user($id)->getResultArray())) {
+                $notifNew = $this->showleads->notifNew();
                 $events = $this->showevent->eventsIdFilter($id,$days);
                 $new = $this->showleads->new();
             }
@@ -43,13 +45,12 @@ class Event extends BaseController
             if (!empty($this->showgroupsales->user($id)->getResultArray())) {
 
             foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
-                if ($group['level'] == "admin_group") {
+                if ($group['level'] == "admin_group" ||  $group['level'] == "management") {
+                    $notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
                     $events = $this->showevent->eventsAdminGroupFilter($group['groups'],$days);
                     $new = $this->showleads->newAdminGroup($group['groups']);
-                } elseif ($group['level'] == "admin_project") {
-                    $events = $this->showevent->eventsAdminProjectFilter($group['groups'], $group['project'],$days);
-                    $new = $this->showleads->newAdminProject($group['project']);
                 } else {
+                    $notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
                     $events = $this->showevent->eventsAdminGroupFilter($group['groups'],$days);
                     $new = $this->showleads->new();
                 }
@@ -59,6 +60,7 @@ class Event extends BaseController
 
         $data = [
             'new' => $new,
+            'notifNew'=> $notifNew,
             'days'=> "Last $days Days",
             'project' =>$this->showproject,
             'event' => $events,
@@ -76,6 +78,7 @@ class Event extends BaseController
         $endDate = $this->request->getVar('date_end');
 
         if (in_groups('admin')) :
+            $notifNew = $this->showleads->notifNew();
             $events = $this->showevent->eventsRange($startDate, $endDate);
             $new = $this->showleads->new();
         endif;
@@ -84,19 +87,23 @@ class Event extends BaseController
             $id = user()->id;
 
             if (empty($this->showgroupsales->user($id)->getResultArray())) {
+                $notifNew = $this->showleads->notifNew();
                 $events = $this->showevent->eventsIdRange($id,$startDate, $endDate);
                 $new = $this->showleads->new();
             }
 
             if (!empty($this->showgroupsales->user($id)->getResultArray())) {
             foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
-                if ($group['level'] == "admin_group") {
+                if ($group['level'] == "admin_group" || $group['level'] == "management") {
+                    $notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
                     $events = $this->showevent->eventsAdminGroupRange($group['groups'],$startDate, $endDate);
                     $new = $this->showleads->newAdminGroup($group['groups']);
                 } elseif ($group['level'] == "admin_project") {
+                        $notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
                     $events = $this->showevent->eventsAdminProjectRange($group['groups'], $group['project'],$startDate, $endDate);
                     $new = $this->showleads->newAdminProject($group['project']);
                 } else {
+                        $notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
                     $events = $this->showevent->eventsAdminGroupRange($group['groups'],$startDate, $endDate);
                     $new = $this->showleads->new();
                 }
@@ -106,6 +113,7 @@ class Event extends BaseController
 
         $data = [
             'new' => $new,
+            'notifNew'=> $notifNew,
             'days' => "$startDate - $endDate",
             'event' => $events,
             'title' => 'List Event'

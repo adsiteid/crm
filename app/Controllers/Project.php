@@ -45,6 +45,7 @@ class Project extends BaseController
 		$file_promotion = array_diff(scandir($folder_promotion), array('.', '..'));
 
 		if (in_groups('admin')) :
+			$notifNew = $this->showleads->notifNew();
 			$level = user()->level;
 		endif;
 
@@ -52,12 +53,14 @@ class Project extends BaseController
 		$id = user()->id;
 
 		if (empty($this->showgroupsales->user($id)->getResultArray())) {
+				$notifNew = $this->showleads->notifNew();
 			$level = "";
 		}
 
 		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
 
 		foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+			$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
 			$level = $group['level'];
 		}
 		}
@@ -65,6 +68,7 @@ class Project extends BaseController
 
 		$data = [
 			'project' => $project_id,
+			'notifNew'=> $notifNew,
 			'new' => $new,
 			'level' => $level,
 			'id' => $id,
@@ -91,6 +95,7 @@ class Project extends BaseController
 		$file_promotion = array_diff(scandir($folder_promotion), array('.', '..'));
 
 		if (in_groups('admin')) :
+			$notifNew = $this->showleads->notifNew();
 			$level = user()->level;
 		endif;
 
@@ -98,12 +103,14 @@ class Project extends BaseController
 			$id = user()->id;
 
 			if (empty($this->showgroupsales->user($id)->getResultArray())) {
+				$notifNew = $this->showleads->notifNew();
 				$level = "";
 			}
 
 			if (!empty($this->showgroupsales->user($id)->getResultArray())) {
 
 				foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
 					$level = $group['level'];
 				}
 			}
@@ -111,6 +118,7 @@ class Project extends BaseController
 
 		$data = [
 			'new' => $new,
+			'notifNew' => $notifNew,
 			'folder' => $folder,
 			'level' => $level,
 			'id' => $id,
@@ -125,6 +133,7 @@ class Project extends BaseController
 	{
 		$new = $this->showleads->new();
 
+
 		$project_id = $this->showproject->detail($id);
 		foreach ($project_id->getResultArray() as $p);
 		$folder = $p['folder'];
@@ -135,6 +144,7 @@ class Project extends BaseController
 
 
 		if (in_groups('admin')) :
+			$notifNew = $this->showleads->notifNew();
 			$level = user()->level;
 		endif;
 
@@ -142,12 +152,14 @@ class Project extends BaseController
 			$id = user()->id;
 
 			if (empty($this->showgroupsales->user($id)->getResultArray())) {
+				$notifNew = $this->showleads->notifNew();
 				$level = "";
 			}
 
 			if (!empty($this->showgroupsales->user($id)->getResultArray())) {
 
 				foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
 					$level = $group['level'];
 				}
 			}
@@ -155,6 +167,7 @@ class Project extends BaseController
 
 		$data = [
 			'new' => $new,
+			'notifNew'=>$notifNew,
 			'folder' => $folder,
 			'level' => $level,
 			'id' => $id,
@@ -180,6 +193,7 @@ class Project extends BaseController
 		$file_promotion = array_diff(scandir($folder_promotion), array('.', '..'));
 
 		if (in_groups('admin')) :
+			$notifNew = $this->showleads->notifNew();
 			$level = user()->level;
 		endif;
 
@@ -187,12 +201,14 @@ class Project extends BaseController
 			$id = user()->id;
 
 			if (empty($this->showgroupsales->user($id)->getResultArray())) {
+				$notifNew = $this->showleads->notifNew();
 				$level = "";
 			}
 
 			if (!empty($this->showgroupsales->user($id)->getResultArray())) {
 
 				foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
 					$level = $group['level'];
 				}
 			}
@@ -200,6 +216,7 @@ class Project extends BaseController
 
 		$data = [
 			'new' => $new,
+			'notifNew' => $notifNew,
 			'id' => $id,
 			'level' => $level,
 			'folder' => $folder,
@@ -224,6 +241,7 @@ class Project extends BaseController
 		$file_promotion = array_diff(scandir($folder_promotion), array('.', '..'));
 
 		if (in_groups('admin')) :
+			$notifNew = $this->showleads->notifNew();
 			$level = user()->level;
 		endif;
 
@@ -231,12 +249,14 @@ class Project extends BaseController
 			$id = user()->id;
 
 			if (empty($this->showgroupsales->user($id)->getResultArray())) {
+				$notifNew = $this->showleads->notifNew();
 				$level = "";
 			}
 
 			if (!empty($this->showgroupsales->user($id)->getResultArray())) {
 
 				foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
 					$level = $group['level'];
 				}
 			}
@@ -244,6 +264,7 @@ class Project extends BaseController
 
 		$data = [
 			'new' => $new,
+			'new' => $notifNew,
 			'level' => $level,
 			'id' => $id,
 			'folder' => $folder,

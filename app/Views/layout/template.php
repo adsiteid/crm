@@ -166,7 +166,7 @@
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list overflow-auto" style="height: 300px; width:350px;" aria-labelledby="notificationDropdown">
                         <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
                         <?php
-                        foreach ($new->getResultArray() as $row) :
+                        foreach ($notifNew->getResultArray() as $row) :
                         ?>
                             <a class="dropdown-item preview-item " href="<?= base_url(); ?>leads/<?= $row['id']; ?>">
                                 <div class="preview-thumbnail">
@@ -303,12 +303,12 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
                                     <i class="icon-bell mx-0"></i>
-                                    <span class="count bg-danger <?= ($new->getNumRows() > 0) ? 'd-block' : 'd-none'; ?>"></span>
+                                    <span class="count bg-danger <?= ($notifNew->getNumRows() > 0) ? 'd-block' : 'd-none'; ?>"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list overflow-auto" style="height: 300px; width:300px;" aria-labelledby="notificationDropdown">
                                     <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
                                     <?php
-                                    foreach ($new->getResultArray() as $row) :
+                                    foreach ($notifNew->getResultArray() as $row) :
                                     ?>
                                         <a class="dropdown-item preview-item " href="<?= base_url(); ?>leads/<?= $row['id']; ?>">
                                             <div class="preview-thumbnail">

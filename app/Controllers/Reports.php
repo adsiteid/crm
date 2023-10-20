@@ -41,6 +41,8 @@ class Reports extends BaseController
 
 					$leads = $this->showleads->allFilterAdminGroup($group['groups'], $days);
 
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+
 					$leadsNew = $this->chartleads->leadsNewAdminGroup($group['groups'], $days);
 					$leadsClose = $this->chartleads->leadsCloseAdminGroup($group['groups'], $days);
 					$leadsPending = $this->chartleads->leadsPendingAdminGroup($group['groups'], $days);
@@ -62,6 +64,8 @@ class Reports extends BaseController
 					
 				}else{
 					$leads = $this->showleads->allFilter($days);
+
+					$notifNew = $this->showleads->notifNew();
 
 					$leadsNew = $this->chartleads->leadsNew($days);
 					$leadsClose = $this->chartleads->leadsClose($days);
@@ -88,6 +92,8 @@ class Reports extends BaseController
 		}else{
 			$leads = $this->showleads->allFilter($days);
 
+			$notifNew = $this->showleads->notifNew();
+
 			$leadsNew = $this->chartleads->leadsNew($days);
 			$leadsClose = $this->chartleads->leadsClose($days);
 			$leadsPending = $this->chartleads->leadsPending($days);
@@ -107,13 +113,11 @@ class Reports extends BaseController
 			$reserve = $this->showleads->reserveFilter($days);
 			$booking = $this->showleads->bookingFilter($days);
 		}
-
-
-
 		
 
 		$data = [
 			'leads' => $leads,
+			'notifNew' => $notifNew,
 			'new' => $new,
 			'close' =>  $close,
 			'pending' => $pending,
@@ -150,6 +154,8 @@ class Reports extends BaseController
 
 					$leads = $this->showleads->allFilterAdminGroup($group['groups'], $days);
 
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+
 					$leadsNew = $this->chartleads->leadsNewAdminGroup($group['groups'], $days);
 					$leadsClose = $this->chartleads->leadsCloseAdminGroup($group['groups'], $days);
 					$leadsPending = $this->chartleads->leadsPendingAdminGroup($group['groups'], $days);
@@ -170,6 +176,8 @@ class Reports extends BaseController
 					$booking = $this->showleads->bookingFilterAdminGroup($group['groups'], $days);
 				} else {
 					$leads = $this->showleads->allFilter($days);
+
+					$notifNew = $this->showleads->notifNew();
 
 					$leadsNew = $this->chartleads->leadsNew($days);
 					$leadsClose = $this->chartleads->leadsClose($days);
@@ -194,6 +202,8 @@ class Reports extends BaseController
 		} else {
 			$leads = $this->showleads->allFilter($days);
 
+			$notifNew = $this->showleads->notifNew();
+
 			$leadsNew = $this->chartleads->leadsNew($days);
 			$leadsClose = $this->chartleads->leadsClose($days);
 			$leadsPending = $this->chartleads->leadsPending($days);
@@ -216,6 +226,7 @@ class Reports extends BaseController
 
 		$data = [
 			'leads' => $leads,
+			'notifNew' => $notifNew,
 			'new' => $new,
 			'close' =>  $close,
 			'pending' => $pending,
@@ -253,9 +264,11 @@ class Reports extends BaseController
 		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
 
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
-				if ($group['level'] == "management" || $group['level'] == "admin_group" || $group['level'] == "admin_group") {
+				if ($group['level'] == "management" || $group['level'] == "admin_group" ) {
 
 					$leads = $this->showleads->rangeListAdminGroup($group['groups'], $startDate, $endDate);
+
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
 					
 					$leadsNew = $this->chartleads-> leadsNewRangeAdminGroup($group['groups'], $startDate, $endDate);
 					$leadsClose = $this->chartleads-> leadsCloseRangeAdminGroup($group['groups'], $startDate, $endDate);
@@ -277,6 +290,8 @@ class Reports extends BaseController
 					$booking = $this->showleads-> bookingRangeAdminGroup($group['groups'], $startDate, $endDate);
 				}else{
 					$leads = $this->showleads->rangeList($startDate, $endDate);
+
+					$notifNew = $this->showleads->notifNew();
 
 					$leadsNew = $this->chartleads->leadsNewRange($startDate, $endDate);
 					$leadsClose = $this->chartleads->leadsCloseRange($startDate, $endDate);
@@ -300,6 +315,8 @@ class Reports extends BaseController
 			}
 		}else{
 			$leads = $this->showleads->rangeList($startDate, $endDate);
+
+			$notifNew = $this->showleads->notifNew();
 
 			$leadsNew = $this->chartleads->leadsNewRange($startDate, $endDate);
 			$leadsClose = $this->chartleads->leadsCloseRange($startDate, $endDate);
@@ -327,6 +344,7 @@ class Reports extends BaseController
 	
 		$data = [
 				'leads' => $leads,
+				'notifNew' => $notifNew,
 				'new' => $new,
 				'close' =>  $close,
 				'pending' => $pending,

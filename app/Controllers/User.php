@@ -35,6 +35,7 @@ class User extends BaseController
 	{
 
 		if (in_groups('admin')) :
+			$notifNew = $this->showleads->notifNew();
 			$new = $this->showleads->new();
 			$level = user()->level;
 		endif;
@@ -45,17 +46,18 @@ class User extends BaseController
 			$id = user()->id;
 
 			if (empty($this->showgroupsales->user($id)->getResultArray())) {
+				$notifNew = $this->showleads->notifNew();
 				$new = $this->showleads->new();
 				$level = "";
 			}
 
 			if (!empty($this->showgroupsales->user($id)->getResultArray())) {
 				foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
-					if ($group['level'] == "admin_group") {
+					if ($group['level'] == "admin_group" || $group['level'] = "management") {
 						$new = $this->showleads->newAdminGroup($group['groups']);
-					} elseif ($group['level'] == "admin_project") {
-						$new = $this->showleads->newAdminProject($group['project']);
+						$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
 					} else {
+						$notifNew = $this->showleads->notifNew();
 						$new = $this->showleads->new();
 					}
 
@@ -69,6 +71,7 @@ class User extends BaseController
 
 		$data = [
 			'new' => $new,
+			'notifNew' => $notifNew,
 			// 'sales' => $this->showusers->sales(),
 			'users' => $this->showgroupsales,
 			'user' => $this->showusers,

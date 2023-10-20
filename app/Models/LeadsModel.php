@@ -10,7 +10,46 @@ class LeadsModel extends Model
     protected $table = 'leads';
     protected $allowedFields = ['groups', 'nama_leads', 'alamat', 'nomor_kontak', 'email', 'project', 'sumber_leads', 'general_manager', 'manager', 'sales', 'update_status', 'kategori_status','catatan','time_stamp_new','time_stamp_invalid','time_stamp_contacted','time_stamp_pending','time_stamp_visit','time_stamp_deal','time_stamp_close','catatan_admin','timestamp_admin', 'reserve', 'booking', 'time_stamp_reserve','time_stamp_booking' ];
 
-// 
+
+
+    public function notifNew()
+    {
+        $builder = $this->db->table($this->table);
+
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
+            $builder->groupEnd();
+        endif;
+
+        $builder->where('update_status', 'New');
+        $builder->whereIn('kategori_status', ['New', 'Warm', 'Hot']);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function notifNewAdminGroup($groups)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('groups', $groups);
+        $builder->where('update_status', 'New');
+        $builder->whereIn('kategori_status', ['New', 'Warm', 'Hot']);
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+
+
+
     public function allFilter($days)
     {
         $builder = $this->db->table($this->table);

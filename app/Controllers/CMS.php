@@ -47,9 +47,27 @@ class CMS extends BaseController
 
 
 	public function groups()
+	
 	{
+
+		$id = user()->id;
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+				} else {
+					$notifNew = $this->showleads->notifNew();
+				}
+			}
+		} else {
+			$notifNew = $this->showleads->notifNew();
+		}
+
+
 		$data = [
 			'new' => $this->showleads->new(),
+			'notifNew' => $notifNew,
 			'projects' => $this->showprojects->findAll(),
 			'sales' => $this->showusers->sales(),
 			'title' => 'Group'
@@ -115,9 +133,22 @@ class CMS extends BaseController
 	{
 
 		$id = user()->id;
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+				} else {
+					$notifNew = $this->showleads->notifNew();
+				}
+			}
+		} else {
+			$notifNew = $this->showleads->notifNew();
+		}
 
 		$data = [
 			'new' => $this->showleads->new(),
+			'notifNew'=> $notifNew,
 			'project' => $this->showprojects,
 			'group_project' => $this->showgroups,
 			'user_group'=> $this->showgroupsales->user($id),
@@ -215,9 +246,25 @@ class CMS extends BaseController
 	public function add_submission()
 	{
 
+
 		$id = user()->id;
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+				}else{
+					$notifNew = $this->showleads->notifNew();
+				}
+			}
+		}else{
+			$notifNew = $this->showleads->notifNew();
+		}
+
+
 		$data = [
 			'new' => $this->showleads->new(),
+			'notifNew'=> $notifNew,
 			'user' => $this->showusers->sales(),
 			'users' => $this->showusers,
 			'user_group' => $this->showgroupsales->user($id),
@@ -350,8 +397,24 @@ class CMS extends BaseController
 
 	public function print_msdp($id)
 	{
+
+		$id = user()->id;
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+				} else {
+					$notifNew = $this->showleads->notifNew();
+				}
+			}
+		} else {
+			$notifNew = $this->showleads->notifNew();
+		}
+
 		$data = [
 			'new' => $this->showleads->new(),
+			'notifNew' => $notifNew,
 			'detail' => $this->showmsdp->detail($id),
 			'title' => 'MSDP'
 		];
@@ -362,8 +425,24 @@ class CMS extends BaseController
 
 	public function edit_msdp($id)
 	{
+
+		$id = user()->id;
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+				} else {
+					$notifNew = $this->showleads->notifNew();
+				}
+			}
+		} else {
+			$notifNew = $this->showleads->notifNew();
+		}
+
 		$data = [
 			'new' => $this->showleads->new(),
+			'notifNew'=> $notifNew,
 			'user' => $this->showusers->sales(),
 			'detail' => $this->showmsdp->detail($id),
 			'projects' => $this->showprojects->findAll(),
@@ -534,35 +613,27 @@ class CMS extends BaseController
 	public function submission($days)
 	{
 
-		// if (in_groups('admin')) :
+
+		$id = user()->id;
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+				} else {
+					$notifNew = $this->showleads->notifNew();
+				}
+			}
+		} else {
+			$notifNew = $this->showleads->notifNew();
+		}
+
 			$new = $this->showleads->new();
-		// endif;
-
-
-		// if (in_groups('users')) :
-		// 	$id = user()->id;
-
-		// 	if (empty($this->showgroupsales->user($id)->getResultArray())) {
-		// 		$new = $this->showleads->new();
-		// 	}
-
-		// 	if (!empty($this->showgroupsales->user($id)->getResultArray())) {
-
-		// 	foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
-		// 		if ($group['level'] == "admin_group") {
-		// 			$new = $this->showleads->newAdminGroup($group['groups']);
-		// 		} elseif ($group['level'] == "admin_project") {
-		// 			$new = $this->showleads->newAdminProject($group['project']);
-		// 		} else {
-		// 			$new = $this->showleads->new();
-		// 		}
-		// 	}
-		// 	}
-
-		// endif;
+		
 
 		$data = [
 			'new' => $new,
+			'notifNew'=> $notifNew,
 			'list' => $this->showmsdp->list($days),
 			'users' => $this->showusers,
 			// 'user_group' => $this->showgroupsales->user($id),
@@ -582,10 +653,23 @@ class CMS extends BaseController
 	{
 
 		$id = user()->id;
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+				} else {
+					$notifNew = $this->showleads->notifNew();
+				}
+			}
+		} else {
+			$notifNew = $this->showleads->notifNew();
+		}
 		
 
 		$data = [
 			'new' => $this->showleads->new(),
+			'notifNew'=> $notifNew,
 			'projects' => $this->showprojects,
 			'validation' => \Config\Services::validation(),
 			'user' => $this->showusers->detail($id),
@@ -594,8 +678,6 @@ class CMS extends BaseController
 			'user_group' => $this->showgroupsales->user($id),
 			'group' => $this->showgroupsales,
 			'group_project' => $this->showgroups,
-			
-
 			'title' => 'Add Leads'
 		];
 
@@ -776,15 +858,31 @@ endforeach;
 	public function edit_leads($id)
 	{
 
+
+		$id_user = user()->id;
+		if (!empty($this->showgroupsales->user($id_user)->getResultArray())) {
+
+			foreach ($this->showgroupsales->user($id_user)->getResultArray() as $group) {
+				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+				} else {
+					$notifNew = $this->showleads->notifNew();
+				}
+			}
+		} else {
+			$notifNew = $this->showleads->notifNew();
+		}
+
+
 		$data = [
 			'new' => $this->showleads->new(),
+			'notifNew' => $notifNew,
 			'leads' => $this->showleads->getLeads($id),
 			'validation' => \Config\Services::validation(),
 			'projects' => $this->showprojects->project(),
 			'project' => $this->showprojects,
 			'sales' => $this->showusers->salesUser(),
 			'user_group' => $this->showusers,
-
 			'group' => $this->showgroups->list(),
 			'group_name' => $this->showgroups,
 			'title' => 'Edit Leads'
@@ -943,8 +1041,23 @@ endforeach;
 	{
 
 		$id = user()->id;
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+				} else {
+					$notifNew = $this->showleads->notifNew();
+				}
+			}
+		} else {
+			$notifNew = $this->showleads->notifNew();
+		}
+
+
 		$data = [
 			'new' => $this->showleads->new(),
+			'notifNew'=> $notifNew,
 			'group' => $this->showgroups->list(),
 			'group_project' => $this->showgroups,
 			'user_group' => $this->showgroupsales->user($id),
@@ -1292,8 +1405,24 @@ endforeach;
 
 	public function add_images_promo($id)
 	{
+
+		$id = user()->id;
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+				} else {
+					$notifNew = $this->showleads->notifNew();
+				}
+			}
+		} else {
+			$notifNew = $this->showleads->notifNew();
+		}
+
 		$data = [
 			'new' => $this->showleads->new(),
+			'notifNew'=> $notifNew,
 			'id'=> $id,
 			'title' => 'Add Promotion'
 		];
@@ -1357,8 +1486,24 @@ endforeach;
 
 	public function add_images_interior($id)
 	{
+
+		$id = user()->id;
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+				} else {
+					$notifNew = $this->showleads->notifNew();
+				}
+			}
+		} else {
+			$notifNew = $this->showleads->notifNew();
+		}
+
 		$data = [
 			'new' => $this->showleads->new(),
+			'notifNew' => $notifNew,
 			'id'=> $id,
 			'title' => 'Add Interior'
 		];
@@ -1423,8 +1568,24 @@ endforeach;
 
 	public function add_video($id)
 	{
+
+		$id = user()->id;
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+				} else {
+					$notifNew = $this->showleads->notifNew();
+				}
+			}
+		} else {
+			$notifNew = $this->showleads->notifNew();
+		}
+
 		$data = [
 			'new' => $this->showleads->new(),
+			'notifNew'=> $notifNew,
 			'id'=> $id,
 			'title' => 'Add Video'
 		];
@@ -1489,8 +1650,24 @@ endforeach;
 
 	public function add_file($id)
 	{
+
+		$id = user()->id;
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+				} else {
+					$notifNew = $this->showleads->notifNew();
+				}
+			}
+		} else {
+			$notifNew = $this->showleads->notifNew();
+		}
+
 		$data = [
 			'new' => $this->showleads->new(),
+			'notifNew' => $notifNew,
 			'id'=> $id,
 			'title' => 'Add File'
 		];
@@ -1556,8 +1733,24 @@ endforeach;
 	public function add_user()
 	{
 
+
+		$id = user()->id;
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+				} else {
+					$notifNew = $this->showleads->notifNew();
+				}
+			}
+		} else {
+			$notifNew = $this->showleads->notifNew();
+		}
+
 		$data = [
 				'new' => $this->showleads->new(),
+				'notifNew'=> $notifNew,
 				'projects' => $this->showprojects->findAll(),
 				'adminProject' => $this->showusers->adminProject(),
 				'adminAssistant' => $this->showusers->adminAssistant(),
@@ -1571,10 +1764,23 @@ endforeach;
 	public function edit_user_id()
 	{
 
-		$id= user()->id;
+		$id = user()->id;
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "management" || $group['level'] == "admin_group" || $group['level'] == "admin_group") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+				}else{
+					$notifNew = $this->showleads->notifNew();
+				}
+			}
+		}else{
+			$notifNew = $this->showleads->notifNew();
+		}
 
 		$data = [
 			'new' => $this->showleads->new(),
+			'notifNew' => $notifNew,
 			//'projects' => $this->showprojects->findAll(),
 			//'sales' => $this->showusers->sales(),
 			'user' => $this->showusers->detail($id),
@@ -1740,9 +1946,24 @@ endforeach;
 
 	public function add_event()
 	{
+
 		$id = user()->id;
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+				} else {
+					$notifNew = $this->showleads->notifNew();
+				}
+			}
+		} else {
+			$notifNew = $this->showleads->notifNew();
+		}
+
 		$data = [
 			'new' => $this->showleads->new(),
+			'notifNew' => $notifNew,
 			'error' => \Config\Services::validation(),
 			'projects' => $this->showprojects->findAll(),
 			'project' => $this->showprojects,
@@ -1888,8 +2109,25 @@ endforeach;
 
 	public function edit_event($id)
 	{
+
+
+		$id = user()->id;
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+				} else {
+					$notifNew = $this->showleads->notifNew();
+				}
+			}
+		} else {
+			$notifNew = $this->showleads->notifNew();
+		}
+
 		$data = [
 			'new' => $this->showleads->new(),
+			'notifNew' => $notifNew,
 			'event' => $this->showevent->detail($id),
 			'projects' => $this->showprojects->findAll(),
 			'group' => $this->showgroups->list(),

@@ -42,16 +42,19 @@ class Leads extends BaseController
 
         if (in_groups('admin')) :
             $level = user()->level;
+            $notifNew = $this->showleads->notifNew();
         endif;
 
         if (in_groups('users')) :
 
             if (empty($this->showgroupsales->user($id)->getResultArray())) {
                 $level = "";
+                $notifNew = $this->showleads->notifNew();
             }
             if (!empty($this->showgroupsales->user($id)->getResultArray())) {
                 foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
                 $level = $group['level'];
+                $notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
         }
     }
         endif;
@@ -63,6 +66,7 @@ class Leads extends BaseController
             'id' => $id,
             'project' => $this->showproject,
             'leads' => $leads,
+            'notifNew'=>$notifNew,
             'level' => $level,
             'users' => $user,
             'new' => $new,
@@ -85,6 +89,7 @@ class Leads extends BaseController
             foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
                 if ($group['level'] == "management" || $group['level'] == "admin_group") {
                     $leads = $this->showleads->allAdminGroup($group['groups']);
+                    $notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
                     $new = $this->showleads->newAdminGroup($group['groups']);
                     $contacted = $this->showleads->contactedAdminGroup($group['groups']);
                     $close = $this->showleads->closeAdminGroup($group['groups']);
@@ -96,6 +101,7 @@ class Leads extends BaseController
                     $leadsDeal = $this->chartleads->leadsDealAdminGroup($group['groups'],30);
                 }else{
                     $leads = $this->showleads->all();
+                    $notifNew = $this->showleads->notifNew();
                     $new = $this->showleads->new();
                     $contacted = $this->showleads->contacted();
                     $close = $this->showleads->close();
@@ -109,6 +115,7 @@ class Leads extends BaseController
             }
         }else{
             $leads = $this->showleads->all();
+            $notifNew = $this->showleads->notifNew();
             $new = $this->showleads->new();
             $contacted = $this->showleads->contacted();
             $close = $this->showleads->close();
@@ -124,6 +131,7 @@ class Leads extends BaseController
 
         $data = [
             'leads' => $leads,
+            'notifNew'=>$notifNew,
             'leadsReserve' => $leadsReserve,
             'leadsBooking' => $leadsBooking,
             'leadsDeal' => $leadsDeal,
@@ -154,6 +162,7 @@ class Leads extends BaseController
                 if ($group['level'] == "management" || $group['level'] == "admin_group") {
 
                     $leads = $this->showleads->newAdminGroup($group['groups']);
+                    $notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
                     $new = $this->showleads->newAdminGroup($group['groups']);
                     $contacted = $this->showleads->contactedAdminGroup($group['groups']);
                     $close = $this->showleads->closeAdminGroup($group['groups']);
@@ -166,6 +175,7 @@ class Leads extends BaseController
 
                 }else{
                     $leads = $this->showleads->new();
+                    $notifNew = $this->showleads->notifNew();
                     $new = $this->showleads->new();
                     $contacted = $this->showleads->contacted();
                     $close = $this->showleads->close();
@@ -179,6 +189,7 @@ class Leads extends BaseController
             }
         }else{
             $leads = $this->showleads->new();
+            $notifNew = $this->showleads->notifNew();
             $new = $this->showleads->new();
             $contacted = $this->showleads->contacted();
             $close = $this->showleads->close();
@@ -193,6 +204,7 @@ class Leads extends BaseController
        
         $data = [
             'leads' => $leads,
+            'notifNew'=> $notifNew,
             'leadsReserve' => $leadsReserve,
             'leadsBooking' => $leadsBooking,
             'leadsDeal' => $leadsDeal,
@@ -222,6 +234,7 @@ class Leads extends BaseController
             foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
                 if ($group['level'] == "management" || $group['level'] == "admin_group") {
                     $leads = $this->showleads->contactedAdminGroup($group['groups']);
+                    $notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
                     $new = $this->showleads->newAdminGroup($group['groups']);
                     $contacted = $this->showleads->contactedAdminGroup($group['groups']);
                     $close = $this->showleads->closeAdminGroup($group['groups']);
@@ -233,6 +246,7 @@ class Leads extends BaseController
                     $leadsDeal = $this->chartleads->leadsDealAdminGroup($group['groups'], 30);
                 }else{
                     $leads = $this->showleads->contacted();
+                    $notifNew = $this->showleads->notifNew();
                     $new = $this->showleads->new();
                     $contacted = $this->showleads->contacted();
                     $close = $this->showleads->close();
@@ -246,6 +260,7 @@ class Leads extends BaseController
             }
         }else{
             $leads = $this->showleads->contacted();
+            $notifNew = $this->showleads->notifNew();
             $new = $this->showleads->new();
             $contacted = $this->showleads->contacted();
             $close = $this->showleads->close();
@@ -262,6 +277,7 @@ class Leads extends BaseController
 
         $data = [
             'leads' => $leads,
+            'notifNew'=> $notifNew,
             'leadsReserve' => $leadsReserve,
             'leadsBooking' => $leadsBooking,
             'leadsDeal' => $leadsDeal,
@@ -289,6 +305,7 @@ class Leads extends BaseController
                 if ($group['level'] == "management" || $group['level'] == "admin_group") {
 
                     $leads = $this->showleads->visitAdminGroup($group['groups']);
+                    $notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
                     $new = $this->showleads->newAdminGroup($group['groups']);
                     $contacted = $this->showleads->contactedAdminGroup($group['groups']);
                     $close = $this->showleads->closeAdminGroup($group['groups']);
@@ -301,6 +318,7 @@ class Leads extends BaseController
 
                 }else{
                     $leads = $this->showleads->visit();
+                    $notifNew = $this->showleads->notifNew();
                     $new = $this->showleads->new();
                     $contacted = $this->showleads->contacted();
                     $close = $this->showleads->close();
@@ -314,6 +332,7 @@ class Leads extends BaseController
             }
         }else{
             $leads = $this->showleads->visit();
+            $notifNew = $this->showleads->notifNew();
             $new = $this->showleads->new();
             $contacted = $this->showleads->contacted();
             $close = $this->showleads->close();
@@ -329,6 +348,7 @@ class Leads extends BaseController
 
         $data = [
             'leads' => $leads,
+            'notifNew'=> $notifNew,
             'leadsReserve' => $leadsReserve,
             'leadsBooking' => $leadsBooking,
             'leadsDeal' => $leadsDeal,
@@ -356,6 +376,7 @@ class Leads extends BaseController
                 if ($group['level'] == "management" || $group['level'] == "admin_group") {
 
                     $leads = $this->showleads->dealAdminGroup($group['groups']);
+                    $notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
                     $new = $this->showleads->newAdminGroup($group['groups']);
                     $contacted = $this->showleads->contactedAdminGroup($group['groups']);
                     $close = $this->showleads->closeAdminGroup($group['groups']);
@@ -367,6 +388,7 @@ class Leads extends BaseController
                     $leadsDeal = $this->chartleads->leadsDealAdminGroup($group['groups'], 30);
                 } else {
                     $leads = $this->showleads->deal();
+                    $notifNew = $this->showleads->notifNew();
                     $new = $this->showleads->new();
                     $contacted = $this->showleads->contacted();
                     $close = $this->showleads->close();
@@ -380,6 +402,7 @@ class Leads extends BaseController
             }
         } else {
             $leads = $this->showleads->deal();
+            $notifNew = $this->showleads->notifNew();
             $new = $this->showleads->new();
             $contacted = $this->showleads->contacted();
             $close = $this->showleads->close();
@@ -393,6 +416,7 @@ class Leads extends BaseController
 
         $data = [
             'leads' => $leads,
+            'notifNew'=> $notifNew,
             'leadsReserve' => $leadsReserve,
             'leadsBooking' => $leadsBooking,
             'leadsDeal' => $leadsDeal,
@@ -420,6 +444,7 @@ class Leads extends BaseController
                 if ($group['level'] == "management" || $group['level'] == "admin_group") {
 
                     $leads = $this->showleads->closeAdminGroup($group['groups']);
+                    $notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
                     $new = $this->showleads->newAdminGroup($group['groups']);
                     $contacted = $this->showleads->contactedAdminGroup($group['groups']);
                     $close = $this->showleads->closeAdminGroup($group['groups']);
@@ -431,6 +456,7 @@ class Leads extends BaseController
                     $leadsDeal = $this->chartleads->leadsDealAdminGroup($group['groups'], 30);
                 } else {
                     $leads = $this->showleads->close();
+                    $notifNew = $this->showleads->notifNew();
                     $new = $this->showleads->new();
                     $contacted = $this->showleads->contacted();
                     $close = $this->showleads->close();
@@ -444,6 +470,7 @@ class Leads extends BaseController
             }
         } else {
             $leads = $this->showleads->close();
+            $notifNew = $this->showleads->notifNew();
             $new = $this->showleads->new();
             $contacted = $this->showleads->contacted();
             $close = $this->showleads->close();
@@ -457,6 +484,7 @@ class Leads extends BaseController
 
         $data = [
             'leads' => $leads,
+            'notifNew'=> $notifNew,
             'leadsReserve' => $leadsReserve,
             'leadsBooking' => $leadsBooking,
             'leadsDeal' => $leadsDeal,
@@ -484,6 +512,7 @@ class Leads extends BaseController
                 if ($group['level'] == "management" || $group['level'] == "admin_group") {
 
                     $leads = $this->showleads->pendingAdminGroup($group['groups']);
+                    $notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
                     $new = $this->showleads->newAdminGroup($group['groups']);
                     $contacted = $this->showleads->contactedAdminGroup($group['groups']);
                     $close = $this->showleads->closeAdminGroup($group['groups']);
@@ -495,6 +524,7 @@ class Leads extends BaseController
                     $leadsDeal = $this->chartleads->leadsDealAdminGroup($group['groups'], 30);
                 } else {
                     $leads = $this->showleads->pending();
+                    $notifNew = $this->showleads->notifNew();
                     $new = $this->showleads->new();
                     $contacted = $this->showleads->contacted();
                     $close = $this->showleads->close();
@@ -508,6 +538,7 @@ class Leads extends BaseController
             }
         } else {
             $leads = $this->showleads->pending();
+            $notifNew = $this->showleads->notifNew();
             $new = $this->showleads->new();
             $contacted = $this->showleads->contacted();
             $close = $this->showleads->close();
@@ -521,6 +552,7 @@ class Leads extends BaseController
 
         $data = [
             'leads' => $leads,
+            'notifNew'=> $notifNew,
             'leadsReserve' => $leadsReserve,
             'leadsBooking' => $leadsBooking,
             'leadsDeal' => $leadsDeal,
@@ -550,6 +582,7 @@ class Leads extends BaseController
                 if ($group['level'] == "management" || $group['level'] == "admin_group") {
 
                     $leads = $this->showleads->IndexFilterAdminGroup($group['groups'], $days);
+                    $notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
                     $new = $this->showleads->newFilterAdminGroup($group['groups'], $days);
                     $contacted = $this->showleads->contactedFilterAdminGroup($group['groups'], $days);
                     $close = $this->showleads->closeFilterAdminGroup($group['groups'], $days);
@@ -562,6 +595,7 @@ class Leads extends BaseController
 
                 }else{
                     $leads = $this->showleads->IndexFilter($days);
+                    $notifNew = $this->showleads->notifNew();
                     $new = $this->showleads->newFilter($days);
                     $contacted = $this->showleads->contactedFilter($days);
                     $close = $this->showleads->closeFilter($days);
@@ -575,6 +609,7 @@ class Leads extends BaseController
             }
         }else{
             $leads = $this->showleads->IndexFilter($days);
+            $notifNew = $this->showleads->notifNew();
             $new = $this->showleads->newFilter($days);
             $contacted = $this->showleads->contactedFilter($days);
             $close = $this->showleads->closeFilter($days);
@@ -587,10 +622,10 @@ class Leads extends BaseController
         }
 
         
-           
-
+        
         $data = [
             'leads' => $leads,
+            'notifNew'=>$notifNew,
             'leadsReserve' => $leadsReserve,
             'leadsBooking' => $leadsBooking,
             'leadsDeal' => $leadsDeal,
@@ -622,6 +657,7 @@ class Leads extends BaseController
                 if ($group['level'] == "management" || $group['level'] == "admin_group") {
 
                     $leads = $this->showleads->rangeListAdminGroup($group['groups'],$startDate, $endDate);
+                    $notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
                     $new = $this->showleads->newRangeAdminGroup($group['groups'],$startDate, $endDate);
                     $contacted = $this->showleads->contactedRangeAdminGroup($group['groups'],$startDate, $endDate);
                     $close = $this->showleads->closeRangeAdminGroup($group['groups'],$startDate, $endDate);
@@ -634,6 +670,7 @@ class Leads extends BaseController
 
                 }else{
                     $leads = $this->showleads->rangeList($startDate, $endDate);
+                    $notifNew = $this->showleads->notifNew();
                     $new = $this->showleads->newRange($startDate, $endDate);
                     $contacted = $this->showleads->contactedRange($startDate, $endDate);
                     $close = $this->showleads->closeRange($startDate, $endDate);
@@ -647,6 +684,7 @@ class Leads extends BaseController
             }
         }else{
             $leads = $this->showleads->rangeList($startDate, $endDate);
+            $notifNew = $this->showleads->notifNew();
             $new = $this->showleads->newRange($startDate, $endDate);
             $contacted = $this->showleads->contactedRange($startDate, $endDate);
             $close = $this->showleads->closeRange($startDate, $endDate);
@@ -662,6 +700,7 @@ class Leads extends BaseController
 
 		$data = [
 			'leads' => $leads,
+            'notifNew' => $notifNew,
             'leadsReserve' => $leadsReserve,
             'leadsBooking' => $leadsBooking,
             'leadsDeal' => $leadsDeal,
@@ -695,6 +734,7 @@ class Leads extends BaseController
 
                    
                     $leads = $this->showleads->search_leads_admin_group($group['groups'],$search);
+                    $notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
                     $new =  $this->showleads->newAdminGroup($group['groups']);
                     $contacted = $this->showleads->contactedAdminGroup($group['groups']);
                     $close = $this->showleads->closeAdminGroup($group['groups']);
@@ -709,6 +749,7 @@ class Leads extends BaseController
                 }else{
                     $search =  $this->request->getVar('search_leads');
                     $leads = $this->showleads->search_leads($search);
+                    $notifNew = $this->showleads->notifNew();
                     $new =  $this->showleads->new();
                     $contacted = $this->showleads->contacted();
                     $close = $this->showleads->close();
@@ -724,6 +765,7 @@ class Leads extends BaseController
         }else{
             $search =  $this->request->getVar('search_leads');
             $leads = $this->showleads->search_leads($search);
+            $notifNew = $this->showleads->notifNew();
             $new =  $this->showleads->new();
             $contacted = $this->showleads->contacted();
             $close = $this->showleads->close();
@@ -740,6 +782,7 @@ class Leads extends BaseController
 
 		$data = [
 			'leads' => $leads,
+            'notifNew'=> $notifNew,
             'leadsReserve' => $leadsReserve,
             'leadsBooking' => $leadsBooking,
             'leadsDeal' => $leadsDeal,

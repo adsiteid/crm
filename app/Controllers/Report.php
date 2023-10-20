@@ -44,6 +44,8 @@ class Report extends BaseController
 
 					$leads = $this->showleads->allFilterAdminGroup($group['groups'],$days);
 
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+
 					$leadsNew = $this->chartleads->leadsNewAdminGroup($group['groups'],$days);
 					$leadsClose = $this->chartleads->leadsCloseAdminGroup($group['groups'],$days);
 					$leadsPending = $this->chartleads->leadsPendingAdminGroup($group['groups'],$days);
@@ -65,6 +67,7 @@ class Report extends BaseController
 
 				}else{
 					$leads = $this->showleads->allFilter($days);
+					$notifNew = $this->showleads->notifNew();
 
 					$leadsNew = $this->chartleads->leadsNew($days);
 					$leadsClose = $this->chartleads->leadsClose($days);
@@ -88,7 +91,7 @@ class Report extends BaseController
 			}
 		}else{
 			$leads = $this->showleads->allFilter($days);
-
+			$notifNew = $this->showleads->notifNew();
 			$leadsNew = $this->chartleads->leadsNew($days);
 			$leadsClose = $this->chartleads->leadsClose($days);
 			$leadsPending = $this->chartleads->leadsPending($days);
@@ -110,14 +113,10 @@ class Report extends BaseController
 		}
 
 
-			
-
-		
-
 		$data = [
 
 			'leads' => $leads,
-
+			'notifNew'=> $notifNew,
 			// chart
 			'leadsNew' => $leadsNew,
 			'leadsClose' => $leadsClose,
@@ -218,15 +217,13 @@ class Report extends BaseController
 		$startDate =  $this->request->getVar('date_start');
 		$endDate = $this->request->getVar('date_end');
 
-
 		$id = user()->id;
-
 
 		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
 
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 				if ($group['level'] == "management" || $group['level'] == "admin_group") {
-
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
 					$leads = $this->showleads->rangeListAdminGroup($group['groups'],$startDate, $endDate);
 					$leadsNew = $this->chartleads->leadsNewRangeAdminGroup($group['groups'],$startDate, $endDate);
 					$leadsClose = $this->chartleads->leadsCloseRangeAdminGroup($group['groups'],$startDate, $endDate);
@@ -248,6 +245,7 @@ class Report extends BaseController
 					$booking = $this->showleads->bookingRangeAdminGroup($group['groups'],$startDate, $endDate);
 
 				}else{
+					$notifNew = $this->showleads->notifNew();
 					$leads = $this->showleads->rangeList($startDate, $endDate);
 					$leadsNew = $this->chartleads->leadsNewRange($startDate, $endDate);
 					$leadsClose = $this->chartleads->leadsCloseRange($startDate, $endDate);
@@ -270,6 +268,7 @@ class Report extends BaseController
 				}
 			}
 		}else{
+			$notifNew = $this->showleads->notifNew();
 			$leads = $this->showleads->rangeList($startDate, $endDate);
 			$leadsNew = $this->chartleads->leadsNewRange($startDate, $endDate);
 			$leadsClose = $this->chartleads->leadsCloseRange($startDate, $endDate);
@@ -291,13 +290,11 @@ class Report extends BaseController
 			$booking = $this->showleads->bookingRange($startDate, $endDate);
 		}
 
-		
-		
-		
 
 		$data = [
 
 				'leads' => $leads,
+				'notifNew' => $notifNew,
 				'leadsNew' => $leadsNew,
 				'leadsClose' => $leadsClose,
 				'leadsPending' => $leadsPending,
@@ -494,10 +491,6 @@ class Report extends BaseController
 
 		$search =  $this->request->getVar('search_report');
 
-
-
-	
-
 			$leads = $this->chartleads->search_report($search);
 
 			$leadsNew = $this->chartleads->leadsNew('30');
@@ -567,14 +560,17 @@ class Report extends BaseController
 
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
 					$leads = $this->showleads->projectFilterAdminGroup($group['groups'],$days);
 					$new =  $this->showleads->newFilterAdminGroup($group['groups'],$days);
 				}else{
+					$notifNew = $this->showleads->notifNew();
 					$leads = $this->showleads->projectFilter($days);
 					$new =  $this->showleads->newFilter($days);
 				}
 			}
 		}else{
+			$notifNew = $this->showleads->notifNew();
 			$leads = $this->showleads->projectFilter($days);
 			$new =  $this->showleads->newFilter($days);
 		}
@@ -582,6 +578,7 @@ class Report extends BaseController
 
 		$data = [
 			'leads' => $leads,
+			'notifNew' => $notifNew,
 			'new' => $new,
 			'project' => $this->chartleads,
 			'projectid' => $this->showproject,
@@ -607,14 +604,17 @@ class Report extends BaseController
 
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
 					$leads = $this->showleads->projectRangeAdminGroup($group['groups'],$startDate, $endDate);
 					$new =  $this->showleads->newRangeAdminGroup($group['groups'],$startDate, $endDate);
 				}else{
+					$notifNew = $this->showleads->notifNew();
 					$leads = $this->showleads->projectRange($startDate, $endDate);
 					$new =  $this->showleads->newRange($startDate, $endDate);
 				}
 			}
 		}else{
+			$notifNew = $this->showleads->notifNew();
 			$leads = $this->showleads->projectRange($startDate, $endDate);
 			$new =  $this->showleads->newRange($startDate, $endDate);
 		}
@@ -622,6 +622,7 @@ class Report extends BaseController
 
 		$data = [
 			'leads' => $leads,
+			'notifNew' => $notifNew,
 			// 'leads' => $this->showleads->all(),
 			'new' => $new,
 			'project' => $this->chartleads,
@@ -636,19 +637,6 @@ class Report extends BaseController
 	}
 
 
-
-	// public function projectStatus()
-	// {
-	// 	$data = [
-	// 		'leads' => $this->showleads->orderBy('id', 'desc')->findAll(),
-	// 		// 'leads' => $this->showleads->all(),
-	// 		'new' => $this->showleads->new(),
-	// 		'project' => $this->chartleads,
-	// 		'title' => 'Report'
-	// 	];
-
-	// 	return view('report/project', $data);
-	// }
 
 
 	/////////////////// REPORT SOURCE /////////////////////////
@@ -665,12 +653,15 @@ class Report extends BaseController
 
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
 					$new = $this->showleads->newAdminGroup($group['groups']);
 				}else{
+					$notifNew = $this->showleads->notifNew();
 					$new = $this->showleads->new();
 				}
 			}
 		}else{
+			$notifNew = $this->showleads->notifNew();
 			$new = $this->showleads->new();
 		}
 	
@@ -679,6 +670,7 @@ class Report extends BaseController
 
 		$data = [
 			'new' => $new,
+			'notifNew' => $notifNew,
 			'source' => $this->chartleads,
 			'group' => $this->showgroupsales,
 			'count' => "$count",
@@ -702,12 +694,15 @@ class Report extends BaseController
 
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
 					$new = $this->showleads->newAdminGroup($group['groups']);
 				}else{
+					$notifNew = $this->showleads->notifNew();
 					$new = $this->showleads->new();
 				}
 			}
 		}else{
+			$notifNew = $this->showleads->notifNew();
 			$new = $this->showleads->new();
 		}
 		
@@ -715,6 +710,7 @@ class Report extends BaseController
 
 		$data = [
 			'new' => $new,
+			'notifNew' => $notifNew,
 			'group' => $this->showgroupsales,
 			'source' => $this->chartleads,
 			'startDate' => $startDate,
@@ -753,12 +749,13 @@ class Report extends BaseController
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 
 				if ($group['level'] == "admin_group" || $group['level'] == "general_manager" || $group['level'] == "management") {
-
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
 					$new = $this->showleads->newAdminGroup($group['groups']);
 					$sales = $this->showgroupsales->group_report($group['groups']);
 				}
 
 				if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
+					$notifNew = $this->showleads->notifNew();
 					$new = $this->showleads->newAdminProject($group['project']);
 					$sales = $this->showgroupsales->project($group['project']);
 				} 
@@ -770,6 +767,7 @@ class Report extends BaseController
 
 		$data = [
 			'new' => $new,
+			'notifNew'=>$notifNew,
 			'sales' => $sales, //not admin
 			'user' => $this->showusers,
 			'group' => $this->showgroupsales,
@@ -788,6 +786,7 @@ class Report extends BaseController
 	{
 
 		if (in_groups('admin')) :
+			$notifNew = $this->showleads->notifNew();
 			$all = $this->showleads->salesFilter($days);
 			$new = $this->showleads->newFilter($days);
 		endif;
@@ -798,13 +797,14 @@ class Report extends BaseController
 			
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 				if ($group['level'] == "admin_group" || $group['level'] == "general_manager"|| $group['level'] == "management") {
-
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
 					$all = $this->showleads->allFilterAdminGroup($group['groups'], $days);
 					$new = $this->showleads->newFilterAdminGroup($group['groups'],$days);
 					$sales = $this->showgroupsales->group_report($group['groups']);
 				}
 
 				if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
+					$notifNew = $this->showleads->notifNew();
 					$all = $this->showleads->allFilterAdminProject($group['project'], $days);
 					$new = $this->showleads->newFilterAdminProject($group['project'], $days);
 					$sales = $this->showgroupsales->project($group['project']);
@@ -816,6 +816,7 @@ class Report extends BaseController
 
 		$data = [
 			'all' => $all,
+			'notifNew' => $notifNew,
 			'new' => $new,
 			'days' => $days,
 			'sales' => $sales, //not admin
@@ -840,6 +841,7 @@ class Report extends BaseController
 		$endDate = $this->request->getVar('date_end');
 
 		if (in_groups('admin')) :
+			$notifNew = $this->showleads->notifNew();
 			$new = $this->showleads->newRange($startDate, $endDate);
 		endif;
 
@@ -848,12 +850,13 @@ class Report extends BaseController
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 
 				if ($group['level'] == "admin_group" || $group['level'] == "general_manager"|| $group['level'] == "management") {
-
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
 					$new = $this->showleads->newRangeAdminGroup($group['groups'],$startDate, $endDate);
 					$sales = $this->showgroupsales->group_report($group['groups']);
 				}
 
 				if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
+					$notifNew = $this->showleads->notifNew();
 					$new = $this->showleads->newRangeAdminProject($group['project'],$startDate, $endDate);
 					$sales = $this->showgroupsales->project($group['project']);
 				} 
@@ -863,6 +866,7 @@ class Report extends BaseController
 
 		$data = [
 			'new' => $new,
+			'notifNew'=> $notifNew,
 			'startDate' => $startDate,
 			'endDate' => $endDate,
 			'sales' => $sales, //not admin
