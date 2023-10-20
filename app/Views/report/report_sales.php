@@ -57,14 +57,8 @@
 
 
 <div class="card mb-4">
-    <!-- Card Header - Dropdown -->
+    <div class="card-header mb-4 d-lg-flex d-none align-items-center justify-content-between bg-transparent ">
 
-
-    <!-- Card Body -->
-    <div class="card-body">
-
-        <div class=" d-flex flex-row align-items-center justify-content-between">
-            <div>
                 <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
                     <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
                         <i class="mdi mdi-calendar"></i><?= $title; ?>
@@ -77,9 +71,9 @@
 
                     </div>
                 </div>
-            </div>
+           
 
-            <div class="mb-4">
+            <div class="mb-2">
                 <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
                     <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
                         <i class="mdi mdi-calendar"></i><?= $day; ?>
@@ -92,28 +86,9 @@
                     </div>
                 </div>
 
-
-                <!-- <div class="dropdown no-arrow">
-
-                    <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="ti-more text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right animated--fade-in" aria-labelledby="dropdownMenuLink">
-                        <div class="dropdown-header text-muted">EXPORT</div>
-                        <a class="dropdown-item " href="index_report2.php" onclick="exportF(this)">Export Excel</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" type="button" onclick="printDiv('export_pdf')">Print/Save PDF</a>
-                    </div>
-                </div> -->
-
-
-
             </div>
-
-
-        </div>
-
-
+    </div>
+    <div class="card-body">
 
         <!-- TABLE  -->
 
