@@ -578,7 +578,7 @@ endif;
  if (in_groups('users')) :
             $builder->groupStart()
                 ->where('groups', $groups)
-               ->orWhere('sales', $id)
+                ->orWhere('sales', $id)
                 ->orWhere('manager', $id)
                 ->orWhere('general_manager', $id)
                 ->orWhere('admin_group', $id)
