@@ -307,12 +307,10 @@
                 <?php
                 foreach ($leads->getResultArray() as $lproject) {
 
-                    foreach ($projectid->detail($lproject['project'])->getResultarray() as $prj);
-                        // echo $prj['project'];
-                    
-
+                    foreach ($projectid->detail($lproject['project'])->getResultarray() as $prj){
                     $p = $prj['project'];
                     echo "'$p',";
+                    }
                 }
                 ?>
             ]
