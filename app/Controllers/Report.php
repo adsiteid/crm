@@ -753,7 +753,7 @@ class Report extends BaseController
 		
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 
-				if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
+				if ($group['level'] == "admin_group" || $group['level'] == "general_manager" || $group['level'] == "management") {
 
 					$new = $this->showleads->newAdminGroup($group['groups']);
 					$sales = $this->showgroupsales->group_report($group['groups']);
@@ -798,7 +798,7 @@ class Report extends BaseController
 
 			
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
-				if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
+				if ($group['level'] == "admin_group" || $group['level'] == "general_manager"|| $group['level'] == "management") {
 
 					$all = $this->showleads->allFilterAdminGroup($group['groups'], $days);
 					$new = $this->showleads->newFilterAdminGroup($group['groups'],$days);
@@ -848,7 +848,7 @@ class Report extends BaseController
 			$id = user()->id;
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
 
-				if ($group['level'] == "admin_group" || $group['level'] == "general_manager") {
+				if ($group['level'] == "admin_group" || $group['level'] == "general_manager"|| $group['level'] == "management") {
 
 					$new = $this->showleads->newRangeAdminGroup($group['groups'],$startDate, $endDate);
 					$sales = $this->showgroupsales->group_report($group['groups']);
