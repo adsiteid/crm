@@ -477,7 +477,7 @@
 
 
                             <div class="pindah-tugas">
-                                <p style="font-size:12px; " class="mb-2"> Move leads </p>
+                                <p style="font-size:12px; " class="mb-2"> Sales </p>
                                 <select class="form-select form-control form-control-sm border-secondary" aria-label=".form-select-sm example" name="sales" style="font-size:12px;">
                                     <option selected value="<?= $row['sales']; ?>"> <?php
                                                                                     $sales = $row['sales'];
