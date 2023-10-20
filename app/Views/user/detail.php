@@ -259,9 +259,9 @@
                                 <form action="<?= base_url(); ?>search_leads_user_loggedin/<?= $row['id']; ?>" method="post" class=" form-inline ">
                                 <?php endif; ?>
                                 <div class="input-group input-group-sm mt-2 mr-3 d-lg-flex d-none ">
-                                    <input type="text" class="form-control rounded-left bg-light pl-3 " placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_leads">
+                                    <input type="text" class="form-control rounded-left border-0 bg-light pl-3 " placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_leads">
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary rounded-right" type="submit">
+                                        <button class="btn btn-light rounded-right" type="submit">
                                             <i class="icon-search"></i>
                                         </button>
                                     </div>
@@ -291,9 +291,9 @@
                             <form action="<?= base_url(); ?>search_leads_user_loggedin/<?= $row['id']; ?>" method="post" class=" form-inline ">
                             <?php endif; ?>
                             <div class="input-group input-group-sm d-lg-none mb-3">
-                                <input type="text" class="form-control rounded-left bg-light pl-3 " placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_leads">
+                                <input type="text" class="form-control border-0 rounded-left bg-light pl-3 " placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_leads">
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary rounded-right" type="submit">
+                                    <button class="btn btn-light rounded-right" type="submit">
                                         <i class="icon-search"></i>
                                     </button>
                                 </div>
