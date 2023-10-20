@@ -307,7 +307,7 @@ class Home extends BaseController
 		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
 
 			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
-				if ($group['level'] == "management" || $group['level'] == "admin_group" || $group['level'] == "admin_group") {
+				if ($group['level'] == "management" || $group['level'] == "admin_group") {
 					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
 					$new = $this->showleads->new();
 				}else{
