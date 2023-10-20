@@ -120,6 +120,19 @@ class User extends BaseController
 	public function detail($id)
 	{
 
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "admin_group" || $group['level'] = "management") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+				}else{
+					$notifNew = $this->showleads->notifNew();
+				}
+			}
+		}else{
+			$notifNew = $this->showleads->notifNew();
+		}
+
+
 		$leads = $this->showleads->salesAll($id);
 		$new = $this->showleads->new_report_sales($id);
 		$close = $this->showleads->close_report_sales($id);
@@ -141,6 +154,7 @@ class User extends BaseController
 	
 		$data = [
 			'new' => $this->showleads->new(),
+			'notifNew' => $notifNew,
 			'user' => $this->showusers->detail($id),
 			'user_group' => $this->showusers,
 			'leads' => $leads,
