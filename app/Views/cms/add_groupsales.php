@@ -42,6 +42,7 @@
                         <option value="admin_project">Admin Project</option>
                         <option value="general_manager">General Manager</option>
                         <option value="manager">Manager</option>
+                        <option value="management">Management</option>
                         <option value="sales">Sales</option>
                     </select>
                     <div class="invalid-feedback">
