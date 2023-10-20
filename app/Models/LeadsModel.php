@@ -4228,7 +4228,7 @@ endif;
         $id = user()->id;
         $builder = $this->db->table($this->table);
 
-
+dd($groups);
         if (in_groups('users')) :
             $builder->groupStart()
                 ->where('groups', $groups)
