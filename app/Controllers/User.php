@@ -241,9 +241,23 @@ class User extends BaseController
 	}
 
 
-	public function search_leads($id)
+	public function search_leads($id)	
 	{
-		$search =  $this->request->getVar('search_leads');
+
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "admin_group" || $group['level'] = "management") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+				} else {
+					$notifNew = $this->showleads->notifNew();
+				}
+			}
+		} else {
+			$notifNew = $this->showleads->notifNew();
+		}
+
+
+			$search =  $this->request->getVar('search_leads');
 		
 			$leads = $this->showleads->search_leads_user($search,$id);
 			$new = $this->showleads->new_report_sales($id);
@@ -265,6 +279,7 @@ class User extends BaseController
 
 		$data = [
 			'leads' => $leads,
+			'notifNew' => $notifNew,
 			'new' => $this->showleads->new(),
 			'user' => $this->showusers->detail($id),
 			'user_group' => $this->showusers,
@@ -298,6 +313,17 @@ class User extends BaseController
 	public function search_leads_loggedin($id)
 	{
 
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "admin_group" || $group['level'] = "management") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+				} else {
+					$notifNew = $this->showleads->notifNew();
+				}
+			}
+		} else {
+			$notifNew = $this->showleads->notifNew();
+		}
 		
 		$search =  $this->request->getVar('search_leads');
 
@@ -321,6 +347,7 @@ class User extends BaseController
 
 		$data = [
 				'leads' => $leads,
+				'notifNew' => $notifNew,
 				'new' => $this->showleads->new(),
 				'user' => $this->showusers->detail($id),
 				'user_group' => $this->showusers,
