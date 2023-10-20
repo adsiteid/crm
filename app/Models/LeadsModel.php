@@ -4261,6 +4261,20 @@ endif;
     {
         $builder = $this->db->table($this->table);
 
+
+
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->where('groups', $groups)
+               ->orWhere('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
+            $builder->groupEnd();
+        endif;
+
         $builder->groupStart()
         ->Where("time_stamp_new BETWEEN '$startDate' AND '$endDate'")
         ->orWhere("time_stamp_close BETWEEN '$startDate' AND '$endDate'")
@@ -4271,18 +4285,6 @@ endif;
         ->orWhere("time_stamp_reserve BETWEEN '$startDate' AND '$endDate'")
         ->orWhere("time_stamp_booking BETWEEN '$startDate' AND '$endDate'")
         ->groupEnd();
-
- $id = user()->id;
- if (in_groups('users')) :
-            $builder->groupStart()
-                ->where('groups', $groups)
-               ->orWhere('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id)
-                ->orWhere('admin_group', $id)
-                ->orWhere('admin_project', $id);
-            $builder->groupEnd();
-        endif;
 
         // $builder->where('groups', $groups);
         $builder->groupBy('project', 'desc');
