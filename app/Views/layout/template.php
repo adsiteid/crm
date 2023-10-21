@@ -343,10 +343,9 @@
                                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
 
 
-
                                     <a href="<?= base_url(); ?>edit_user_id" class="dropdown-item">
                                         <i class="ti-settings text-primary"></i>
-                                        Profile
+                                        Edit Profile
                                     </a>
 
 
@@ -554,10 +553,11 @@
                                 </li>
 
 
+                               
                                 <li class="nav-item">
                                     <a class="nav-link" href="<?= base_url(); ?>edit_user_id">
                                         <i class="ti-settings menu-icon"></i>
-                                        <span class="menu-title">Profile</span>
+                                        <span class="menu-title">Edit Profile</span>
                                     </a>
                                 </li>
 

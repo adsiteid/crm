@@ -83,11 +83,22 @@
 
 <div class="col-12 grid-margin stretch-card p-0">
     <div class="card">
-        <div class="card-header bg-transparent d-flex justify-content-between">
+        <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
             <h4 class=" card-title pt-3">Edit User</h4>
-            <a href="<?= base_url() ?>forgot" class="small text-primary pt-3">
+
+            <div class="dropdown flex-md-grow-1 flex-xl-grow-0 d-lg-block d-none">
+                <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
+                    Change Email / Password
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                    <a class="dropdown-item" href="<?= base_url(); ?>change_email">Change Email</a>
+                    <a class="dropdown-item" href="<?= base_url(); ?>forgot">Change Password</a>
+
+                </div>
+            </div>
+            <!-- <a href="<?= base_url() ?>forgot" class="small text-primary pt-3">
                 Change Password
-            </a>
+            </a> -->
         </div>
 
         <div class="col mt-3">
@@ -157,7 +168,7 @@
                                 <?= (session('error.email')); ?>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-12 mb-3">
+                        <div class=" col-lg-6 col-12 mb-3">
                             <label for="">Contact</label>
                             <input type="number" class="form-control <?php if (session('error.contact')) : ?>is-invalid<?php endif ?>" placeholder="Contact" name="contact" value="<?= $row['contact']; ?>">
                             <div class="invalid-feedback">
@@ -178,7 +189,12 @@
                                 <?= (session('error.address')); ?>
                             </div>
                         </div>
+
                     </div>
+                    <div class="d-lg-none d-flex justify-content-lg-end justify-content-center">
+                        <p><a href="<?= base_url() ?>change_email">Change Email</a> | <a href="<?= base_url() ?>forgot">Change Password</a></p>
+                    </div>
+
                 </div>
 
 
@@ -215,9 +231,13 @@
                 <input type="hidden" name="user_id" value="<?= $row['id']; ?>">
 
             </form>
+
+
         </div>
     </div>
 </div>
+
+
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

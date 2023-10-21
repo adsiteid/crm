@@ -45,6 +45,187 @@ class CMS extends BaseController
 		$this->authgroups = new UserModel;
 	}
 
+	public function change_email()
+	{
+		return view('auth/change_email');
+	}
+
+
+	public function send_changemail_code()
+	{
+
+
+
+		$emailForm = $this->request->getVar('email');
+		$code = str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT);
+
+
+		$data = [
+				'code' => $code,
+				'email' => $emailForm,
+		];
+
+
+		$email = \Config\Services::email();
+		$config['protocol'] = 'smtp';
+		$config['SMTPHost'] = 'mail.adsite.id';
+		$config['SMTPUser'] = 'admin@adsite.id';
+		$config['SMTPPass'] = 'Bismillah789!';
+		$config['SMTPPort'] = 465;
+		$config['SMTPCrypto'] = 'ssl';
+		$config['SMTPTimeout'] = 30;
+		$config['charset']  = 'utf-8';
+		$config['wordWrap'] = true;
+		$config['newline']      = "\r\n";
+		$config['mailType'] = 'html';
+
+		$email->initialize($config);
+		$email->setFrom('admin@adsite.id', 'ADSITE.ID');
+		$email->setTo($emailForm);
+		$email->setSubject('Kode Verifikasi Perubahan Email');
+		$message =  view('App\Views\auth\email\change_email.php', $data);
+		$email->setMessage($message);
+		// $email->attach(base_url() . 'assets/attachment.pdf');
+
+		$email->send();
+
+		return view('auth/email_change_code', $data);
+	}
+
+
+	public function changemail_code_validation()
+	{
+
+		$email_code = $this->request->getVar('verification_code');
+		$code = $this->request->getVar('code');
+
+
+		if (!$this->validate([
+
+			'verification_code' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Kode Verifikasi Harus diisi'
+				]
+			]
+
+		])) {
+			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+		}else{
+			if ($email_code == $code) {
+
+				session()->setFlashdata(
+					'pesan',
+					'Email updated successfully'
+				);
+
+				return view('auth/input_new_email');
+			}else{
+				return redirect()->back()->withInput()->with('errors', 'Kode salah , silahkan ulangi kembali');
+			}
+		}
+		
+	}
+
+
+	public function new_email()
+	{
+		
+		$emailForm = $this->request->getVar('email');
+		$code = str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT);
+
+
+		if (!$this->validate([
+
+			'email' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Email Harus diisi'
+				]
+			]
+
+		])) {
+			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+		}
+
+
+		$data = [
+			'code' => $code,
+			'email' => $emailForm
+		];
+
+
+		$email = \Config\Services::email();
+		$config['protocol'] = 'smtp';
+		$config['SMTPHost'] = 'mail.adsite.id';
+		$config['SMTPUser'] = 'admin@adsite.id';
+		$config['SMTPPass'] = 'Bismillah789!';
+		$config['SMTPPort'] = 465;
+		$config['SMTPCrypto'] = 'ssl';
+		$config['SMTPTimeout'] = 30;
+		$config['charset']  = 'utf-8';
+		$config['wordWrap'] = true;
+		$config['newline']      = "\r\n";
+		$config['mailType'] = 'html';
+
+		$email->initialize($config);
+		$email->setFrom('admin@adsite.id', 'ADSITE.ID');
+		$email->setTo($emailForm);
+		$email->setSubject('Kode Verifikasi Perubahan Email');
+		$message =  view('App\Views\auth\email\new_email.php', $data);
+		$email->setMessage($message);
+		// $email->attach(base_url() . 'assets/attachment.pdf');
+
+		$email->send();
+
+		return view('auth/new_email_code', $data);
+	}
+
+
+	public function email_activation()
+	{
+
+		$email_code = $this->request->getVar('verification_code');
+		$code = $this->request->getVar('code');
+		$email = $this->request->getVar('email');
+	
+		if (!$this->validate([
+
+			'verification_code' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Kode Verifikasi Harus diisi'
+				]
+			]
+
+		])) {
+			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+		} 
+			
+		
+		if ($email_code == $code) {
+
+
+			$this->showusers->save(
+				[
+					'id' => user()->id,
+					'email' => $email
+				]
+			);
+
+				session()->setFlashdata(
+					'pesan',
+					'Email updated successfully'
+				);
+
+				return redirect()->route('edit_user_id');
+			} else {
+				return redirect()->back()->withInput()->with('errors', 'Kode salah , silahkan ulangi kembali');
+			}
+		
+	}
+
+
 
 	public function groups()
 	
@@ -1890,7 +2071,7 @@ endforeach;
 				'name' => $this->request->getVar('name'),
 				'fullname' => $this->request->getVar('fullname'),
 				'username' => $this->request->getVar('username'),
-				'email' => $this->request->getVar('email'),
+				// 'email' => $this->request->getVar('email'),
 				'contact' => $this->request->getVar('contact'),
 				'city' => $this->request->getVar('city'),
 				'address' => $this->request->getVar('address'),

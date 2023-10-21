@@ -73,6 +73,12 @@ $routes->post('/range_list', 'Leads::rangeList');
 $routes->post('/search_leads', 'Leads::search_leads');
 
 
+// CHANGE EMAIL
+$routes->get('change_email', 'CMS::change_email');
+$routes->post('send_changemail_code', 'CMS::send_changemail_code');
+$routes->post('changemail_code_validation', 'CMS::changemail_code_validation');
+$routes->post('new_email', 'CMS::new_email');
+$routes->post('email_activation', 'CMS::email_activation');
 
 // PROJECT
 $routes->get('/project/(:num)', 'Project::detail/$1');
