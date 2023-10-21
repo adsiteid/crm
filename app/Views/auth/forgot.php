@@ -36,13 +36,13 @@
               <h4 class="text-center mt-2">Ubah / lupa kata sandi ?</h4>
               <form class="pt-3" action="<?= url_to('forgot') ?>" method="post">
 
-                <p class="text-center mb-3 font-weight-light">Masukkan email anda, kami akan mengirimkan kode untuk mengatur ulang kata sandi Anda.</p>
+                <p class="text-center mb-3 font-weight-light">Kami akan mengirimkan kode untuk mengatur ulang kata sandi Anda ke alamat Email <br> <strong><?= user()->email; ?></strong></p>
                 <?= view('Myth\Auth\Views\_message_block') ?>
                 <?= csrf_field() ?>
 
                 <div class="form-group">
-                  <label for="email"><?= lang('Auth.emailAddress') ?></label>
-                  <input type="email" class="form-control <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" placeholder="<?= lang('Auth.email') ?>">
+                  <!-- <label for="email"><?= lang('Auth.emailAddress') ?></label> -->
+                  <input type="hidden" class="form-control <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" placeholder="<?= lang('Auth.email') ?>" value="<?= user()->email; ?>">
                   <div class="invalid-feedback">
                     <?= session('errors.email') ?>
                   </div>
@@ -58,7 +58,7 @@
 
             </div>
 
-            <p class="d-flex justify-content-center mt-3 font-weight-light"><?= lang('Auth.alreadyRegistered') ?> <a class="ml-1" href="<?= url_to('login') ?>"><?= lang('Auth.signIn') ?></a></p>
+            <!-- <p class="d-flex justify-content-center mt-3 font-weight-light"><?= lang('Auth.alreadyRegistered') ?> <a class="ml-1" href="<?= url_to('login') ?>"><?= lang('Auth.signIn') ?></a></p> -->
 
             <!-- <div class="mb-2">
                   <button type="button" class="btn btn-block btn-facebook auth-form-btn">
