@@ -109,7 +109,7 @@
                 <div class="col-lg-3 col-12  my-3">
                     <div class="avatar-upload">
                         <div class="avatar-edit">
-                            <input type='file' class="<?php if (session('errors.user_image')) : ?>is-invalid<?php endif ?>" id="imageUpload" name="user_image" accept=".png, .jpg, .jpeg" />
+                            <input type='file' class="<?php if (session('error.user_image')) : ?>is-invalid<?php endif ?>" id="imageUpload" name="user_image" accept=".png, .jpg, .jpeg" />
                             <label for="imageUpload"></label>
                         </div>
                         <div class="avatar-preview">
@@ -124,7 +124,7 @@
                         </div>
                     </div>
                     <div class="invalid-feedback">
-                        <?= (session('errors.user_image')); ?>
+                        <?= (session('error.user_image')); ?>
                     </div>
 
                 </div>
@@ -133,16 +133,16 @@
                     <div class="form-group row">
                         <div class="col-12 mb-3">
                             <label for="exampleInputName1">Name</label>
-                            <input type="text" class="form-control <?php if (session('errors.fullname')) : ?>is-invalid<?php endif ?>" id="exampleInputName1" placeholder="fullname" name="fullname" value="<?= $row['fullname']; ?>">
+                            <input type="text" class="form-control <?php if (session('error.fullname')) : ?>is-invalid<?php endif ?>" id="exampleInputName1" placeholder="fullname" name="fullname" value="<?= $row['fullname']; ?>">
                             <div class="invalid-feedback">
-                                <?= (session('errors.fullname')); ?>
+                                <?= (session('error.fullname')); ?>
                             </div>
                         </div>
                         <div class="col-12">
                             <label for="exampleInputEmail3">Username</label>
-                            <input type="text" class="form-control <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" id="exampleInputEmail3" placeholder="username" name="username" value="<?= $row['username']; ?>">
+                            <input type="text" class="form-control <?php if (session('error.username')) : ?>is-invalid<?php endif ?>" id="exampleInputEmail3" placeholder="username" name="username" value="<?= $row['username']; ?>">
                             <div class="invalid-feedback">
-                                <?= (session('errors.username')); ?>
+                                <?= (session('error.username')); ?>
                             </div>
                         </div>
                     </div>
@@ -152,30 +152,30 @@
                     <div class="form-group row p-0">
                         <div class="col-lg-6 col-12 mb-3">
                             <label for="hp">Email</label>
-                            <input type="email" class="form-control <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" placeholder="Email" name="email" value="<?= $row['email']; ?>">
+                            <input type="email" class="form-control <?php if (session('error.email')) : ?>is-invalid<?php endif ?>" placeholder="Email" name="email" value="<?= $row['email']; ?>">
                             <div class="invalid-feedback">
-                                <?= (session('errors.email')); ?>
+                                <?= (session('error.email')); ?>
                             </div>
                         </div>
                         <div class="col-lg-6 col-12 mb-3">
                             <label for="">Contact</label>
-                            <input type="number" class="form-control <?php if (session('errors.contact')) : ?>is-invalid<?php endif ?>" placeholder="Contact" name="contact" value="<?= $row['contact']; ?>">
+                            <input type="number" class="form-control <?php if (session('error.contact')) : ?>is-invalid<?php endif ?>" placeholder="Contact" name="contact" value="<?= $row['contact']; ?>">
                             <div class="invalid-feedback">
-                                <?= (session('errors.contact')); ?>
+                                <?= (session('error.contact')); ?>
                             </div>
                         </div>
                         <div class="col-lg-4 col-12 mb-lg-0  mb-3">
                             <label for="">City</label>
-                            <input type="text" class="form-control  <?php if (session('errors.city')) : ?>is-invalid<?php endif ?>" placeholder="City" name="city" value="<?= $row['city']; ?>">
+                            <input type="text" class="form-control  <?php if (session('error.city')) : ?>is-invalid<?php endif ?>" placeholder="City" name="city" value="<?= $row['city']; ?>">
                             <div class="invalid-feedback">
-                                <?= (session('errors.city')); ?>
+                                <?= (session('error.city')); ?>
                             </div>
                         </div>
                         <div class="col-lg-8 col-12">
                             <label for="address">Full Address</label>
-                            <input type="text" class="form-control <?php if (session('errors.address')) : ?>is-invalid<?php endif ?>" id="address" placeholder="address" name="address" value="<?= $row['address']; ?>">
+                            <input type="text" class="form-control <?php if (session('error.address')) : ?>is-invalid<?php endif ?>" id="address" placeholder="address" name="address" value="<?= $row['address']; ?>">
                             <div class="invalid-feedback">
-                                <?= (session('errors.address')); ?>
+                                <?= (session('error.address')); ?>
                             </div>
                         </div>
                     </div>
