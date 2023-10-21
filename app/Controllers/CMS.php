@@ -47,6 +47,7 @@ class CMS extends BaseController
 
 	public function change_email()
 	{
+		
 		return view('auth/change_email');
 	}
 
