@@ -102,6 +102,7 @@
             </div>
         </div>
     </div>
+</div>
 <!-- <div class="col-lg-4 col-12 px-lg-2 px-3">
                 <div class="card mb-lg-0 mb-3">
                     <div class="card-body py-4">

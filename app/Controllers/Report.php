@@ -867,6 +867,7 @@ class Report extends BaseController
 					$notifNew = $this->showleads->notifNew();
 					$new = $this->showleads->newRangeAdminProject($group['project'],$startDate, $endDate);
 					$sales = $this->showgroupsales->project($group['project']);
+
 				} 
 				$level = $group['level'];
 			}
