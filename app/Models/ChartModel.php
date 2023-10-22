@@ -735,14 +735,7 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->groupStart()
-            ->where('groups', $groups)
-            ->orWhere('sales', user()->id)
-            ->orWhere('manager', user()->id)
-            ->orWhere('general_manager', user()->id);
-        $builder->groupEnd();
-
-        // $builder->where('groups', $groups);
+        $builder->where('groups', $groups);
         $builder->where("time_stamp_reserve >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
         $result = $builder->get();
         return $result;
@@ -794,14 +787,7 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
 
-        $builder->groupStart()
-            ->where('groups', $groups)
-            ->orWhere('sales', user()->id)
-            ->orWhere('manager', user()->id)
-            ->orWhere('general_manager', user()->id);
-        $builder->groupEnd();
-
-        // $builder->where('groups', $groups);
+        $builder->where('groups', $groups);
         $builder->where('time_stamp_reserve >=', $startDate);
         $builder->where('time_stamp_reserve <=', $endDate);
         $result = $builder->get();
