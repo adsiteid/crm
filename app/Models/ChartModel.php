@@ -1834,14 +1834,14 @@ class ChartModel extends Model
             ->orLike('catatan', $search)
             ->groupEnd();
 
-        $builder->groupStart()
-            ->where('groups', $groups)
-            ->orWhere('sales', user()->id)
-            ->orWhere('manager', user()->id)
-            ->orWhere('general_manager', user()->id);
-        $builder->groupEnd();
+        // $builder->groupStart()
+        //     ->where('groups', $groups)
+        //     ->orWhere('sales', user()->id)
+        //     ->orWhere('manager', user()->id)
+        //     ->orWhere('general_manager', user()->id);
+        // $builder->groupEnd();
 
-        // $builder->where('groups',$groups);
+        $builder->where('groups',$groups);
         $builder->orderBy('id DESC');
         $result = $builder->get();
         return $result;
