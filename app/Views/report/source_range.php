@@ -120,28 +120,9 @@
 
                             <?php
 
-                            if (in_groups('admin')) :
-                                $facebook_ads = $source->sourceRange('Facebook Ads', $startDate, $endDate)->getNumRows();
-                                $facebook = $source->sourceRange('Facebook', $startDate, $endDate)->getNumRows();
-                                $instagram_ads = $source->sourceRange('Instagram Ads', $startDate, $endDate)->getNumRows();
-                                $instagram = $source->sourceRange('Instagram', $startDate, $endDate)->getNumRows();
-                                $youtube = $source->sourceRange('Youtube', $startDate, $endDate)->getNumRows();
-                                $tiktok = $source->sourceRange('TikTok Ads (Marcomm)', $startDate, $endDate)->getNumRows();
-                                $datamarcomm = $source->sourceRange('Data Marcomm', $startDate, $endDate)->getNumRows();
-                                $datapribadi = $source->sourceRange('Data Pribadi', $startDate, $endDate)->getNumRows();
-                                $iklanpribadi = $source->sourceRange('Iklan Pribadi', $startDate, $endDate)->getNumRows();
-                                $canvasing = $source->sourceRange('Canvasing', $startDate, $endDate)->getNumRows();
-                                $walkin = $source->sourceRange('Walk In', $startDate, $endDate)->getNumRows();
-                                $pameran = $source->sourceRange('Pameran', $startDate, $endDate)->getNumRows();
-                                $spanduk = $source->sourceRange('Spanduk', $startDate, $endDate)->getNumRows();
-                                $hoarding = $source->sourceRange('Hoarding', $startDate, $endDate)->getNumRows();
-                                $billboard = $source->sourceRange('Billboard', $startDate, $endDate)->getNumRows();
-                                $refferal = $source->sourceRange('Refferal', $startDate, $endDate)->getNumRows();
-                                $agent = $source->sourceRange('Agent', $startDate, $endDate)->getNumRows();
-                                $whatsapp = $source->sourceRange('Whatsapp', $startDate, $endDate)->getNumRows();
-                            endif;
+                            
 
-                            if (in_groups('users')) :
+    
 
                                 if (empty($group->user(user()->id)->getResultArray())) {
                                     $facebook_ads = $source->sourceRange('Facebook Ads', $startDate, $endDate)->getNumRows();
@@ -167,7 +148,7 @@
 
 
                                 foreach ($group->user(user()->id)->getResultArray() as $group) {
-                                    if ($group['level'] == "admin_group") {
+                                    if ($group['level'] == "admin_group" || $group['level'] == "management") {
                                         $facebook_ads = $source->sourceAdminGroupRange($group['groups'], 'Facebook Ads', $startDate, $endDate)->getNumRows();
                                         $facebook = $source->sourceAdminGroupRange($group['groups'], 'Facebook', $startDate, $endDate)->getNumRows();
                                         $instagram_ads = $source->sourceAdminGroupRange($group['groups'], 'Instagram Ads', $startDate, $endDate)->getNumRows();
@@ -227,7 +208,7 @@
                                     }
                                 }
 
-                            endif; ?>
+                          ?>
 
                             <!-- list-item -->
                             <tr class="">
