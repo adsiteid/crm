@@ -802,7 +802,6 @@ class Report extends BaseController
 					$all = $this->showleads->allFilterAdminGroup($group['groups'], $days);
 					$new = $this->showleads->newFilterAdminGroup($group['groups'],$days);
 					$sales = $this->showgroupsales->group_report($group['groups']);
-					$leadsDeal = $this->chartleads->leadsDealAdminGroup($group['groups'], $days);
 					$leadsReserve = $this->chartleads->leadsReserveAdminGroup($group['groups'], $days);
 					$leadsBooking = $this->chartleads->leadsBookingAdminGroup($group['groups'], $days);
 
@@ -829,7 +828,6 @@ class Report extends BaseController
 			'group' => $this->showgroupsales,
 			'count' => $this->showleads,
 			'project' => $this->showproject,
-			'leadsDeal'=> $leadsDeal,
 			'leadsReserve' => $leadsReserve,
 			'leadsBooking' => $leadsBooking,
 			'level' => $level,
@@ -861,7 +859,6 @@ class Report extends BaseController
 					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
 					$new = $this->showleads->newRangeAdminGroup($group['groups'],$startDate, $endDate);
 					$sales = $this->showgroupsales->group_report($group['groups']);
-					$leadsDeal = $this->chartleads->leadsDealRangeAdminGroup($group['groups'], $startDate, $endDate);
 					$leadsReserve = $this->chartleads->leadsReserveRangeAdminGroup($group['groups'], $startDate, $endDate);
 					$leadsBooking = $this->chartleads->leadsBookingRangeAdminGroup($group['groups'], $startDate, $endDate);
 				}
@@ -885,7 +882,6 @@ class Report extends BaseController
 			'group' => $this->showgroupsales,
 			'count' => $this->showleads,
 			'project' => $this->showproject,
-			'leadsDeal' => $leadsDeal,
 			'leadsReserve' => $leadsReserve,
 			'leadsBooking' => $leadsBooking,
 			'level' => $level,
