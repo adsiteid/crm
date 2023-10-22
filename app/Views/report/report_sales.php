@@ -56,37 +56,95 @@
 
 
 
+<div class="row mt-lg-0 my-3 px-lg-2 px-0">
+    <div class="col-lg-6 col-12 px-lg-2 px-3">
+        <div class="card mb-lg-0 mb-3">
+            <div class="card-body py-lg-5  py-4 px-lg-5 px-4">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <p class="text-muted small">Total Booking</p>
+                        <h4 class="fw-bolder">Rp. <?php
+                                                    $total = 0;
+                                                    foreach ($leadsBooking->getResultArray() as $cb) :
+                                                        $total += $cb['booking'];
+                                                    endforeach;
+                                                    echo $total;
+
+                                                    ?></h4>
+                    </div>
+                    <div class="col-4 d-flex justify-content-end">
+                        <button class="btn btn-xs btn-light rounded"> <i class="ti-medall mx-0" style="color:green;"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-12 px-lg-2 px-3">
+        <div class="card mb-lg-0 mb-2">
+            <div class="card-body py-lg-5 py-4 px-lg-5 px-4">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <p class="text-muted small">Total Reserve</p>
+
+                        <h4 class="fw-bolder">Rp. <?php
+                                                    $total = 0;
+                                                    foreach ($leadsReserve->getResultArray() as $cb) :
+                                                        $total += $cb['reserve'];
+                                                    endforeach;
+                                                    echo $total;
+
+                                                    ?></h4>
+                    </div>
+                    <div class="col-4 d-flex justify-content-end">
+                        <button class="btn btn-xs btn-light rounded"> <i class="ti-medall mx-0" style="color:orange;"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- <div class="col-lg-4 col-12 px-lg-2 px-3">
+                <div class="card mb-lg-0 mb-3">
+                    <div class="card-body py-4">
+                        <p class="text-muted small">Total Earnings</p>
+                        <h5 class="fw-bolder">Rp. 10.000.000</h5>
+                    </div>
+                </div>
+            </div> -->
+<!-- </div> -->
+
+
+
 <div class="card mb-4">
     <div class="card-header mb-4 d-lg-flex d-none align-items-center justify-content-between bg-transparent ">
 
-                <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                    <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
-                        <i class="mdi mdi-calendar"></i><?= $title; ?>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                        <a class="dropdown-item" href="<?= base_url(); ?>reportleads/30">Leads Report</a>
-                        <a class="dropdown-item" href="<?= base_url(); ?>report_project/30">Project Report</a>
-                        <a class="dropdown-item" href="<?= base_url(); ?>report_source/30">Source Report</a>
-                        <a class="dropdown-item" href="<?= base_url(); ?>report_sales_filter/30">Sales Report</a>
-
-                    </div>
-                </div>
-           
-
-            <div class="mb-2">
-                <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                    <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
-                        <i class="mdi mdi-calendar"></i><?= $day; ?>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                        <a class="dropdown-item" href="<?= base_url(); ?>report_sales_filter/90">Last 90 Days</a>
-                        <a class="dropdown-item" href="<?= base_url(); ?>report_sales_filter/30">Last 30 Days</a>
-                        <a class="dropdown-item" href="<?= base_url(); ?>report_sales_filter/7">Last 7 Days</a>
-                        <a type="button" class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Custom Range</a>
-                    </div>
-                </div>
+        <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+            <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
+                <i class="mdi mdi-calendar"></i><?= $title; ?>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                <a class="dropdown-item" href="<?= base_url(); ?>reportleads/30">Leads Report</a>
+                <a class="dropdown-item" href="<?= base_url(); ?>report_project/30">Project Report</a>
+                <a class="dropdown-item" href="<?= base_url(); ?>report_source/30">Source Report</a>
+                <a class="dropdown-item" href="<?= base_url(); ?>report_sales_filter/30">Sales Report</a>
 
             </div>
+        </div>
+
+
+        <div class="mb-2">
+            <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
+                    <i class="mdi mdi-calendar"></i><?= $day; ?>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                    <a class="dropdown-item" href="<?= base_url(); ?>report_sales_filter/90">Last 90 Days</a>
+                    <a class="dropdown-item" href="<?= base_url(); ?>report_sales_filter/30">Last 30 Days</a>
+                    <a class="dropdown-item" href="<?= base_url(); ?>report_sales_filter/7">Last 7 Days</a>
+                    <a type="button" class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Custom Range</a>
+                </div>
+            </div>
+
+        </div>
     </div>
     <div class="card-body">
 

@@ -752,6 +752,7 @@ class Report extends BaseController
 					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
 					$new = $this->showleads->newAdminGroup($group['groups']);
 					$sales = $this->showgroupsales->group_report($group['groups']);
+					
 				}
 
 				if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
@@ -801,6 +802,10 @@ class Report extends BaseController
 					$all = $this->showleads->allFilterAdminGroup($group['groups'], $days);
 					$new = $this->showleads->newFilterAdminGroup($group['groups'],$days);
 					$sales = $this->showgroupsales->group_report($group['groups']);
+					$leadsDeal = $this->chartleads->leadsDealAdminGroup($group['groups'], $days);
+					$leadsReserve = $this->chartleads->leadsReserveAdminGroup($group['groups'], $days);
+					$leadsBooking = $this->chartleads->leadsBookingAdminGroup($group['groups'], $days);
+
 				}
 
 				if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
@@ -824,6 +829,9 @@ class Report extends BaseController
 			'group' => $this->showgroupsales,
 			'count' => $this->showleads,
 			'project' => $this->showproject,
+			'leadsDeal'=> $leadsDeal,
+			'leadsReserve' => $leadsReserve,
+			'leadsBooking' => $leadsBooking,
 			'level' => $level,
 			'day' => "last $days Days",
 			'title' => 'Sales Report'
@@ -853,6 +861,9 @@ class Report extends BaseController
 					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
 					$new = $this->showleads->newRangeAdminGroup($group['groups'],$startDate, $endDate);
 					$sales = $this->showgroupsales->group_report($group['groups']);
+					$leadsDeal = $this->chartleads->leadsDealRangeAdminGroup($group['groups'], $startDate, $endDate);
+					$leadsReserve = $this->chartleads->leadsReserveRangeAdminGroup($group['groups'], $startDate, $endDate);
+					$leadsBooking = $this->chartleads->leadsBookingRangeAdminGroup($group['groups'], $startDate, $endDate);
 				}
 
 				if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
@@ -874,6 +885,9 @@ class Report extends BaseController
 			'group' => $this->showgroupsales,
 			'count' => $this->showleads,
 			'project' => $this->showproject,
+			'leadsDeal' => $leadsDeal,
+			'leadsReserve' => $leadsReserve,
+			'leadsBooking' => $leadsBooking,
 			'level' => $level,
 			'day' => "$startDate - $endDate",
 			'title' => 'Sales Report'
