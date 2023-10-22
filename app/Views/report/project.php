@@ -126,6 +126,8 @@
                             <?php
                             foreach ($leads->getResultArray() as $lproject) :
 
+                                dd($lproject['project']);
+
                                 $projects = $project->project($lproject['project'], $filter);
                                 $projectContacted = $project->projectContacted($lproject['project'], $filter);
                                 $projectVisit = $project->projectVisit($lproject['project'], $filter);

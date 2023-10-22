@@ -55,17 +55,19 @@ class CMS extends BaseController
 	public function send_changemail_code()
 	{
 
-
-
 		$emailForm = $this->request->getVar('email');
-		$code = str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT);
+		$code = $this->request->getVar('code');
 
+
+		
 
 		$data = [
 				'code' => $code,
 				'email' => $emailForm,
 		];
 
+
+	
 
 		$email = \Config\Services::email();
 		$config['protocol'] = 'smtp';
@@ -100,7 +102,6 @@ class CMS extends BaseController
 		$email_code = $this->request->getVar('verification_code');
 		$code = $this->request->getVar('code');
 
-
 		if (!$this->validate([
 
 			'verification_code' => [
@@ -111,20 +112,17 @@ class CMS extends BaseController
 			]
 
 		])) {
-			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
-		}else{
-			if ($email_code == $code) {
 
-				session()->setFlashdata(
-					'pesan',
-					'Email updated successfully'
-				);
+			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors())->with('code', $code);
+		}
+		
+			if ($email_code == $code) {
 
 				return view('auth/input_new_email');
 			}else{
-				return redirect()->back()->withInput()->with('errors', 'Kode salah , silahkan ulangi kembali');
+				return redirect()->back()->withInput()->with('errors', ['verification_code'=> 'Kode salah , silahkan ulangi kembali'])->with('code', $code);
 			}
-		}
+
 		
 	}
 
@@ -137,14 +135,14 @@ class CMS extends BaseController
 
 
 		if (!$this->validate([
-
 			'email' => [
-				'rules' => 'required',
+				'rules' => 'required|valid_email|is_unique[users.email]', // Menambahkan aturan validasi is_unique
 				'errors' => [
-					'required' => 'Email Harus diisi'
+					'required' => 'Email Harus diisi',
+					'valid_email' => 'Email tidak valid',
+					'is_unique' => 'Email sudah digunakan' // Pesan untuk email yang tidak unik
 				]
 			]
-
 		])) {
 			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
 		}

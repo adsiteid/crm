@@ -40,8 +40,13 @@
 
                 <?= csrf_field() ?>
 
+                <?php
+                          $code = str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT);
+                ?>
+
                 <div class="form-group">
                   <input type="hidden" class="form-control" name="email" value="<?= user()->email; ?>">
+                  <input type="hidden" class="form-control" name="code" value="<?= $code; ?>">
                   <div class="invalid-feedback">
                     <?= session('errors.email') ?>
                   </div>

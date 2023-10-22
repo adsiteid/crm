@@ -41,7 +41,6 @@
                 <?= csrf_field() ?>
 
                 <div class="form-group">
-
                   <input type="text" class="form-control <?php if (session('errors.verification_code')) : ?>is-invalid<?php endif ?>" name="verification_code" placeholder="Kode Verifikasi">
                   <div class="invalid-feedback">
                     <?= session('errors.verification_code') ?>
@@ -51,8 +50,7 @@
                 <input type="hidden" name="code" value="<?=$code;?>">
 
                 <div class="mt-3">
-                  <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"> Submit </button> <?php // lang('Auth.sendInstructions') 
-                                                                                                                                        ?>
+                  <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"> Submit </button> <?php // lang('Auth.sendInstructions')                                                                                                                    ?>
                 </div>
                 <div class="my-2 d-flex justify-content-between align-items-center">
 

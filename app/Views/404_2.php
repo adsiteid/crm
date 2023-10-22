@@ -20,7 +20,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="vendor/adsite/skydash/css/vertical-layout-light/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="<?= base_url(); ?>/document/app_image/logo/favicon.jpg" />
+    <link rel="shortcut icon" href="<?= base_url() ?>document/app_image/logo/logo-adsite-2.png" />
 
 </head>
 
@@ -46,7 +46,7 @@
                         </div>
                         <div class="row mt-5">
                             <div class="col-12 text-center mt-xl-2">
-                                <a class="text-white font-weight-medium" href="<?=base_url();?>">Back to home</a>
+                                <a class="text-white font-weight-medium" href="<?= base_url(); ?>">Back to home</a>
                             </div>
                         </div>
                         <div class="row mt-5">
