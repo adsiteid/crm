@@ -1626,11 +1626,7 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
         $builder->where('sumber_leads', $source);
-        // $builder->where('groups', $groups);
-
-        $builder->groupStart()
-            ->where('groups', $groups);
-        $builder->groupEnd();
+        $builder->where('groups', $groups);
 
 
         $builder->groupStart()
@@ -1654,11 +1650,8 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
         $builder->where('sumber_leads', $source);
-        // $builder->where('groups', $groups);
+        $builder->where('groups', $groups);
 
-        $builder->groupStart()
-            ->where('groups', $groups);
-        $builder->groupEnd();
 
         $builder->groupStart()
         ->Where("time_stamp_new BETWEEN '$startDate' AND '$endDate'")
@@ -1681,14 +1674,8 @@ class ChartModel extends Model
     {
         $builder = $this->db->table($this->table);
         $builder->where('sumber_leads', $source);
-        // $builder->where('project', $project);
+        $builder->where('project', $project);
 
-        $builder->groupStart()
-            ->where('project', $project)
-            ->orWhere('sales', user()->id)
-            ->orWhere('manager', user()->id)
-            ->orWhere('general_manager', user()->id);
-        $builder->groupEnd();
 
         $builder->groupStart()
             ->where("time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL $count DAY)")
