@@ -1130,8 +1130,6 @@ class ChartModel extends Model
         $builder = $this->db->table($this->table);
         $builder->where('project', $project);
 
-       
-
         $builder->groupStart()
         ->Where("time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL $filter DAY)")
         ->orWhere("time_stamp_close >= DATE_SUB(CURDATE(), INTERVAL $filter DAY)")
@@ -1155,16 +1153,6 @@ class ChartModel extends Model
         $builder = $this->db->table($this->table);
         $builder->where('project', $project);
 
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id)
-                ->orWhere('admin_group', $id)
-                ->orWhere('admin_project', $id);
-            $builder->groupEnd();
-        endif;
 
         $builder->groupStart()
         ->Where("time_stamp_new BETWEEN '$startDate' AND '$endDate'")
@@ -1190,17 +1178,6 @@ class ChartModel extends Model
         $builder->where('update_status', 'New');
         $builder->where('project', $project);
 
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id)
-                ->orWhere('admin_group', $id)
-                ->orWhere('admin_project', $id);
-            $builder->groupEnd();
-        endif;
-
         $builder->where("time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL $filter DAY)");
 
         $builder->orderBy('id DESC');
@@ -1218,17 +1195,7 @@ class ChartModel extends Model
         $builder->where('update_status', 'New');
         $builder->where('project', $project);
 
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id)
-                ->orWhere('admin_group', $id)
-                ->orWhere('admin_project', $id);
-            $builder->groupEnd();
-        endif;
-
+    
         $builder->groupStart()
         ->Where("time_stamp_new BETWEEN '$startDate' AND '$endDate'")
         ->groupEnd();
@@ -1246,17 +1213,6 @@ class ChartModel extends Model
         $builder = $this->db->table($this->table);
         $builder->where('update_status', 'Close');
         $builder->where('project', $project);
-
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id)
-                ->orWhere('admin_group', $id)
-                ->orWhere('admin_project', $id);
-            $builder->groupEnd();
-        endif;
 
         $builder->where("time_stamp_close >= DATE_SUB(CURDATE(), INTERVAL $filter DAY)");
         // $builder->where('time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
@@ -1287,16 +1243,16 @@ class ChartModel extends Model
         $builder->where('update_status', 'Close');
         $builder->where('project', $project);
 
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id)
-                ->orWhere('admin_group', $id)
-                ->orWhere('admin_project', $id);
-            $builder->groupEnd();
-        endif;
+        // $id = user()->id;
+        // if (in_groups('users')) :
+        //     $builder->groupStart()
+        //         ->Where('sales', $id)
+        //         ->orWhere('manager', $id)
+        //         ->orWhere('general_manager', $id)
+        //         ->orWhere('admin_group', $id)
+        //         ->orWhere('admin_project', $id);
+        //     $builder->groupEnd();
+        // endif;
 
         $builder->groupStart()
             ->Where("time_stamp_close BETWEEN '$startDate' AND '$endDate'")
@@ -1315,16 +1271,16 @@ class ChartModel extends Model
         $builder->where('update_status', 'Contacted');
         $builder->where('project', $project);
 
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id)
-                ->orWhere('admin_group', $id)
-                ->orWhere('admin_project', $id);
-            $builder->groupEnd();
-        endif;
+        // $id = user()->id;
+        // if (in_groups('users')) :
+        //     $builder->groupStart()
+        //         ->Where('sales', $id)
+        //         ->orWhere('manager', $id)
+        //         ->orWhere('general_manager', $id)
+        //         ->orWhere('admin_group', $id)
+        //         ->orWhere('admin_project', $id);
+        //     $builder->groupEnd();
+        // endif;
         
         $builder->where("time_stamp_contacted >= DATE_SUB(CURDATE(), INTERVAL $filter DAY)");
         // $builder->where('time_stamp_contacted >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
@@ -1341,16 +1297,16 @@ class ChartModel extends Model
         $builder->where('update_status', 'Contacted');
         $builder->where('project', $project);
 
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id)
-                ->orWhere('admin_group', $id)
-                ->orWhere('admin_project', $id);
-            $builder->groupEnd();
-        endif;
+        // $id = user()->id;
+        // if (in_groups('users')) :
+        //     $builder->groupStart()
+        //         ->Where('sales', $id)
+        //         ->orWhere('manager', $id)
+        //         ->orWhere('general_manager', $id)
+        //         ->orWhere('admin_group', $id)
+        //         ->orWhere('admin_project', $id);
+        //     $builder->groupEnd();
+        // endif;
 
         $builder->groupStart()
             ->Where("time_stamp_contacted BETWEEN '$startDate' AND '$endDate'")
@@ -1369,16 +1325,16 @@ class ChartModel extends Model
         $builder->where('update_status', 'Pending');
         $builder->where('project', $project);
 
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id)
-                ->orWhere('admin_group', $id)
-                ->orWhere('admin_project', $id);
-            $builder->groupEnd();
-        endif;
+        // $id = user()->id;
+        // if (in_groups('users')) :
+        //     $builder->groupStart()
+        //         ->Where('sales', $id)
+        //         ->orWhere('manager', $id)
+        //         ->orWhere('general_manager', $id)
+        //         ->orWhere('admin_group', $id)
+        //         ->orWhere('admin_project', $id);
+        //     $builder->groupEnd();
+        // endif;
 
         $builder->where("time_stamp_pending >= DATE_SUB(CURDATE(), INTERVAL $filter DAY)");
         // $builder->where('time_stamp_pending >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
@@ -1395,16 +1351,16 @@ class ChartModel extends Model
         $builder->where('update_status', 'Pending');
         $builder->where('project', $project);
 
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id)
-                ->orWhere('admin_group', $id)
-                ->orWhere('admin_project', $id);
-            $builder->groupEnd();
-        endif;
+        // $id = user()->id;
+        // if (in_groups('users')) :
+        //     $builder->groupStart()
+        //         ->Where('sales', $id)
+        //         ->orWhere('manager', $id)
+        //         ->orWhere('general_manager', $id)
+        //         ->orWhere('admin_group', $id)
+        //         ->orWhere('admin_project', $id);
+        //     $builder->groupEnd();
+        // endif;
 
         $builder->groupStart()
             ->Where("time_stamp_pending BETWEEN '$startDate' AND '$endDate'")
@@ -1422,16 +1378,16 @@ class ChartModel extends Model
         $builder->where('update_status', 'Visit');
         $builder->where('project', $project);
 
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id)
-                ->orWhere('admin_group', $id)
-                ->orWhere('admin_project', $id);
-            $builder->groupEnd();
-        endif;
+        // $id = user()->id;
+        // if (in_groups('users')) :
+        //     $builder->groupStart()
+        //         ->Where('sales', $id)
+        //         ->orWhere('manager', $id)
+        //         ->orWhere('general_manager', $id)
+        //         ->orWhere('admin_group', $id)
+        //         ->orWhere('admin_project', $id);
+        //     $builder->groupEnd();
+        // endif;
 
         $builder->where("time_stamp_visit >= DATE_SUB(CURDATE(), INTERVAL $filter DAY)");
         // $builder->where('time_stamp_visit >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
@@ -1447,16 +1403,16 @@ class ChartModel extends Model
         $builder->where('update_status', 'Visit');
         $builder->where('project', $project);
 
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id)
-                ->orWhere('admin_group', $id)
-                ->orWhere('admin_project', $id);
-            $builder->groupEnd();
-        endif;
+        // $id = user()->id;
+        // if (in_groups('users')) :
+        //     $builder->groupStart()
+        //         ->Where('sales', $id)
+        //         ->orWhere('manager', $id)
+        //         ->orWhere('general_manager', $id)
+        //         ->orWhere('admin_group', $id)
+        //         ->orWhere('admin_project', $id);
+        //     $builder->groupEnd();
+        // endif;
 
         $builder->groupStart()
             ->Where("time_stamp_visit BETWEEN '$startDate' AND '$endDate'")
@@ -1475,16 +1431,16 @@ class ChartModel extends Model
         $builder->where('update_status', 'Deal');
         $builder->where('project', $project);
 
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id)
-                ->orWhere('admin_group', $id)
-                ->orWhere('admin_project', $id);
-            $builder->groupEnd();
-        endif;
+        // $id = user()->id;
+        // if (in_groups('users')) :
+        //     $builder->groupStart()
+        //         ->Where('sales', $id)
+        //         ->orWhere('manager', $id)
+        //         ->orWhere('general_manager', $id)
+        //         ->orWhere('admin_group', $id)
+        //         ->orWhere('admin_project', $id);
+        //     $builder->groupEnd();
+        // endif;
 
         $builder->where("time_stamp_deal >= DATE_SUB(CURDATE(), INTERVAL $filter DAY)");
         $builder->whereIn('kategori_status', ['Warm', 'Hot']);
@@ -1502,16 +1458,16 @@ class ChartModel extends Model
         $builder->whereIn('kategori_status', ['Cold','Warm','Hot']);
         $builder->where('project', $project);
 
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id)
-                ->orWhere('admin_group', $id)
-                ->orWhere('admin_project', $id);
-            $builder->groupEnd();
-        endif;
+        // $id = user()->id;
+        // if (in_groups('users')) :
+        //     $builder->groupStart()
+        //         ->Where('sales', $id)
+        //         ->orWhere('manager', $id)
+        //         ->orWhere('general_manager', $id)
+        //         ->orWhere('admin_group', $id)
+        //         ->orWhere('admin_project', $id);
+        //     $builder->groupEnd();
+        // endif;
 
         $builder->groupStart()
             ->Where("time_stamp_deal BETWEEN '$startDate' AND '$endDate'")
@@ -1530,16 +1486,16 @@ class ChartModel extends Model
         $builder->where('kategori_status', 'Reserve');
         $builder->where('project', $project);
 
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id)
-                ->orWhere('admin_group', $id)
-                ->orWhere('admin_project', $id);
-            $builder->groupEnd();
-        endif;
+        // $id = user()->id;
+        // if (in_groups('users')) :
+        //     $builder->groupStart()
+        //         ->Where('sales', $id)
+        //         ->orWhere('manager', $id)
+        //         ->orWhere('general_manager', $id)
+        //         ->orWhere('admin_group', $id)
+        //         ->orWhere('admin_project', $id);
+        //     $builder->groupEnd();
+        // endif;
 
         $builder->where("time_stamp_reserve >= DATE_SUB(CURDATE(), INTERVAL $filter DAY)");
         // $builder->where('time_stamp_reserve >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
@@ -1556,16 +1512,16 @@ class ChartModel extends Model
         $builder->where('kategori_status', 'Reserve');
         $builder->where('project', $project);
 
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id)
-                ->orWhere('admin_group', $id)
-                ->orWhere('admin_project', $id);
-            $builder->groupEnd();
-        endif;
+        // $id = user()->id;
+        // if (in_groups('users')) :
+        //     $builder->groupStart()
+        //         ->Where('sales', $id)
+        //         ->orWhere('manager', $id)
+        //         ->orWhere('general_manager', $id)
+        //         ->orWhere('admin_group', $id)
+        //         ->orWhere('admin_project', $id);
+        //     $builder->groupEnd();
+        // endif;
 
         $builder->groupStart()
             ->Where("time_stamp_reserve BETWEEN '$startDate' AND '$endDate'")
@@ -1584,16 +1540,16 @@ class ChartModel extends Model
         $builder->where('kategori_status', 'Booking');
         $builder->where('project', $project);
 
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id)
-                ->orWhere('admin_group', $id)
-                ->orWhere('admin_project', $id);
-            $builder->groupEnd();
-        endif;
+        // $id = user()->id;
+        // if (in_groups('users')) :
+        //     $builder->groupStart()
+        //         ->Where('sales', $id)
+        //         ->orWhere('manager', $id)
+        //         ->orWhere('general_manager', $id)
+        //         ->orWhere('admin_group', $id)
+        //         ->orWhere('admin_project', $id);
+        //     $builder->groupEnd();
+        // endif;
 
         $builder->where("time_stamp_booking >= DATE_SUB(CURDATE(), INTERVAL $filter DAY)");
         // $builder->where('time_stamp_booking >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)');
@@ -1610,16 +1566,16 @@ class ChartModel extends Model
         $builder->where('kategori_status', 'Booking');
         $builder->where('project', $project);
 
-        $id = user()->id;
-        if (in_groups('users')) :
-            $builder->groupStart()
-                ->Where('sales', $id)
-                ->orWhere('manager', $id)
-                ->orWhere('general_manager', $id)
-                ->orWhere('admin_group', $id)
-                ->orWhere('admin_project', $id);
-            $builder->groupEnd();
-        endif;
+        // $id = user()->id;
+        // if (in_groups('users')) :
+        //     $builder->groupStart()
+        //         ->Where('sales', $id)
+        //         ->orWhere('manager', $id)
+        //         ->orWhere('general_manager', $id)
+        //         ->orWhere('admin_group', $id)
+        //         ->orWhere('admin_project', $id);
+        //     $builder->groupEnd();
+        // endif;
 
         $builder->groupStart()
             ->Where("time_stamp_booking BETWEEN '$startDate' AND '$endDate'")
@@ -1673,10 +1629,7 @@ class ChartModel extends Model
         // $builder->where('groups', $groups);
 
         $builder->groupStart()
-            ->where('groups', $groups)
-            ->orWhere('sales', user()->id)
-            ->orWhere('manager', user()->id)
-            ->orWhere('general_manager', user()->id);
+            ->where('groups', $groups);
         $builder->groupEnd();
 
 
@@ -1704,10 +1657,7 @@ class ChartModel extends Model
         // $builder->where('groups', $groups);
 
         $builder->groupStart()
-            ->where('groups', $groups)
-            ->orWhere('sales', user()->id)
-            ->orWhere('manager', user()->id)
-            ->orWhere('general_manager', user()->id);
+            ->where('groups', $groups);
         $builder->groupEnd();
 
         $builder->groupStart()
