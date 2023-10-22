@@ -805,14 +805,14 @@ class Report extends BaseController
 					$leadsReserve = $this->chartleads->leadsReserveAdminGroup($group['groups'], $days);
 					$leadsBooking = $this->chartleads->leadsBookingAdminGroup($group['groups'], $days);
 
-				}
-
-				if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
+				}else{
 					$notifNew = $this->showleads->notifNew();
-					$all = $this->showleads->allFilterAdminProject($group['project'], $days);
-					$new = $this->showleads->newFilterAdminProject($group['project'], $days);
+					$all = $this->showleads->allFilter($days);
+					$new = $this->showleads->newFilter($days);
 					$sales = $this->showgroupsales->project($group['project']);
-				} 
+					$leadsReserve = $this->chartleads->leadsReserve($days);
+					$leadsBooking = $this->chartleads->leadsBooking($days);
+				}
 				
 				$level = $group['level'];
 			}
@@ -864,9 +864,13 @@ class Report extends BaseController
 				}
 
 				if ($group['level'] == "admin_project" || $group['level'] == "manager" || $group['level'] == "sales") {
+
+
 					$notifNew = $this->showleads->notifNew();
-					$new = $this->showleads->newRangeAdminProject($group['project'],$startDate, $endDate);
+					$new = $this->showleads->newRange($startDate, $endDate);
 					$sales = $this->showgroupsales->project($group['project']);
+					$leadsReserve = $this->chartleads->leadsReserve($startDate, $endDate);
+					$leadsBooking = $this->chartleads->leadsBooking($startDate, $endDate);
 
 				} 
 				$level = $group['level'];
