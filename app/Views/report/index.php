@@ -107,7 +107,7 @@
                     </strong></h4>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
-                <a href="<?= base_url(); ?>reportleads/30" type="button" class="rounded-circle bg-white text-center pt-1" style="width:30px; height:30px;">
+                <a href="<?= base_url(); ?>report_sales_filter/30" type="button" class="rounded-circle bg-white text-center pt-1" style="width:30px; height:30px;">
                     <i class="ti-angle-right text-primary small"></i>
                 </a>
             </div>
