@@ -192,7 +192,7 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
                                         echo $str;
                                         ?>
                                     </td>
-                                    <td class="text-lg-left text-right pl-0" <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project" || $level == "manager" || $level == "general_manager") : ?> onclick="location.href='<?= base_url(); ?>user/<?php echo $row['id_user']; ?>'" <?php endif; ?>>
+                                    <td class="text-lg-left text-right pl-0" <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project" || $level == "manager" || $level == "general_manager"|| $level == "management") : ?> onclick="location.href='<?= base_url(); ?>user/<?php echo $row['id_user']; ?>'" <?php endif; ?>>
                                         <label style="font-size: 9px;" class="badge  badge-<?php if ($row['level'] == 'admin') {
                                                                                                 echo 'primary';
                                                                                             } elseif ($row['level'] == 'sales') {
