@@ -224,7 +224,7 @@
 
 
                                 <!-- list-item -->
-                                <tr class="" <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project" || $level == "manager" || $level == "general_manager") : ?> onclick="location.href='<?= base_url(); ?>user/<?php echo $row['id_user']; ?>'" <?php endif; ?>>
+                                <tr class="" <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project" || $level == "manager" || $level == "general_manager" || $level == "management") : ?> onclick="location.href='<?= base_url(); ?>user/<?php echo $row['id_user']; ?>'" <?php endif; ?>>
                                     <td><?= $no++; ?></td>
                                     <td>
                                         <?php foreach ($user->detail($row['id_user'])->getResultArray() as $us) : ?>
