@@ -52,6 +52,18 @@
     .simple-pagination .next.current {
         background: #1F3960;
     }
+
+
+    .swiper-wrapper {
+        position: relative;
+        width: 100%;
+        /* height: 63px !important; */
+        height: 45px !important;
+    }
+
+    /* #chart {
+        max-width: 650px;
+    } */
 </style>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.min.css">
