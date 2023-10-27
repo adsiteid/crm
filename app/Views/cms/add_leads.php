@@ -132,11 +132,28 @@
                         <?php endif; ?>
 
                         <?php if (!empty($user_group->getResultArray())) : ?>
+
                             <option value="" selected>Select Option</option>
+
+
                             <?php foreach ($user_group->getResultArray() as $sls) : ?>
-                                <?php foreach ($group->groups($sls['groups'])->getResultArray() as $user_sls) : ?>
-                                    <option value="<?= $user_sls['id_user']; ?>"><?php foreach ($users->detail($user_sls['id_user'])->getResultArray() as $user_sls_fetch) : ?><?= $user_sls_fetch['fullname']; ?><?php endforeach; ?></option>
-                                <?php endforeach; ?>
+
+
+
+                                <?php if ($sls['level'] == "sales" && $sls['id_user'] == user()->id) : ?>
+                                    <option value="<?= user()->id; ?>"><?php foreach ($users->detail(user()->id)->getResultArray() as $user_sls) : ?><?= $user_sls['fullname']; ?><?php endforeach; ?></option>
+                                <?php endif; ?>
+
+                                <?php if ( $sls['level'] == "manager" || $sls['level'] == "general_manager" || $sls['level'] == "management" && $sls['id_user'] == user()->id) : ?>
+
+                                    <?php foreach ($group->groups($sls['groups'])->getResultArray() as $user_sls) : ?>
+                                        <option value="<?= $user_sls['id_user']; ?>"><?php foreach ($users->detail($user_sls['id_user'])->getResultArray() as $user_sls_fetch) : ?><?= $user_sls_fetch['fullname']; ?><?php endforeach; ?></option>
+                                    <?php endforeach; ?>
+
+                                <?php endif; ?>
+
+
+
                             <?php endforeach; ?>
                         <?php endif; ?>
 
