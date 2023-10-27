@@ -121,7 +121,6 @@ $this->findAll();
     public function projects($groups)
     {
         $builder = $this->db->table($this->table);
-        $builder->where('level', 'admin_project');
         $builder->where('groups', $groups);
         $builder->groupBy('project');
         $result = $builder->get();
