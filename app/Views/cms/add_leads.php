@@ -83,9 +83,7 @@
                         <option value="">Select Project</option>
 
                         <?php foreach ($user_group->getResultArray() as $usergroup) : ?>
-                            <?php foreach ($group->projects($usergroup['groups'])->getResultArray() as $prj) : ?>
-                                <option value="<?= $prj['project']; ?>"><?php foreach ($projects->detail($prj['project'])->getResultArray() as $prjct) : ?><?= $prjct['project']; ?><?php endforeach; ?></option>
-                            <?php endforeach ?>
+                            <option value="<?= $usergroup['project']; ?>"><?php foreach ($projects->detail($usergroup['project'])->getResultArray() as $prjct) : ?><?= $prjct['project']; ?><?php endforeach; ?></option>
                         <?php endforeach; ?>
 
                     </select>
@@ -100,7 +98,9 @@
                         <option value="" selected>Select Option</option>
 
                         <?php foreach ($user_group->getResultArray() as $gm) : ?>
-                            <option value="<?= $gm['general_manager']; ?>"><?php foreach ($users->detail($gm['general_manager'])->getResultArray() as $user_gm) : ?><?= $user_gm['fullname']; ?><?php endforeach; ?></option>
+                            <?php foreach ($group->general_manager($gm['groups'])->getResultArray() as $gmanager) : ?>
+                                <option value="<?= $gmanager['id_user']; ?>"><?php foreach ($users->detail($gmanager['id_user'])->getResultArray() as $gmanager_fetch) : ?><?= $gmanager_fetch['fullname']; ?><?php endforeach; ?></option>
+                            <?php endforeach; ?>
                         <?php endforeach; ?>
 
                     </select>
@@ -113,7 +113,9 @@
                     <select class="form-control form-select <?php if (session('error.manager')) : ?>is-invalid<?php endif ?> " id="Sales Manager" name="manager">
                         <option value="" selected>Select Option</option>
                         <?php foreach ($user_group->getResultArray() as $mng) : ?>
-                            <option value="<?= $mng['manager']; ?>"><?php foreach ($users->detail($mng['manager'])->getResultArray() as $user_mng) : ?><?= $user_mng['fullname']; ?><?php endforeach; ?></option>
+                            <?php foreach ($group->manager($mng['groups'])->getResultArray() as $manager) : ?>
+                                <option value="<?= $manager['id_user']; ?>"><?php foreach ($users->detail($manager['id_user'])->getResultArray() as $manager_fetch) : ?><?= $manager_fetch['fullname']; ?><?php endforeach; ?></option>
+                            <?php endforeach; ?>
                         <?php endforeach; ?>
                     </select>
                     <div class="invalid-feedback">

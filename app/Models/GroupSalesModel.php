@@ -112,7 +112,7 @@ $this->findAll();
     public function detail($id)
     { 
         $builder = $this->db->table($this->table);
-        $builder->where('id', $id);
+        $builder->where('id_user', $id);
         $result = $builder->get();
         return $result;
     }
@@ -137,7 +137,38 @@ $this->findAll();
         return $result;
     }
 
-    
+
+
+    public function general_manager($groups)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('groups', $groups);
+        $builder->where('level', 'general_manager');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function manager($groups)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('groups', $groups);
+        $builder->where('level', 'manager');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    public function sales($groups)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('groups', $groups);
+        $builder->where('level', 'sales');
+        $result = $builder->get();
+        return $result;
+    }
+
+
 
 
 }

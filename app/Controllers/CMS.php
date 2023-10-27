@@ -847,6 +847,7 @@ class CMS extends BaseController
 		}
 		
 
+
 		$data = [
 			'new' => $this->showleads->new(),
 			'notifNew'=> $notifNew,
