@@ -84,7 +84,8 @@
 <div class="col-12 grid-margin stretch-card p-0">
     <div class="card">
         <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
-            <h4 class=" card-title pt-3">Edit User</h4>
+
+            <label class="badge badge-success mt-2" style="font-size: 10px;">ID User : <?= $row['id']; ?></label>
 
             <div class="dropdown flex-md-grow-1 flex-xl-grow-0 d-lg-block d-none">
                 <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
