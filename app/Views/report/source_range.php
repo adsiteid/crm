@@ -59,7 +59,9 @@
             <div class="swiper-slide">
                 <a href="<?= base_url() ?>report_source/30" type=" button" class="col px-0 btn <?= ($title == "Source Report") ? 'btn-primary' : 'btn-light bg-white'; ?>  rounded mr-1 small"> Source Report </a>
             </div>
-
+            <div class="swiper-slide">
+                <a href="<?= base_url() ?>report_sales_filter/30" type=" button" class="col px-0 btn <?= ($title == "Sales Report") ? 'btn-primary' : 'btn-light bg-white'; ?>  rounded mr-1 small"> Sales Report </a>
+            </div>
         </div>
 
     </div>
@@ -120,11 +122,73 @@
 
                             <?php
 
-                            
 
-    
 
-                                if (empty($group->user(user()->id)->getResultArray())) {
+
+
+                            if (empty($group->user(user()->id)->getResultArray())) {
+                                $facebook_ads = $source->sourceRange('Facebook Ads', $startDate, $endDate)->getNumRows();
+                                $facebook = $source->sourceRange('Facebook', $startDate, $endDate)->getNumRows();
+                                $instagram_ads = $source->sourceRange('Instagram Ads', $startDate, $endDate)->getNumRows();
+                                $instagram = $source->sourceRange('Instagram', $startDate, $endDate)->getNumRows();
+                                $youtube = $source->sourceRange('Youtube', $startDate, $endDate)->getNumRows();
+                                $tiktok = $source->sourceRange('TikTok Ads (Marcomm)', $startDate, $endDate)->getNumRows();
+                                $datamarcomm = $source->sourceRange('Data Marcomm', $startDate, $endDate)->getNumRows();
+                                $datapribadi = $source->sourceRange('Data Pribadi', $startDate, $endDate)->getNumRows();
+                                $iklanpribadi = $source->sourceRange('Iklan Pribadi', $startDate, $endDate)->getNumRows();
+                                $canvasing = $source->sourceRange('Canvasing', $startDate, $endDate)->getNumRows();
+                                $walkin = $source->sourceRange('Walk In', $startDate, $endDate)->getNumRows();
+                                $pameran = $source->sourceRange('Pameran', $startDate, $endDate)->getNumRows();
+                                $spanduk = $source->sourceRange('Spanduk', $startDate, $endDate)->getNumRows();
+                                $hoarding = $source->sourceRange('Hoarding', $startDate, $endDate)->getNumRows();
+                                $billboard = $source->sourceRange('Billboard', $startDate, $endDate)->getNumRows();
+                                $refferal = $source->sourceRange('Refferal', $startDate, $endDate)->getNumRows();
+                                $agent = $source->sourceRange('Agent', $startDate, $endDate)->getNumRows();
+                                $whatsapp = $source->sourceRange('Whatsapp', $startDate, $endDate)->getNumRows();
+                            }
+
+
+
+                            foreach ($group->user(user()->id)->getResultArray() as $group) {
+                                if ($group['level'] == "admin_group" || $group['level'] == "management") {
+                                    $facebook_ads = $source->sourceAdminGroupRange($group['groups'], 'Facebook Ads', $startDate, $endDate)->getNumRows();
+                                    $facebook = $source->sourceAdminGroupRange($group['groups'], 'Facebook', $startDate, $endDate)->getNumRows();
+                                    $instagram_ads = $source->sourceAdminGroupRange($group['groups'], 'Instagram Ads', $startDate, $endDate)->getNumRows();
+                                    $instagram = $source->sourceAdminGroupRange($group['groups'], 'Instagram', $startDate, $endDate)->getNumRows();
+                                    $youtube = $source->sourceAdminGroupRange($group['groups'], 'Youtube', $startDate, $endDate)->getNumRows();
+                                    $tiktok = $source->sourceAdminGroupRange($group['groups'], 'TikTok Ads (Marcomm)', $startDate, $endDate)->getNumRows();
+                                    $datamarcomm = $source->sourceAdminGroupRange($group['groups'], 'Data Marcomm', $startDate, $endDate)->getNumRows();
+                                    $datapribadi = $source->sourceAdminGroupRange($group['groups'], 'Data Pribadi', $startDate, $endDate)->getNumRows();
+                                    $iklanpribadi = $source->sourceAdminGroupRange($group['groups'], 'Iklan Pribadi', $startDate, $endDate)->getNumRows();
+                                    $canvasing = $source->sourceAdminGroupRange($group['groups'], 'Canvasing', $startDate, $endDate)->getNumRows();
+                                    $walkin = $source->sourceAdminGroupRange($group['groups'], 'Walk In', $startDate, $endDate)->getNumRows();
+                                    $pameran = $source->sourceAdminGroupRange($group['groups'], 'Pameran', $startDate, $endDate)->getNumRows();
+                                    $spanduk = $source->sourceAdminGroupRange($group['groups'], 'Spanduk', $startDate, $endDate)->getNumRows();
+                                    $hoarding = $source->sourceAdminGroupRange($group['groups'], 'Hoarding', $startDate, $endDate)->getNumRows();
+                                    $billboard = $source->sourceAdminGroupRange($group['groups'], 'Billboard', $startDate, $endDate)->getNumRows();
+                                    $refferal = $source->sourceAdminGroupRange($group['groups'], 'Refferal', $startDate, $endDate)->getNumRows();
+                                    $agent = $source->sourceAdminGroupRange($group['groups'], 'Agent', $startDate, $endDate)->getNumRows();
+                                    $whatsapp = $source->sourceAdminGroupRange($group['groups'], 'Whatsapp', $startDate, $endDate)->getNumRows();
+                                } elseif ($group['level'] == "admin_project") {
+                                    $facebook_ads = $source->sourceAdminProjectRange($group['project'], 'Facebook Ads', $startDate, $endDate)->getNumRows();
+                                    $facebook = $source->sourceAdminProjectRange($group['project'], 'Facebook', $startDate, $endDate)->getNumRows();
+                                    $instagram_ads = $source->sourceAdminProjectRange($group['project'], 'Instagram Ads', $startDate, $endDate)->getNumRows();
+                                    $instagram = $source->sourceAdminProjectRange($group['project'], 'Instagram', $startDate, $endDate)->getNumRows();
+                                    $youtube = $source->sourceAdminProjectRange($group['project'], 'Youtube', $startDate, $endDate)->getNumRows();
+                                    $tiktok = $source->sourceAdminProjectRange($group['project'], 'TikTok Ads (Marcomm)', $startDate, $endDate)->getNumRows();
+                                    $datamarcomm = $source->sourceAdminProjectRange($group['project'], 'Data Marcomm', $startDate, $endDate)->getNumRows();
+                                    $datapribadi = $source->sourceAdminProjectRange($group['project'], 'Data Pribadi', $startDate, $endDate)->getNumRows();
+                                    $iklanpribadi = $source->sourceAdminProjectRange($group['project'], 'Iklan Pribadi', $startDate, $endDate)->getNumRows();
+                                    $canvasing = $source->sourceAdminProjectRange($group['project'], 'Canvasing', $startDate, $endDate)->getNumRows();
+                                    $walkin = $source->sourceAdminProjectRange($group['project'], 'Walk In', $startDate, $endDate)->getNumRows();
+                                    $pameran = $source->sourceAdminProjectRange($group['project'], 'Pameran', $startDate, $endDate)->getNumRows();
+                                    $spanduk = $source->sourceAdminProjectRange($group['project'], 'Spanduk', $startDate, $endDate)->getNumRows();
+                                    $hoarding = $source->sourceAdminProjectRange($group['project'], 'Hoarding', $startDate, $endDate)->getNumRows();
+                                    $billboard = $source->sourceAdminProjectRange($group['project'], 'Billboard', $startDate, $endDate)->getNumRows();
+                                    $refferal = $source->sourceAdminProjectRange($group['project'], 'Refferal', $startDate, $endDate)->getNumRows();
+                                    $agent = $source->sourceAdminProjectRange($group['project'], 'Agent', $startDate, $endDate)->getNumRows();
+                                    $whatsapp = $source->sourceAdminProjectRange($group['project'], 'Whatsapp', $startDate, $endDate)->getNumRows();
+                                } else {
                                     $facebook_ads = $source->sourceRange('Facebook Ads', $startDate, $endDate)->getNumRows();
                                     $facebook = $source->sourceRange('Facebook', $startDate, $endDate)->getNumRows();
                                     $instagram_ads = $source->sourceRange('Instagram Ads', $startDate, $endDate)->getNumRows();
@@ -144,71 +208,9 @@
                                     $agent = $source->sourceRange('Agent', $startDate, $endDate)->getNumRows();
                                     $whatsapp = $source->sourceRange('Whatsapp', $startDate, $endDate)->getNumRows();
                                 }
+                            }
 
-
-
-                                foreach ($group->user(user()->id)->getResultArray() as $group) {
-                                    if ($group['level'] == "admin_group" || $group['level'] == "management") {
-                                        $facebook_ads = $source->sourceAdminGroupRange($group['groups'], 'Facebook Ads', $startDate, $endDate)->getNumRows();
-                                        $facebook = $source->sourceAdminGroupRange($group['groups'], 'Facebook', $startDate, $endDate)->getNumRows();
-                                        $instagram_ads = $source->sourceAdminGroupRange($group['groups'], 'Instagram Ads', $startDate, $endDate)->getNumRows();
-                                        $instagram = $source->sourceAdminGroupRange($group['groups'], 'Instagram', $startDate, $endDate)->getNumRows();
-                                        $youtube = $source->sourceAdminGroupRange($group['groups'], 'Youtube', $startDate, $endDate)->getNumRows();
-                                        $tiktok = $source->sourceAdminGroupRange($group['groups'], 'TikTok Ads (Marcomm)', $startDate, $endDate)->getNumRows();
-                                        $datamarcomm = $source->sourceAdminGroupRange($group['groups'], 'Data Marcomm', $startDate, $endDate)->getNumRows();
-                                        $datapribadi = $source->sourceAdminGroupRange($group['groups'], 'Data Pribadi', $startDate, $endDate)->getNumRows();
-                                        $iklanpribadi = $source->sourceAdminGroupRange($group['groups'], 'Iklan Pribadi', $startDate, $endDate)->getNumRows();
-                                        $canvasing = $source->sourceAdminGroupRange($group['groups'], 'Canvasing', $startDate, $endDate)->getNumRows();
-                                        $walkin = $source->sourceAdminGroupRange($group['groups'], 'Walk In', $startDate, $endDate)->getNumRows();
-                                        $pameran = $source->sourceAdminGroupRange($group['groups'], 'Pameran', $startDate, $endDate)->getNumRows();
-                                        $spanduk = $source->sourceAdminGroupRange($group['groups'], 'Spanduk', $startDate, $endDate)->getNumRows();
-                                        $hoarding = $source->sourceAdminGroupRange($group['groups'], 'Hoarding', $startDate, $endDate)->getNumRows();
-                                        $billboard = $source->sourceAdminGroupRange($group['groups'], 'Billboard', $startDate, $endDate)->getNumRows();
-                                        $refferal = $source->sourceAdminGroupRange($group['groups'], 'Refferal', $startDate, $endDate)->getNumRows();
-                                        $agent = $source->sourceAdminGroupRange($group['groups'], 'Agent', $startDate, $endDate)->getNumRows();
-                                        $whatsapp = $source->sourceAdminGroupRange($group['groups'], 'Whatsapp', $startDate, $endDate)->getNumRows();
-                                    } elseif ($group['level'] == "admin_project") {
-                                        $facebook_ads = $source->sourceAdminProjectRange($group['project'], 'Facebook Ads', $startDate, $endDate)->getNumRows();
-                                        $facebook = $source->sourceAdminProjectRange($group['project'], 'Facebook', $startDate, $endDate)->getNumRows();
-                                        $instagram_ads = $source->sourceAdminProjectRange($group['project'], 'Instagram Ads', $startDate, $endDate)->getNumRows();
-                                        $instagram = $source->sourceAdminProjectRange($group['project'], 'Instagram', $startDate, $endDate)->getNumRows();
-                                        $youtube = $source->sourceAdminProjectRange($group['project'], 'Youtube', $startDate, $endDate)->getNumRows();
-                                        $tiktok = $source->sourceAdminProjectRange($group['project'], 'TikTok Ads (Marcomm)', $startDate, $endDate)->getNumRows();
-                                        $datamarcomm = $source->sourceAdminProjectRange($group['project'], 'Data Marcomm', $startDate, $endDate)->getNumRows();
-                                        $datapribadi = $source->sourceAdminProjectRange($group['project'], 'Data Pribadi', $startDate, $endDate)->getNumRows();
-                                        $iklanpribadi = $source->sourceAdminProjectRange($group['project'], 'Iklan Pribadi', $startDate, $endDate)->getNumRows();
-                                        $canvasing = $source->sourceAdminProjectRange($group['project'], 'Canvasing', $startDate, $endDate)->getNumRows();
-                                        $walkin = $source->sourceAdminProjectRange($group['project'], 'Walk In', $startDate, $endDate)->getNumRows();
-                                        $pameran = $source->sourceAdminProjectRange($group['project'], 'Pameran', $startDate, $endDate)->getNumRows();
-                                        $spanduk = $source->sourceAdminProjectRange($group['project'], 'Spanduk', $startDate, $endDate)->getNumRows();
-                                        $hoarding = $source->sourceAdminProjectRange($group['project'], 'Hoarding', $startDate, $endDate)->getNumRows();
-                                        $billboard = $source->sourceAdminProjectRange($group['project'], 'Billboard', $startDate, $endDate)->getNumRows();
-                                        $refferal = $source->sourceAdminProjectRange($group['project'], 'Refferal', $startDate, $endDate)->getNumRows();
-                                        $agent = $source->sourceAdminProjectRange($group['project'], 'Agent', $startDate, $endDate)->getNumRows();
-                                        $whatsapp = $source->sourceAdminProjectRange($group['project'], 'Whatsapp', $startDate, $endDate)->getNumRows();
-                                    } else {
-                                        $facebook_ads = $source->sourceRange('Facebook Ads', $startDate, $endDate)->getNumRows();
-                                        $facebook = $source->sourceRange('Facebook', $startDate, $endDate)->getNumRows();
-                                        $instagram_ads = $source->sourceRange('Instagram Ads', $startDate, $endDate)->getNumRows();
-                                        $instagram = $source->sourceRange('Instagram', $startDate, $endDate)->getNumRows();
-                                        $youtube = $source->sourceRange('Youtube', $startDate, $endDate)->getNumRows();
-                                        $tiktok = $source->sourceRange('TikTok Ads (Marcomm)', $startDate, $endDate)->getNumRows();
-                                        $datamarcomm = $source->sourceRange('Data Marcomm', $startDate, $endDate)->getNumRows();
-                                        $datapribadi = $source->sourceRange('Data Pribadi', $startDate, $endDate)->getNumRows();
-                                        $iklanpribadi = $source->sourceRange('Iklan Pribadi', $startDate, $endDate)->getNumRows();
-                                        $canvasing = $source->sourceRange('Canvasing', $startDate, $endDate)->getNumRows();
-                                        $walkin = $source->sourceRange('Walk In', $startDate, $endDate)->getNumRows();
-                                        $pameran = $source->sourceRange('Pameran', $startDate, $endDate)->getNumRows();
-                                        $spanduk = $source->sourceRange('Spanduk', $startDate, $endDate)->getNumRows();
-                                        $hoarding = $source->sourceRange('Hoarding', $startDate, $endDate)->getNumRows();
-                                        $billboard = $source->sourceRange('Billboard', $startDate, $endDate)->getNumRows();
-                                        $refferal = $source->sourceRange('Refferal', $startDate, $endDate)->getNumRows();
-                                        $agent = $source->sourceRange('Agent', $startDate, $endDate)->getNumRows();
-                                        $whatsapp = $source->sourceRange('Whatsapp', $startDate, $endDate)->getNumRows();
-                                    }
-                                }
-
-                          ?>
+                            ?>
 
                             <!-- list-item -->
                             <tr class="">

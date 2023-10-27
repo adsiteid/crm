@@ -56,6 +56,34 @@
 
 
 
+<div class="swiper-wrapper d-lg-none d-block mb-3">
+
+    <div class="swiper-container">
+
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+                <a href="<?= base_url() ?>reportleads/30" type="button" class=" col px-0 btn  <?= ($title == "Leads Report") ? 'btn-primary' : 'btn-light bg-white'; ?> rounded mr-1 small"> Leads Report </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="<?= base_url() ?>report_project/30" type="button" class="col px-0 btn  <?= ($title == "Project Report") ? 'btn-primary' : 'btn-light bg-white'; ?> rounded mr-1 small"> Project Report </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="<?= base_url() ?>report_source/30" type=" button" class="col px-0 btn <?= ($title == "Source Report") ? 'btn-primary' : 'btn-light bg-white'; ?>  rounded mr-1 small"> Source Report </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="<?= base_url() ?>report_sales_filter/30" type=" button" class="col px-0 btn <?= ($title == "Sales Report") ? 'btn-primary' : 'btn-light bg-white'; ?>  rounded mr-1 small"> Sales Report </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
 <div class="row mt-lg-0 my-3 px-lg-2 px-0">
     <div class="col-lg-6 col-12 px-lg-2 px-3">
         <div class="card mb-lg-0 mb-3">

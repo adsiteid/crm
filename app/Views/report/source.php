@@ -60,6 +60,9 @@
             <div class="swiper-slide">
                 <a href="<?= base_url() ?>report_source/30" type=" button" class="col px-0 btn <?= ($title == "Source Report") ? 'btn-primary' : 'btn-light bg-white'; ?>  rounded mr-1 small"> Source Report </a>
             </div>
+            <div class="swiper-slide">
+                <a href="<?= base_url() ?>report_sales_filter/30" type=" button" class="col px-0 btn <?= ($title == "Sales Report") ? 'btn-primary' : 'btn-light bg-white'; ?>  rounded mr-1 small"> Sales Report </a>
+            </div>
 
         </div>
 
@@ -121,10 +124,71 @@
 
                             <?php
 
-                            
 
-                
-                                if (empty($group->user(user()->id)->getResultArray())) {
+
+
+                            if (empty($group->user(user()->id)->getResultArray())) {
+                                $facebook_ads = $source->source('Facebook Ads', $count)->getNumRows();
+                                $facebook = $source->source('Facebook', $count)->getNumRows();
+                                $instagram_ads = $source->source('Instagram Ads', $count)->getNumRows();
+                                $instagram = $source->source('Instagram', $count)->getNumRows();
+                                $youtube = $source->source('Youtube', $count)->getNumRows();
+                                $tiktok = $source->source('TikTok Ads (Marcomm)', $count)->getNumRows();
+                                $datamarcomm = $source->source('Data Marcomm', $count)->getNumRows();
+                                $datapribadi = $source->source('Data Pribadi', $count)->getNumRows();
+                                $iklanpribadi = $source->source('Iklan Pribadi', $count)->getNumRows();
+                                $canvasing = $source->source('Canvasing', $count)->getNumRows();
+                                $walkin = $source->source('Walk In', $count)->getNumRows();
+                                $pameran = $source->source('Pameran', $count)->getNumRows();
+                                $spanduk = $source->source('Spanduk', $count)->getNumRows();
+                                $hoarding = $source->source('Hoarding', $count)->getNumRows();
+                                $billboard = $source->source('Billboard', $count)->getNumRows();
+                                $refferal = $source->source('Refferal', $count)->getNumRows();
+                                $agent = $source->source('Agent', $count)->getNumRows();
+                                $whatsapp = $source->source('Whatsapp', $count)->getNumRows();
+                            }
+
+
+                            foreach ($group->user(user()->id)->getResultArray() as $group) {
+                                if ($group['level'] == "admin_group" || $group['level'] == "management") {
+                                    $facebook_ads = $source->sourceAdminGroup($group['groups'], 'Facebook Ads', $count)->getNumRows();
+                                    $facebook = $source->sourceAdminGroup($group['groups'], 'Facebook', $count)->getNumRows();
+                                    $instagram_ads = $source->sourceAdminGroup($group['groups'], 'Instagram Ads', $count)->getNumRows();
+                                    $instagram = $source->sourceAdminGroup($group['groups'], 'Instagram', $count)->getNumRows();
+                                    $youtube = $source->sourceAdminGroup($group['groups'], 'Youtube', $count)->getNumRows();
+                                    $tiktok = $source->sourceAdminGroup($group['groups'], 'TikTok Ads (Marcomm)', $count)->getNumRows();
+                                    $datamarcomm = $source->sourceAdminGroup($group['groups'], 'Data Marcomm', $count)->getNumRows();
+                                    $datapribadi = $source->sourceAdminGroup($group['groups'], 'Data Pribadi', $count)->getNumRows();
+                                    $iklanpribadi = $source->sourceAdminGroup($group['groups'], 'Iklan Pribadi', $count)->getNumRows();
+                                    $canvasing = $source->sourceAdminGroup($group['groups'], 'Canvasing', $count)->getNumRows();
+                                    $walkin = $source->sourceAdminGroup($group['groups'], 'Walk In', $count)->getNumRows();
+                                    $pameran = $source->sourceAdminGroup($group['groups'], 'Pameran', $count)->getNumRows();
+                                    $spanduk = $source->sourceAdminGroup($group['groups'], 'Spanduk', $count)->getNumRows();
+                                    $hoarding = $source->sourceAdminGroup($group['groups'], 'Hoarding', $count)->getNumRows();
+                                    $billboard = $source->sourceAdminGroup($group['groups'], 'Billboard', $count)->getNumRows();
+                                    $refferal = $source->sourceAdminGroup($group['groups'], 'Refferal', $count)->getNumRows();
+                                    $agent = $source->sourceAdminGroup($group['groups'], 'Agent', $count)->getNumRows();
+                                    $whatsapp = $source->sourceAdminGroup($group['groups'], 'Whatsapp', $count)->getNumRows();
+                                } elseif ($group['level'] == "admin_project") {
+                                    $facebook_ads = $source->sourceAdminProject($group['project'], 'Facebook Ads', $count)->getNumRows();
+                                    $facebook = $source->sourceAdminProject($group['project'], 'Facebook', $count)->getNumRows();
+                                    $instagram_ads = $source->sourceAdminProject($group['project'], 'Instagram Ads', $count)->getNumRows();
+                                    $instagram = $source->sourceAdminProject($group['project'], 'Instagram', $count)->getNumRows();
+                                    $youtube = $source->sourceAdminProject($group['project'], 'Youtube', $count)->getNumRows();
+                                    $tiktok = $source->sourceAdminProject($group['project'], 'TikTok Ads (Marcomm)', $count)->getNumRows();
+                                    $datamarcomm = $source->sourceAdminProject($group['project'], 'Data Marcomm', $count)->getNumRows();
+                                    $datapribadi = $source->sourceAdminProject($group['project'], 'Data Pribadi', $count)->getNumRows();
+                                    $iklanpribadi = $source->sourceAdminProject($group['project'], 'Iklan Pribadi', $count)->getNumRows();
+                                    $canvasing = $source->sourceAdminProject($group['project'], 'Canvasing', $count)->getNumRows();
+                                    $walkin = $source->sourceAdminProject($group['project'], 'Walk In', $count)->getNumRows();
+                                    $pameran = $source->sourceAdminProject($group['project'], 'Pameran', $count)->getNumRows();
+                                    $spanduk = $source->sourceAdminProject($group['project'], 'Spanduk', $count)->getNumRows();
+                                    $hoarding = $source->sourceAdminProject($group['project'], 'Hoarding', $count)->getNumRows();
+                                    $billboard = $source->sourceAdminProject($group['project'], 'Billboard', $count)->getNumRows();
+                                    $refferal = $source->sourceAdminProject($group['project'], 'Refferal', $count)->getNumRows();
+                                    $agent = $source->sourceAdminProject($group['project'], 'Agent', $count)->getNumRows();
+                                    $whatsapp = $source->sourceAdminProject($group['project'], 'Whatsapp', $count)->getNumRows();
+                                } else {
                                     $facebook_ads = $source->source('Facebook Ads', $count)->getNumRows();
                                     $facebook = $source->source('Facebook', $count)->getNumRows();
                                     $instagram_ads = $source->source('Instagram Ads', $count)->getNumRows();
@@ -144,69 +208,8 @@
                                     $agent = $source->source('Agent', $count)->getNumRows();
                                     $whatsapp = $source->source('Whatsapp', $count)->getNumRows();
                                 }
+                            }
 
-
-                                foreach ($group->user(user()->id)->getResultArray() as $group) {
-                                    if ($group['level'] == "admin_group" || $group['level'] == "management") {
-                                        $facebook_ads = $source->sourceAdminGroup($group['groups'], 'Facebook Ads', $count)->getNumRows();
-                                        $facebook = $source->sourceAdminGroup($group['groups'], 'Facebook', $count)->getNumRows();
-                                        $instagram_ads = $source->sourceAdminGroup($group['groups'], 'Instagram Ads', $count)->getNumRows();
-                                        $instagram = $source->sourceAdminGroup($group['groups'], 'Instagram', $count)->getNumRows();
-                                        $youtube = $source->sourceAdminGroup($group['groups'], 'Youtube', $count)->getNumRows();
-                                        $tiktok = $source->sourceAdminGroup($group['groups'], 'TikTok Ads (Marcomm)', $count)->getNumRows();
-                                        $datamarcomm = $source->sourceAdminGroup($group['groups'], 'Data Marcomm', $count)->getNumRows();
-                                        $datapribadi = $source->sourceAdminGroup($group['groups'], 'Data Pribadi', $count)->getNumRows();
-                                        $iklanpribadi = $source->sourceAdminGroup($group['groups'], 'Iklan Pribadi', $count)->getNumRows();
-                                        $canvasing = $source->sourceAdminGroup($group['groups'], 'Canvasing', $count)->getNumRows();
-                                        $walkin = $source->sourceAdminGroup($group['groups'], 'Walk In', $count)->getNumRows();
-                                        $pameran = $source->sourceAdminGroup($group['groups'], 'Pameran', $count)->getNumRows();
-                                        $spanduk = $source->sourceAdminGroup($group['groups'], 'Spanduk', $count)->getNumRows();
-                                        $hoarding = $source->sourceAdminGroup($group['groups'], 'Hoarding', $count)->getNumRows();
-                                        $billboard = $source->sourceAdminGroup($group['groups'], 'Billboard', $count)->getNumRows();
-                                        $refferal = $source->sourceAdminGroup($group['groups'], 'Refferal', $count)->getNumRows();
-                                        $agent = $source->sourceAdminGroup($group['groups'], 'Agent', $count)->getNumRows();
-                                        $whatsapp = $source->sourceAdminGroup($group['groups'], 'Whatsapp', $count)->getNumRows();
-                                    } elseif ($group['level'] == "admin_project") {
-                                        $facebook_ads = $source->sourceAdminProject($group['project'], 'Facebook Ads', $count)->getNumRows();
-                                        $facebook = $source->sourceAdminProject($group['project'], 'Facebook', $count)->getNumRows();
-                                        $instagram_ads = $source->sourceAdminProject($group['project'], 'Instagram Ads', $count)->getNumRows();
-                                        $instagram = $source->sourceAdminProject($group['project'], 'Instagram', $count)->getNumRows();
-                                        $youtube = $source->sourceAdminProject($group['project'], 'Youtube', $count)->getNumRows();
-                                        $tiktok = $source->sourceAdminProject($group['project'], 'TikTok Ads (Marcomm)', $count)->getNumRows();
-                                        $datamarcomm = $source->sourceAdminProject($group['project'], 'Data Marcomm', $count)->getNumRows();
-                                        $datapribadi = $source->sourceAdminProject($group['project'], 'Data Pribadi', $count)->getNumRows();
-                                        $iklanpribadi = $source->sourceAdminProject($group['project'], 'Iklan Pribadi', $count)->getNumRows();
-                                        $canvasing = $source->sourceAdminProject($group['project'], 'Canvasing', $count)->getNumRows();
-                                        $walkin = $source->sourceAdminProject($group['project'], 'Walk In', $count)->getNumRows();
-                                        $pameran = $source->sourceAdminProject($group['project'], 'Pameran', $count)->getNumRows();
-                                        $spanduk = $source->sourceAdminProject($group['project'], 'Spanduk', $count)->getNumRows();
-                                        $hoarding = $source->sourceAdminProject($group['project'], 'Hoarding', $count)->getNumRows();
-                                        $billboard = $source->sourceAdminProject($group['project'], 'Billboard', $count)->getNumRows();
-                                        $refferal = $source->sourceAdminProject($group['project'], 'Refferal', $count)->getNumRows();
-                                        $agent = $source->sourceAdminProject($group['project'], 'Agent', $count)->getNumRows();
-                                        $whatsapp = $source->sourceAdminProject($group['project'], 'Whatsapp', $count)->getNumRows();
-                                    } else {
-                                        $facebook_ads = $source->source('Facebook Ads', $count)->getNumRows();
-                                        $facebook = $source->source('Facebook', $count)->getNumRows();
-                                        $instagram_ads = $source->source('Instagram Ads', $count)->getNumRows();
-                                        $instagram = $source->source('Instagram', $count)->getNumRows();
-                                        $youtube = $source->source('Youtube', $count)->getNumRows();
-                                        $tiktok = $source->source('TikTok Ads (Marcomm)', $count)->getNumRows();
-                                        $datamarcomm = $source->source('Data Marcomm', $count)->getNumRows();
-                                        $datapribadi = $source->source('Data Pribadi', $count)->getNumRows();
-                                        $iklanpribadi = $source->source('Iklan Pribadi', $count)->getNumRows();
-                                        $canvasing = $source->source('Canvasing', $count)->getNumRows();
-                                        $walkin = $source->source('Walk In', $count)->getNumRows();
-                                        $pameran = $source->source('Pameran', $count)->getNumRows();
-                                        $spanduk = $source->source('Spanduk', $count)->getNumRows();
-                                        $hoarding = $source->source('Hoarding', $count)->getNumRows();
-                                        $billboard = $source->source('Billboard', $count)->getNumRows();
-                                        $refferal = $source->source('Refferal', $count)->getNumRows();
-                                        $agent = $source->source('Agent', $count)->getNumRows();
-                                        $whatsapp = $source->source('Whatsapp', $count)->getNumRows();
-                                    }
-                                }
-                            
 
                             ?>
 
