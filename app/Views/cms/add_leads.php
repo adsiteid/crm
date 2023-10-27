@@ -135,10 +135,7 @@
 
                             <option value="" selected>Select Option</option>
 
-
                             <?php foreach ($user_group->getResultArray() as $sls) : ?>
-
-
 
                                 <?php if ($sls['level'] == "sales" && $sls['id_user'] == user()->id) : ?>
                                     <option value="<?= user()->id; ?>"><?php foreach ($users->detail(user()->id)->getResultArray() as $user_sls) : ?><?= $user_sls['fullname']; ?><?php endforeach; ?></option>
@@ -151,8 +148,6 @@
                                     <?php endforeach; ?>
 
                                 <?php endif; ?>
-
-
 
                             <?php endforeach; ?>
                         <?php endif; ?>
