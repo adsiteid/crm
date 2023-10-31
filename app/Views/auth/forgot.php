@@ -36,14 +36,34 @@
               <h4 class="text-center mt-2">Ubah / lupa kata sandi ?</h4>
               <form class="pt-3" action="<?= url_to('forgot') ?>" method="post">
 
-                <p class="text-center mb-3 font-weight-light">Kami akan mengirimkan kode untuk mengatur ulang kata sandi Anda ke alamat Email <br> <!--<strong>user()->email</strong></p>-->
+                <p class="text-center mb-3 font-weight-light">Kami akan mengirimkan kode untuk mengatur ulang kata sandi Anda ke alamat Email <br> 
+                 
+                 <?php
+                  if(!empty(user()->email)):
+                  ?>
+                    <strong><?=user()->email;?></strong></p>
+                  <?php endif;?>
+
                   <?= view('Myth\Auth\Views\_message_block') ?>
                   <?= csrf_field() ?>
 
                 <div class="form-group">
                   <!-- <label for="email"><?= lang('Auth.emailAddress') ?></label> -->
+
+                  <?php
+                  if(empty(user()->email)):
+                  ?>
                   <input type="email" class="form-control <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" placeholder="<?= lang('Auth.email') ?>">
-                  <!-- <input type="hidden" class="form-control <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" placeholder="<?= lang('Auth.email') ?>" value=" user()->email;"> -->
+                  <?php endif;?>
+
+                  <?php
+                  if(!empty(user()->email)):
+                  ?>
+                  <input type="hidden" class="form-control <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" placeholder="<?= lang('Auth.email') ?>" value=" <?=user()->email;?>">
+                  <?php endif;?>
+
+                  
+                  
                   <div class="invalid-feedback">
                     <?= session('errors.email') ?>
                   </div>
