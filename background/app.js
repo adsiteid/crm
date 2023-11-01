@@ -67,10 +67,10 @@ async function  rollingleads() {
             const query3 = "update leads set sales='" + id_user + "', rolling_lasttime='" + moment().format("YYYY-MM-DD HH:mm:ss") + "' where id='" + element["id"] +"'";
             await connection.awaitQuery(query3);  
 
-            // request_leads(element["nama_leads"],
-            //     element["sumber_leads"],
-            //     element["project_name"],
-            //     contact);
+            request_leads(element["nama_leads"],
+                element["sumber_leads"],
+                element["project_name"],
+                contact);
         }
     });
 }
