@@ -987,17 +987,17 @@ endforeach;
 
 		$ch = curl_init($url);
 		$nama = $this->request->getVar('nama_leads');
+		$alamat = $this->request->getVar('alamat');
 		$project = $this->request->getVar('project');
 		$no_cust = $this->request->getVar('nomor_kontak');
 		$sumber = $this->request->getVar('sumber_leads');
 		$nohp = $no_sales;
-		$pesan = "New Leads
-
+		$pesan = "
 *New Lead*
 
 *Nama* : $nama
+*Alamat* : $alamat
 *Sumber* : $sumber
-*Project* : $project
 
 *Note* Nomor kontak hanya ada di CRM silahkan di follow up. Terima kasih
 ";
