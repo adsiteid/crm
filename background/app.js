@@ -52,7 +52,7 @@ async function  rollingleads() {
         console.log(element["sales"]); 
         console.log(moment.utc(ms).format("mm:ss"));  
         if(ms < 0) { 
-            const query2 = "SELECT * FROM groups_sales where groups='" + element["groups"] +  "' and project='" + element["project"] +  "' and level='sales'";
+            const query2 = "SELECT * FROM groups_sales where groups='" + element["groups"] +  "' and project='" + element["project"] +  "' and manager='" + element["manager"] + "' and level='sales'";
             let users = await connection.awaitQuery(query2);  
             let user = [];
             users.forEach(el => {user.push(el["id_user"]); }); 

@@ -425,7 +425,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                                                             $rolling = "";
                                                             if ($row['kategori_status'] == 'New') {
                                                                 echo 'success';
-                                                                $rolling = '<span class="badge badge-danger time-rolling-head"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="otomatis rolling ke user lain"><span class="time-rolling" data-lasttime="'.$row['rolling_lasttime'].'" data-interval="'.$row['rolling_interval'].'">00:00</span></span>';
+                                                                if($row['rolling_leads'] == "1") $rolling = '<span class="badge badge-danger time-rolling-head"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="otomatis rolling ke user lain"><span class="time-rolling" data-lasttime="'.$row['rolling_lasttime'].'" data-interval="'.$row['rolling_interval'].'">00:00</span></span>';
                                                             } elseif ($row['kategori_status'] == 'Cold') {
                                                                 echo 'info';
                                                             } elseif ($row['kategori_status'] == 'Warm') {

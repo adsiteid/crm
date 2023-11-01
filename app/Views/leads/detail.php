@@ -237,6 +237,8 @@
                             ?>
                             <p style="font-size:12px;" class="mb-1">Date in</p>
                             <h6 style="font-size:12px;" class="mb-3"><?= $dt_cnv_tmstp; ?></h6>
+                            <p style="font-size:12px;" class="mb-1">Remaining Time</p>
+                            <h6 style="font-size:12px;" class="mb-3 time-rolling" data-status="<?= $row['kategori_status']?>" data-lasttime="<?= $row['rolling_lasttime']; ?>" data-interval="<?= $row['rolling_interval'] ?>" data-leads="<?= $row['rolling_leads'] ?>">-</h6> 
                             <p style="font-size:12px;" class="mb-1">Group</p>
                             <h6 style="font-size:12px;" class="mb-3"> <?php foreach ($group->detail($row['groups'])->getResultArray() as $grp) : ?>
                                     <?= $grp['group_name']; ?>
@@ -608,6 +610,8 @@
 
 <!-- DROPDOWN CHECKBOXES -->
 
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script>
     $('body').on("click", ".dropdown-menu", function(e) {
         $(this).parent().is(".open") && e.stopPropagation();
@@ -638,6 +642,29 @@
         var total = $('input[name="options[]"]:checked').length;
         $(".dropdown-text").html('(' + total + ') Selected');
     });
+</script>
+<!-- script countdown -->
+<script>
+    var refreshTime = setInterval(function() {
+        $(".time-rolling").each(function() {
+            if( $(this).data("leads") == 0 || $(this).data("status") != "New" ) return; 
+            var dateleads = moment($(this).data("lasttime"), 'YYYY-MM-DD HH:mm:ss').add($(this).data("interval"), 'minutes');
+            var datenow = moment();
+            var ms = dateleads.diff(datenow);
+            //$(this).html(parseInt(ms / 60) + ":" + ((ms % 60).length == 1 ? "0" + (ms % 60) : (ms % 60)));
+            if (ms > 0) {
+                $(this).html(moment.utc(ms).format("mm:ss"));
+                console.log(ms);
+            } else {
+                clearInterval(refreshTime);
+                setTimeout(function() {
+                    window.location.replace("<?= base_url("leads/new") ?>");
+                }, 2000);
+
+            }
+        });
+
+    }, 1000);
 </script>
 
 
