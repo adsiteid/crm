@@ -3,3 +3,6 @@ writable/*
 vendor 
 assets/*
 .htaccess
+background/node_modules
+background/.env 
+background/package-lock.json

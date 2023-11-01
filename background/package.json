@@ -1,0 +1,23 @@
+{
+    "name": "bg-adsite-id",
+    "version": "1.0.0",
+    "description": "background service untuk devadsite",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "bg-service",
+        "node.js"
+    ],
+    "author": "fauzancaren",
+    "license": "MIT",
+    "dependencies": {  
+        "date-and-time": "^3.0.0",
+        "dotenv": "^16.3.1",
+        "moment": "^2.29.4",
+        "mysql-await": "^2.2.3",
+        "request": "^2.88.2"
+    }
+}

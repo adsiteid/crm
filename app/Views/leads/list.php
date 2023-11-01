@@ -43,6 +43,12 @@
         /* height: 63px !important; */
         height: 45px !important;
     }
+    .time-rolling{
+        font-size:10px;
+    }
+    .time-rolling-head{
+        cursor: help;
+    }
 </style>
 
 
@@ -416,9 +422,10 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                             </td>
                             <td class="text-lg-left text-right">
                                 <label class="badge badge-<?php
-
+                                                            $rolling = "";
                                                             if ($row['kategori_status'] == 'New') {
                                                                 echo 'success';
+                                                                $rolling = '<span class="badge badge-danger time-rolling-head"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="otomatis rolling ke user lain"><span class="time-rolling" data-lasttime="'.$row['rolling_lasttime'].'" data-interval="'.$row['rolling_interval'].'">00:00</span></span>';
                                                             } elseif ($row['kategori_status'] == 'Cold') {
                                                                 echo 'info';
                                                             } elseif ($row['kategori_status'] == 'Warm') {
@@ -437,7 +444,8 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                                                                 echo 'booking';
                                                             }
 
-                                                            ?>" style="font-size: 10px;"><?= $row['kategori_status']; ?></label>
+                                                            ?>" style="font-size: 10px;"><?= $row['kategori_status']; ?></label> 
+                                                            <?= $rolling; ?>
                             </td>
 
                             <td class="d-sm-table-cell d-none">
@@ -649,7 +657,34 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
     });
 </script>
 
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+</script>
+<!-- script countdown -->
+<script>
+    var refreshTime = setInterval(function() {
+        $(".time-rolling").each(function() {
+            var dateleads = moment($(this).data("lasttime"), 'YYYY-MM-DD HH:mm:ss').add($(this).data("interval"), 'minutes');
+            var datenow = moment();
+            var ms = dateleads.diff(datenow);
+            //$(this).html(parseInt(ms / 60) + ":" + ((ms % 60).length == 1 ? "0" + (ms % 60) : (ms % 60)));
+            if (ms > 0) {
+                $(this).html(moment.utc(ms).format("mm:ss"));
+                console.log(ms);
+            } else {
+                clearInterval(refreshTime);
+                setTimeout(function() {
+                    window.location.reload();
+                }, 2000);
 
+            }
+        });
+
+    }, 1000);
+</script>
 
 
 
