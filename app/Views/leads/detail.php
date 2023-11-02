@@ -159,8 +159,8 @@
 
         <?php endif; ?>
 
-        <input type="hidden" value="<?= $row['general_manager']; ?>">
-        <input type="hidden" value="<?= $row['manager']; ?>">
+        <input type="hidden" name="general_manager" value="<?= $row['general_manager']; ?>">
+        <input type="hidden" name="manager" value="<?= $row['manager']; ?>">
 
         <?php
 
