@@ -159,6 +159,9 @@
 
         <?php endif; ?>
 
+        <input type="hidden" value="<?= $row['general_manager']; ?>">
+        <input type="hidden" value="<?= $row['manager']; ?>">
+
         <?php
 
         function gantiformat($nomorhp)
@@ -359,12 +362,11 @@
                     <div class="mb-3">
                         <hr style="border: 1px;">
                     </div>
-                    <input type="hidden" value="<?= $row['general_manager']; ?>">
-                    <input type="hidden" value="<?= $row['manager']; ?>">
+
 
 
                     <div class="row">
-                        
+
 
                         <div class="col-lg-6 col-12 ">
 
