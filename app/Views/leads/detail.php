@@ -238,7 +238,7 @@
                             <p style="font-size:12px;" class="mb-1">Date in</p>
                             <h6 style="font-size:12px;" class="mb-3"><?= $dt_cnv_tmstp; ?></h6>
                             <p style="font-size:12px;" class="mb-1">Remaining Time</p>
-                            <h6 style="font-size:12px;" class="mb-3 time-rolling" data-status="<?= $row['kategori_status']?>" data-lasttime="<?= $row['rolling_lasttime']; ?>" data-interval="<?= $row['rolling_interval'] ?>" data-leads="<?= $row['rolling_leads'] ?>">-</h6> 
+                            <h6 style="font-size:12px;" class="mb-3 time-rolling" data-status="<?= $row['kategori_status'] ?>" data-lasttime="<?= $row['rolling_lasttime']; ?>" data-interval="<?= $row['rolling_interval'] ?>" data-leads="<?= $row['rolling_leads'] ?>">-</h6>
                             <p style="font-size:12px;" class="mb-1">Group</p>
                             <h6 style="font-size:12px;" class="mb-3"> <?php foreach ($group->detail($row['groups'])->getResultArray() as $grp) : ?>
                                     <?= $grp['group_name']; ?>
@@ -359,6 +359,8 @@
                     <div class="mb-3">
                         <hr style="border: 1px;">
                     </div>
+                    <input type="hidden" value="<?= $row['general_manager']; ?>">
+                    <input type="hidden" value="<?= $row['manager']; ?>">
 
 
                     <div class="row">
@@ -535,10 +537,10 @@
 
 
         <div class="row d-flex justify-content-end mt-3 mb-5 px-3">
-        <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project") : ?>
-            <a href="<?= base_url(); ?>edit_leads/<?= $row['id']; ?>" class="btn btn-outline-primary col-lg-2 col-6 mt-lg-1 mt-3 px-0">Edit data</a>
-            <a class="btn btn-outline-primary col-lg-2 col-6  mt-lg-1 mt-3" data-toggle="modal" data-target="#delete-leads">Delete</a>
-        <?php endif; ?>
+            <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project") : ?>
+                <a href="<?= base_url(); ?>edit_leads/<?= $row['id']; ?>" class="btn btn-outline-primary col-lg-2 col-6 mt-lg-1 mt-3 px-0">Edit data</a>
+                <a class="btn btn-outline-primary col-lg-2 col-6  mt-lg-1 mt-3" data-toggle="modal" data-target="#delete-leads">Delete</a>
+            <?php endif; ?>
             <a class=" btn btn-primary col-lg-2 col-12 mt-lg-1 mt-3" data-toggle="modal" data-target="#save-leads">Save</a>
 
         </div>
@@ -647,7 +649,7 @@
 <script>
     var refreshTime = setInterval(function() {
         $(".time-rolling").each(function() {
-            if( $(this).data("leads") == 0 || $(this).data("status") != "New" ) return; 
+            if ($(this).data("leads") == 0 || $(this).data("status") != "New") return;
             var dateleads = moment($(this).data("lasttime"), 'YYYY-MM-DD HH:mm:ss').add($(this).data("interval"), 'minutes');
             var datenow = moment();
             var ms = dateleads.diff(datenow);
