@@ -364,47 +364,7 @@
 
 
                     <div class="row">
-                        <!-- <div class="col-lg-4 col-12 mb-lg-0 mb-4">
-                            <div class="">
-                                <p style="font-size:12px;" class="mb-1">GM</p>
-                                <h6 style="font-size:13px;" class="mb-3">
-                                    <a class=" mb-3" href="<?= base_url(); ?>user/<?= $row['general_manager']; ?>">
-                                        <?php
-                                        $gm = $row['general_manager'];
-                                        foreach ($users->detail($gm)->getResultArray() as $user) :
-                                            echo $user['fullname'];
-                                        endforeach;
-                                        ?>
-                                    </a>
-                                    <input type="hidden" name="general_manager" value="<?= $row['general_manager']; ?>">
-                                </h6>
-                                <p style="font-size:12px;" class="mb-1">leader</p>
-                                <h6 style="font-size:13px;" class="mb-3">
-                                    <a class=" mb-3" href="<?= base_url(); ?>user/<?= $row['manager']; ?>">
-                                        <?php
-                                        $manager = $row['manager'];
-                                        foreach ($users->detail($manager)->getResultArray() as $user) :
-                                            echo $user['fullname'];
-                                        endforeach;
-                                        ?>
-                                    </a>
-                                    <input type="hidden" name="manager" value="<?= $row['manager']; ?>">
-                                </h6>
-                                <p style="font-size:12px;" class="mb-1">Sales/Agent</p>
-                                <h6 style="font-size:13px;">
-
-                                    <a class=" mb-3" href="<?= base_url(); ?>user/<?= $row['sales']; ?>">
-                                        <?php
-                                        $sales = $row['sales'];
-                                        foreach ($users->detail($sales)->getResultArray() as $user) :
-                                            echo $user['fullname'];
-                                        endforeach;
-                                        ?>
-                                    </a>
-                                </h6>
-
-                            </div>
-                        </div> -->
+                        
 
                         <div class="col-lg-6 col-12 ">
 
