@@ -253,6 +253,8 @@ class Report extends BaseController
 					$reserve = $this->showleads->reserveRangeAdminGroup($group['groups'],$startDate, $endDate);
 					$booking = $this->showleads->bookingRangeAdminGroup($group['groups'],$startDate, $endDate);
 
+					$chart1 = $this->chartleads->filterGroupTanggalGroupRange($group['groups'], $startDate, $endDate);
+
 				}else{
 					$notifNew = $this->showleads->notifNew();
 					$leads = $this->showleads->rangeList($startDate, $endDate);
@@ -274,6 +276,8 @@ class Report extends BaseController
 					$dealOnly = $this->showleads->dealOnlyRange($startDate, $endDate);
 					$reserve = $this->showleads->reserveRange($startDate, $endDate);
 					$booking = $this->showleads->bookingRange($startDate, $endDate);
+
+					$chart1 = $this->chartleads->filterGroupTanggalRange($startDate, $endDate);
 				}
 			}
 		}else{
@@ -297,6 +301,8 @@ class Report extends BaseController
 			$dealOnly = $this->showleads->dealOnlyRange($startDate, $endDate);
 			$reserve = $this->showleads->reserveRange($startDate, $endDate);
 			$booking = $this->showleads->bookingRange($startDate, $endDate);
+
+			$chart1 = $this->chartleads->filterGroupTanggalRange($startDate, $endDate);
 		}
 
 
@@ -324,6 +330,7 @@ class Report extends BaseController
 				'booking' => $booking,
 				'project' => $this->showproject,
 				'user_group' => $this->showusers,
+				'chart1' => $chart1,
 				'days' => "$startDate - $endDate",
 				'title' => 'Report'
 			];
