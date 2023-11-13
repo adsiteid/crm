@@ -65,6 +65,9 @@ class Report extends BaseController
 					$reserve = $this->showleads->reserveFilterAdminGroup($group['groups'],$days);
 					$booking = $this->showleads->bookingFilterAdminGroup($group['groups'],$days);
 
+
+					$chart1 = $this->chartleads->filterGroupTanggalGroup($group['groups'], $days);
+
 				}else{
 					$leads = $this->showleads->allFilter($days);
 					$notifNew = $this->showleads->notifNew();
@@ -87,6 +90,8 @@ class Report extends BaseController
 					$dealOnly = $this->showleads->dealOnly($days);
 					$reserve = $this->showleads->reserveFilter($days);
 					$booking = $this->showleads->bookingFilter($days);
+
+					$chart1 = $this->chartleads->filterGroupTanggal($days);
 				}
 			}
 		}else{
@@ -110,6 +115,9 @@ class Report extends BaseController
 			$dealOnly = $this->showleads->dealOnly($days);
 			$reserve = $this->showleads->reserveFilter($days);
 			$booking = $this->showleads->bookingFilter($days);
+
+
+			$chart1 = $this->chartleads->filterGroupTanggal($days);
 		}
 
 
@@ -140,6 +148,7 @@ class Report extends BaseController
 			'booking' => $booking,
 			'user_group' => $this->showusers,
 			'project' => $this->showproject,
+			'chart1' => $chart1,
 			'days' => "Last $days Days",
 			'title' => 'Leads Report'
 		];
