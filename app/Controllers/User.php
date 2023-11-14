@@ -53,7 +53,8 @@ class User extends BaseController
 
 			if (!empty($this->showgroupsales->user($id)->getResultArray())) {
 				foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
-					if ($group['level'] == "admin_group" || $group['level'] = "management") {
+					
+					if ($group['level'] == "admin_group" || $group['level'] == "management") {
 						$new = $this->showleads->newAdminGroup($group['groups']);
 						$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
 					} else {

@@ -38,6 +38,7 @@
     }
 </style>
 
+
 <div class="d-flex align-items-center justify-content-between  pb-4 row ">
     <div class="col-lg-5 col-md-3 col-sm-3 col-12 ">
 
@@ -170,12 +171,12 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
                     <tbody class="list-wrapper-<?= $id_user['groups']; ?> ">
                         <?php $no = 1; ?>
                         <?php foreach ($users->groups($id_user['groups'])->getresultArray() as $row) : ?>
-                            <tr class="list-item-<?= $id_user['groups']; ?> ">
+                            <tr class="list-item-<?= $id_user['groups']; ?> " >
                                 <?php foreach ($user->detail($row['id_user'])->getresultArray() as $userdetail) : ?>
-                                    <td class="d-sm-table-cell d-none" <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project" || $level == "manager" || $level == "general_manager") : ?> onclick="location.href='<?= base_url(); ?>user/<?php echo $row['id_user']; ?>'" <?php endif; ?>>
+                                    <td class="d-sm-table-cell d-none" <?= $level !== "sales" ? 'onclick="location.href=\'' . base_url() . 'user/' . $row['id_user'] . '\'"' : '' ?>>
                                         <?= $no++; ?>
                                     </td>
-                                    <td <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project" || $level == "manager" || $level == "general_manager") : ?> onclick="location.href='<?= base_url(); ?>user/<?php echo $row['id_user']; ?>'" <?php endif; ?>>
+                                    <td <?= $level !== "sales" ? 'onclick="location.href=\'' . base_url() . 'user/' . $row['id_user'] . '\'"' : '' ?>>
 
                                         <?php if ($userdetail['user_image'] !== 'default.jpg') : ?>
                                             <img class="img-profile rounded-circle ml-0 mr-lg-3 mr-1 object-fit-cover " src="<?= base_url(); ?>document/image/profile/user/<?= $userdetail['user_image']; ?>" style="width : 30px; height : 30px;" />
@@ -187,12 +188,12 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
                                         <?php
                                         $str = $userdetail['fullname'];
                                         if (strlen($str) > 15) {
-                                            $str = substr($str, 0, 15) . ' ...';
+                                            $str = substr($str, 0, 10) . ' ...';
                                         }
                                         echo $str;
                                         ?>
                                     </td>
-                                    <td class="text-lg-left text-right pl-0" <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project" || $level == "manager" || $level == "general_manager"|| $level == "management") : ?> onclick="location.href='<?= base_url(); ?>user/<?php echo $row['id_user']; ?>'" <?php endif; ?>>
+                                    <td class="text-lg-left text-right pl-0" <?= $level !== "sales" ? 'onclick="location.href=\'' . base_url() . 'user/' . $row['id_user'] . '\'"' : '' ?>>
                                         <label style="font-size: 9px;" class="badge  badge-<?php if ($row['level'] == 'admin') {
                                                                                                 echo 'primary';
                                                                                             } elseif ($row['level'] == 'sales') {
@@ -215,21 +216,21 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
                                                                                                         echo $row['level'];
                                                                                                     } ?> </label>
                                     </td>
-                                    <td class="d-sm-table-cell d-none" <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project" || $level == "manager" || $level == "general_manager"|| $level == "management") : ?> onclick="location.href='<?= base_url(); ?>user/<?php echo $row['id_user']; ?>'" <?php endif; ?>>
+                                    <td class="d-sm-table-cell d-none" <?= $level !== "sales" ? 'onclick="location.href=\'' . base_url() . 'user/' . $row['id_user'] . '\'"' : '' ?>>
                                         <?= $row['group_name']; ?>
                                     </td>
 
-                                    <!-- <td class="d-sm-table-cell d-none" <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project" || $level == "manager" || $level == "general_manager"|| $level == "management") : ?> onclick="location.href='<?= base_url(); ?>user/<?php echo $row['id_user']; ?>'" <?php endif; ?>>
+                                    <!-- <td class="d-sm-table-cell d-none" >
                                         <?= $userdetail['address']; ?>
                                     </td> -->
-                                    <td class="d-sm-table-cell d-none" <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project" || $level == "manager" || $level == "general_manager"|| $level == "management") : ?> onclick="location.href='<?= base_url(); ?>user/<?php echo $row['id_user']; ?>'" <?php endif; ?>>
+                                    <td class="d-sm-table-cell d-none" <?= $level !== "sales" ? 'onclick="location.href=\'' . base_url() . 'user/' . $row['id_user'] . '\'"' : '' ?>>
                                         <?= $userdetail['email']; ?>
                                     </td>
 
-                                    <td class="d-sm-table-cell d-none" <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project" || $level == "manager" || $level == "general_manager"|| $level == "management") : ?> onclick="location.href='<?= base_url(); ?>user/<?php echo $row['id_user']; ?>'" <?php endif; ?>>
+                                    <td class="d-sm-table-cell d-none" <?= $level !== "sales" ? 'onclick="location.href=\'' . base_url() . 'user/' . $row['id_user'] . '\'"' : '' ?>>
                                         <?= $userdetail['contact']; ?>
                                     </td>
-                                    <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project") : ?>
+                                    <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project" ) : ?>
                                         <td class="d-sm-table-cell d-none">
 
                                             <a type="button" class="btn p-0" data-toggle="modal" data-target="#delete-data-<?= $row['id']; ?>"><i class="ti-trash menu-icon"></i></a>
