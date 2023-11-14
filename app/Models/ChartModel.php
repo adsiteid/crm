@@ -1878,6 +1878,84 @@ class ChartModel extends Model
 
 
 
+    public function filterGroupTanggalGroup($groups,$days)
+    {
+
+        $builder = $this->db->table($this->table);
+        $builder->select("DATE(time_stamp_new) as tanggal, COUNT(*) as count");
+        $builder->where("time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
+        $builder->where('groups', $groups);
+        $builder->groupBy('tanggal');
+        $result = $builder->get();
+        return $result->getResult();
+    }
+
+
+    public function filterGroupTanggalGroupRange($groups, $startDate , $endDate)
+    {
+
+        $builder = $this->db->table($this->table);
+        $builder->select("DATE(time_stamp_new) as tanggal, COUNT(*) as count");
+
+        $builder->where("time_stamp_new BETWEEN '$startDate' AND '$endDate'");
+
+        $builder->where('groups', $groups);
+        $builder->groupBy('tanggal');
+
+        
+        $result = $builder->get();
+        return $result->getResult();
+    }
+
+
+    public function filterGroupTanggal($days)
+    {
+
+        $builder = $this->db->table($this->table);
+
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
+            $builder->groupEnd();
+        endif;
+
+        $builder->select("DATE(time_stamp_new) as tanggal, COUNT(*) as count");
+        $builder->where("time_stamp_new >= DATE_SUB(CURDATE(), INTERVAL $days DAY)");
+        $builder->groupBy('tanggal');
+        $result = $builder->get();
+        return $result->getResult();
+    }
+
+
+    public function filterGroupTanggalRange($startDate, $endDate)
+    {
+
+        $builder = $this->db->table($this->table);
+
+        $id = user()->id;
+        if (in_groups('users')) :
+            $builder->groupStart()
+                ->Where('sales', $id)
+                ->orWhere('manager', $id)
+                ->orWhere('general_manager', $id)
+                ->orWhere('admin_group', $id)
+                ->orWhere('admin_project', $id);
+            $builder->groupEnd();
+        endif;
+
+        $builder->select("DATE(time_stamp_new) as tanggal, COUNT(*) as count");
+        $builder->where("time_stamp_new BETWEEN '$startDate' AND '$endDate'");
+        $builder->groupBy('tanggal');
+        $result = $builder->get();
+        return $result->getResult();
+    }
+
+
 
 
 }

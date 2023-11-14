@@ -162,7 +162,7 @@
     <div class="card-body">
 
 
-        <div id="chart"></div>
+        <div id="chart1" class="mb-3"></div>
 
         <!-- BAR CHART -->
         <!-- <div id="leads" class="mb-4"></div>  -->
@@ -177,14 +177,32 @@
             <table id="report_new_leads" name="report_new_leads" class="table  table-hover" width="100%" style="font-size:12px;">
                 <thead>
                     <tr>
-                        <th style="font-size:13px; text-align:left">Leads Status </td>
-                        <th style="font-size:13px; text-align:left">Count</td>
+                        <!-- <th style="font-size:13px; text-align:left">Leads Status </td>
+                        <th style="font-size:13px; text-align:left">Count</td> -->
+
+                        <th style="font-size:13px; text-align:left">Tanggal </td>
+                        <th style="font-size:13px;" class="text-lg-start text-center">Jumlah Leads</td>
+
                     </tr>
                 </thead>
                 <tbody class="list-wrapper">
+                    <?php foreach ($chart1 as $row) : ?>
+                        <tr class="">
+                            <td>
+                                <?php
 
-                    <!-- list-item -->
-                    <tr class="">
+                                $tanggal = $row->tanggal;
+                                $new_format = date('d M Y', strtotime($tanggal));
+
+                                echo $new_format;
+
+                                ?>
+                            </td>
+                            <td class="text-lg-start text-center"><?= $row->count; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+
+                    <!-- <tr class="">
                         <td>New</td>
                         <td><?= $new->getNumRows(); ?></td>
                     </tr>
@@ -223,7 +241,7 @@
                     <tr class="border-top-3">
                         <td style="font-weight: 900; color:green">Total Leads</td>
                         <td style="font-weight: 900; color:green"><?= $new->getNumRows() + $close->getNumRows() + $pending->getNumRows() + $contacted->getNumRows() + $visit->getNumRows() + $dealOnly->getNumRows()  + $reserve->getNumRows() + $booking->getNumRows(); ?></td>
-                    </tr>
+                    </tr> -->
 
                 </tbody>
 
@@ -506,6 +524,63 @@
             prevEl: '.swiper-button-prev',
         },
     });
+</script>
+
+
+
+
+
+<!-- CHART DATE -->
+
+
+<script>
+    var options = {
+        series: [{
+            name: "Leads", // Merubah nama series-1 menjadi customer
+            data: [
+
+                <?php
+
+                foreach ($chart1 as $row) {
+                    $count = $row->count;
+                    echo "$count ,";
+                }
+
+                ?>
+
+            ]
+        }],
+
+        chart: {
+            height: 350,
+            type: "area",
+            zoom: {
+                enabled: false
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        xaxis: {
+            type: 'text',
+            categories: [
+
+                <?php
+
+                foreach ($chart1 as $row) {
+                    $created_at = $row->tanggal;
+                    $new_format = date('d M Y', strtotime($created_at));
+                    echo "'$new_format',";
+                }
+
+                ?>
+
+            ]
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart1"), options);
+    chart.render();
 </script>
 
 
