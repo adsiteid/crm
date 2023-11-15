@@ -132,7 +132,7 @@
                 </thead>
                 <tbody class="list-wrapper">
                     <?php foreach ($chart1 as $row) : ?>
-                        <tr class="">
+                        <tr class="list-item">
                             <td>
                                 <?php
 
