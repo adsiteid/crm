@@ -445,12 +445,45 @@
                             <div class="pindah-tugas">
                                 <p style="font-size:12px; " class="mb-2"> Sales </p>
                                 <select class="form-select form-control form-control-sm border-secondary" aria-label=".form-select-sm example" name="sales" style="font-size:12px;">
+
                                     <option selected value="<?= $row['sales']; ?>"> <?php
                                                                                     $sales = $row['sales'];
                                                                                     foreach ($users->detail($sales)->getResultArray() as $user) :
                                                                                         echo $user['fullname'];
                                                                                     endforeach;
-                                                                                    ?></option>
+                                                                                    ?>
+                                    </option>
+
+                                    <?php if ($level == "admin_group" || $level == "manager" || $level == "management") : ?>
+
+                                        <?php foreach ($groupsales->group_manager($row['groups'], $row['manager'])->getResultArray() as $data) : ?>
+
+                                            <option value="<?= $data['id_user']; ?>"> <?php
+                                                                                        $sales = $data['id_user'];
+                                                                                        foreach ($users->detail($sales)->getResultArray() as $user) :
+                                                                                            echo $user['fullname'];
+                                                                                        endforeach;
+                                                                                        ?>
+                                            </option>
+
+                                        <?php endforeach; ?>
+
+                                    <?php endif; ?>
+
+                                    
+
+                                    <?php ?>
+
+                                    <?php if ($level == "sales") : ?>
+
+                                        <option value="<?= $row['sales']; ?>"> <?php
+                                                                                $sales = $row['sales'];
+                                                                                foreach ($users->detail($sales)->getResultArray() as $user) :
+                                                                                    echo $user['fullname'];
+                                                                                endforeach;
+                                                                                ?>
+                                        </option>
+                                    <?php endif; ?>
 
                                 </select>
                             </div>

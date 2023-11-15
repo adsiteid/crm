@@ -60,8 +60,6 @@ class Leads extends BaseController
         endif;
 
 
-
-
         $data = [
             'id' => $id,
             'project' => $this->showproject,
@@ -72,6 +70,7 @@ class Leads extends BaseController
             'new' => $new,
             'sales' => $this->showusers->salesUser(),
             'group' => $this->showgroups,
+            'groupsales' => $this->showgroupsales,
             'title' => 'Leads'
         ];
 

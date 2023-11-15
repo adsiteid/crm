@@ -58,6 +58,20 @@ $this->findAll();
         return $result;
     }
 
+    public function group_manager($groups,$manager)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('groups', $groups);
+        $builder->where('manager', $manager);
+        $builder->where('level', 'sales');
+        $builder->orderBy('id DESC');
+        $result = $builder->get();
+        return $result;
+    }
+
+
+    
+
     public function group($groups,$project)
     {
         $builder = $this->db->table($this->table);

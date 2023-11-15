@@ -1182,6 +1182,9 @@ endforeach;
 
 		$status = ($this->request->getVar('kategori_status') == "Reserve") ? 'reserve' : (($this->request->getVar('kategori_status') == "Booking") ? 'booking' : strtolower($this->request->getVar('update_status')));
 
+
+// dd($this->request->getVar('id'));
+
 		$this->showleads->save(
 			[
 				'id' => $this->request->getVar('id'),

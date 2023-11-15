@@ -135,12 +135,9 @@
                         <tr class="list-item">
                             <td>
                                 <?php
-
                                 $tanggal = $row->tanggal;
                                 $new_format = date('d M Y', strtotime($tanggal));
-
                                 echo $new_format;
-
                                 ?>
                             </td>
                             <td class="text-lg-start text-center"><?= $row->count; ?></td>
