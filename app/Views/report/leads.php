@@ -34,6 +34,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
 
+<!-- CHART AREA -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://apexcharts.com/samples/assets/stock-prices.js"></script>
+
 
 
 <div class="d-lg-none d-flex align-items-center justify-content-between mb-lg-1 mb-3 pb-3 pt-0 mt-0 ">
@@ -48,62 +52,6 @@
 
 </div>
 
-
-<!-- <div class="row mt-lg-0 my-3 px-lg-2 px-0">
-    <div class="col-lg-6 col-12 px-lg-2 px-3">
-        <div class="card mb-lg-0 mb-3">
-            <div class="card-body py-lg-5  py-4 px-lg-5 px-4">
-                <div class="row align-items-center">
-                    <div class="col-8">
-                        <p class="text-muted small">Total Booking</p>
-                        <h4 class="fw-bolder">Rp. <?php
-                                                    $total = 0;
-                                                    foreach ($leadsBooking->getResultArray() as $cb) :
-                                                        $total += $cb['booking'];
-                                                    endforeach;
-                                                    echo $total;
-
-                                                    ?></h4>
-                    </div>
-                    <div class="col-4 d-flex justify-content-end">
-                        <button class="btn btn-xs btn-light rounded"> <i class="ti-medall mx-0" style="color:green;"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6 col-12 px-lg-2 px-3">
-        <div class="card mb-lg-0 mb-2">
-            <div class="card-body py-lg-5 py-4 px-lg-5 px-4">
-                <div class="row align-items-center">
-                    <div class="col-8">
-                        <p class="text-muted small">Total Reserve</p>
-
-                        <h4 class="fw-bolder">Rp. <?php
-                                                    $total = 0;
-                                                    foreach ($leadsReserve->getResultArray() as $cb) :
-                                                        $total += $cb['reserve'];
-                                                    endforeach;
-                                                    echo $total;
-
-                                                    ?></h4>
-                    </div>
-                    <div class="col-4 d-flex justify-content-end">
-                        <button class="btn btn-xs btn-light rounded"> <i class="ti-medall mx-0" style="color:orange;"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-<!-- <div class="col-lg-4 col-12 px-lg-2 px-3">
-                <div class="card mb-lg-0 mb-3">
-                    <div class="card-body py-4">
-                        <p class="text-muted small">Total Earnings</p>
-                        <h5 class="fw-bolder">Rp. 10.000.000</h5>
-                    </div>
-                </div>
-            </div> -->
-<!-- </div> -->
 
 <div class="swiper-wrapper d-lg-none d-block mb-3">
 
@@ -167,18 +115,15 @@
         <!-- BAR CHART -->
         <!-- <div id="leads" class="mb-4"></div>  -->
 
-        <!-- TABLE  -->
 
-
-        <div class="table-responsive" id="printableArea">
+        <div class="table-responsive">
 
 
 
-            <table id="report_new_leads" name="report_new_leads" class="table  table-hover" width="100%" style="font-size:12px;">
+            <table id="tables" class="table  table-hover" width="100%" style="font-size:12px;">
                 <thead>
                     <tr>
-                        <!-- <th style="font-size:13px; text-align:left">Leads Status </td>
-                        <th style="font-size:13px; text-align:left">Count</td> -->
+
 
                         <th style="font-size:13px; text-align:left">Tanggal </td>
                         <th style="font-size:13px;" class="text-lg-start text-center">Jumlah Leads</td>
@@ -202,53 +147,12 @@
                         </tr>
                     <?php endforeach; ?>
 
-                    <!-- <tr class="">
-                        <td>New</td>
-                        <td><?= $new->getNumRows(); ?></td>
-                    </tr>
-                    <tr class="">
-                        <td>Close</td>
-                        <td><?= $close->getNumRows(); ?></td>
-                    </tr>
-                    <tr class="">
-                        <td>Pending</td>
-                        <td><?= $pending->getNumRows(); ?></td>
-                    </tr>
-                    <tr class="">
-                        <td>Contacted</td>
-                        <td><?= $contacted->getNumRows(); ?></td>
-                    </tr>
-                    <tr class="">
-                        <td>Visit</td>
-                        <td><?= $visit->getNumRows(); ?></td>
-                    </tr>
-                    <tr class="">
-                        <td>Deal</td>
-                        <td><?= $dealOnly->getNumRows(); ?></td>
-                    </tr>
-
-                    <tr class="">
-                        <td>Reserve</td>
-                        <td><?= $reserve->getNumRows(); ?></td>
-                    </tr>
-
-
-                    <tr class="">
-                        <td>Booking</td>
-                        <td><?= $booking->getNumRows(); ?></td>
-                    </tr>
-
-                    <tr class="border-top-3">
-                        <td style="font-weight: 900; color:green">Total Leads</td>
-                        <td style="font-weight: 900; color:green"><?= $new->getNumRows() + $close->getNumRows() + $pending->getNumRows() + $contacted->getNumRows() + $visit->getNumRows() + $dealOnly->getNumRows()  + $reserve->getNumRows() + $booking->getNumRows(); ?></td>
-                    </tr> -->
-
                 </tbody>
 
             </table>
 
 
-        </div> <!-- akhir export pdf -->
+        </div>
 
 
         <!-- AKHIR TABLE -->
@@ -257,8 +161,9 @@
     </div>
 </div>
 
-
-
+<?php if (!empty($leads->getResultArray())) : ?>
+    <div id="pagination-container" class="my-4"></div>
+<?php endif; ?>
 
 
 
@@ -356,7 +261,7 @@
 
 <!-- Pagination -->
 
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js"></script>
 
 <script>
@@ -379,7 +284,7 @@
         }
 
     );
-</script> -->
+</script>
 
 <!-- End of Pagination -->
 
@@ -398,112 +303,6 @@
         return false;
     }
 </script>
-
-
-
-<!-- BAR CHART -->
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
-<!-- SUBHOLDING -->
-<script>
-    var options = {
-        chart: {
-            height: 300,
-            type: 'bar'
-        },
-        series: [{
-            name: 'Count',
-            data: [
-                <?= $leads->getNumRows(); ?>,
-                <?= $leadsClose->getNumRows(); ?>,
-                <?= $leadsPending->getNumRows(); ?>,
-                <?= $leadsContacted->getNumRows(); ?>,
-                <?= $leadsVisit->getNumRows(); ?>,
-                <?= $leadsDeal->getNumRows(); ?>,
-                <?= $leadsReserve->getNumRows(); ?>,
-                <?= $leadsBooking->getNumRows(); ?>,
-            ]
-        }],
-        xaxis: {
-            type: 'text',
-            categories: ['New', 'Close', 'Pending', 'Contacted', 'Visit', 'Deal', 'Reserve', 'Booking', ]
-        }
-    }
-
-    var chart = new ApexCharts(document.querySelector("#leads"), options);
-
-    chart.render();
-</script>
-
-
-
-<!-- CHART AREA -->
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<script src="https://apexcharts.com/samples/assets/stock-prices.js"></script>
-
-<script>
-    var options = {
-        series: [{
-            data: [
-                <?= $leads->getNumRows(); ?>,
-                <?= $leadsClose->getNumRows(); ?>,
-                <?= $leadsPending->getNumRows(); ?>,
-                <?= $leadsContacted->getNumRows(); ?>,
-                <?= $leadsVisit->getNumRows(); ?>,
-                <?= $leadsDeal->getNumRows(); ?>,
-                <?= $leadsReserve->getNumRows(); ?>,
-                <?= $leadsBooking->getNumRows(); ?>,
-            ]
-        }],
-        // annotations: {
-        //     points: [{
-        //             x: 5,
-        //             y: 322,
-        //             label: {
-        //                 text: "Lowest: 322",
-        //                 offsetY: 2
-        //             },
-        //             image: {
-        //                 path: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flat_tick_icon.svg/512px-Flat_tick_icon.svg.png",
-        //                 width: undefined,
-        //                 height: undefined,
-        //                 offsetX: 0,
-        //                 offsetY: -18
-        //             }
-        //         },
-        //         {
-        //             x: 7,
-        //             y: 383,
-        //             label: {
-        //                 text: "Highest: 383",
-        //                 offsetY: 2
-        //             }
-        //         }
-        //     ]
-        // },
-        chart: {
-            height: 350,
-            type: "area",
-            zoom: {
-                enabled: false
-            }
-        },
-        dataLabels: {
-            enabled: false
-        },
-        // stroke: {
-        //     curve: "straight"
-        // },
-        xaxis: {
-            type: 'text',
-            categories: ['New', 'Close', 'Pending', 'Contacted', 'Visit', 'Deal', 'Reserve', 'Booking', ]
-        }
-    };
-
-    var chart = new ApexCharts(document.querySelector("#chart"), options);
-    chart.render();
-</script>
-
 
 <!-- SWIPER -->
 
@@ -581,6 +380,21 @@
 
     var chart = new ApexCharts(document.querySelector("#chart1"), options);
     chart.render();
+</script>
+
+
+
+<!-- DATATABLE -->
+<script>
+    $(document).ready(function() {
+        var table = $('#table').DataTable({
+            lengthChange: false,
+            buttons: ['copy', 'excel', 'pdf', 'colvis']
+        });
+
+        table.buttons().container()
+            .appendTo('#example_wrapper .col-md-6:eq(0)');
+    });
 </script>
 
 
