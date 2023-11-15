@@ -223,7 +223,7 @@
                                 Sales
                             </th>
                             <th class="d-sm-table-cell d-none">
-                                Manager / SPV
+                                Manager
                             </th>
                             <th class="d-sm-table-cell d-none">
                                 GM
