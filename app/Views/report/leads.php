@@ -163,7 +163,7 @@
 <?php endif; ?>
 
 
-<div class="card rounded" id="print">
+<div class="card rounded">
 
     <div class="card-header mb-4 d-lg-flex d-none align-items-center justify-content-between bg-transparent py-3  ">
         <div>
@@ -191,156 +191,158 @@
         </div>
     </div>
     <div class="card-body" id="export_excel">
-        <div class="table-responsive">
-            <table class="table  table-hover">
-                <!-- table-striped -->
-                <?php if (!empty($leads->getResultArray())) : ?>
-                    <thead>
-                        <tr>
-                            <th class="d-sm-table-cell d-none">
-                                No
-                            </th>
-                            <th>
-                                Name
-                            </th>
-                            <th class="text-lg-left text-right">
-                                Category
-                            </th>
-                            <th class="d-sm-table-cell d-none">
-                                Date In
-                            </th>
-                            <th class="d-none">
-                                Address
-                            </th>
-                            <th class="d-sm-table-cell d-none">
-                                Project
-                            </th>
-                            <th class="d-sm-table-cell d-none">
-                                Source
-                            </th>
+        <div class="p-lg-3 p-0">
+            <div class="table-responsive">
+                <table class="table  table-hover">
+                    <!-- table-striped -->
+                    <?php if (!empty($leads->getResultArray())) : ?>
+                        <thead>
+                            <tr>
+                                <th class="d-sm-table-cell d-none">
+                                    No
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                                <th class="text-lg-left text-right">
+                                    Category
+                                </th>
+                                <th class="d-sm-table-cell d-none">
+                                    Date In
+                                </th>
+                                <th class="d-none">
+                                    Address
+                                </th>
+                                <th class="d-sm-table-cell d-none">
+                                    Project
+                                </th>
+                                <th class="d-sm-table-cell d-none">
+                                    Source
+                                </th>
 
-                            <th class="d-sm-table-cell d-none">
-                                Sales
-                            </th>
-                            <th class="d-sm-table-cell d-none">
-                                Manager
-                            </th>
-                            <th class="d-sm-table-cell d-none">
-                                GM
-                            </th>
-                            <th class="d-sm-table-cell d-none">
-                                Status
-                            </th>
+                                <th class="d-sm-table-cell d-none">
+                                    Sales
+                                </th>
+                                <th class="d-sm-table-cell d-none">
+                                    Manager
+                                </th>
+                                <th class="d-sm-table-cell d-none">
+                                    GM
+                                </th>
+                                <th class="d-sm-table-cell d-none">
+                                    Status
+                                </th>
 
-                        </tr>
-                    </thead>
+                            </tr>
+                        </thead>
+                    <?php endif; ?>
+
+                    <tbody>
+
+                        <?php $no = 1; ?>
+                        <?php
+
+                        foreach ($leads->getResultArray() as $row) :
+
+                        ?>
+
+                            <tr onclick="location.href='<?= base_url(); ?>leads/<?= $row['id']; ?>'">
+                                <td class="d-sm-table-cell d-none">
+                                    <?= $no++; ?>
+                                </td>
+                                <td style="width:100px;">
+
+                                    <?php
+                                    $str = $row['nama_leads'];
+                                    if (strlen($str) > 15) {
+                                        $str = substr($str, 0, 15) . ' ...';
+                                    }
+                                    echo $str;
+                                    ?>
+                                </td>
+                                <td class="text-lg-left text-right">
+                                    <label class="badge badge-<?php
+                                                                $rolling = "";
+                                                                if ($row['kategori_status'] == 'New') {
+                                                                    echo 'success';
+                                                                    if ($row['rolling_leads'] == "1") $rolling = '<span class="badge badge-danger time-rolling-head"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="otomatis rolling ke user lain"><span class="time-rolling" data-lasttime="' . $row['rolling_lasttime'] . '" data-interval="' . $row['rolling_interval'] . '">00:00</span></span>';
+                                                                } elseif ($row['kategori_status'] == 'Cold') {
+                                                                    echo 'info';
+                                                                } elseif ($row['kategori_status'] == 'Warm') {
+                                                                    echo 'warning';
+                                                                } elseif ($row['kategori_status'] == 'Hot') {
+                                                                    echo 'danger';
+                                                                } elseif ($row['kategori_status'] == 'Pending') {
+                                                                    echo 'secondary';
+                                                                } elseif ($row['kategori_status'] == 'Invalid') {
+                                                                    echo 'secondary';
+                                                                } elseif ($row['kategori_status'] == 'Close') {
+                                                                    echo 'secondary';
+                                                                } elseif ($row['kategori_status'] == 'Reserve') {
+                                                                    echo 'reserve';
+                                                                } elseif ($row['kategori_status'] == 'Booking') {
+                                                                    echo 'booking';
+                                                                }
+
+                                                                ?>" style="font-size: 10px;"><?= $row['kategori_status']; ?></label>
+                                    <?= $rolling; ?>
+                                </td>
+
+                                <td class="d-sm-table-cell d-none">
+                                    <?php
+                                    $row['time_stamp_new'];
+                                    $dt_cnv_tmstp = date('d M Y', strtotime($row['time_stamp_new']));
+                                    echo $dt_cnv_tmstp;
+                                    ?>
+                                </td>
+                                <td class="d-none">
+                                    <?= $row['alamat']; ?>
+                                </td>
+                                <td class="d-sm-table-cell d-none">
+                                    <?php foreach ($project->detail($row['project'])->getResultarray() as $prj) {
+                                        echo $prj['project'];
+                                    } ?>
+                                </td>
+                                <td class="d-sm-table-cell d-none">
+                                    <?= $row['sumber_leads']; ?>
+                                </td>
+
+                                <td class="d-sm-table-cell d-none">
+
+                                    <?php foreach ($user_group->detail($row['sales'])->getResultArray() as $sl) : ?>
+                                        <?= $sl['fullname']; ?>
+                                    <?php endforeach; ?>
+                                </td>
+                                <td class="d-sm-table-cell d-none">
+
+                                    <?php foreach ($user_group->detail($row['manager'])->getResultArray() as $sl) : ?>
+                                        <?= $sl['fullname']; ?>
+                                    <?php endforeach; ?>
+
+                                </td>
+                                <td class="d-sm-table-cell d-none">
+
+                                    <?php foreach ($user_group->detail($row['general_manager'])->getResultArray() as $sl) : ?>
+                                        <?= $sl['fullname']; ?>
+                                    <?php endforeach; ?>
+
+                                </td>
+                                <td class="d-sm-table-cell d-none">
+                                    <?= $row['update_status']; ?>
+                                </td>
+                            </tr>
+
+                        <?php endforeach; ?>
+                    </tbody>
+
+                </table>
+                <?php if (empty($leads->getResultArray())) : ?>
+                    <div class="col-12 d-flex justify-content-center">
+                        <img src="<?= base_url() ?>document/app_image/images/empty.png" class="d-lg-none d-block py-5" alt="" style="width:60%;">
+                        <img src="<?= base_url() ?>document/app_image/images/empty.png" class="d-lg-block d-none py-5" alt="" style="width:20%;">
+                    </div>
                 <?php endif; ?>
-
-                <tbody >
-
-                    <?php $no = 1; ?>
-                    <?php
-
-                    foreach ($leads->getResultArray() as $row) :
-
-                    ?>
-
-                        <tr onclick="location.href='<?= base_url(); ?>leads/<?= $row['id']; ?>'">
-                            <td class="d-sm-table-cell d-none">
-                                <?= $no++; ?>
-                            </td>
-                            <td style="width:100px;">
-
-                                <?php
-                                $str = $row['nama_leads'];
-                                if (strlen($str) > 15) {
-                                    $str = substr($str, 0, 15) . ' ...';
-                                }
-                                echo $str;
-                                ?>
-                            </td>
-                            <td class="text-lg-left text-right">
-                                <label class="badge badge-<?php
-                                                            $rolling = "";
-                                                            if ($row['kategori_status'] == 'New') {
-                                                                echo 'success';
-                                                                if ($row['rolling_leads'] == "1") $rolling = '<span class="badge badge-danger time-rolling-head"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="otomatis rolling ke user lain"><span class="time-rolling" data-lasttime="' . $row['rolling_lasttime'] . '" data-interval="' . $row['rolling_interval'] . '">00:00</span></span>';
-                                                            } elseif ($row['kategori_status'] == 'Cold') {
-                                                                echo 'info';
-                                                            } elseif ($row['kategori_status'] == 'Warm') {
-                                                                echo 'warning';
-                                                            } elseif ($row['kategori_status'] == 'Hot') {
-                                                                echo 'danger';
-                                                            } elseif ($row['kategori_status'] == 'Pending') {
-                                                                echo 'secondary';
-                                                            } elseif ($row['kategori_status'] == 'Invalid') {
-                                                                echo 'secondary';
-                                                            } elseif ($row['kategori_status'] == 'Close') {
-                                                                echo 'secondary';
-                                                            } elseif ($row['kategori_status'] == 'Reserve') {
-                                                                echo 'reserve';
-                                                            } elseif ($row['kategori_status'] == 'Booking') {
-                                                                echo 'booking';
-                                                            }
-
-                                                            ?>" style="font-size: 10px;"><?= $row['kategori_status']; ?></label>
-                                <?= $rolling; ?>
-                            </td>
-
-                            <td class="d-sm-table-cell d-none">
-                                <?php
-                                $row['time_stamp_new'];
-                                $dt_cnv_tmstp = date('d M Y', strtotime($row['time_stamp_new']));
-                                echo $dt_cnv_tmstp;
-                                ?>
-                            </td>
-                            <td class="d-none">
-                                <?= $row['alamat']; ?>
-                            </td>
-                            <td class="d-sm-table-cell d-none">
-                                <?php foreach ($project->detail($row['project'])->getResultarray() as $prj) {
-                                    echo $prj['project'];
-                                } ?>
-                            </td>
-                            <td class="d-sm-table-cell d-none">
-                                <?= $row['sumber_leads']; ?>
-                            </td>
-
-                            <td class="d-sm-table-cell d-none">
-
-                                <?php foreach ($user_group->detail($row['sales'])->getResultArray() as $sl) : ?>
-                                    <?= $sl['fullname']; ?>
-                                <?php endforeach; ?>
-                            </td>
-                            <td class="d-sm-table-cell d-none">
-
-                                <?php foreach ($user_group->detail($row['manager'])->getResultArray() as $sl) : ?>
-                                    <?= $sl['fullname']; ?>
-                                <?php endforeach; ?>
-
-                            </td>
-                            <td class="d-sm-table-cell d-none">
-
-                                <?php foreach ($user_group->detail($row['general_manager'])->getResultArray() as $sl) : ?>
-                                    <?= $sl['fullname']; ?>
-                                <?php endforeach; ?>
-
-                            </td>
-                            <td class="d-sm-table-cell d-none">
-                                <?= $row['update_status']; ?>
-                            </td>
-                        </tr>
-
-                    <?php endforeach; ?>
-                </tbody>
-
-            </table>
-            <?php if (empty($leads->getResultArray())) : ?>
-                <div class="col-12 d-flex justify-content-center">
-                    <img src="<?= base_url() ?>document/app_image/images/empty.png" class="d-lg-none d-block py-5" alt="" style="width:60%;">
-                    <img src="<?= base_url() ?>document/app_image/images/empty.png" class="d-lg-block d-none py-5" alt="" style="width:20%;">
-                </div>
-            <?php endif; ?>
+            </div>
         </div>
 
     </div>
@@ -569,7 +571,7 @@
 <!-- DATATABLE -->
 <script>
     document.getElementById("doPrint").addEventListener("click", function() {
-        var printContents = document.getElementById('print').innerHTML;
+        var printContents = document.getElementById('export_excel').innerHTML;
         var originalContents = document.body.innerHTML;
         document.body.innerHTML = printContents;
         window.print();
