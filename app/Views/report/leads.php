@@ -236,7 +236,7 @@
                     </thead>
                 <?php endif; ?>
 
-                <tbody class="list-wrapper">
+                <tbody >
 
                     <?php $no = 1; ?>
                     <?php
@@ -245,7 +245,7 @@
 
                     ?>
 
-                        <tr class="list-item" onclick="location.href='<?= base_url(); ?>leads/<?= $row['id']; ?>'">
+                        <tr onclick="location.href='<?= base_url(); ?>leads/<?= $row['id']; ?>'">
                             <td class="d-sm-table-cell d-none">
                                 <?= $no++; ?>
                             </td>
