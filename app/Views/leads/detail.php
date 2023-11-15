@@ -470,20 +470,7 @@
 
                                     <?php endif; ?>
 
-                                    
-
-                                    <?php ?>
-
-                                    <?php if ($level == "sales") : ?>
-
-                                        <option value="<?= $row['sales']; ?>"> <?php
-                                                                                $sales = $row['sales'];
-                                                                                foreach ($users->detail($sales)->getResultArray() as $user) :
-                                                                                    echo $user['fullname'];
-                                                                                endforeach;
-                                                                                ?>
-                                        </option>
-                                    <?php endif; ?>
+                                   
 
                                 </select>
                             </div>
