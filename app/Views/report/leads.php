@@ -303,7 +303,7 @@
                                 <td class="d-sm-table-cell d-none">
                                     <?= $row['alamat']; ?>
                                 </td>
-                                <td class="d-sm-table-cell d-none">
+                                <td class="d-sm-table-cell d-none" style="mso-number-format: '\@'; text-align :left;">
                                     <?= $row['nomor_kontak']; ?>
                                 </td>
                                 <td class="d-sm-table-cell d-none">
@@ -496,6 +496,11 @@
     }
 </script>
 
+
+
+
+
+
 <!-- SWIPER -->
 
 
@@ -577,7 +582,7 @@
 
 
 <!-- DATATABLE -->
-<script>
+<!-- <script>
     document.getElementById("doPrint").addEventListener("click", function() {
         var printContents = document.getElementById('export_excel').innerHTML;
         var originalContents = document.body.innerHTML;
@@ -585,7 +590,40 @@
         window.print();
         document.body.innerHTML = originalContents;
     });
+</script> -->
+
+
+<!-- DATATABLE -->
+<script>
+    document.getElementById("doPrint").addEventListener("click", function() {
+        // Mendapatkan semua elemen td dalam tabel
+        var cells = document.querySelectorAll('#export_excel td');
+
+        // Menetapkan tipe teks dan rata kiri untuk setiap sel
+        cells.forEach(function(cell) {
+            cell.style.textAlign = 'left';
+            cell.style.verticalAlign = 'top'; // Pilihan: 'top', 'middle', 'bottom'
+            cell.style.whiteSpace = 'pre'; // Untuk menjaga spasi dan pemformatan teks
+            var numericValue = parseInt(cell.innerText);
+            cell.innerText = isNaN(numericValue) ? '' : numericValue; // Mengubah nilai ke angka tanpa desimal
+        });
+
+        // Menyimpan konten yang akan dicetak
+        var printContents = document.getElementById('export_excel').outerHTML;
+        var originalContents = document.body.innerHTML;
+
+        // Mengganti konten body dengan konten yang akan dicetak
+        document.body.innerHTML = printContents;
+
+        // Mencetak halaman
+        window.print();
+
+        // Mengembalikan konten asli setelah mencetak
+        document.body.innerHTML = originalContents;
+    });
 </script>
+
+
 
 
 <?php $this->endSection(); ?>
