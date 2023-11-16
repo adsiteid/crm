@@ -9,6 +9,7 @@ use \App\Models\UsersModel;
 use \App\Models\GroupSalesModel;
 use CodeIgniter\I18n\Time;
 
+
 class Report extends BaseController
 {
 
@@ -217,6 +218,40 @@ class Report extends BaseController
 
 		return view('report/export_leads', $data);
 	}
+
+
+
+	public function export_leads($days)
+	{
+
+		$id = user()->id;
+
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+					$leads = $this->showleads->allFilterAdminGroup($group['groups'], $days);
+				} else {
+					$leads = $this->showleads->allFilter($days);
+				}
+			}
+		} else {
+			$leads = $this->showleads->allFilter($days);
+
+		}
+
+
+		$data = [
+
+				'leads' => $leads,
+				'user_group' => $this->showusers,
+				'project' => $this->showproject
+			];
+
+		return view('report/export_leads', $data);
+	}
+
+	
 
 
 

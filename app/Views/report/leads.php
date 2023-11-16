@@ -210,8 +210,11 @@
                                 <th class="d-sm-table-cell d-none">
                                     Date In
                                 </th>
-                                <th class="d-none">
+                                <th class="d-sm-table-cell d-none">
                                     Address
+                                </th>
+                                <th class="d-sm-table-cell d-none">
+                                    Phone
                                 </th>
                                 <th class="d-sm-table-cell d-none">
                                     Project
@@ -232,6 +235,8 @@
                                 <th class="d-sm-table-cell d-none">
                                     Status
                                 </th>
+
+
 
                             </tr>
                         </thead>
@@ -295,8 +300,11 @@
                                     echo $dt_cnv_tmstp;
                                     ?>
                                 </td>
-                                <td class="d-none">
+                                <td class="d-sm-table-cell d-none">
                                     <?= $row['alamat']; ?>
+                                </td>
+                                <td class="d-sm-table-cell d-none">
+                                    <?= $row['nomor_kontak']; ?>
                                 </td>
                                 <td class="d-sm-table-cell d-none">
                                     <?php foreach ($project->detail($row['project'])->getResultarray() as $prj) {

@@ -126,6 +126,9 @@ $routes->post('/report_source_range', 'Report::sourceRange');
 $routes->get('/export_leads/(:num)', 'Report::exportLeadsFilter/$1');
 $routes->post('/exportRange', 'Report::exportRange');
 
+// EKSPORT & PRINT
+$routes->get('/export_leads/(:num)', 'Report::export_leads/$1');
+
 // USER
 $routes->get('/user/agent', 'User::users');
 $routes->get('/user/admin','User::admin');
@@ -175,6 +178,8 @@ $routes->get('/create/groupsales', 'CMS::groupsales');
 $routes->post('/group_sales_save', 'CMS::group_sales_save');
 $routes->delete('/delete_user_group/(:num)', 'CMS::delete_id_group/$1');
 $routes->delete('/delete_group/(:num)', 'CMS::delete_group/$1');
+
+
 
 
 

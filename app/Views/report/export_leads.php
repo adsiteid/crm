@@ -1,185 +1,76 @@
-<?php $this->extend('layout/template'); ?>
+<!DOCTYPE html>
+<html lang="en">
 
-<?php $this->section('content'); ?>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export to Excel</title>
+    <!-- Include TableExport library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+</head>
 
+<body>
 
-<!-- print button -->
-<script>
-    function printDiv(divName) {
-        var printContents = document.getElementById(divName).innerHTML;
-        var originalContents = document.body.innerHTML;
+    <div class="card rounded">
+        <div class="card-body" id="dataToExport">
+            <div class="p-lg-3 p-0">
+                <div class="table-responsive">
+                    <table class="table  table-hover" border="1" id="myTable">
 
-        document.body.innerHTML = printContents;
-
-        window.print();
-
-        document.body.innerHTML = originalContents;
-    }
-</script>
-
-
-<style>
-    .simple-pagination ul {
-        margin: 0 0 20px;
-        padding: 0;
-        list-style: none;
-        text-align: left;
-    }
-
-    .simple-pagination li {
-        display: inline-block;
-        margin-right: 5px;
-
-    }
-
-    .simple-pagination li a,
-    .simple-pagination li span {
-        color: #666;
-        padding: 8px 12px;
-        text-decoration: none;
-        background-color: #FFF;
-        border-radius: 5px;
-    }
-
-    .simple-pagination .current {
-        color: #1F3960;
-        background-color: #fff;
-        border: 1px;
-        border-style: solid;
-    }
-
-    .simple-pagination .prev.current,
-    .simple-pagination .next.current {
-        background: #fff;
-    }
-</style>
-
-
-
-
-<div class="card">
-
-    <div class="card-body">
-
-        <div class="d-lg-flex d-none align-items-center justify-content-between bg-transparent">
-
-            <form action="<?= base_url(); ?>search_report" method="post" class=" form-inline ">
-                <div class="input-group input-group-sm mb-3  w-100">
-                    <input type="text" class="form-control rounded-left border-0 bg-light pl-3 " placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_report">
-                    <div class="input-group-append">
-                        <button class="btn btn-light bg-light border-0 rounded-right" type="submit">
-                            <i class="icon-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-
-            <div class="dropdown pt-0">
-                <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
-                    <i class="mdi mdi-calendar"></i><?= $days; ?>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                    <a class="dropdown-item" href="<?= base_url(); ?>export_leads/90">Last 90 Days</a>
-                    <a class="dropdown-item" href="<?= base_url(); ?>export_leads/30">Last 30 Days</a>
-                    <a class="dropdown-item" href="<?= base_url(); ?>export_leads/7">Last 7 Days</a>
-                    <a type="button" class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Custom Range</a>
-                </div>
-            </div>
-        </div>
-
-        <form action="<?= base_url(); ?>search_report" method="post" class=" form-inline d-lg-none d-block">
-            <div class="input-group input-group-sm mb-3  w-100 ">
-                <input type="text" class="form-control rounded-left border-0 bg-light pl-3 " placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_report">
-                <div class="input-group-append">
-                    <button class="btn btn-light bg-light border-0 rounded-right" type="submit">
-                        <i class="icon-search"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
-
-        <div id="export_pdf">
-            <div class="table-responsive">
-
-                <div id="export_excel">
-
-                    <table class="table table-hover">
-                     <?php if (!empty($leads->getResultArray())) : ?>
                         <thead>
                             <tr>
-                                <th class="">
+                                <th class="d-sm-table-cell d-none">
                                     No
                                 </th>
                                 <th>
                                     Name
                                 </th>
-                                <th class="">
-                                    Address
-                                </th>
-                                <th class="">
-                                    Project
-                                </th>
-                                <th class="">
-                                    Source
-                                </th>
-                                <th class="">
-                                    Sales/Agent
-                                </th>
-                                <th class=""> <!-- d-sm-table-cell d-none -->
-                                    Manager
-                                </th>
-                                <th class="">
-                                    GM
-                                </th>
-                                <th class="">
-                                    Status
-                                </th>
-                                <th class="">
+                                <th class="text-lg-left text-right">
                                     Category
                                 </th>
-                                <th class="">
+                                <th class="d-sm-table-cell d-none">
                                     Date In
                                 </th>
-                                <th class="">
-                                    Contacted
+                                <th class="d-none">
+                                    Address
                                 </th>
-                                <th class="">
-                                    Visit
+                                <th class="d-sm-table-cell d-none">
+                                    Project
                                 </th>
-                                <th class="">
-                                    Deal
+                                <th class="d-sm-table-cell d-none">
+                                    Source
                                 </th>
-                                <th class="">
-                                    Reserve
+
+                                <th class="d-sm-table-cell d-none">
+                                    Sales
                                 </th>
-                                <th class="">
-                                    Booking
+                                <th class="d-sm-table-cell d-none">
+                                    Manager
                                 </th>
-                                <th class="">
-                                    Reserve Amount
+                                <th class="d-sm-table-cell d-none">
+                                    GM
                                 </th>
-                                <th class="">
-                                    Booking Amount
+                                <th class="d-sm-table-cell d-none">
+                                    Status
                                 </th>
-                                <th class="">
-                                    Feedback/Notes
-                                </th>
-                                <th class="">
-                                    Notes
-                                </th>
+
+
+
                             </tr>
                         </thead>
-                        <?php endif; ?>
-                        <tbody class="list-wrapper">
+
+
+                        <tbody>
+
                             <?php $no = 1; ?>
                             <?php
 
                             foreach ($leads->getResultArray() as $row) :
-                                // foreach ($leads->getResultArray() as $row) :
 
                             ?>
-                                <tr class="list-item" onclick="location.href='<?= base_url(); ?>leads/<?= $row['id']; ?>'">
-                                    <td class="">
+
+                                <tr>
+                                    <td class="d-sm-table-cell d-none">
                                         <?= $no++; ?>
                                     </td>
                                     <td style="width:100px;">
@@ -192,214 +83,101 @@
                                         echo $str;
                                         ?>
                                     </td>
-                                    <td class="">
+                                    <td class="text-lg-left text-right">
+                                        <label><?= $row['kategori_status']; ?></label>
+
+                                    </td>
+
+                                    <td class="d-sm-table-cell d-none" >
+                                        <?php
+                                        $row['time_stamp_new'];
+                                        $dt_cnv_tmstp = date('d M Y', strtotime($row['time_stamp_new']));
+                                        echo $dt_cnv_tmstp;
+                                        ?>
+                                    </td>
+                                    <td class="d-none">
                                         <?= $row['alamat']; ?>
                                     </td>
-                                    <td class="d-sm-table-cell ">
+                                    <td class="d-sm-table-cell d-none">
                                         <?php foreach ($project->detail($row['project'])->getResultarray() as $prj) {
                                             echo $prj['project'];
                                         } ?>
                                     </td>
-                                    <td class="d-sm-table-cell ">
+                                    <td class="d-sm-table-cell d-none">
                                         <?= $row['sumber_leads']; ?>
                                     </td>
-                                    <td class="d-sm-table-cell ">
+
+                                    <td class="d-sm-table-cell d-none">
+
                                         <?php foreach ($user_group->detail($row['sales'])->getResultArray() as $sl) : ?>
                                             <?= $sl['fullname']; ?>
                                         <?php endforeach; ?>
                                     </td>
-                                    <td class="d-sm-table-cell ">
-                                        <?php foreach ($user_group->detail($row['manager'])->getResultArray() as $mg) : ?>
-                                            <?= $mg['fullname']; ?>
+                                    <td class="d-sm-table-cell d-none">
+
+                                        <?php foreach ($user_group->detail($row['manager'])->getResultArray() as $sl) : ?>
+                                            <?= $sl['fullname']; ?>
                                         <?php endforeach; ?>
+
                                     </td>
-                                    <td class="d-sm-table-cell ">
-                                        <?php foreach ($user_group->detail($row['general_manager'])->getResultArray() as $gm) : ?>
-                                            <?= $gm['fullname']; ?>
+                                    <td class="d-sm-table-cell d-none">
+
+                                        <?php foreach ($user_group->detail($row['general_manager'])->getResultArray() as $sl) : ?>
+                                            <?= $sl['fullname']; ?>
                                         <?php endforeach; ?>
+
                                     </td>
-                                    <td class="d-sm-table-cell ">
+                                    <td class="d-sm-table-cell d-none">
                                         <?= $row['update_status']; ?>
                                     </td>
-                                    <td class="d-sm-table-cell ">
-                                        <?= $row['kategori_status']; ?>
-                                    </td>
-                                    <td class="d-sm-table-cell ">
-                                        <?= date('d M Y - H:i:s', strtotime($row['time_stamp_new']));
-                                        ?>
-                                    </td>
-                                    <td class="d-sm-table-cell ">
-                                        <?= ($row['time_stamp_contacted'] == "") ? '-' : date('d M Y - H:i:s', strtotime($row['time_stamp_contacted'])); ?>
-                                    </td>
-                                    <td class="d-sm-table-cell ">
-                                        <?= ($row['time_stamp_visit'] == "") ? '-' : date('d M Y - H:i:s', strtotime($row['time_stamp_visit'])); ?>
-                                    </td>
-                                    <td class="d-sm-table-cell ">
-                                        <?= ($row['time_stamp_deal'] == "") ? '-' : date('d M Y - H:i:s', strtotime($row['time_stamp_deal'])); ?>
-                                    </td>
-                                    <td class="d-sm-table-cell ">
-                                        <?= ($row['time_stamp_reserve'] == "") ? '-' : date('d M Y - H:i:s', strtotime($row['time_stamp_reserve'])); ?>
-                                    </td>
-                                    <td class="d-sm-table-cell ">
-                                        <?= ($row['time_stamp_booking'] == "") ? '-' : date('d M Y - H:i:s', strtotime($row['time_stamp_booking'])); ?>
-                                    </td>
-                                    <td class="d-sm-table-cell ">
-                                        <?= $row['reserve']; ?>
-                                    </td>
-                                    <td class="d-sm-table-cell ">
-                                        <?= $row['booking']; ?>
-                                    </td>
-                                    <td class="d-sm-table-cell ">
-                                        <?= $row['catatan']; ?>
-                                    </td>
-                                    <td class="d-sm-table-cell">
-                                        <?= $row['catatan_admin']; ?>
-                                    </td>
-
                                 </tr>
 
                             <?php endforeach; ?>
                         </tbody>
+
                     </table>
-
-
-                    <?php if (empty($leads->getResultArray())) : ?>
-                        <div class="col-12 d-flex justify-content-center">
-                            <img src="<?= base_url() ?>document/app_image/images/empty.gif" class="d-lg-none d-block py-5" alt="" style="width:60%;">
-                            <img src="<?= base_url() ?>document/app_image/images/empty.gif" class="d-lg-block d-none py-5" alt="" style="width:20%;">
-                        </div>
-                    <?php endif; ?>
-
-
                 </div>
             </div>
+
         </div>
+
     </div>
-</div>
-
-
-<!-- <div id="pagination-container" class="my-4"></div> -->
 
 
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Trigger the export function on page load
+            exportTableToExcel();
+        });
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <form class=" form-inline navbar-search col-12" action="<?= base_url(); ?>exportRange" method="post">
-            <div class="modal-content">
+        function exportTableToExcel() {
+            // Select the table element
+            var table = document.getElementById("myTable");
 
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Filter date</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
+            // Convert the table to a worksheet
+            var ws = XLSX.utils.table_to_sheet(table);
 
-                    <div class="row">
-                        <div class="col">
-                            <label class="mb-1">Date Start</label>
-                            <input type="date" class="form-control w-100 mb-3" name="date_start">
-                        </div>
-                        <div class="col">
-                            <label class="mb-1">Date End</label>
-                            <input type="date" class="form-control w-100 mb-3" name="date_end">
-                        </div>
-                    </div>
+            // Create a new Excel workbook
+            var wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Sheet 1');
 
-                </div>
-                <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                    <div class="col-12">
-                        <button class="btn btn-primary w-100" type="submit">Filter</button>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-
-
-<!-- Pagination -->
-
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js"></script>
-
-<script>
-    var items = $(".list-wrapper .list-item");
-    var numItems = items.length;
-    var perPage = 10;
-
-    items.slice(perPage).hide();
-
-    $('#pagination-container').pagination({
-            items: numItems,
-            itemsOnPage: perPage,
-            prevText: "&laquo;",
-            nextText: "&raquo;",
-            onPageClick: function(pageNumber) {
-                var showFrom = perPage * (pageNumber - 1);
-                var showTo = showFrom + perPage;
-                items.hide().slice(showFrom, showTo).show();
-            }
+            // Save the workbook to a file
+            XLSX.writeFile(wb, 'Report_Leads.xlsx');
         }
+    </script>
 
-    );
-</script> -->
-
-<!-- End of Pagination -->
-
-
-<div class="my-5"></div>
-
-<!-- EXPORT EXCEL -->
-
-<script>
-    function exportF(elem) {
-        var table = document.getElementById("export_excel");
-        var html = table.outerHTML;
-        var url = 'data:application/vnd.ms-excel,' + escape(html); // Set your html table into url 
-        elem.setAttribute("href", url);
-        elem.setAttribute("download", "Report_leads.xls"); // Choose the file name
-        return false;
-    }
-</script>
+    <script>
+        document.getElementById("doPrint").addEventListener("click", function() {
+            var printContents = document.getElementById('export_excel').innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+        });
+    </script>
 
 
+</body>
 
-<!-- BAR CHART -->
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
-<!-- SUBHOLDING -->
-<script>
-    var options = {
-        chart: {
-            height: 300,
-            type: 'bar'
-        },
-        series: [{
-            name: 'Count',
-            data: [
-                <?= $leads->getNumRows(); ?>,
-                <?= $leadsClose->getNumRows(); ?>,
-                <?= $leadsPending->getNumRows(); ?>,
-                <?= $leadsContacted->getNumRows(); ?>,
-                <?= $leadsVisit->getNumRows(); ?>,
-                <?= $leadsDeal->getNumRows(); ?>,
-                <?= $leadsReserve->getNumRows(); ?>,
-                <?= $leadsBooking->getNumRows(); ?>,
-            ]
-        }],
-        xaxis: {
-            type: 'text',
-            categories: ['Leads In', 'Close', 'Pending', 'Contacted', 'Visit', 'Deal', 'Reserve', 'Booking', ]
-        }
-    }
-
-    var chart = new ApexCharts(document.querySelector("#leads"), options);
-
-    chart.render();
-</script>
-
-
-<?php $this->endSection(); ?>
+</html>
