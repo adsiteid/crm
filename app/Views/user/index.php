@@ -152,14 +152,11 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
                                 Group
                             </th>
 
-                            <!-- <th class="d-sm-table-cell d-none">
-                                Address
-                            </th> -->
                             <th class="d-sm-table-cell d-none">
-                                Email
+                                GM
                             </th>
                             <th class="d-sm-table-cell d-none">
-                                Contact
+                                manager
                             </th>
                             <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project") : ?>
                                 <th class="d-sm-table-cell d-none">
@@ -171,7 +168,7 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
                     <tbody class="list-wrapper-<?= $id_user['groups']; ?> ">
                         <?php $no = 1; ?>
                         <?php foreach ($users->groups($id_user['groups'])->getresultArray() as $row) : ?>
-                            <tr class="list-item-<?= $id_user['groups']; ?> " >
+                            <tr class="list-item-<?= $id_user['groups']; ?> ">
                                 <?php foreach ($user->detail($row['id_user'])->getresultArray() as $userdetail) : ?>
                                     <td class="d-sm-table-cell d-none" <?= $level !== "sales" ? 'onclick="location.href=\'' . base_url() . 'user/' . $row['id_user'] . '\'"' : '' ?>>
                                         <?= $no++; ?>
@@ -224,13 +221,23 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
                                         <?= $userdetail['address']; ?>
                                     </td> -->
                                     <td class="d-sm-table-cell d-none" <?= $level !== "sales" ? 'onclick="location.href=\'' . base_url() . 'user/' . $row['id_user'] . '\'"' : '' ?>>
-                                        <?= $userdetail['email']; ?>
+                                        <?php
+                                        $gm = $row['general_manager'];
+                                        foreach ($user->detail($gm)->getResultArray() as $gm) :
+                                            echo $gm['fullname'];
+                                        endforeach;
+                                        ?>
                                     </td>
 
                                     <td class="d-sm-table-cell d-none" <?= $level !== "sales" ? 'onclick="location.href=\'' . base_url() . 'user/' . $row['id_user'] . '\'"' : '' ?>>
-                                        <?= $userdetail['contact']; ?>
+                                        <?php
+                                        $manager = $row['manager'];
+                                        foreach ($user->detail($manager)->getResultArray() as $mng) :
+                                            echo $mng['fullname'];
+                                        endforeach;
+                                        ?>
                                     </td>
-                                    <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project" ) : ?>
+                                    <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project") : ?>
                                         <td class="d-sm-table-cell d-none">
 
                                             <a type="button" class="btn p-0" data-toggle="modal" data-target="#delete-data-<?= $row['id']; ?>"><i class="ti-trash menu-icon"></i></a>

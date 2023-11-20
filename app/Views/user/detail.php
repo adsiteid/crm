@@ -97,7 +97,7 @@
                                 <h4 class="fw-bolder">Rp. <?php
                                                             $total = 0;
                                                             foreach ($salesBooking->getResultArray() as $cb) :
-                                                                $total += $cb['booking'];
+                                                                $total += (int)$cb['booking'];
                                                             endforeach;
                                                             echo $total;
 
@@ -120,7 +120,7 @@
                                 <h4 class="fw-bolder">Rp. <?php
                                                             $total = 0;
                                                             foreach ($salesReserve->getResultArray() as $cb) :
-                                                                $total += $cb['reserve'];
+                                                                $total += (int)$cb['reserve'];
                                                             endforeach;
                                                             echo $total;
 
