@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use \App\Models\LeadsModel;
+use \App\Models\LeadLogsModel;
 use \App\Models\UsersModel;
 use \App\Models\GroupsModel;
 use \App\Models\GroupSalesModel;
@@ -14,6 +15,7 @@ class Leads extends BaseController
 {
 
     protected $showleads;
+    protected $leadlogs;
     protected $showusers;
     protected $showgroups;
     protected $showgroupsales;
@@ -24,6 +26,7 @@ class Leads extends BaseController
     public function __construct()
     {
         $this->showleads = new LeadsModel();
+        $this->leadlogs = new LeadLogsModel();
         $this->showusers = new UsersModel();
         $this->showgroups = new GroupsModel;
         $this->showgroupsales = new GroupSalesModel;
@@ -38,7 +41,7 @@ class Leads extends BaseController
         $new = $this->showleads->new();
         $user = $this->showusers;
 
-        $id = user()->id;
+        $id_user = user()->id;
 
         if (in_groups('admin')) :
             $level = user()->level;
@@ -47,12 +50,12 @@ class Leads extends BaseController
 
         if (in_groups('users')) :
 
-            if (empty($this->showgroupsales->user($id)->getResultArray())) {
+            if (empty($this->showgroupsales->user($id_user)->getResultArray())) {
                 $level = "";
                 $notifNew = $this->showleads->notifNew();
             }
-            if (!empty($this->showgroupsales->user($id)->getResultArray())) {
-                foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+            if (!empty($this->showgroupsales->user($id_user)->getResultArray())) {
+                foreach ($this->showgroupsales->user($id_user)->getResultArray() as $group) {
                 $level = $group['level'];
                 $notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
         }
@@ -71,6 +74,7 @@ class Leads extends BaseController
             'sales' => $this->showusers->salesUser(),
             'group' => $this->showgroups,
             'groupsales' => $this->showgroupsales,
+            'leadlogs' => $this->leadlogs,
             'title' => 'Leads'
         ];
 

@@ -7,6 +7,35 @@
         background-color: var(--primary);
         border-color: var(--primary);
     }
+
+    @media screen and (min-width: 450px) {
+        .history {
+            height: 180px;
+            overflow: auto;
+        }
+
+    }
+
+    @media screen and (max-width: 450px) {
+        .history {
+            height: 300px;
+            overflow: auto;
+        }
+
+    }
+
+    /* ::-webkit-scrollbar {
+        width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #fff;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #e1d3d5;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #e1d3d5;
+    } */
 </style>
 
 
@@ -30,8 +59,6 @@
 
 
         <?php
-
-
 
         $tz = 'Asia/Jakarta';
         $dt = new DateTime("now", new DateTimeZone($tz));
@@ -242,6 +269,14 @@
                             <h6 style="font-size:12px;" class="mb-3"><?= $dt_cnv_tmstp; ?></h6>
                             <p style="font-size:12px;" class="mb-1">Remaining Time</p>
                             <h6 style="font-size:12px;" class="mb-3 time-rolling" data-status="<?= $row['kategori_status'] ?>" data-lasttime="<?= $row['rolling_lasttime']; ?>" data-interval="<?= $row['rolling_interval'] ?>" data-leads="<?= $row['rolling_leads'] ?>">-</h6>
+                            <p style="font-size:12px;" class="mb-1">Address</p>
+                            <h6 style="font-size:12px;" class="mb-3"><?php echo $row['alamat']; ?></h6> <input type="hidden" name="alamat" value="<?= $row['alamat']; ?>">
+                            <p style="font-size:12px;" class="mb-1">Phone Number</p>
+                            <h6 style="font-size:12px;" class="mb-3"><?php echo $row['nomor_kontak']; ?></h6> <input type="hidden" name="nomor_kontak" value="<?= $row['nomor_kontak']; ?>">
+                            <p style="font-size:12px;" class="mb-1">Email</p>
+                            <h6 style="font-size:12px;" class="mb-3"><?= $row['email']; ?></h6> <input type="hidden" name="email" value="<?= $row['email']; ?>">
+                            <p style="font-size:12px;" class="mb-1">Leads Source</p>
+                            <h6 style="font-size:12px; " class="mb-3"><?php echo $row['sumber_leads']; ?></h6>
                             <p style="font-size:12px;" class="mb-1">Group</p>
                             <h6 style="font-size:12px;" class="mb-3"> <?php foreach ($group->detail($row['groups'])->getResultArray() as $grp) : ?>
                                     <?= $grp['group_name']; ?>
@@ -250,14 +285,30 @@
                             <h6 style="font-size:12px;" class="mb-3"> <?php foreach ($project->detail($row['project'])->getResultarray() as $prj) {
                                                                             echo $prj['project'];
                                                                         } ?></h6> <input type="hidden" name="project" value="<?= $row['project']; ?>">
-                            <p style="font-size:12px;" class="mb-1">Address</p>
-                            <h6 style="font-size:12px;" class="mb-3"><?php echo $row['alamat']; ?></h6> <input type="hidden" name="alamat" value="<?= $row['alamat']; ?>">
-                            <p style="font-size:12px;" class="mb-1">Phone Number</p>
-                            <h6 style="font-size:12px;" class="mb-3"><?php echo $row['nomor_kontak']; ?></h6> <input type="hidden" name="nomor_kontak" value="<?= $row['nomor_kontak']; ?>">
-                            <p style="font-size:12px;" class="mb-1">Email</p>
-                            <h6 style="font-size:12px;" class="mb-3"><?= $row['email']; ?></h6> <input type="hidden" name="email" value="<?= $row['email']; ?>">
-                            <p style="font-size:12px;" class="mb-1">Leads Source</p>
-                            <h6 style="font-size:12px; "><?php echo $row['sumber_leads']; ?></h6>
+
+                            <p style="font-size:12px;" class="mb-1">General Manager</p>
+                            <h6 style="font-size:12px; " class="mb-3"><?php
+                                                                        $gm = $row['general_manager'];
+                                                                        foreach ($users->detail($gm)->getResultArray() as $user) :
+                                                                            echo $user['fullname'];
+                                                                        endforeach;
+                                                                        ?></h6>
+
+                            <p style="font-size:12px;" class="mb-1">Manager</p>
+                            <h6 style="font-size:12px; " class="mb-3"><?php
+                                                                        $manager = $row['manager'];
+                                                                        foreach ($users->detail($manager)->getResultArray() as $user) :
+                                                                            echo $user['fullname'];
+                                                                        endforeach;
+                                                                        ?></h6>
+                            <p style="font-size:12px;" class="mb-1">Sales</p>
+                            <h6 style="font-size:12px; " class="mb-3"><?php
+                                                                        $sales = $row['sales'];
+                                                                        foreach ($users->detail($sales)->getResultArray() as $user) :
+                                                                            echo $user['fullname'];
+                                                                        endforeach;
+                                                                        ?></h6>
+
                             <input type="hidden" name="sumber_leads" value="<?= $row['sumber_leads']; ?>">
 
                         </div>
@@ -266,7 +317,7 @@
                             <hr style="border: 1px;">
                         </div>
 
-                        <div class=" d-flex  mb-3 mt-4 ">
+                        <div class=" d-flex  mb-3 mt-5 ">
                             <div class=" col-6 pr-1 p-0">
                                 <a href="https://wa.me/<?php echo $nomor; ?>" class="btn btn-success border-0 rounded-3 whatsapp-telpon w-100">Whatsapp</a>
                             </div>
@@ -407,19 +458,6 @@
 
                         <div class="col-lg-6 col-12">
 
-                            <!-- <p style="font-size:12px;" class="mb-2"> Action <span style="color:red">* </span> </p>
-                                <div class="dropdown mb-3 border border-weight-1 rounded-1 border-secondary">
-                                    <button class="btn btn-sm dropdown-toggle w-100 form-select d-flex" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select Options</span>
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu- pl-3 w-100 pt-3">
-                                        <li><a href="#"><label><input type="checkbox" class="selectall" /><span class="select-text"> Select</span> All</label></a></li>
-                                        <li><a class="option-link" href="#"><label><input name='options[]' type="checkbox" class="option justone" value='Option 1 ' /> Option 1</label></a></li>
-                                        <li><a href="#"><label><input name='options[]' type="checkbox" class="option justone" value='Option 2 ' /> Option 2</label></a></li>
-                                        <li><a href="#"><label><input name='options[]' type="checkbox" class="option justone" value='Option 3 ' /> Option 3</label></a></li>
-                                    </ul>
-                                </div> -->
-
 
                             <p style="font-size:12px;" class="mb-2"> Feedback / Notes <span style="color:red">* </span> </p>
                             <select class="form-select form-control form-control-sm border-secondary mb-3" aria-label=".form-select-sm example" name="catatan" style="font-size:12px;">
@@ -470,19 +508,15 @@
 
                                     <?php endif; ?>
 
-                                   
+
 
                                 </select>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div class="row d-flex justify-content-between mt-3">
 
-
-                <div class="card col-12 py-4">
-                    <div class="row d-flex justify-content-between ">
-
-                        <div class="col-lg-6 col-sm-12 catatan align-items-end px-2 ">
+                        <div class="col-lg-6 col-sm-12 catatan align-items-end px-0 ">
 
                             <div class="col-12 ">
                                 <p class="mb-2 text-primary" style="font-size:12px;">Reserve Amount</span> </p>
@@ -502,13 +536,83 @@
                             <div class="col-12 mb-lg-0 mb-4"><span style="font-size: x-small;">Reserve & Booking hanya diinput dengan status Deal</span><span style="color:red; font-size: x-small;"> *</span></div>
                         </div>
 
-                        <div class="col-lg-6 col-12 px-4 ">
+                        <div class="col-lg-6 col-12 ">
                             <label for="catatan" class="form-label mt-0 ">
                                 <p class="mb-1 text-primary" style="font-size:12px;">Notes </span> </p>
                             </label>
                             <textarea type="text" class="form-control border-secondary" rows="7" name="catatan_admin" style="font-size:12px;"><?php echo $row['catatan_admin']; ?></textarea>
                         </div>
                     </div>
+                </div>
+
+
+                <div class="card col-12 p-4 ">
+                    <h6 class="mb-3">History</h6>
+                    <div class="row">
+
+                        <div class="history">
+
+
+                            <?php foreach ($leadlogs->logs($id)->getResultArray() as $logs) :                ?>
+
+                                
+                                <div class="mb-3">
+                                    <p style="" class="text-primary mb-0"><?= $logs['desc_log']; ?></p>
+                                    <p style="font-size:12px;" class="text-muted">
+                                        <span><?= $logs['time_stamp']; ?></span><br>
+                                        <span>
+                                            <?php
+                                            $prevLogs = $leadlogs->prev($id,$logs['id'])->getResultArray();
+                                            foreach ($prevLogs as $prev) {
+                                                if ($prev['update_status'] != $logs['update_status']) {
+                                                    echo "Update Status - " . $prev['update_status'] . "->" . $logs['update_status'] . "<br>";
+                                                }
+
+                                                if ($prev['kategori_status'] != $logs['kategori_status']) {
+                                                    echo "Kategori Status - " . $prev['kategori_status'] . "->" . $logs['kategori_status'] . "<br>";
+                                                }
+
+                                                if ($prev['catatan'] != $logs['catatan']) {
+                                                    echo "Ubah feedback - " . $prev['catatan'] . "->" . $logs['catatan'] . "<br>";
+                                                }
+
+                                                if ($prev['sales'] != $logs['sales']) {
+                                                    $salesprev = $users->detail($prev['sales'])->getRow('fullname');
+                                                    $salesnext = $users->detail($logs['sales'])->getRow('fullname');
+                                                    echo "Pindah Sales - " . $salesprev . " -> " . $salesnext . "<br>";
+                                                }
+
+
+                                                if ($prev['reserve'] != $logs['reserve']) {
+                                                    echo "Ubah Nominal Reserve - " . $prev['reserve'] . "->" . $logs['reserve'] . "<br>";
+                                                }
+
+                                                if ($prev['booking'] != $logs['booking']) {
+                                                    echo "Ubah Nominal Booking - " . $prev['booking'] . "->" . $logs['booking'] . "<br>";
+                                                }
+
+
+                                                if ($prev['catatan_admin'] != $logs['catatan_admin']) {
+                                                    echo "Update catatan - " . $prev['catatan_admin'] . "->" . $logs['catatan_admin'] . "<br>";
+                                                }
+
+                                                
+
+                                                // Similar checks for other fields...
+                                            }
+                                            ?>
+                                        </span>
+                                    </p>
+                                </div>
+                            <?php endforeach; ?>
+
+
+                        </div>
+
+
+                    </div>
+
+
                 </div>
 
                 <!-- <p style="font-size:12px;" class="my-lg-1 my-3 px-2"> <span style="color:red">* </span>Reserve / Booking Amount hanya bisa diisi di status "Deal" </p> -->

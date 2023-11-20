@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use \App\Models\ChartModel;
 use \App\Models\LeadsModel;
+use \App\Models\LeadLogsModel;
 use \App\Models\UsersModel;
 use \App\Models\ProjectModel;
 use \App\Models\MsdpModel;
@@ -21,6 +22,7 @@ use RecursiveDirectoryIterator;
 class CMS extends BaseController
 {
 	protected $showleads;
+	protected $leadlogs;
 	protected $chartleads;
 	protected $showusers;
 	protected $showprojects;
@@ -34,6 +36,7 @@ class CMS extends BaseController
 	public function __construct()
 	{
 		$this->showleads = new LeadsModel;
+		$this->leadlogs = new LeadLogsModel;
 		$this->chartleads = new ChartModel;
 		$this->showusers = new UsersModel;
 		$this->showprojects = new ProjectModel;
@@ -979,6 +982,34 @@ class CMS extends BaseController
 		);
 
 
+
+		date_default_timezone_set('Asia/Jakarta');
+		$dateTime = new \DateTime();
+		$formattedDateTime = $dateTime->format('Y-m-d H:i:s');
+
+		$this->leadlogs->save(
+			[
+				'desc_log' => 'Tambah Leads',
+				'nama_leads' => $this->request->getVar('nama_leads'),
+				'email' => $this->request->getVar('email'),
+				'nomor_kontak' => $this->request->getVar('nomor_kontak'),
+				'alamat' => $this->request->getVar('alamat'),
+				'project' => $this->request->getVar('project'),
+				'general_manager' => $this->request->getVar('general_manager'),
+				'manager' => $this->request->getVar('manager'),
+				'sales' => $this->request->getVar('sales'),
+				'sumber_leads' => $this->request->getVar('sumber_leads'),
+				'update_status' => $this->request->getVar('update_status'),
+				'kategori_status' => $this->request->getVar('kategori_status'),
+				'reserve' => $this->request->getVar('reserve'),
+				'groups' => $this->request->getVar('groups'),
+				'booking' => $this->request->getVar('booking'),
+				'time_stamp' => $formattedDateTime
+			]
+		);
+
+		
+
 foreach($this->showusers->detail($this->request->getVar('sales'))->getResultArray() as $us) :
 	$no_sales = $us['contact'];
 endforeach;
@@ -1183,10 +1214,9 @@ endforeach;
 		$status = ($this->request->getVar('kategori_status') == "Reserve") ? 'reserve' : (($this->request->getVar('kategori_status') == "Booking") ? 'booking' : strtolower($this->request->getVar('update_status')));
 
 
-// dd($this->request->getVar('id'));
-
 		$this->showleads->save(
 			[
+
 				'id' => $this->request->getVar('id'),
 				'groups' => $this->request->getVar('groups'),
 				'nama_leads' => $this->request->getVar('nama_leads'),
@@ -1205,6 +1235,35 @@ endforeach;
 				'reserve' => $this->request->getVar('reserve'),
 				'booking' => $this->request->getVar('booking'),
 				'time_stamp_' . $status => $this->request->getVar('time_stamp_' . $status)
+			]
+		);
+
+		date_default_timezone_set('Asia/Jakarta');
+		$dateTime = new \DateTime();
+		$formattedDateTime = $dateTime->format('Y-m-d H:i:s');
+
+		$this->leadlogs->save(
+			[
+				'id_leads' => $this->request->getVar('id'),
+				'desc_log' => 'Update Leads',
+				'groups' => $this->request->getVar('groups'),
+				'nama_leads' => $this->request->getVar('nama_leads'),
+				'alamat' => $this->request->getVar('alamat'),
+				'nomor_kontak' => $this->request->getVar('nomor_kontak'),
+				'email' => $this->request->getVar('email'),
+				'project' => $this->request->getVar('project'),
+				'sumber_leads' => $this->request->getVar('sumber_leads'),
+				'general_manager' => $this->request->getVar('general_manager'),
+				'manager' => $this->request->getVar('manager'),
+				'sales' => $this->request->getVar('sales'),
+				'update_status' => $this->request->getVar('update_status'),
+				'kategori_status' => $this->request->getVar('kategori_status'),
+				'catatan' => $this->request->getVar('catatan'),
+				'catatan_admin' => $this->request->getVar('catatan_admin'),
+				'reserve' => $this->request->getVar('reserve'),
+				'booking' => $this->request->getVar('booking'),
+				// 'time_stamp_' . $status => $this->request->getVar('time_stamp_' . $status)
+				'time_stamp' => $formattedDateTime
 			]
 		);
 

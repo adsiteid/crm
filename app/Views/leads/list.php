@@ -107,12 +107,12 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                         <?php
                         $booking = 0;
                         foreach ($leadsBooking->getResultArray() as $cb) :
-                            $booking += $cb['booking'];
+                            $booking += (int)$cb['booking'];
                         endforeach;
 
                         $reserve = 0;
                         foreach ($leadsReserve->getResultArray() as $cr) :
-                            $reserve += $cr['reserve'];
+                            $reserve += (int)$cr['reserve'];
                         endforeach;
 
                         echo $reserve + $booking;

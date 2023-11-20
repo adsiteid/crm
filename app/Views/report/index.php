@@ -92,12 +92,12 @@
                         <?php
                         $bookingReport = 0;
                         foreach ($leadsBooking->getResultArray() as $cbR) :
-                            $bookingReport += $cbR['booking'];
+                            $bookingReport += (int)$cbR['booking'];
                         endforeach;
 
                         $reserveReport = 0;
                         foreach ($leadsReserve->getResultArray() as $crR) :
-                            $reserveReport += $crR['reserve'];
+                            $reserveReport += (int)$crR['reserve'];
                         endforeach;
 
                         echo $reserveReport + $bookingReport;
@@ -124,7 +124,7 @@
             Rp. <?php
                 $total = 0;
                 foreach ($leadsBooking->getResultArray() as $cb) :
-                    $total += $cb['booking'];
+                    $total += (int)$cb['booking'];
                 endforeach;
                 echo $total;
 
@@ -136,7 +136,7 @@
             Rp. <?php
                 $total = 0;
                 foreach ($leadsReserve->getResultArray() as $cb) :
-                    $total += $cb['reserve'];
+                    $total += (int)$cb['reserve'];
                 endforeach;
                 echo $total;
 
@@ -302,12 +302,12 @@
                                 <?php
                                 $bookingReport = 0;
                                 foreach ($leadsBooking->getResultArray() as $cb) :
-                                    $bookingReport += $cb['booking'];
+                                    $bookingReport += (int)$cb['booking'];
                                 endforeach;
 
                                 $reserveReport = 0;
                                 foreach ($leadsReserve->getResultArray() as $cr) :
-                                    $reserveReport += $cr['reserve'];
+                                    $reserveReport += (int)$cr['reserve'];
                                 endforeach;
 
                                 echo $reserveReport + $bookingReport;
@@ -342,7 +342,7 @@
                                 <h4 class="fw-bolder">Rp. <?php
                                                             $total = 0;
                                                             foreach ($leadsBooking->getResultArray() as $cb) :
-                                                                $total += $cb['booking'];
+                                                                $total += (int)$cb['booking'];
                                                             endforeach;
                                                             echo $total;
 
@@ -365,7 +365,7 @@
                                 <h4 class="fw-bolder">Rp. <?php
                                                             $total = 0;
                                                             foreach ($leadsReserve->getResultArray() as $cb) :
-                                                                $total += $cb['reserve'];
+                                                                $total += (int)$cb['reserve'];
                                                             endforeach;
                                                             echo $total;
 
