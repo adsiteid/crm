@@ -987,8 +987,11 @@ class CMS extends BaseController
 		$dateTime = new \DateTime();
 		$formattedDateTime = $dateTime->format('Y-m-d H:i:s');
 
+		$lastInsertID = $this->showleads->insertID();
+
 		$this->leadlogs->save(
 			[
+				'id_leads' => $lastInsertID,
 				'desc_log' => 'Tambah Leads',
 				'nama_leads' => $this->request->getVar('nama_leads'),
 				'email' => $this->request->getVar('email'),

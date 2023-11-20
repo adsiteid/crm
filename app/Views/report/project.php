@@ -151,7 +151,7 @@
                                     <td><?php
                                         $total = 0;
                                         foreach ($projectReserve->getResultArray() as $cb) :
-                                            $total += $cb['reserve'];
+                                            $total += (int)$cb['reserve'];
                                         endforeach;
                                         echo $total;
                                         ?>
@@ -159,7 +159,7 @@
                                     <td><?php
                                         $total = 0;
                                         foreach ($projectBooking->getResultArray() as $cb) :
-                                            $total += $cb['booking'];
+                                            $total += (int)$cb['booking'];
                                         endforeach;
                                         echo $total;
                                         ?>
