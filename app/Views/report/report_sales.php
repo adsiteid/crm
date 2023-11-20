@@ -107,7 +107,7 @@
                         <h4 class="fw-bolder">Rp. <?php
                                                     $total = 0;
                                                     foreach ($leadsBooking->getResultArray() as $cb) :
-                                                        $total += $cb['booking'];
+                                                        $total += (int)$cb['booking'];
                                                     endforeach;
                                                     echo $total;
 
@@ -130,7 +130,7 @@
                         <h4 class="fw-bolder">Rp. <?php
                                                     $total = 0;
                                                     foreach ($leadsReserve->getResultArray() as $cb) :
-                                                        $total += $cb['reserve'];
+                                                        $total += (int)$cb['reserve'];
                                                     endforeach;
                                                     echo $total;
 
@@ -320,7 +320,7 @@
                                         <?php
                                         $total = 0;
                                         foreach ($count->salesReserve($row['id'])->getResultArray() as $cb) :
-                                            $total += $cb['reserve'];
+                                            $total += (int)$cb['reserve'];
                                         endforeach;
                                         echo $total;
 
@@ -331,7 +331,7 @@
                                         <?php
                                         $total = 0;
                                         foreach ($count->salesBooking($row['id'])->getResultArray() as $cb) :
-                                            $total += $cb['booking'];
+                                            $total += (int)$cb['booking'];
                                         endforeach;
                                         echo $total;
 
