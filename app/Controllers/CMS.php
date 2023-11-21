@@ -793,6 +793,45 @@ class CMS extends BaseController
 	}
 
 
+	public function submission_list()
+	{
+
+		$days = 30;
+
+		$id = user()->id;
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+				} else {
+					$notifNew = $this->showleads->notifNew();
+				}
+			}
+		} else {
+			$notifNew = $this->showleads->notifNew();
+		}
+
+		$new = $this->showleads->new();
+
+
+		$data = [
+			'new' => $new,
+			'notifNew' => $notifNew,
+			'list' => $this->showmsdp->list($days),
+			'users' => $this->showusers,
+			// 'user_group' => $this->showgroupsales->user($id),
+			'group' => $this->showgroupsales,
+			'project' => $this->showprojects,
+			'group_project' => $this->showgroups,
+			'countDay' => "Last $days Days",
+			'title' => 'Submission'
+		];
+
+		return view('cms/submission', $data);
+	}
+
+
 	public function submission($days)
 	{
 

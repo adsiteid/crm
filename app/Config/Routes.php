@@ -150,6 +150,7 @@ $routes->post('update_msdp/(:num)', 'CMS::msdpupdate/$1');
 $routes->post('update_msdp_edit/(:num)', 'CMS::msdpupdateEdit/$1');
 $routes->get('/edit_msdp/(:num)', 'CMS::edit_msdp/$1');
 $routes->delete('/delete_msdp/(:num)', 'CMS::delete_msdp/$1');
+$routes->get('/submission', 'CMS::submission_list');
 $routes->get('/submission/(:num)', 'CMS::submission/$1');
 
 
