@@ -549,7 +549,7 @@
 
         chart: {
             height: 350,
-            type: "area",
+            type: "bar",
             zoom: {
                 enabled: false
             }
@@ -557,6 +557,9 @@
         dataLabels: {
             enabled: false
         },
+        // stroke: {
+        //     curve: "straight"
+        // },
         xaxis: {
             type: 'text',
             categories: [
