@@ -574,7 +574,12 @@
 
                 ?>
 
-            ]
+            ],
+            labels: {
+                style: {
+                    fontSize: '10px', // Ganti dengan ukuran teks yang diinginkan
+                }
+            }
         }
     };
 
