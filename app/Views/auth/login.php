@@ -68,11 +68,11 @@
                   <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"><?= lang('Auth.loginAction') ?></button>
                 </div>
 
-                <?php if ($config->allowRegistration) : ?>
+                <!-- <?php if ($config->allowRegistration) : ?>
                   <div class="mt-3">
                     <a href="<?= url_to('register') ?>" type="submit" class="btn btn-block btn-light btn-lg font-weight-medium auth-form-btn"><?= lang('Auth.needAnAccount') ?></a>
                   </div>
-                <?php endif; ?>
+                <?php endif; ?> -->
 
 
                 <div class="my-4 d-flex justify-content-between align-items-center">
