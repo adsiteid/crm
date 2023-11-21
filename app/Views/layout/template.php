@@ -477,7 +477,7 @@
                             <li class="nav-item <?php if ($title == "List Event") {
                                                     echo "active";
                                                 } ?>">
-                                <a class="nav-link  " href="<?= base_url(); ?>list_event/30">
+                                <a class="nav-link  " href="<?= base_url(); ?>list_event">
                                     <i class="ti-calendar menu-icon"></i>
                                     <span class="menu-title">Event</span>
                                 </a>
@@ -618,7 +618,7 @@
                                 <li class="nav-item <?php if ($title == 'List Event') {
                                                         echo "active";
                                                     } ?>">
-                                    <a class="nav-link" href="<?= base_url(); ?>list_event/30">
+                                    <a class="nav-link" href="<?= base_url(); ?>list_event">
                                         <i class="ti-calendar menu-icon"></i>
                                         <span class="menu-title">Event</span>
                                     </a>

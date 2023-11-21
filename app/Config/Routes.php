@@ -155,6 +155,7 @@ $routes->get('/submission/(:num)', 'CMS::submission/$1');
 
 // EVENT
 $routes->post('/event_save', 'CMS::EventSave');
+$routes->get('/list_event', 'Event::list_event');
 $routes->get('/list_event/(:num)', 'Event::list/$1');
 $routes->get('/event/(:num)', 'Event::detail/$1');
 $routes->get('/edit_event/(:num)', 'CMS::edit_event/$1');

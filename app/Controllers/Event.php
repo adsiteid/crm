@@ -23,6 +23,52 @@ class Event extends BaseController
         $this->showproject = new ProjectModel();
     }
 
+    public function list_event()
+    {
+        $days = 30;
+
+        if (in_groups('admin')) :
+            $notifNew = $this->showleads->notifNew();
+            $events = $this->showevent->eventsFilter($days);
+            $new = $this->showleads->new();
+        endif;
+
+        if (in_groups('users')) :
+            $id = user()->id;
+
+            if (empty($this->showgroupsales->user($id)->getResultArray())) {
+                $notifNew = $this->showleads->notifNew();
+                $events = $this->showevent->eventsIdFilter($id, $days);
+                $new = $this->showleads->new();
+            }
+
+            if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+                foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+                    if ($group['level'] == "admin_group" ||  $group['level'] == "management") {
+                        $notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+                        $events = $this->showevent->eventsAdminGroupFilter($group['groups'], $days);
+                        $new = $this->showleads->newAdminGroup($group['groups']);
+                    } else {
+                        $notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+                        $events = $this->showevent->eventsAdminGroupFilter($group['groups'], $days);
+                        $new = $this->showleads->new();
+                    }
+                }
+            }
+        endif;
+
+        $data = [
+            'new' => $new,
+            'notifNew' => $notifNew,
+            'days' => "Last $days Days",
+            'project' => $this->showproject,
+            'event' => $events,
+            'title' => 'List Event'
+        ];
+        return view('event/list_event', $data);
+    }
+
 
     public function list($days)
     {
