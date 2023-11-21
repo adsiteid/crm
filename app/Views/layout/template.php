@@ -418,7 +418,7 @@
                                 </a>
                             </li>
 
-                            <li class="d-lg-block d-none nav-item <?php if ($title == 'Leads' || $title == 'New') {
+                            <li class="d-lg-block d-none nav-item <?php if ($title == 'Leads' || $title == 'New' || $title == 'Close'|| $title == 'Pending'|| $title == 'Contacted'|| $title == 'Visit'|| $title == 'Deal') {
                                                                         echo "active";
                                                                     } ?>">
                                 <a class="nav-link" href="<?= base_url(); ?>leads/all">
