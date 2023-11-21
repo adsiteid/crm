@@ -116,6 +116,7 @@ $routes->post('/report_sales_range', 'Report::salesRange');
 $routes->post('/search_report', 'Report::search_report');
 
 //report filter 
+$routes->get('/reportleads', 'Report::reportleads');
 $routes->get('/reportleads/(:num)', 'Report::leadsFilter/$1');
 $routes->get('/leads_subholding/(:num)', 'Report::subholdingFilter/$1');
 $routes->post('/range_leads_report', 'Report::range');

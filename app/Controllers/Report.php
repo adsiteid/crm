@@ -30,7 +30,131 @@ class Report extends BaseController
 
 	/////////////////// REPORT LEADS /////////////////////////
 
+	public function reportleads()
+	{
 
+		$days = 30;
+
+		$id = user()->id;
+
+
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+
+					$leads = $this->showleads->allFilterAdminGroup($group['groups'], $days);
+
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+
+					$leadsNew = $this->chartleads->leadsNewAdminGroup($group['groups'], $days);
+					$leadsClose = $this->chartleads->leadsCloseAdminGroup($group['groups'], $days);
+					$leadsPending = $this->chartleads->leadsPendingAdminGroup($group['groups'], $days);
+					$leadsContacted = $this->chartleads->leadsContactedAdminGroup($group['groups'], $days);
+					$leadsVisit = $this->chartleads->leadsVisitAdminGroup($group['groups'], $days);
+					$leadsDeal = $this->chartleads->leadsDealAdminGroup($group['groups'], $days);
+					$leadsReserve = $this->chartleads->leadsReserveAdminGroup($group['groups'], $days);
+					$leadsBooking = $this->chartleads->leadsBookingAdminGroup($group['groups'], $days);
+
+					$new = $this->showleads->newFilterAdminGroup($group['groups'], $days);
+					$close = $this->showleads->closeFilterAdminGroup($group['groups'], $days);
+					$pending = $this->showleads->pendingFilterAdminGroup($group['groups'], $days);
+					$contacted = $this->showleads->contactedFilterAdminGroup($group['groups'], $days);
+					$visit = $this->showleads->visitFilterAdminGroup($group['groups'], $days);
+					$deal = $this->showleads->dealFilterAdminGroup($group['groups'], $days);
+					$dealOnly = $this->showleads->dealOnlyAdminGroup($group['groups'], $days);
+					$reserve = $this->showleads->reserveFilterAdminGroup($group['groups'], $days);
+					$booking = $this->showleads->bookingFilterAdminGroup($group['groups'], $days);
+
+
+					$chart1 = $this->chartleads->filterGroupTanggalGroup($group['groups'], $days);
+				} else {
+					$leads = $this->showleads->allFilter($days);
+					$notifNew = $this->showleads->notifNew();
+
+					$leadsNew = $this->chartleads->leadsNew($days);
+					$leadsClose = $this->chartleads->leadsClose($days);
+					$leadsPending = $this->chartleads->leadsPending($days);
+					$leadsContacted = $this->chartleads->leadsContacted($days);
+					$leadsVisit = $this->chartleads->leadsVisit($days);
+					$leadsDeal = $this->chartleads->leadsDeal($days);
+					$leadsReserve = $this->chartleads->leadsReserve($days);
+					$leadsBooking = $this->chartleads->leadsBooking($days);
+
+					$new = $this->showleads->newFilter($days);
+					$close = $this->showleads->closeFilter($days);
+					$pending = $this->showleads->pendingFilter($days);
+					$contacted = $this->showleads->contactedFilter($days);
+					$visit = $this->showleads->visitFilter($days);
+					$deal = $this->showleads->dealFilter($days);
+					$dealOnly = $this->showleads->dealOnly($days);
+					$reserve = $this->showleads->reserveFilter($days);
+					$booking = $this->showleads->bookingFilter($days);
+
+					$chart1 = $this->chartleads->filterGroupTanggal($days);
+				}
+			}
+		} else {
+			$leads = $this->showleads->allFilter($days);
+			$notifNew = $this->showleads->notifNew();
+			$leadsNew = $this->chartleads->leadsNew($days);
+			$leadsClose = $this->chartleads->leadsClose($days);
+			$leadsPending = $this->chartleads->leadsPending($days);
+			$leadsContacted = $this->chartleads->leadsContacted($days);
+			$leadsVisit = $this->chartleads->leadsVisit($days);
+			$leadsDeal = $this->chartleads->leadsDeal($days);
+			$leadsReserve = $this->chartleads->leadsReserve($days);
+			$leadsBooking = $this->chartleads->leadsBooking($days);
+
+			$new = $this->showleads->newFilter($days);
+			$close = $this->showleads->closeFilter($days);
+			$pending = $this->showleads->pendingFilter($days);
+			$contacted = $this->showleads->contactedFilter($days);
+			$visit = $this->showleads->visitFilter($days);
+			$deal = $this->showleads->dealFilter($days);
+			$dealOnly = $this->showleads->dealOnly($days);
+			$reserve = $this->showleads->reserveFilter($days);
+			$booking = $this->showleads->bookingFilter($days);
+
+
+			$chart1 = $this->chartleads->filterGroupTanggal($days);
+		}
+
+
+		$data = [
+
+			'leads' => $leads,
+			'notifNew' => $notifNew,
+			// chart
+			'leadsNew' => $leadsNew,
+			'leadsClose' => $leadsClose,
+			'leadsPending' => $leadsPending,
+			'leadsContacted' => $leadsContacted,
+			'leadsVisit' => $leadsVisit,
+			'leadsDeal' => $leadsDeal,
+			'leadsReserve' => $leadsReserve,
+			'leadsBooking' => $leadsBooking,
+			// end chart
+
+			// 'leads' => $this->showleads->all(),
+			'new' => $new,
+			'close' =>  $close,
+			'pending' => $pending,
+			'contacted' => $contacted,
+			'visit' => $visit,
+			'deal' => $deal,
+			'dealOnly' => $dealOnly,
+			'reserve' => $reserve,
+			'booking' => $booking,
+			'user_group' => $this->showusers,
+			'project' => $this->showproject,
+			'chart1' => $chart1,
+			'days' => "Last $days Days",
+			'title' => 'Leads Report'
+		];
+
+		return view('report/leads', $data);
+	}
 
 	public function leadsFilter($days)
 	{

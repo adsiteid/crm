@@ -439,7 +439,7 @@
                                 <div class="collapse" id="report">
                                     <ul class="nav flex-column sub-menu rounded-bottom">
                                         <!-- <li class="nav-item"> <a class="nav-link" href="/report/chart">Chart All</a></li> -->
-                                        <li class="nav-item "> <a class="nav-link " href="<?= base_url(); ?>reportleads/30">Leads Report</a></li>
+                                        <li class="nav-item "> <a class="nav-link " href="<?= base_url(); ?>reportleads">Leads Report</a></li>
 
                                         <li class="nav-item "> <a class="nav-link " href="<?= base_url(); ?>report_project/30">Project Report</a></li>
                                         <li class="nav-item "> <a class="nav-link " href="<?= base_url(); ?>report_source/30">Source Report</a></li>
@@ -587,7 +587,7 @@
                                     </a>
                                     <div class="collapse" id="report">
                                         <ul class="nav flex-column sub-menu rounded-bottom">
-                                            <li class="nav-item"> <a class="nav-link " href="<?= base_url(); ?>reportleads/30">Leads Report</a></li>
+                                            <li class="nav-item"> <a class="nav-link " href="<?= base_url(); ?>reportleads">Leads Report</a></li>
                                             <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>report_project/30">Project Report</a></li>
                                             <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>report_source/30">Source Report</a></li>
                                             <?php if (!in_groups('sales')) : ?>
@@ -715,7 +715,7 @@
                                 <i class="icon-grid menu-icon"></i>
                             </span>
                         </a>
-                        <a href="<?= base_url("/reportleads/30") ?>" class="col d-flex justify-content-center">
+                        <a href="<?= base_url("/reportleads") ?>" class="col d-flex justify-content-center">
                             <span class="icon-holder">
                                 <i class="icon-bar-graph menu-icon"></i>
                             </span>
