@@ -292,7 +292,7 @@
             type: 'bar'
         },
         series: [{
-            name: 'Count',
+            name: 'Leads',
             data: [
                 <?php
                 foreach ($leads->getResultArray() as $lproject) {
