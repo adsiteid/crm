@@ -43,10 +43,12 @@
         /* height: 63px !important; */
         height: 45px !important;
     }
-    .time-rolling{
-        font-size:10px;
+
+    .time-rolling {
+        font-size: 10px;
     }
-    .time-rolling-head{
+
+    .time-rolling-head {
         cursor: help;
     }
 </style>
@@ -278,9 +280,9 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
             <div class="col-12 px-0 "> <!-- pr-2 -->
                 <form action="<?= base_url(); ?>search_leads" method="post" class=" d-lg-none  d-sm-block d-block  form-inline mb-4 mt-0  navbar-search">
                     <div class="input-group ">
-                        <input type="text" class="form-control rounded-left small bg-light border-0" placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_leads">
+                        <input type="text" class="form-control rounded-left small bg-light " placeholder="Cari data leads ..." aria-label="Search" aria-describedby="basic-addon2" name="search_leads">
                         <div class="input-group-append">
-                            <button class="btn btn-light bg-light border-0 rounded-right px-3" type="submit">
+                            <button class="btn bg-light btn-light border-right border-top border-bottom rounded-right px-3" type="submit">
                                 <i class="icon-search"></i>
                             </button>
                         </div>
@@ -425,7 +427,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                                                             $rolling = "";
                                                             if ($row['kategori_status'] == 'New') {
                                                                 echo 'success';
-                                                                if($row['rolling_leads'] == "1") $rolling = '<span class="badge badge-danger time-rolling-head"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="otomatis rolling ke user lain"><span class="time-rolling" data-lasttime="'.$row['rolling_lasttime'].'" data-interval="'.$row['rolling_interval'].'">00:00</span></span>';
+                                                                if ($row['rolling_leads'] == "1") $rolling = '<span class="badge badge-danger time-rolling-head"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="otomatis rolling ke user lain"><span class="time-rolling" data-lasttime="' . $row['rolling_lasttime'] . '" data-interval="' . $row['rolling_interval'] . '">00:00</span></span>';
                                                             } elseif ($row['kategori_status'] == 'Cold') {
                                                                 echo 'info';
                                                             } elseif ($row['kategori_status'] == 'Warm') {
@@ -444,8 +446,8 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                                                                 echo 'booking';
                                                             }
 
-                                                            ?>" style="font-size: 10px;"><?= $row['kategori_status']; ?></label> 
-                                                            <?= $rolling; ?>
+                                                            ?>" style="font-size: 10px;"><?= $row['kategori_status']; ?></label>
+                                <?= $rolling; ?>
                             </td>
 
                             <td class="d-sm-table-cell d-none">
@@ -659,8 +661,8 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
 
 <script>
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl)
+    var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
     })
 </script>
 <!-- script countdown -->
