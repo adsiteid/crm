@@ -10,7 +10,7 @@
 
     @media screen and (min-width: 450px) {
         .history {
-            height: 165px;
+            height: 160px;
             overflow: auto;
         }
 
@@ -540,7 +540,7 @@
                             <label for="catatan" class="form-label mt-0 ">
                                 <p class="mb-1 text-primary" style="font-size:12px;">Notes </span> </p>
                             </label>
-                            <textarea type="text" class="form-control border-secondary" rows="7" name="catatan_admin" style="font-size:12px;"><?php echo $row['catatan_admin']; ?></textarea>
+                            <textarea type="text" class="form-control border-secondary lh-base" rows="7" name="catatan_admin" style="font-size:12px;"><?php echo $row['catatan_admin']; ?></textarea>
                         </div>
                     </div>
                 </div>
