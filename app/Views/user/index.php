@@ -144,7 +144,7 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
                             <th>
                                 Name
                             </th>
-                            <th class="text-lg-left text-right pl-0">
+                            <th class="text-lg-left text-center ">
                                 Level
                             </th>
 
