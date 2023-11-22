@@ -593,7 +593,7 @@
 
 
                                                 if ($prev['catatan_admin'] != $logs['catatan_admin']) {
-                                                    echo "Update catatan - " . $prev['catatan_admin'] . "->" . $logs['catatan_admin'] . "<br>";
+                                                    echo "Update catatan - ". $logs['catatan_admin'] . "<br>";
                                                 }
 
                                                 
