@@ -38,6 +38,13 @@
     }
 </style>
 
+<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css"> -->
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
+
 
 <div class="d-flex align-items-center justify-content-between  pb-4 row ">
     <div class="col-lg-5 col-md-3 col-sm-3 col-12 ">
@@ -69,16 +76,10 @@
 
     </div>
     <div class="col-lg-3 col-md-4 col-sm-5 col-12 text-right ">
-        <form action="<?= base_url() ?>search_user" method="post" class=" col-lg col-sm col-12 form-inline mr-auto p-0  ">
-            <div class="input-group input-group-sm d-flex justify-content-end ">
-                <input type="text" class="form-control rounded-left bg-white border-0 pl-3 " placeholder="Search User ..." aria-label="Search" aria-describedby="basic-addon2" name="search">
-                <div class="input-group-append">
-                    <button class="btn btn-light bg-white border-0 rounded-right" type="submit">
-                        <i class="icon-search"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
+        <div id="customSearch" style="margin-top: 20px;">
+           
+            <input type="text" id="searchInput" placeholder="Cari User..." class="form-control rounded bg-white border-0">
+        </div>
     </div>
 </div>
 
@@ -135,7 +136,7 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
 
 
             <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table table-striped" id="table">
                     <thead>
                         <tr>
                             <th class="d-sm-table-cell d-none">
@@ -340,7 +341,29 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
 
 
 
+<script>
+    $(document).ready(function() {
+        // Initialize DataTable with buttons
+        var table = $("#table").DataTable({
+            dom: 'Brtp',
+            paging: true,
+            autoWidth: true,
+            buttons: [
+                "colvis",
+                "copyHtml5",
+                "csvHtml5",
+                "excelHtml5",
+                "pdfHtml5",
+                "print"
+            ]
+        });
 
+        // Add custom search functionality
+        $("#searchInput").on('keyup', function() {
+            table.search(this.value).draw();
+        });
+    });
+</script>
 
 
 
