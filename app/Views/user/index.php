@@ -77,8 +77,7 @@
     </div>
     <div class="col-lg-3 col-md-4 col-sm-5 col-12 text-right ">
         <div id="customSearch" style="margin-top: 20px;">
-           
-            <input type="text" id="searchInput" placeholder="Cari User..." class="form-control rounded bg-white border-0">
+            <input type="text" id="searchInput" placeholder="Cari User..." class="form-control rounded bg-white ">
         </div>
     </div>
 </div>
