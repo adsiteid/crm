@@ -596,8 +596,6 @@
                                                     echo "Update catatan : ". $logs['catatan_admin'] . "<br>";
                                                 }
 
-                                                
-
                                                 // Similar checks for other fields...
                                             }
                                             ?>

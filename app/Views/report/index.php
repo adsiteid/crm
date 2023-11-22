@@ -292,7 +292,7 @@
     <div class="col-lg-4 col-12 d-lg-block d-none">
 
 
-        <div class="card mb-3  py-4" style="background-image: url(' <?= base_url() ?>document/app_image/images/bg-earnings.png'); background-repeat : no-repeat; background-size : cover;">
+        <!-- <div class="card mb-3  py-4" style="background-image: url(' <?= base_url() ?>document/app_image/images/bg-earnings.png'); background-repeat : no-repeat; background-size : cover;">
             <div class="col p-4">
                 <div class="row">
                     <div class="col-8">
@@ -326,6 +326,45 @@
                 <hr style="border-width:1;color:#fff; background-color:#fff;">
 
                 <h6 class="text-white small">Total Deals :
+                    <?= $leadsDeal->getNumRows(); ?>
+                </h6>
+            </div>
+        </div> -->
+
+        <div class="card mb-3  py-4" >
+            <div class="col px-5 py-3">
+                <div class="row">
+                    <div class="col-8">
+                        <h6 class="text-muted small">Total Income</h6>
+                        <h4 class="text-primary"> <strong>
+                                Rp.
+                                <?php
+                                $bookingReport = 0;
+                                foreach ($leadsBooking->getResultArray() as $cb) :
+                                    $bookingReport += (int)$cb['booking'];
+                                endforeach;
+
+                                $reserveReport = 0;
+                                foreach ($leadsReserve->getResultArray() as $cr) :
+                                    $reserveReport += (int)$cr['reserve'];
+                                endforeach;
+
+                                echo $reserveReport + $bookingReport;
+
+                                ?>
+
+                            </strong></h4>
+                    </div>
+                    <div class="col-4 d-flex justify-content-end align-items-center">
+                        <a href="<?= base_url(); ?>report_sales_filter/30" type="button" class="rounded-circle bg-secondary text-center pt-1" style="width:30px; height:30px;">
+                            <i class="ti-angle-right text-white small"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <hr style="border-width:2; " class="bg-primary my-4">
+
+                <h6 class="text-primary small">Total Deals :
                     <?= $leadsDeal->getNumRows(); ?>
                 </h6>
             </div>
