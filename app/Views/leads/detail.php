@@ -10,7 +10,7 @@
 
     @media screen and (min-width: 450px) {
         .history {
-            height: 180px;
+            height: 165px;
             overflow: auto;
         }
 
