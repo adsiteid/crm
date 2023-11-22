@@ -95,8 +95,8 @@
         </div>
     </div>
     <div class="card-body">
-        <div id="project" class="mb-4 d-lg-block d-none"></div>
-        <div id="project-mobile" class="mb-4 d-lg-none d-block"></div>
+        <div id="project" class="mb-4 "></div>
+        <!-- <div id="project-mobile" class="mb-4 d-lg-none d-block"></div> -->
 
         <!-- TABLE  -->
 
@@ -199,9 +199,6 @@
 
     </div>
 </div>
-
-
-
 
 
 <div class="offcanvas offcanvas-bottom bg-light" style="height:43%;" tabindex="-1" id="offcanvasRange" aria-labelledby="offcanvasBottomLabel">
@@ -318,7 +315,12 @@
                     }
                 }
                 ?>
-            ]
+            ],
+            labels: {
+                style: {
+                    fontSize: '10px', // Ganti dengan ukuran teks yang diinginkan
+                }
+            }
         }
     }
 
