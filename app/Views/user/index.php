@@ -303,39 +303,6 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
 
 
 
-
-
-    <div id="pagination-container-<?= $id_user['groups']; ?>" class="my-4"></div>
-
-    <!-- Pagination -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js"></script>
-
-    <!-- <script>
-        var items = $(".list-wrapper-<?= $id_user['groups']; ?> .list-item-<?= $id_user['groups']; ?>");
-        var numItems = items.length;
-        var perPage = 10;
-
-        items.slice(perPage).hide();
-
-        $('#pagination-container-<?= $id_user['groups']; ?>').pagination({
-                items: numItems,
-                itemsOnPage: perPage,
-                prevText: "&laquo;",
-                nextText: "&raquo;",
-                onPageClick: function(pageNumber) {
-                    var showFrom = perPage * (pageNumber - 1);
-                    var showTo = showFrom + perPage;
-                    items.hide().slice(showFrom, showTo).show();
-                }
-            }
-
-        );
-    </script> -->
-
-
-
 <?php endforeach; ?>
 
 
@@ -345,7 +312,7 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
     $(document).ready(function() {
         // Initialize DataTable with buttons
         var table = $("#table").DataTable({
-            dom: 'Brtp',
+            dom: 'rtp',
             paging: true,
             autoWidth: true,
             buttons: [
