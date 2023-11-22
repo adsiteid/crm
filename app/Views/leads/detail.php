@@ -565,35 +565,35 @@
                                             $prevLogs = $leadlogs->prev($id,$logs['id'])->getResultArray();
                                             foreach ($prevLogs as $prev) {
                                                 if ($prev['update_status'] != $logs['update_status']) {
-                                                    echo "Update Status - " . $prev['update_status'] . "->" . $logs['update_status'] . "<br>";
+                                                    echo "Update Status : " . $prev['update_status'] . "->" . $logs['update_status'] . "<br>";
                                                 }
 
                                                 if ($prev['kategori_status'] != $logs['kategori_status']) {
-                                                    echo "Kategori Status - " . $prev['kategori_status'] . "->" . $logs['kategori_status'] . "<br>";
+                                                    echo "Kategori Status : " . $prev['kategori_status'] . "->" . $logs['kategori_status'] . "<br>";
                                                 }
 
                                                 if ($prev['catatan'] != $logs['catatan']) {
-                                                    echo "Ubah feedback - " . $prev['catatan'] . "->" . $logs['catatan'] . "<br>";
+                                                    echo "Ubah feedback : " . $prev['catatan'] . "->" . $logs['catatan'] . "<br>";
                                                 }
 
-                                                if ($prev['sales'] != $logs['sales']) {
-                                                    $salesprev = $users->detail($prev['sales'])->getRow('fullname');
-                                                    $salesnext = $users->detail($logs['sales'])->getRow('fullname');
-                                                    echo "Pindah Sales - " . $salesprev . " -> " . $salesnext . "<br>";
-                                                }
+                                                // if ($prev['sales'] != $logs['sales']) {
+                                                //     $salesprev = $users->detail($prev['sales'])->getRow('fullname');
+                                                //     $salesnext = $users->detail($logs['sales'])->getRow('fullname');
+                                                //     echo "Pindah Sales : " . $salesprev . " -> " . $salesnext . "<br>";
+                                                // }
 
 
                                                 if ($prev['reserve'] != $logs['reserve']) {
-                                                    echo "Ubah Nominal Reserve - " . $prev['reserve'] . "->" . $logs['reserve'] . "<br>";
+                                                    echo "Ubah Nominal Reserve : " . $prev['reserve'] . "->" . $logs['reserve'] . "<br>";
                                                 }
 
                                                 if ($prev['booking'] != $logs['booking']) {
-                                                    echo "Ubah Nominal Booking - " . $prev['booking'] . "->" . $logs['booking'] . "<br>";
+                                                    echo "Ubah Nominal Booking : " . $prev['booking'] . "->" . $logs['booking'] . "<br>";
                                                 }
 
 
                                                 if ($prev['catatan_admin'] != $logs['catatan_admin']) {
-                                                    echo "Update catatan - ". $logs['catatan_admin'] . "<br>";
+                                                    echo "Update catatan : ". $logs['catatan_admin'] . "<br>";
                                                 }
 
                                                 
