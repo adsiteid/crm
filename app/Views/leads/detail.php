@@ -576,11 +576,11 @@
                                                     echo "Ubah feedback : " . $prev['catatan'] . "->" . $logs['catatan'] . "<br>";
                                                 }
 
-                                                // if ($prev['sales'] != $logs['sales']) {
-                                                //     $salesprev = $users->detail($prev['sales'])->getRow('fullname');
-                                                //     $salesnext = $users->detail($logs['sales'])->getRow('fullname');
-                                                //     echo "Pindah Sales : " . $salesprev . " -> " . $salesnext . "<br>";
-                                                // }
+                                                if ($prev['sales'] != $logs['sales']) {
+                                                    $salesprev = $users->detail($prev['sales'])->getRow('fullname');
+                                                    $salesnext = $users->detail($logs['sales'])->getRow('fullname');
+                                                    echo "Pindah Sales : " . $salesprev . " -> " . $salesnext . "<br>";
+                                                }
 
 
                                                 if ($prev['reserve'] != $logs['reserve']) {
