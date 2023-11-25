@@ -12,6 +12,7 @@ use \App\Models\EventModel;
 use \App\Models\GroupSalesModel;
 use \App\Models\GroupsModel;
 use \App\Models\AuthgroupModel;
+use \App\Models\LeadsUpdateUserModel;
 use Myth\Auth\Models\UserModel;
 
 
@@ -22,6 +23,7 @@ use RecursiveDirectoryIterator;
 class CMS extends BaseController
 {
 	protected $showleads;
+	protected $userupdateleads;
 	protected $leadlogs;
 	protected $chartleads;
 	protected $showusers;
@@ -36,6 +38,7 @@ class CMS extends BaseController
 	public function __construct()
 	{
 		$this->showleads = new LeadsModel;
+		$this->userupdateleads = new LeadsUpdateUserModel;
 		$this->leadlogs = new LeadLogsModel;
 		$this->chartleads = new ChartModel;
 		$this->showusers = new UsersModel;
@@ -2224,6 +2227,82 @@ endforeach;
 		}
 
 		
+	}
+
+
+
+	public function update_user_group()
+	{
+
+		$validation = \Config\Services::validation();
+
+		// if (!$this->validate([
+
+		// 	'level' => [
+		// 		'rules' => 'required',
+		// 		'errors' => [
+		// 			'required' => 'Name Harus diisi'
+		// 		]
+		// 	],
+
+			// 'username' => [
+			// 	'rules' => 'required',
+			// 	'errors' => [
+			// 		'required' => 'Username Harus diisi'
+			// 	]
+			// ],
+
+			// 'email' => [
+			// 	'rules' => 'required',
+			// 	'errors' => [
+			// 		'required' => 'Email Harus diisi'
+			// 	]
+			// ],
+
+		// 	'contact' => [
+		// 		'rules' => 'required',
+		// 		'errors' => [
+		// 			'required' => 'Contact Harus diisi'
+		// 		]
+		// 	],
+
+
+		// ])) {
+
+		// 	return redirect()->back()->withInput()->with('error', $this->validator->getErrors());
+		// }
+
+	
+		$this->showgroupsales->save(
+			[
+				'id' => $this->request->getVar('id'),
+				'level' => $this->request->getVar('level'),
+				'project' => $this->request->getVar('project'),
+				'general_manager' => $this->request->getVar('general_manager'),
+				'manager' => $this->request->getVar('manager')
+			]
+		);
+
+
+		if($this->request->getVar('sales') !==""){
+			$this->userupdateleads->save(
+				[
+					'sales' => $this->request->getVar('sales'),
+					'project' => $this->request->getVar('project'),
+					'general_manager' => $this->request->getVar('general_manager'),
+					'manager' => $this->request->getVar('manager')
+				]
+			);
+		}
+
+
+		session()->setFlashdata(
+			'pesan',
+			'Data updated successfully'
+		);
+
+			return redirect()->to(base_url() . 'user/agent');
+
 	}
 
 

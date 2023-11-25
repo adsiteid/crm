@@ -101,7 +101,7 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
 
                     <a type="button" class=" btn btn-sm btn-light mr-1 " style="font-size:12px;" data-toggle="modal" data-target="#delete-data-<?= $id_user['groups'] ?>">Delete Group</a>
 
-                    <div class="modal fade" id="delete-data-<?= $id_user['groups'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="delete-data-<?= $id_user['groups']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog " role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -130,6 +130,12 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
                     </div>
                 </div>
             </div>
+
+            <?php if (session()->getFlashdata('pesan')) : ?>
+                <div class="alert alert-success" role="alert">
+                    <?= session()->getFlashdata('pesan'); ?>
+                </div>
+            <?php endif; ?>
 
 
             <div class="table-responsive">
@@ -225,6 +231,7 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
                                             echo $gm['fullname'];
                                         endforeach;
                                         ?>
+
                                     </td>
 
                                     <td class="d-sm-table-cell d-none" <?= $level !== "sales" ? 'onclick="location.href=\'' . base_url() . 'user/' . $row['id_user'] . '\'"' : '' ?>>
@@ -238,7 +245,8 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
                                     <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project") : ?>
                                         <td class="d-sm-table-cell d-none">
 
-                                            <a type="button" class="btn p-0" data-toggle="modal" data-target="#delete-data-<?= $row['id']; ?>"><i class="ti-trash menu-icon"></i></a>
+                                            <a type="button" class="btn p-0 mr-1" data-toggle="modal" data-target="#delete-data-<?= $row['id']; ?>"><i class="ti-trash menu-icon"></i></a>
+                                            <a type="button" class="btn p-0" data-toggle="modal" data-target="#edit-data-<?= $row['id']; ?>"><i class="ti-pencil-alt menu-icon"></i></a>
 
                                             <!-- delete Modal-->
 
@@ -261,13 +269,13 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
                                                         <div class="modal-footer ">
                                                             <div class="row d-flex col-12 px-0 py-2">
                                                                 <div class="col-6">
-                                                                    <button class="btn btn-secondary w-100" type="button" data-dismiss="modal">Cancel</button>
+                                                                    <button class="btn btn-secondary py-3 w-100" type="button" data-dismiss="modal">Cancel</button>
                                                                 </div>
                                                                 <div class="col-6">
                                                                     <form action="<?= base_url(); ?>delete_user_group/<?= $row['id']; ?>" method="post">
                                                                         <?= csrf_field(); ?>
                                                                         <input type="hidden" name="_method" value="DELETE">
-                                                                        <button type="submit" class="btn btn-primary w-100"> Delete</button>
+                                                                        <button type="submit" class="btn btn-primary py-3 w-100"> Delete</button>
                                                                     </form>
                                                                 </div>
                                                             </div>
@@ -276,27 +284,127 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
                                                 </div>
                                             </div>
 
+                                            <div class="modal fade" id="edit-data-<?= $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <form action="<?= base_url(); ?>update_user_group" method="post">
+                                                    <?= csrf_field(); ?>
 
-                                        </td>
-                                    <?php endif; ?>
+                                                    <div class="modal-dialog " role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Edit : <?php
+                                                                                                                        $str = $userdetail['fullname'];
 
-                                <?php endforeach; ?>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                                                                                                                        echo $str . " (" . $userdetail['id'] . ")";
+                                                                                                                        ?> </h5>
+                                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">×</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
 
-                <?php if (empty($id_user['groups'])) : ?>
-                    <div class="col-12 d-flex justify-content-center">
-                        <img src="<?= base_url() ?>document/app_image/images/empty.png" class="d-lg-none d-block py-5" alt="" style="width:60%;">
-                        <img src="<?= base_url() ?>document/app_image/images/empty.png" class="d-lg-block d-none py-5" alt="" style="width:20%;">
-                    </div>
-                <?php endif; ?>
+                                                                <div class="form-group row">
+                                                                    <div class="col-6">
+                                                                        <label>Level</label>
+                                                                        <select class="form-control form-select <?php if (session('error.level')) : ?>is-invalid<?php endif ?>" name="level">
+                                                                            <option value="<?= $row['level']; ?>" selected> <?= $row['level']; ?></option>
 
+                                                                        </select>
+                                                                        <div class="invalid-feedback">
+                                                                            <?= (session('error.level')); ?>
+                                                                        </div>
+                                                                    </div>
 
+                                                                    <div class="col-6">
+                                                                        <label>Project</label>
+                                                                        <select class="form-control form-select <?php if (session('error.project')) : ?>is-invalid<?php endif ?>" name="project">
+                                                                            <option value="<?= $row['project']; ?>" selected> <?php foreach($project->detail($row['project'])->getResultArray() as $pj){ echo $pj['project'];} ?></option>
+                                                                        </select>
+                                                                        <div class="invalid-feedback">
+                                                                            <?= (session('error.project')); ?>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="form-group row ">
+
+                                                                    <div class="col-6">
+                                                                        <label>General Manager</label>
+                                                                        <select class="form-control form-select <?php if (session('error.general_manager')) : ?>is-invalid<?php endif ?>" name="general_manager">
+                                                                            <option value="<?= $row['general_manager']; ?>" selected> <?php
+                                                                                                                                        $gm = $row['general_manager'];
+                                                                                                                                        foreach ($user->detail($gm)->getResultArray() as $gm) :
+                                                                                                                                            echo $gm['fullname'];
+                                                                                                                                        endforeach;
+                                                                                                                                        ?></option>
+                                                                            <?php foreach ($users->general_manager($row['groups'])->getResultArray() as $gmanager) : ?>
+                                                                                <option value="<?= $gmanager['id_user']; ?>"><?php foreach ($user->detail($gmanager['id_user'])->getResultArray() as $gmanager_fetch) : ?><?= $gmanager_fetch['fullname']; ?><?php endforeach; ?></option>
+                                                                            <?php endforeach; ?>
+                                                                        </select>
+                                                                        <div class="invalid-feedback">
+                                                                            <?= (session('error.general_manager')); ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-6">
+                                                                        <label>Manager</label>
+                                                                        <select class="form-control form-select <?php if (session('error.manager')) : ?>is-invalid<?php endif ?>" name="manager">
+                                                                            <option value="<?= $row['manager']; ?>" selected> <?php
+                                                                                                                                $mg = $row['manager'];
+                                                                                                                                foreach ($user->detail($mg)->getResultArray() as $mng) :
+                                                                                                                                    echo $mng['fullname'];
+                                                                                                                                endforeach;
+                                                                                                                                ?></option>
+                                                                            <?php foreach ($users->manager($row['groups'])->getResultArray() as $gmanager) : ?>
+                                                                                <option value="<?= $gmanager['id_user']; ?>"><?php foreach ($user->detail($gmanager['id_user'])->getResultArray() as $gmanager_fetch) : ?><?= $gmanager_fetch['fullname']; ?><?php endforeach; ?></option>
+                                                                            <?php endforeach; ?>
+                                                                        </select>
+                                                                        <div class="invalid-feedback">
+                                                                            <?= (session('error.manager')); ?>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <input type="hidden" name="id" value="<?= $row['id']; ?>">
+                                                                <input type="hidden" name="sales" value="<?= $userdetail['id']; ?>">
+
+                                                            </div>
+                                                            <div class="modal-footer ">
+                                                                <div class="row d-flex col-12 px-0 py-2">
+                                                                    <div class="col-6">
+                                                                        <button class="btn btn-secondary py-3 w-100" type="button" data-dismiss="modal">Cancel</button>
+                                                                    </div>
+                                                                    <div class="col-6">
+                                                                        <button type="submit" class="btn btn-primary py-3 w-100"> Simpan</button>
+                                                </form>
+                                            </div>
             </div>
         </div>
     </div>
+    </div>
+    </div>
+
+
+    </td>
+<?php endif; ?>
+
+<?php endforeach; ?>
+</tr>
+<?php endforeach; ?>
+</tbody>
+</table>
+
+<?php if (empty($id_user['groups'])) : ?>
+    <div class="col-12 d-flex justify-content-center">
+        <img src="<?= base_url() ?>document/app_image/images/empty.png" class="d-lg-none d-block py-5" alt="" style="width:60%;">
+        <img src="<?= base_url() ?>document/app_image/images/empty.png" class="d-lg-block d-none py-5" alt="" style="width:20%;">
+    </div>
+<?php endif; ?>
+
+
+</div>
+</div>
+</div>
 
 
 

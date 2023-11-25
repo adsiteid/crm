@@ -140,6 +140,7 @@ $routes->post('/search_leads_user_loggedin/(:num)', 'User::search_leads_loggedin
 $routes->get('/edit_user/(:num)', 'CMS::edit_user/$1');
 $routes->get('/edit_user_id', 'CMS::edit_user_id');
 $routes->post('/user_update', 'CMS::user_update');
+$routes->post('/update_user_group', 'CMS::update_user_group');
 $routes->post('/search_user', 'User::search_user');
 
 // MSDP
