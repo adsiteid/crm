@@ -317,8 +317,16 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
                                                                     <div class="col-6">
                                                                         <label>Project</label>
                                                                         <select class="form-control form-select <?php if (session('error.project')) : ?>is-invalid<?php endif ?>" name="project">
-                                                                            <option value="<?= $row['project']; ?>" selected> <?php foreach($project->detail($row['project'])->getResultArray() as $pj){ echo $pj['project'];} ?></option>
+                                                                            <option value="<?= $row['project']; ?>" selected> <?php foreach ($project->detail($row['project'])->getResultArray() as $pj) {
+                                                                                                                                    echo $pj['project'];
+                                                                                                                                } ?></option>
+                                                                            <?php foreach ($users->projects($row['groups'])->getResultArray() as $grp) : ?>
+                                                                                <option value="<?= $grp['project']; ?>"><?php foreach ($project->detail($grp['project'])->getResultArray() as $pj) {
+                                                                                                                            echo $pj['project'];
+                                                                                                                        } ?></option>
+                                                                            <?php endforeach; ?>
                                                                         </select>
+
                                                                         <div class="invalid-feedback">
                                                                             <?= (session('error.project')); ?>
                                                                         </div>
