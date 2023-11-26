@@ -307,6 +307,11 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
                                                                         <label>Level</label>
                                                                         <select class="form-control form-select <?php if (session('error.level')) : ?>is-invalid<?php endif ?>" name="level">
                                                                             <option value="<?= $row['level']; ?>" selected> <?= $row['level']; ?></option>
+                                                                            <option value="admin_group">admin_group</option>
+                                                                            <option value="management">management</option>
+                                                                            <option value="general_manager">general_manager</option>
+                                                                            <option value="manager">manager</option>
+                                                                            <option value="sales">sales</option>
 
                                                                         </select>
                                                                         <div class="invalid-feedback">
