@@ -36,6 +36,12 @@
     .simple-pagination .next.current {
         background: #fff;
     }
+
+
+    #table_paginate {
+        margin-top: 20px;
+
+    }
 </style>
 
 <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css"> -->
@@ -43,42 +49,23 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 
 
-
-<div class="d-flex align-items-center justify-content-between  pb-4 row ">
-    <div class="col-lg-5 col-md-3 col-sm-3 col-12 ">
-
-        <div class="dropdown flex-md-grow-1 flex-xl-grow-0 ">
-            <button class="btn btn-primary dropdown-toggle mb-lg-0 mb-3 d-lg-block d-md-block d-sm-block d-none" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 11px;">
-                Add Group / User
-            </button>
-
-            <div class="row d-lg-none d-md-none d-sm-none ">
-                <div class="col-6 ">
-                    <a type="button" href="<?= base_url(); ?>create/groups" class="btn btn-primary mb-lg-0 mb-4 w-100" type="button" style="font-size: 11px;">
-                        Create Group
-                    </a>
-                </div>
-                <div class="col-6">
-                    <a type="button" href="<?= base_url(); ?>create/groupsales" class="btn btn-primary mb-lg-0 mb-4 w-100" type="button" style="font-size: 11px;">
-                        Add User
-                    </a>
-                </div>
-            </div>
+<?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project") : ?>
+    <div class="d-flex align-items-center justify-content-between  pb-4 row ">
+        <div class="col-lg-2 col-md-3 col-sm-3 col-12 ">
 
 
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                <a class="dropdown-item" href="<?= base_url(); ?>create/groups">Create Group</a>
-                <a class="dropdown-item" href="<?= base_url(); ?>create/groupsales">Add User</a>
-            </div>
+            <a type="button" href="<?= base_url(); ?>create/groups" class="btn btn-primary mb-lg-0 mb-3 w-100">
+                Create Group
+            </a>
+
+
         </div>
-
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-5 col-12 text-right ">
-        <div id="customSearch" style="margin-top: 20px;">
-            <input type="text" id="searchInput" placeholder="Cari User..." class="form-control rounded bg-white ">
+        <div class="col-lg-3 col-md-4 col-sm-5 col-12 text-right ">
+            <!-- isi -->
         </div>
     </div>
-</div>
+
+<?php endif; ?>
 
 
 
@@ -93,19 +80,61 @@ foreach ($users->user(user()->id)->getresultArray() as $id_user) :
         <div class="card-body">
 
             <div class="d-flex align-items-center justify-content-between  pb-3 row ">
-                <div class="col-lg-5 col-md-3 col-sm-3 col-6">
-                    <?php foreach ($users->groups($id_user['groups'])->getresultArray() as $groupheader); ?>
-                    <a type="button" class=" btn btn-sm btn-light  mr-1 " style="font-size:12px;"><?= $id_user['group_name'];  ?></a>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-12">
+
+                    <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project") : ?>
+
+                        <div>
+                            <div class="row">
+                                <div class="col-lg-12 col-9" style="padding-right: 0px ;">
+                                    <div id="customSearch">
+                                        <input type="text" id="searchInput" placeholder="Cari User..." class="form-control rounded bg-light ">
+                                    </div>
+                                </div>
+                                <div class="col-3 d-lg-none d-block" style="padding-left: 5px ; ">
+                                    <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                                        <button class="btn rounded btn-primary" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            <svg width="15" height="17" viewBox="0 0 15 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.7167 2.4C14.775 2.49167 14.825 2.58333 14.8667 2.68333C14.95 2.88333 15 3.1 15 3.33333V15C15 15.3417 14.8917 15.6667 14.7167 15.9333C14.6 16.1083 14.4417 16.2667 14.2667 16.3833C14.175 16.4417 14.0833 16.4917 13.9833 16.5333C13.7833 16.6167 13.5667 16.6667 13.3333 16.6667H1.66667C0.741667 16.6667 0 15.9167 0 15V3.33333C0 3.1 0.05 2.88333 0.133333 2.68333C0.175 2.58333 0.225 2.49167 0.283333 2.4C0.4 2.225 0.558333 2.06667 0.733333 1.95C1 1.775 1.31667 1.66667 1.66667 1.66667H2.5V0H4.16667V1.66667H10.8333V0H12.5V1.66667H13.3333C13.5667 1.66667 13.7833 1.71667 13.9833 1.8C14.0833 1.84167 14.175 1.89167 14.2667 1.95C14.4417 2.06667 14.6 2.225 14.7167 2.4ZM1.66667 3.33333V15H13.3333V3.33333H1.66667ZM7.5 9.9C5.80833 9.9 2.5 10.8 2.5 12.8833V14.1667H12.5V12.8917C12.5 10.8 9.19167 9.9 7.5 9.9ZM7.50005 11.5667C6.40838 11.5667 5.00005 12.0333 4.42505 12.5H10.575C10.0084 12.0333 8.59172 11.5667 7.50005 11.5667ZM7.5 9.16667C8.875 9.16667 10 8.04167 10 6.66667C10 5.29167 8.875 4.16667 7.5 4.16667C6.125 4.16667 5 5.29167 5 6.66667C5 8.04167 6.125 9.16667 7.5 9.16667ZM8.33333 6.66667C8.33333 6.20833 7.95833 5.83333 7.5 5.83333C7.04167 5.83333 6.66667 6.20833 6.66667 6.66667C6.66667 7.125 7.04167 7.5 7.5 7.5C7.95833 7.5 8.33333 7.125 8.33333 6.66667Z" fill="white" fill-opacity="0.54" />
+                                            </svg>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                                            <a class="dropdown-item mb-1" href="<?= base_url(); ?>create/groupsales">Add User</a>
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete-data-<?= $id_user['groups'] ?>">Delete Group</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($level == "manager" || $level == "general_manager" || $level == "management" || $level == "sales") : ?>
+                        <div id="customSearch w-100">
+                            <input type="text" id="searchInput" placeholder="Cari User..." class="form-control rounded bg-light ">
+                        </div>
+                    <?php endif; ?>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-5 col-6 text-right ">
 
-                    <a type="button" class=" btn btn-sm btn-light mr-1 " style="font-size:12px;" data-toggle="modal" data-target="#delete-data-<?= $id_user['groups'] ?>">Delete Group</a>
+                    <?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project") : ?>
+
+                        <div class="dropdown flex-md-grow-1 flex-xl-grow-0 d-lg-block d-none">
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <svg class="mr-2" width="15" height="17" viewBox="0 0 15 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.7167 2.4C14.775 2.49167 14.825 2.58333 14.8667 2.68333C14.95 2.88333 15 3.1 15 3.33333V15C15 15.3417 14.8917 15.6667 14.7167 15.9333C14.6 16.1083 14.4417 16.2667 14.2667 16.3833C14.175 16.4417 14.0833 16.4917 13.9833 16.5333C13.7833 16.6167 13.5667 16.6667 13.3333 16.6667H1.66667C0.741667 16.6667 0 15.9167 0 15V3.33333C0 3.1 0.05 2.88333 0.133333 2.68333C0.175 2.58333 0.225 2.49167 0.283333 2.4C0.4 2.225 0.558333 2.06667 0.733333 1.95C1 1.775 1.31667 1.66667 1.66667 1.66667H2.5V0H4.16667V1.66667H10.8333V0H12.5V1.66667H13.3333C13.5667 1.66667 13.7833 1.71667 13.9833 1.8C14.0833 1.84167 14.175 1.89167 14.2667 1.95C14.4417 2.06667 14.6 2.225 14.7167 2.4ZM1.66667 3.33333V15H13.3333V3.33333H1.66667ZM7.5 9.9C5.80833 9.9 2.5 10.8 2.5 12.8833V14.1667H12.5V12.8917C12.5 10.8 9.19167 9.9 7.5 9.9ZM7.50005 11.5667C6.40838 11.5667 5.00005 12.0333 4.42505 12.5H10.575C10.0084 12.0333 8.59172 11.5667 7.50005 11.5667ZM7.5 9.16667C8.875 9.16667 10 8.04167 10 6.66667C10 5.29167 8.875 4.16667 7.5 4.16667C6.125 4.16667 5 5.29167 5 6.66667C5 8.04167 6.125 9.16667 7.5 9.16667ZM8.33333 6.66667C8.33333 6.20833 7.95833 5.83333 7.5 5.83333C7.04167 5.83333 6.66667 6.20833 6.66667 6.66667C6.66667 7.125 7.04167 7.5 7.5 7.5C7.95833 7.5 8.33333 7.125 8.33333 6.66667Z" fill="#0B1460" fill-opacity="0.54" />
+                                </svg>Option
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                                <a class="dropdown-item" href="<?= base_url(); ?>create/groupsales">Add User</a>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete-data-<?= $id_user['groups'] ?>">Delete Group</a>
+                            </div>
+                        </div>
+                    <?php endif; ?>
 
                     <div class="modal fade" id="delete-data-<?= $id_user['groups']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog " role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Delete Data</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Delete Group</h5>
                                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">×</span>
                                     </button>
