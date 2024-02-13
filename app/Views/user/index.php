@@ -49,7 +49,7 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 
 
-<?php if ($level == "admin" || $level == "admin_group" || $level == "admin_project") : ?>
+
     <div class="d-flex align-items-center justify-content-between  pb-4 row ">
         <div class="col-lg-2 col-md-3 col-sm-3 col-12 ">
 
@@ -65,7 +65,7 @@
         </div>
     </div>
 
-<?php endif; ?>
+
 
 
 
