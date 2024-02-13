@@ -53,7 +53,6 @@
     }
 </style>
 
-
 <?php
 
 function gantiformat($nomorhp)
@@ -455,7 +454,7 @@ $in30 = date('Y/m/d', strtotime($now . ' - 30 days'));
                                 $row['time_stamp_new'];
                                 $dt_cnv_tmstp = date('d M Y', strtotime($row['time_stamp_new']));
                                 echo $dt_cnv_tmstp;
-                                ?>
+                                ?>ss
                             </td>
                             <td class="d-none">
                                 <?= $row['alamat']; ?>

@@ -1474,9 +1474,24 @@ endforeach;
 
 	public function edit_project($id)
 	{
+
+		if (!empty($this->showgroupsales->user($id)->getResultArray())) {
+
+			foreach ($this->showgroupsales->user($id)->getResultArray() as $group) {
+				if ($group['level'] == "management" || $group['level'] == "admin_group") {
+					$notifNew = $this->showleads->notifNewAdminGroup($group['groups']);
+				} else {
+					$notifNew = $this->showleads->notifNew();
+				}
+			}
+		} else {
+			$notifNew = $this->showleads->notifNew();
+		}
+
 		$data = [
 			'new' => $this->showleads->new(),
 			'project' => $this->showprojects->detail($id),
+			'notifNew' => $notifNew,
 			'title' => 'Edit Project'
 		];
 

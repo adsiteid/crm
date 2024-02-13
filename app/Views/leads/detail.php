@@ -63,7 +63,7 @@
         $tz = 'Asia/Jakarta';
         $dt = new DateTime("now", new DateTimeZone($tz));
         $date = $dt->format('Y-m-d H:i:s');
-        // $time = $dt->format('H:i:s');
+       
 
         ?>
 
