@@ -1349,6 +1349,7 @@ endforeach;
 			'group' => $this->showgroups->list(),
 			'group_project' => $this->showgroups,
 			'user_group' => $this->showgroupsales->user($id),
+			'adminProject' => $this->showusers->adminProject(),
 			'title' => 'Add Project'
 		];
 
