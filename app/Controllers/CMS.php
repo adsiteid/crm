@@ -405,7 +405,8 @@ class CMS extends BaseController
 			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
 		}
 
-		foreach ($this->showgroups->detail($this->request->getVar('groups'))->getResultArray() as $group_name);
+		foreach ($this->showgroups->detail_group($this->request->getVar('groups'))->getResultArray() as $group_name);
+
 
 		$this->showgroupsales->save(
 
