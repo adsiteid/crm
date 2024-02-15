@@ -78,7 +78,7 @@
                                     <option value="" selected>Select Option</option>
 
                                     <?php foreach ($user_group->getResultArray() as $grp) : ?>
-                                        <option value="<?= $grp['groups']; ?>"><?php foreach ($group_project->detail($grp['groups'])->getResultArray() as $user_grp) : ?><?= $user_grp['group_name']; ?><?php endforeach; ?></option>
+                                        <option value="<?= $grp['groups']; ?>"><?php foreach ($group_project->detail_group($grp['groups'])->getResultArray() as $user_grp) : ?><?= $user_grp['group_name']; ?><?php endforeach; ?></option>
                                     <?php endforeach; ?>
 
                                 </select>

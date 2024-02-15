@@ -132,6 +132,15 @@ $this->findAll();
     }
 
 
+    public function detail_group($id)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->where('group_id', $id);
+        $result = $builder->get();
+        return $result;
+    }
+
+
     public function projects($groups)
     {
         $builder = $this->db->table($this->table);
