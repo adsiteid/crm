@@ -86,7 +86,6 @@
                                     <?= (session('error.groups')); ?>
                                 </div>
                             </div>
-                            <?= $grp['groups']; ?>
                         </div>
 
                     </div>
