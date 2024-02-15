@@ -112,9 +112,6 @@
 
         <div id="chart1" class="mb-3"></div>
 
-        <!-- BAR CHART -->
-        <!-- <div id="leads" class="mb-4"></div>  -->
-
 
         <div class="table-responsive">
 
@@ -123,7 +120,6 @@
             <table id="tables" class="table  table-hover" width="100%" style="font-size:12px;">
                 <thead>
                     <tr>
-
 
                         <th style="font-size:13px; text-align:left">Tanggal </td>
                         <th style="font-size:13px;" class="text-lg-start text-center">Jumlah Leads</td>
@@ -152,8 +148,6 @@
         </div>
 
 
-        <!-- AKHIR TABLE -->
-
 
     </div>
 </div>
@@ -163,7 +157,7 @@
 <?php endif; ?>
 
 
-<div class="card rounded">
+<!-- <div class="card rounded">
 
     <div class="card-header mb-4 d-lg-flex d-none align-items-center justify-content-between bg-transparent py-3  ">
         <div>
@@ -173,7 +167,6 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
                     <a class="dropdown-item" href="#" onclick="exportF(this);">Export Excel</a>
-                    <!-- <a class="dropdown-item" href="#" onclick='printDiv();'>Print</a> -->
                     <a class="dropdown-item" href="#" id="doPrint">Print</a>
                 </div>
             </div>
@@ -194,7 +187,7 @@
         <div class="p-lg-3 p-0">
             <div class="table-responsive">
                 <table class="table  table-hover">
-                    <!-- table-striped -->
+                   
                     <?php if (!empty($leads->getResultArray())) : ?>
                         <thead>
                             <tr>
@@ -355,7 +348,7 @@
 
     </div>
 
-</div>
+</div> -->
 
 
 
